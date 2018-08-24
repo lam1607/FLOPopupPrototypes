@@ -1,0 +1,1092 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A3F10523212AB45D008AD365 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F10522212AB45D008AD365 /* main.m */; };
+		A3F1052E212AB45D008AD365 /* FLOPopupPrototypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1052D212AB45D008AD365 /* FLOPopupPrototypesTests.m */; };
+		A3F10539212AB45D008AD365 /* FLOPopupPrototypesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F10538212AB45D008AD365 /* FLOPopupPrototypesUITests.m */; };
+		A3F1055E212AB4F5008AD365 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1055D212AB4F5008AD365 /* AppDelegate.m */; };
+		A3F10561212AB519008AD365 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3F10560212AB519008AD365 /* Assets.xcassets */; };
+		A3F10569212AB5EB008AD365 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3F10568212AB5EB008AD365 /* Main.storyboard */; };
+		A3F1058E212AB69F008AD365 /* FLOWindowPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F10582212AB69F008AD365 /* FLOWindowPopup.m */; };
+		A3F10590212AB69F008AD365 /* FLOPopoverWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F10585212AB69F008AD365 /* FLOPopoverWindowController.m */; };
+		A3F10591212AB69F008AD365 /* FLOPopoverWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3F10586212AB69F008AD365 /* FLOPopoverWindowController.xib */; };
+		A3F10592212AB69F008AD365 /* FLOViewPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F10588212AB69F008AD365 /* FLOViewPopup.m */; };
+		A3F10594212AB69F008AD365 /* FLOPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1058D212AB69F008AD365 /* FLOPopover.m */; };
+		A3F105A3212ABA50008AD365 /* CABasicAnimation+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1059B212ABA50008AD365 /* CABasicAnimation+Extensions.m */; };
+		A3F105A4212ABA50008AD365 /* FLOKeyframeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1059D212ABA50008AD365 /* FLOKeyframeAnimation.m */; };
+		A3F105A5212ABA50008AD365 /* NSValue+FLOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1059E212ABA50008AD365 /* NSValue+FLOAdditions.m */; };
+		A3F105A6212ABA50008AD365 /* FLOGraphicsContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1059F212ABA50008AD365 /* FLOGraphicsContext.m */; };
+		DE0F118F212FF95D002F393B /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F118D212FF95D002F393B /* NewsViewController.m */; };
+		DE0F1190212FF95D002F393B /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE0F118E212FF95D002F393B /* NewsViewController.xib */; };
+		DE0F1194212FF9C0002F393B /* NewsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F1193212FF9C0002F393B /* NewsPresenter.m */; };
+		DE0F119A212FFBF9002F393B /* NewsService.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F1199212FFBF9002F393B /* NewsService.m */; };
+		DE0F11A0212FFC75002F393B /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F119F212FFC75002F393B /* News.m */; };
+		DE0F11A3212FFE76002F393B /* NewsRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F11A2212FFE76002F393B /* NewsRepository.m */; };
+		DE0F11A921300CED002F393B /* NewsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F11A821300CED002F393B /* NewsCellView.m */; };
+		DE0F11AB21300CF6002F393B /* NewsCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE0F11AA21300CF6002F393B /* NewsCellView.xib */; };
+		DE0F11B021300F1E002F393B /* NewsCellPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F11AF21300F1E002F393B /* NewsCellPresenter.m */; };
+		DE75B830212AD1F300CA6742 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DE75B82F212AD1F300CA6742 /* Utils.m */; };
+		DE75B83B212AD3E500CA6742 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE75B839212AD3E500CA6742 /* HomeViewController.m */; };
+		DE75B841212AD45F00CA6742 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE75B840212AD45F00CA6742 /* BaseViewController.m */; };
+		DEB2828F212BED7700C98D05 /* NSColor+FLOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */; };
+		DED501C5212E6A3B00A190F7 /* CustomNSOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = DED501C4212E6A3B00A190F7 /* CustomNSOutlineView.m */; };
+		DEFE5F91212BA7F800428ECE /* HomePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5F90212BA7F800428ECE /* HomePresenter.m */; };
+		DEFE5F96212BAF1C00428ECE /* DataCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5F95212BAF1C00428ECE /* DataCellView.m */; };
+		DEFE5F98212BAF2C00428ECE /* DataCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEFE5F97212BAF2C00428ECE /* DataCellView.xib */; };
+		DEFE5F9F212BAFD500428ECE /* ComicService.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5F9E212BAFD500428ECE /* ComicService.m */; };
+		DEFE5FA1212BB01500428ECE /* MockData.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEFE5FA0212BB01500428ECE /* MockData.plist */; };
+		DEFE5FA7212BB06000428ECE /* ComicRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5FA6212BB06000428ECE /* ComicRepository.m */; };
+		DEFE5FAC212BB09A00428ECE /* Comic.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5FAB212BB09A00428ECE /* Comic.m */; };
+		DEFE5FB6212BB17E00428ECE /* DataCellPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5FB5212BB17E00428ECE /* DataCellPresenter.m */; };
+		DEFE5FB9212BB5B400428ECE /* BaseWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5FB8212BB5B400428ECE /* BaseWindowController.m */; };
+		DEFE5FBF212BC24C00428ECE /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5FBD212BC24C00428ECE /* DataViewController.m */; };
+		DEFE5FC0212BC24C00428ECE /* DataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEFE5FBE212BC24C00428ECE /* DataViewController.xib */; };
+		DEFE5FC5212BC2A400428ECE /* DataPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5FC4212BC2A400428ECE /* DataPresenter.m */; };
+		DEFE5FCB212BC35100428ECE /* CustomNSTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5FCA212BC35100428ECE /* CustomNSTableRowView.m */; };
+		DEFE5FCE212BCA6A00428ECE /* FLOPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5FCD212BCA6A00428ECE /* FLOPopoverBackgroundView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A3F1052A212AB45D008AD365 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3F1050B212AB45D008AD365 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3F10512212AB45D008AD365;
+			remoteInfo = FLOPopupPrototypes;
+		};
+		A3F10535212AB45D008AD365 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3F1050B212AB45D008AD365 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3F10512212AB45D008AD365;
+			remoteInfo = FLOPopupPrototypes;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A3F10513212AB45D008AD365 /* FLOPopupPrototypes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLOPopupPrototypes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3F10521212AB45D008AD365 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3F10522212AB45D008AD365 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A3F10524212AB45D008AD365 /* FLOPopupPrototypes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FLOPopupPrototypes.entitlements; sourceTree = "<group>"; };
+		A3F10529212AB45D008AD365 /* FLOPopupPrototypesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLOPopupPrototypesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3F1052D212AB45D008AD365 /* FLOPopupPrototypesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLOPopupPrototypesTests.m; sourceTree = "<group>"; };
+		A3F1052F212AB45D008AD365 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3F10534212AB45D008AD365 /* FLOPopupPrototypesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLOPopupPrototypesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3F10538212AB45D008AD365 /* FLOPopupPrototypesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLOPopupPrototypesUITests.m; sourceTree = "<group>"; };
+		A3F1053A212AB45D008AD365 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3F1055C212AB4F5008AD365 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A3F1055D212AB4F5008AD365 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A3F10560212AB519008AD365 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A3F10568212AB5EB008AD365 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A3F10581212AB69F008AD365 /* FLOViewPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOViewPopup.h; sourceTree = "<group>"; };
+		A3F10582212AB69F008AD365 /* FLOWindowPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOWindowPopup.m; sourceTree = "<group>"; };
+		A3F10584212AB69F008AD365 /* FLOPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOPopover.h; sourceTree = "<group>"; };
+		A3F10585212AB69F008AD365 /* FLOPopoverWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOPopoverWindowController.m; sourceTree = "<group>"; };
+		A3F10586212AB69F008AD365 /* FLOPopoverWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLOPopoverWindowController.xib; sourceTree = "<group>"; };
+		A3F10587212AB69F008AD365 /* FLOWindowPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOWindowPopup.h; sourceTree = "<group>"; };
+		A3F10588212AB69F008AD365 /* FLOViewPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOViewPopup.m; sourceTree = "<group>"; };
+		A3F10589212AB69F008AD365 /* FLOPopoverService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOPopoverService.h; sourceTree = "<group>"; };
+		A3F1058C212AB69F008AD365 /* FLOPopoverWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOPopoverWindowController.h; sourceTree = "<group>"; };
+		A3F1058D212AB69F008AD365 /* FLOPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOPopover.m; sourceTree = "<group>"; };
+		A3F1059B212ABA50008AD365 /* CABasicAnimation+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CABasicAnimation+Extensions.m"; sourceTree = "<group>"; };
+		A3F1059C212ABA50008AD365 /* FLOGraphicsContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOGraphicsContext.h; sourceTree = "<group>"; };
+		A3F1059D212ABA50008AD365 /* FLOKeyframeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOKeyframeAnimation.m; sourceTree = "<group>"; };
+		A3F1059E212ABA50008AD365 /* NSValue+FLOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+FLOAdditions.m"; sourceTree = "<group>"; };
+		A3F1059F212ABA50008AD365 /* FLOGraphicsContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOGraphicsContext.m; sourceTree = "<group>"; };
+		A3F105A0212ABA50008AD365 /* CABasicAnimation+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CABasicAnimation+Extensions.h"; sourceTree = "<group>"; };
+		A3F105A1212ABA50008AD365 /* NSValue+FLOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+FLOAdditions.h"; sourceTree = "<group>"; };
+		A3F105A2212ABA50008AD365 /* FLOKeyframeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOKeyframeAnimation.h; sourceTree = "<group>"; };
+		DE0F118C212FF95D002F393B /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		DE0F118D212FF95D002F393B /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		DE0F118E212FF95D002F393B /* NewsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewController.xib; sourceTree = "<group>"; };
+		DE0F1191212FF999002F393B /* NewsPresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsPresenterProtocols.h; sourceTree = "<group>"; };
+		DE0F1192212FF9C0002F393B /* NewsPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsPresenter.h; sourceTree = "<group>"; };
+		DE0F1193212FF9C0002F393B /* NewsPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsPresenter.m; sourceTree = "<group>"; };
+		DE0F1195212FF9E4002F393B /* NewsViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsViewProtocols.h; sourceTree = "<group>"; };
+		DE0F1197212FFBD5002F393B /* NewsServiceProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsServiceProtocols.h; sourceTree = "<group>"; };
+		DE0F1198212FFBF9002F393B /* NewsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsService.h; sourceTree = "<group>"; };
+		DE0F1199212FFBF9002F393B /* NewsService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsService.m; sourceTree = "<group>"; };
+		DE0F119C212FFC59002F393B /* NewsRepositoryProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsRepositoryProtocols.h; sourceTree = "<group>"; };
+		DE0F119E212FFC75002F393B /* News.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		DE0F119F212FFC75002F393B /* News.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
+		DE0F11A1212FFE76002F393B /* NewsRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsRepository.h; sourceTree = "<group>"; };
+		DE0F11A2212FFE76002F393B /* NewsRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsRepository.m; sourceTree = "<group>"; };
+		DE0F11A721300CED002F393B /* NewsCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCellView.h; sourceTree = "<group>"; };
+		DE0F11A821300CED002F393B /* NewsCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsCellView.m; sourceTree = "<group>"; };
+		DE0F11AA21300CF6002F393B /* NewsCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsCellView.xib; sourceTree = "<group>"; };
+		DE0F11AC21300DD1002F393B /* NewsCellViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCellViewProtocols.h; sourceTree = "<group>"; };
+		DE0F11AD21300DEE002F393B /* NewsCellPresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCellPresenterProtocols.h; sourceTree = "<group>"; };
+		DE0F11AE21300F1E002F393B /* NewsCellPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCellPresenter.h; sourceTree = "<group>"; };
+		DE0F11AF21300F1E002F393B /* NewsCellPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsCellPresenter.m; sourceTree = "<group>"; };
+		DE75B82D212AD1F300CA6742 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		DE75B82E212AD1F300CA6742 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		DE75B82F212AD1F300CA6742 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		DE75B832212AD25B00CA6742 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		DE75B838212AD3E500CA6742 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		DE75B839212AD3E500CA6742 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		DE75B83F212AD45F00CA6742 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		DE75B840212AD45F00CA6742 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		DEB2828D212BED7700C98D05 /* NSColor+FLOAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+FLOAdditions.h"; sourceTree = "<group>"; };
+		DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+FLOAdditions.m"; sourceTree = "<group>"; };
+		DED501C3212E6A3B00A190F7 /* CustomNSOutlineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNSOutlineView.h; sourceTree = "<group>"; };
+		DED501C4212E6A3B00A190F7 /* CustomNSOutlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNSOutlineView.m; sourceTree = "<group>"; };
+		DEFE5F8D212BA7AE00428ECE /* HomeViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewProtocols.h; sourceTree = "<group>"; };
+		DEFE5F8E212BA7DB00428ECE /* HomePresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePresenterProtocols.h; sourceTree = "<group>"; };
+		DEFE5F8F212BA7F800428ECE /* HomePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePresenter.h; sourceTree = "<group>"; };
+		DEFE5F90212BA7F800428ECE /* HomePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePresenter.m; sourceTree = "<group>"; };
+		DEFE5F94212BAF1C00428ECE /* DataCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataCellView.h; sourceTree = "<group>"; };
+		DEFE5F95212BAF1C00428ECE /* DataCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataCellView.m; sourceTree = "<group>"; };
+		DEFE5F97212BAF2C00428ECE /* DataCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataCellView.xib; sourceTree = "<group>"; };
+		DEFE5F9A212BAF9900428ECE /* BaseServiceProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseServiceProtocols.h; sourceTree = "<group>"; };
+		DEFE5F9C212BAFBC00428ECE /* ComicServiceProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComicServiceProtocols.h; sourceTree = "<group>"; };
+		DEFE5F9D212BAFD500428ECE /* ComicService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComicService.h; sourceTree = "<group>"; };
+		DEFE5F9E212BAFD500428ECE /* ComicService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComicService.m; sourceTree = "<group>"; };
+		DEFE5FA0212BB01500428ECE /* MockData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MockData.plist; sourceTree = "<group>"; };
+		DEFE5FA4212BB04C00428ECE /* ComicRepositoryProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComicRepositoryProtocols.h; sourceTree = "<group>"; };
+		DEFE5FA5212BB06000428ECE /* ComicRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComicRepository.h; sourceTree = "<group>"; };
+		DEFE5FA6212BB06000428ECE /* ComicRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComicRepository.m; sourceTree = "<group>"; };
+		DEFE5FAA212BB09A00428ECE /* Comic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comic.h; sourceTree = "<group>"; };
+		DEFE5FAB212BB09A00428ECE /* Comic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comic.m; sourceTree = "<group>"; };
+		DEFE5FB1212BB11500428ECE /* DataCellViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataCellViewProtocols.h; sourceTree = "<group>"; };
+		DEFE5FB3212BB14D00428ECE /* DataCellPresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataCellPresenterProtocols.h; sourceTree = "<group>"; };
+		DEFE5FB4212BB17E00428ECE /* DataCellPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataCellPresenter.h; sourceTree = "<group>"; };
+		DEFE5FB5212BB17E00428ECE /* DataCellPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataCellPresenter.m; sourceTree = "<group>"; };
+		DEFE5FB7212BB5B400428ECE /* BaseWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseWindowController.h; sourceTree = "<group>"; };
+		DEFE5FB8212BB5B400428ECE /* BaseWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseWindowController.m; sourceTree = "<group>"; };
+		DEFE5FBC212BC24C00428ECE /* DataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
+		DEFE5FBD212BC24C00428ECE /* DataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
+		DEFE5FBE212BC24C00428ECE /* DataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataViewController.xib; sourceTree = "<group>"; };
+		DEFE5FC1212BC26900428ECE /* DataViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataViewProtocols.h; sourceTree = "<group>"; };
+		DEFE5FC2212BC28000428ECE /* DataPresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataPresenterProtocols.h; sourceTree = "<group>"; };
+		DEFE5FC3212BC2A400428ECE /* DataPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataPresenter.h; sourceTree = "<group>"; };
+		DEFE5FC4212BC2A400428ECE /* DataPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataPresenter.m; sourceTree = "<group>"; };
+		DEFE5FC9212BC35100428ECE /* CustomNSTableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNSTableRowView.h; sourceTree = "<group>"; };
+		DEFE5FCA212BC35100428ECE /* CustomNSTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNSTableRowView.m; sourceTree = "<group>"; };
+		DEFE5FCC212BCA6A00428ECE /* FLOPopoverBackgroundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLOPopoverBackgroundView.h; sourceTree = "<group>"; };
+		DEFE5FCD212BCA6A00428ECE /* FLOPopoverBackgroundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLOPopoverBackgroundView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A3F10510212AB45D008AD365 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3F10526212AB45D008AD365 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3F10531212AB45D008AD365 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A3F1050A212AB45D008AD365 = {
+			isa = PBXGroup;
+			children = (
+				A3F10515212AB45D008AD365 /* FLOPopupPrototypes */,
+				A3F1052C212AB45D008AD365 /* FLOPopupPrototypesTests */,
+				A3F10537212AB45D008AD365 /* FLOPopupPrototypesUITests */,
+				A3F10514212AB45D008AD365 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A3F10514212AB45D008AD365 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3F10513212AB45D008AD365 /* FLOPopupPrototypes.app */,
+				A3F10529212AB45D008AD365 /* FLOPopupPrototypesTests.xctest */,
+				A3F10534212AB45D008AD365 /* FLOPopupPrototypesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A3F10515212AB45D008AD365 /* FLOPopupPrototypes */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5F99212BAF8100428ECE /* Sevices */,
+				DEFE5FA2212BB03200428ECE /* Repositories */,
+				DEFE5FA8212BB08000428ECE /* Models */,
+				A3F1057F212AB69F008AD365 /* Common */,
+				A3F1055B212AB4F5008AD365 /* Application */,
+				A3F1055F212AB519008AD365 /* Resources */,
+				A3F10562212AB560008AD365 /* UI */,
+				DE75B82C212AD1F300CA6742 /* Utils */,
+				DE75B831212AD23000CA6742 /* Supporting-Files */,
+			);
+			path = FLOPopupPrototypes;
+			sourceTree = "<group>";
+		};
+		A3F1052C212AB45D008AD365 /* FLOPopupPrototypesTests */ = {
+			isa = PBXGroup;
+			children = (
+				A3F1052D212AB45D008AD365 /* FLOPopupPrototypesTests.m */,
+				A3F1052F212AB45D008AD365 /* Info.plist */,
+			);
+			path = FLOPopupPrototypesTests;
+			sourceTree = "<group>";
+		};
+		A3F10537212AB45D008AD365 /* FLOPopupPrototypesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A3F10538212AB45D008AD365 /* FLOPopupPrototypesUITests.m */,
+				A3F1053A212AB45D008AD365 /* Info.plist */,
+			);
+			path = FLOPopupPrototypesUITests;
+			sourceTree = "<group>";
+		};
+		A3F1055B212AB4F5008AD365 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A3F1055C212AB4F5008AD365 /* AppDelegate.h */,
+				A3F1055D212AB4F5008AD365 /* AppDelegate.m */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		A3F1055F212AB519008AD365 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A3F10560212AB519008AD365 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A3F10562212AB560008AD365 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A3F10567212AB5EB008AD365 /* Storyboards */,
+				DEFE5FC6212BC32300428ECE /* Common */,
+				A3F10563212AB560008AD365 /* Scenes */,
+				DE75B833212AD32A00CA6742 /* ViewComponents */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		A3F10563212AB560008AD365 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				DE75B83D212AD42800CA6742 /* Base */,
+				DE75B834212AD33B00CA6742 /* HomeViewController */,
+				DE0F1189212FF92E002F393B /* NewsViewController */,
+				DEFE5F92212BAEB000428ECE /* DataViewController */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		A3F10567212AB5EB008AD365 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A3F10568212AB5EB008AD365 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A3F1057F212AB69F008AD365 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A3F10580212AB69F008AD365 /* Popover */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A3F10580212AB69F008AD365 /* Popover */ = {
+			isa = PBXGroup;
+			children = (
+				A3F1059A212ABA50008AD365 /* extensions */,
+				A3F10584212AB69F008AD365 /* FLOPopover.h */,
+				A3F1058D212AB69F008AD365 /* FLOPopover.m */,
+				A3F10589212AB69F008AD365 /* FLOPopoverService.h */,
+				A3F10581212AB69F008AD365 /* FLOViewPopup.h */,
+				A3F10588212AB69F008AD365 /* FLOViewPopup.m */,
+				A3F10587212AB69F008AD365 /* FLOWindowPopup.h */,
+				A3F10582212AB69F008AD365 /* FLOWindowPopup.m */,
+				DEFE5FCC212BCA6A00428ECE /* FLOPopoverBackgroundView.h */,
+				DEFE5FCD212BCA6A00428ECE /* FLOPopoverBackgroundView.m */,
+				A3F1058C212AB69F008AD365 /* FLOPopoverWindowController.h */,
+				A3F10585212AB69F008AD365 /* FLOPopoverWindowController.m */,
+				A3F10586212AB69F008AD365 /* FLOPopoverWindowController.xib */,
+			);
+			path = Popover;
+			sourceTree = "<group>";
+		};
+		A3F1059A212ABA50008AD365 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A3F1059C212ABA50008AD365 /* FLOGraphicsContext.h */,
+				A3F1059F212ABA50008AD365 /* FLOGraphicsContext.m */,
+				A3F105A0212ABA50008AD365 /* CABasicAnimation+Extensions.h */,
+				A3F1059B212ABA50008AD365 /* CABasicAnimation+Extensions.m */,
+				A3F105A2212ABA50008AD365 /* FLOKeyframeAnimation.h */,
+				A3F1059D212ABA50008AD365 /* FLOKeyframeAnimation.m */,
+				A3F105A1212ABA50008AD365 /* NSValue+FLOAdditions.h */,
+				A3F1059E212ABA50008AD365 /* NSValue+FLOAdditions.m */,
+				DEB2828D212BED7700C98D05 /* NSColor+FLOAdditions.h */,
+				DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		DE0F1189212FF92E002F393B /* NewsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE0F118A212FF93F002F393B /* Presenter */,
+				DE0F118B212FF946002F393B /* ViewProtocols */,
+				DE0F118C212FF95D002F393B /* NewsViewController.h */,
+				DE0F118D212FF95D002F393B /* NewsViewController.m */,
+				DE0F118E212FF95D002F393B /* NewsViewController.xib */,
+			);
+			path = NewsViewController;
+			sourceTree = "<group>";
+		};
+		DE0F118A212FF93F002F393B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				DE0F1191212FF999002F393B /* NewsPresenterProtocols.h */,
+				DE0F1192212FF9C0002F393B /* NewsPresenter.h */,
+				DE0F1193212FF9C0002F393B /* NewsPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		DE0F118B212FF946002F393B /* ViewProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				DE0F1195212FF9E4002F393B /* NewsViewProtocols.h */,
+			);
+			path = ViewProtocols;
+			sourceTree = "<group>";
+		};
+		DE0F1196212FFBBC002F393B /* News */ = {
+			isa = PBXGroup;
+			children = (
+				DE0F1197212FFBD5002F393B /* NewsServiceProtocols.h */,
+				DE0F1198212FFBF9002F393B /* NewsService.h */,
+				DE0F1199212FFBF9002F393B /* NewsService.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		DE0F119B212FFC43002F393B /* News */ = {
+			isa = PBXGroup;
+			children = (
+				DE0F119C212FFC59002F393B /* NewsRepositoryProtocols.h */,
+				DE0F11A1212FFE76002F393B /* NewsRepository.h */,
+				DE0F11A2212FFE76002F393B /* NewsRepository.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		DE0F119D212FFC65002F393B /* News */ = {
+			isa = PBXGroup;
+			children = (
+				DE0F119E212FFC75002F393B /* News.h */,
+				DE0F119F212FFC75002F393B /* News.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		DE0F11A421300CAA002F393B /* NewsCellView */ = {
+			isa = PBXGroup;
+			children = (
+				DE0F11A621300CC5002F393B /* Presenter */,
+				DE0F11A521300CBE002F393B /* ViewProtocols */,
+				DE0F11A721300CED002F393B /* NewsCellView.h */,
+				DE0F11A821300CED002F393B /* NewsCellView.m */,
+				DE0F11AA21300CF6002F393B /* NewsCellView.xib */,
+			);
+			path = NewsCellView;
+			sourceTree = "<group>";
+		};
+		DE0F11A521300CBE002F393B /* ViewProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				DE0F11AC21300DD1002F393B /* NewsCellViewProtocols.h */,
+			);
+			path = ViewProtocols;
+			sourceTree = "<group>";
+		};
+		DE0F11A621300CC5002F393B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				DE0F11AD21300DEE002F393B /* NewsCellPresenterProtocols.h */,
+				DE0F11AE21300F1E002F393B /* NewsCellPresenter.h */,
+				DE0F11AF21300F1E002F393B /* NewsCellPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		DE75B82C212AD1F300CA6742 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DE75B82E212AD1F300CA6742 /* Constants.h */,
+				DE75B82D212AD1F300CA6742 /* Utils.h */,
+				DE75B82F212AD1F300CA6742 /* Utils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		DE75B831212AD23000CA6742 /* Supporting-Files */ = {
+			isa = PBXGroup;
+			children = (
+				DE75B832212AD25B00CA6742 /* PrefixHeader.pch */,
+				A3F10521212AB45D008AD365 /* Info.plist */,
+				A3F10522212AB45D008AD365 /* main.m */,
+				A3F10524212AB45D008AD365 /* FLOPopupPrototypes.entitlements */,
+				DEFE5FA0212BB01500428ECE /* MockData.plist */,
+			);
+			path = "Supporting-Files";
+			sourceTree = "<group>";
+		};
+		DE75B833212AD32A00CA6742 /* ViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5F93212BAF0100428ECE /* DataCellView */,
+				DE0F11A421300CAA002F393B /* NewsCellView */,
+			);
+			path = ViewComponents;
+			sourceTree = "<group>";
+		};
+		DE75B834212AD33B00CA6742 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE75B837212AD3B500CA6742 /* Presenter */,
+				DE75B835212AD34C00CA6742 /* ViewProtocols */,
+				DE75B838212AD3E500CA6742 /* HomeViewController.h */,
+				DE75B839212AD3E500CA6742 /* HomeViewController.m */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		DE75B835212AD34C00CA6742 /* ViewProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5F8D212BA7AE00428ECE /* HomeViewProtocols.h */,
+			);
+			path = ViewProtocols;
+			sourceTree = "<group>";
+		};
+		DE75B837212AD3B500CA6742 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5F8E212BA7DB00428ECE /* HomePresenterProtocols.h */,
+				DEFE5F8F212BA7F800428ECE /* HomePresenter.h */,
+				DEFE5F90212BA7F800428ECE /* HomePresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		DE75B83D212AD42800CA6742 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				DE75B83F212AD45F00CA6742 /* BaseViewController.h */,
+				DE75B840212AD45F00CA6742 /* BaseViewController.m */,
+				DEFE5FB7212BB5B400428ECE /* BaseWindowController.h */,
+				DEFE5FB8212BB5B400428ECE /* BaseWindowController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		DED501C2212E6A1400A190F7 /* CustomNSOutlineView */ = {
+			isa = PBXGroup;
+			children = (
+				DED501C3212E6A3B00A190F7 /* CustomNSOutlineView.h */,
+				DED501C4212E6A3B00A190F7 /* CustomNSOutlineView.m */,
+			);
+			path = CustomNSOutlineView;
+			sourceTree = "<group>";
+		};
+		DEFE5F92212BAEB000428ECE /* DataViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5FBA212BC23200428ECE /* Presenter */,
+				DEFE5FBB212BC23800428ECE /* ViewProtocols */,
+				DEFE5FBC212BC24C00428ECE /* DataViewController.h */,
+				DEFE5FBD212BC24C00428ECE /* DataViewController.m */,
+				DEFE5FBE212BC24C00428ECE /* DataViewController.xib */,
+			);
+			path = DataViewController;
+			sourceTree = "<group>";
+		};
+		DEFE5F93212BAF0100428ECE /* DataCellView */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5FB2212BB12F00428ECE /* Presenter */,
+				DEFE5FAD212BB0F000428ECE /* ViewProtocols */,
+				DEFE5F94212BAF1C00428ECE /* DataCellView.h */,
+				DEFE5F95212BAF1C00428ECE /* DataCellView.m */,
+				DEFE5F97212BAF2C00428ECE /* DataCellView.xib */,
+			);
+			path = DataCellView;
+			sourceTree = "<group>";
+		};
+		DEFE5F99212BAF8100428ECE /* Sevices */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5F9A212BAF9900428ECE /* BaseServiceProtocols.h */,
+				DEFE5F9B212BAFA800428ECE /* Comic */,
+				DE0F1196212FFBBC002F393B /* News */,
+			);
+			path = Sevices;
+			sourceTree = "<group>";
+		};
+		DEFE5F9B212BAFA800428ECE /* Comic */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5F9C212BAFBC00428ECE /* ComicServiceProtocols.h */,
+				DEFE5F9D212BAFD500428ECE /* ComicService.h */,
+				DEFE5F9E212BAFD500428ECE /* ComicService.m */,
+			);
+			path = Comic;
+			sourceTree = "<group>";
+		};
+		DEFE5FA2212BB03200428ECE /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5FA3212BB03A00428ECE /* Comic */,
+				DE0F119B212FFC43002F393B /* News */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		DEFE5FA3212BB03A00428ECE /* Comic */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5FA4212BB04C00428ECE /* ComicRepositoryProtocols.h */,
+				DEFE5FA5212BB06000428ECE /* ComicRepository.h */,
+				DEFE5FA6212BB06000428ECE /* ComicRepository.m */,
+			);
+			path = Comic;
+			sourceTree = "<group>";
+		};
+		DEFE5FA8212BB08000428ECE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5FA9212BB08A00428ECE /* Comic */,
+				DE0F119D212FFC65002F393B /* News */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DEFE5FA9212BB08A00428ECE /* Comic */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5FAA212BB09A00428ECE /* Comic.h */,
+				DEFE5FAB212BB09A00428ECE /* Comic.m */,
+			);
+			path = Comic;
+			sourceTree = "<group>";
+		};
+		DEFE5FAD212BB0F000428ECE /* ViewProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5FB1212BB11500428ECE /* DataCellViewProtocols.h */,
+			);
+			path = ViewProtocols;
+			sourceTree = "<group>";
+		};
+		DEFE5FB2212BB12F00428ECE /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5FB3212BB14D00428ECE /* DataCellPresenterProtocols.h */,
+				DEFE5FB4212BB17E00428ECE /* DataCellPresenter.h */,
+				DEFE5FB5212BB17E00428ECE /* DataCellPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		DEFE5FBA212BC23200428ECE /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5FC2212BC28000428ECE /* DataPresenterProtocols.h */,
+				DEFE5FC3212BC2A400428ECE /* DataPresenter.h */,
+				DEFE5FC4212BC2A400428ECE /* DataPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		DEFE5FBB212BC23800428ECE /* ViewProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5FC1212BC26900428ECE /* DataViewProtocols.h */,
+			);
+			path = ViewProtocols;
+			sourceTree = "<group>";
+		};
+		DEFE5FC6212BC32300428ECE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DED501C2212E6A1400A190F7 /* CustomNSOutlineView */,
+				DEFE5FC8212BC35100428ECE /* CustomNSTableRowView */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DEFE5FC8212BC35100428ECE /* CustomNSTableRowView */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5FC9212BC35100428ECE /* CustomNSTableRowView.h */,
+				DEFE5FCA212BC35100428ECE /* CustomNSTableRowView.m */,
+			);
+			path = CustomNSTableRowView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A3F10512212AB45D008AD365 /* FLOPopupPrototypes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3F1053D212AB45D008AD365 /* Build configuration list for PBXNativeTarget "FLOPopupPrototypes" */;
+			buildPhases = (
+				A3F1050F212AB45D008AD365 /* Sources */,
+				A3F10510212AB45D008AD365 /* Frameworks */,
+				A3F10511212AB45D008AD365 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FLOPopupPrototypes;
+			productName = FLOPopupPrototypes;
+			productReference = A3F10513212AB45D008AD365 /* FLOPopupPrototypes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A3F10528212AB45D008AD365 /* FLOPopupPrototypesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3F10540212AB45D008AD365 /* Build configuration list for PBXNativeTarget "FLOPopupPrototypesTests" */;
+			buildPhases = (
+				A3F10525212AB45D008AD365 /* Sources */,
+				A3F10526212AB45D008AD365 /* Frameworks */,
+				A3F10527212AB45D008AD365 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A3F1052B212AB45D008AD365 /* PBXTargetDependency */,
+			);
+			name = FLOPopupPrototypesTests;
+			productName = FLOPopupPrototypesTests;
+			productReference = A3F10529212AB45D008AD365 /* FLOPopupPrototypesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A3F10533212AB45D008AD365 /* FLOPopupPrototypesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3F10543212AB45D008AD365 /* Build configuration list for PBXNativeTarget "FLOPopupPrototypesUITests" */;
+			buildPhases = (
+				A3F10530212AB45D008AD365 /* Sources */,
+				A3F10531212AB45D008AD365 /* Frameworks */,
+				A3F10532212AB45D008AD365 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A3F10536212AB45D008AD365 /* PBXTargetDependency */,
+			);
+			name = FLOPopupPrototypesUITests;
+			productName = FLOPopupPrototypesUITests;
+			productReference = A3F10534212AB45D008AD365 /* FLOPopupPrototypesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A3F1050B212AB45D008AD365 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = Floware;
+				TargetAttributes = {
+					A3F10512212AB45D008AD365 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+					A3F10528212AB45D008AD365 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A3F10512212AB45D008AD365;
+					};
+					A3F10533212AB45D008AD365 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A3F10512212AB45D008AD365;
+					};
+				};
+			};
+			buildConfigurationList = A3F1050E212AB45D008AD365 /* Build configuration list for PBXProject "FLOPopupPrototypes" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A3F1050A212AB45D008AD365;
+			productRefGroup = A3F10514212AB45D008AD365 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A3F10512212AB45D008AD365 /* FLOPopupPrototypes */,
+				A3F10528212AB45D008AD365 /* FLOPopupPrototypesTests */,
+				A3F10533212AB45D008AD365 /* FLOPopupPrototypesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A3F10511212AB45D008AD365 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3F10561212AB519008AD365 /* Assets.xcassets in Resources */,
+				DE0F11AB21300CF6002F393B /* NewsCellView.xib in Resources */,
+				A3F10569212AB5EB008AD365 /* Main.storyboard in Resources */,
+				DEFE5F98212BAF2C00428ECE /* DataCellView.xib in Resources */,
+				A3F10591212AB69F008AD365 /* FLOPopoverWindowController.xib in Resources */,
+				DEFE5FC0212BC24C00428ECE /* DataViewController.xib in Resources */,
+				DEFE5FA1212BB01500428ECE /* MockData.plist in Resources */,
+				DE0F1190212FF95D002F393B /* NewsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3F10527212AB45D008AD365 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3F10532212AB45D008AD365 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A3F1050F212AB45D008AD365 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE0F11B021300F1E002F393B /* NewsCellPresenter.m in Sources */,
+				A3F105A5212ABA50008AD365 /* NSValue+FLOAdditions.m in Sources */,
+				DE0F11A921300CED002F393B /* NewsCellView.m in Sources */,
+				A3F1058E212AB69F008AD365 /* FLOWindowPopup.m in Sources */,
+				DE75B830212AD1F300CA6742 /* Utils.m in Sources */,
+				DEFE5FCB212BC35100428ECE /* CustomNSTableRowView.m in Sources */,
+				DEFE5F96212BAF1C00428ECE /* DataCellView.m in Sources */,
+				DEFE5FC5212BC2A400428ECE /* DataPresenter.m in Sources */,
+				DE0F118F212FF95D002F393B /* NewsViewController.m in Sources */,
+				DEFE5FB9212BB5B400428ECE /* BaseWindowController.m in Sources */,
+				A3F105A3212ABA50008AD365 /* CABasicAnimation+Extensions.m in Sources */,
+				DEFE5F9F212BAFD500428ECE /* ComicService.m in Sources */,
+				DED501C5212E6A3B00A190F7 /* CustomNSOutlineView.m in Sources */,
+				DE0F119A212FFBF9002F393B /* NewsService.m in Sources */,
+				DEFE5FA7212BB06000428ECE /* ComicRepository.m in Sources */,
+				DEFE5FB6212BB17E00428ECE /* DataCellPresenter.m in Sources */,
+				DE75B83B212AD3E500CA6742 /* HomeViewController.m in Sources */,
+				DEFE5FCE212BCA6A00428ECE /* FLOPopoverBackgroundView.m in Sources */,
+				DEFE5FBF212BC24C00428ECE /* DataViewController.m in Sources */,
+				DEFE5F91212BA7F800428ECE /* HomePresenter.m in Sources */,
+				A3F10594212AB69F008AD365 /* FLOPopover.m in Sources */,
+				DE0F11A3212FFE76002F393B /* NewsRepository.m in Sources */,
+				A3F105A4212ABA50008AD365 /* FLOKeyframeAnimation.m in Sources */,
+				DE0F11A0212FFC75002F393B /* News.m in Sources */,
+				DEB2828F212BED7700C98D05 /* NSColor+FLOAdditions.m in Sources */,
+				A3F1055E212AB4F5008AD365 /* AppDelegate.m in Sources */,
+				A3F10523212AB45D008AD365 /* main.m in Sources */,
+				DE75B841212AD45F00CA6742 /* BaseViewController.m in Sources */,
+				DE0F1194212FF9C0002F393B /* NewsPresenter.m in Sources */,
+				A3F10592212AB69F008AD365 /* FLOViewPopup.m in Sources */,
+				DEFE5FAC212BB09A00428ECE /* Comic.m in Sources */,
+				A3F10590212AB69F008AD365 /* FLOPopoverWindowController.m in Sources */,
+				A3F105A6212ABA50008AD365 /* FLOGraphicsContext.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3F10525212AB45D008AD365 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3F1052E212AB45D008AD365 /* FLOPopupPrototypesTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3F10530212AB45D008AD365 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3F10539212AB45D008AD365 /* FLOPopupPrototypesUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A3F1052B212AB45D008AD365 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A3F10512212AB45D008AD365 /* FLOPopupPrototypes */;
+			targetProxy = A3F1052A212AB45D008AD365 /* PBXContainerItemProxy */;
+		};
+		A3F10536212AB45D008AD365 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A3F10512212AB45D008AD365 /* FLOPopupPrototypes */;
+			targetProxy = A3F10535212AB45D008AD365 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A3F1053B212AB45D008AD365 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A3F1053C212AB45D008AD365 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A3F1053E212AB45D008AD365 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "FLOPopupPrototypes/Supporting-Files/FLOPopupPrototypes.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/FLOPopupPrototypes/Supporting-Files/PrefixHeader.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/FLOPopupPrototypes/Supporting-Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = Floware.FLOPopupPrototypes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A3F1053F212AB45D008AD365 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "FLOPopupPrototypes/Supporting-Files/FLOPopupPrototypes.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/FLOPopupPrototypes/Supporting-Files/PrefixHeader.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/FLOPopupPrototypes/Supporting-Files/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = Floware.FLOPopupPrototypes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A3F10541212AB45D008AD365 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = FLOPopupPrototypesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Floware.FLOPopupPrototypesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FLOPopupPrototypes.app/Contents/MacOS/FLOPopupPrototypes";
+			};
+			name = Debug;
+		};
+		A3F10542212AB45D008AD365 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = FLOPopupPrototypesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Floware.FLOPopupPrototypesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FLOPopupPrototypes.app/Contents/MacOS/FLOPopupPrototypes";
+			};
+			name = Release;
+		};
+		A3F10544212AB45D008AD365 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = FLOPopupPrototypesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Floware.FLOPopupPrototypesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FLOPopupPrototypes;
+			};
+			name = Debug;
+		};
+		A3F10545212AB45D008AD365 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = FLOPopupPrototypesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Floware.FLOPopupPrototypesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FLOPopupPrototypes;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A3F1050E212AB45D008AD365 /* Build configuration list for PBXProject "FLOPopupPrototypes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3F1053B212AB45D008AD365 /* Debug */,
+				A3F1053C212AB45D008AD365 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3F1053D212AB45D008AD365 /* Build configuration list for PBXNativeTarget "FLOPopupPrototypes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3F1053E212AB45D008AD365 /* Debug */,
+				A3F1053F212AB45D008AD365 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3F10540212AB45D008AD365 /* Build configuration list for PBXNativeTarget "FLOPopupPrototypesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3F10541212AB45D008AD365 /* Debug */,
+				A3F10542212AB45D008AD365 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3F10543212AB45D008AD365 /* Build configuration list for PBXNativeTarget "FLOPopupPrototypesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3F10544212AB45D008AD365 /* Debug */,
+				A3F10545212AB45D008AD365 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A3F1050B212AB45D008AD365 /* Project object */;
+}

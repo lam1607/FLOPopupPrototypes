@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>comics</key>
+        <array>
+            <dict>
+                <key>name</key>
+                <string>The Academia Waltz</string>
+                <key>shortDesc</key>
+                <string>The Academia Waltz was Berke Breathed&apos;s first cartoon, published daily from 1978 to 1979 in The Daily Texan at The University of Texas at Austin...</string>
+                <key>longDesc</key>
+                <string>The Academia Waltz was Berke Breathed&apos;s first cartoon, published daily from 1978 to 1979 in The Daily Texan at The University of Texas at Austin, where he was a student. The strip focused primarily on college life, although it sometimes made references to big news stories of the time (such as the incident at Three Mile Island in 1979).</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/aw/large_rec-201701251555.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/academiawaltz/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Lalo Alcaraz</string>
+                <key>shortDesc</key>
+                <string>Lalo Alcaraz -- award-winning editorial cartoonist and Latino journalist -- captures the essence of the country’s changing cultural and political landscape.</string>
+                <key>longDesc</key>
+                <string>Lalo Alcaraz -- award-winning editorial cartoonist and Latino journalist -- captures the essence of the country’s changing cultural and political landscape. Alcaraz has produced editorial cartoons for LA Weekly since 1992 and also creates cartoons in Spanish for La Opinion, the United States’ oldest Spanish-language newspaper. His work has appeared in The New York Times, The Village Voice, Los Angeles Times, Variety, Hispanic Magazine, Latina magazine, La Jornada in Mexico City, BUNTE, (Germany’s People magazine) and many other publications. Add instant variety to your Web site’s news and opinion offerings with Alcaraz’s intelligent, youthful and thought-provoking perspective.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/la/large_rec-201701251555.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/laloalcaraz/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Michael Andrew</string>
+                <key>shortDesc</key>
+                <string>About Michael Andrew Comic Strips</string>
+                <key>longDesc</key>
+                <string>Featuring political comics by Michael Andrew.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/tmt/large_tmt_rec_201703061139.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/michael-andrew/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>At the Zoo</string>
+                <key>shortDesc</key>
+                <string>What do chimpanzees say about us when we&apos;re not around? What happens when a penguin watches too much TV?</string>
+                <key>longDesc</key>
+                <string>What do chimpanzees say about us when we&apos;re not around? What happens when a penguin watches too much TV? What do you do with a lion who&apos;s scared of going to the vet? Find out At the Zoo...</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/atz/large_rec-201701251558.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/at-the-zoo/2018/08/06</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Back to B.C.</string>
+                <key>shortDesc</key>
+                <string>Follow Johnny Hart’s classic strip, B.C., from its humble beginnings in 1958! Join the original five (B.C., Peter, Wiley, Clumsy and Thor)...</string>
+                <key>longDesc</key>
+                <string>Follow Johnny Hart’s classic strip, B.C., from its humble beginnings in 1958! Join the original five (B.C., Peter, Wiley, Clumsy and Thor) as they discover fire, befriend dinosaurs, try to figure out women and make a new friend, Curls.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/cbc/large_rec-201701251558.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/back-to-bc/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Back in the Day</string>
+                <key>shortDesc</key>
+                <string>It was a different world back when dinosaurs roamed the earth. There were as yet no sugar substitutes, so hyper-activity was rampant.</string>
+                <key>longDesc</key>
+                <string>It was a different world back when dinosaurs roamed the earth. There were as yet no sugar substitutes, so hyper-activity was rampant. And brains were small, so &quot;I&apos;m with stupid&quot; t-shirts were hot. It was a time of abundant flora and verbal fun-a, a rough and beastly world in which sometimes the flaky survived, and, fortunately for us, hungry doomed life forms spoke perfectly good English.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/bid/large_rec-201701251556.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/backintheday/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Best Medicine Cartoon</string>
+                <key>shortDesc</key>
+                <string>Single-panel cartoons covering topics ranging from homicidal vegetables to trees with human-scented air fresheners...</string>
+                <key>longDesc</key>
+                <string>Single-panel cartoons covering topics ranging from homicidal vegetables to trees with human-scented air fresheners; The Best Medicine Cartoon will give you a dose of the best medicine: laughter (way better than that nasty cherry stuff).</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/tbm/large_rec-201701251558.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/the-best-medicine/2017/12/22</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Bob the Squirrel</string>
+                <key>shortDesc</key>
+                <string>Welcome to the wonderful world of obsessive compulsive cartoonist Frank Page and his band of misfits. Bob the Squirrel chronicles the life and times of Bob...</string>
+                <key>longDesc</key>
+                <string>Welcome to the wonderful world of obsessive compulsive cartoonist Frank Page and his band of misfits. Bob the Squirrel chronicles the life and times of Bob, a squirrel and Frank, the human he&apos;s taken in as his own. Other ingredients in this comic strip stew include Frank&apos;s girlfriend- the effervescent &quot;foofy coffee chick&quot; Lezley, her daughter Lauren and Maggie, the overly protective pug mix. And to complete the meal, why don&apos;t we throw in Frank&apos;s dog, a jack russell terrier named Lucy---a dog who loves to climb trees, eat nacho chips and generally be the yang to Bob&apos;s ying. There&apos;s something for everyone in Bob the Squirrel... so, make a daily stop to see what&apos;s going on. You will not be disappointed.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/bob/large_rec-201701251554.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/bobthesquirrel/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Bully</string>
+                <key>shortDesc</key>
+                <string>Bully is a dialogue-free comic strip about Bully, a short-tempered egomaniacal French bulldog, and his merciful family.</string>
+                <key>longDesc</key>
+                <string>Bully is a dialogue-free comic strip about Bully, a short-tempered egomaniacal French bulldog, and his merciful family. With no dialogue, Bully finds himself in vast visual storylines that find him as big as a house one day and small as a mouse the next. Not to be outdone, home life is just as adventurous with Bob and Annie (mom and pop), his puppy pal Buddy, and an enormous grudge for the evil mailman.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/bully/large_rec-201701251558.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/bully/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Dinosaur Comics</string>
+                <key>shortDesc</key>
+                <string>Dinosaur Comics is a comic where the pictures never change, but the words do! IT&apos;S HONESTLY BETTER THAN IT SOUNDS. T-Rex, Utahraptor...</string>
+                <key>longDesc</key>
+                <string>Dinosaur Comics is a comic where the pictures never change, but the words do! IT&apos;S HONESTLY BETTER THAN IT SOUNDS. T-Rex, Utahraptor, Dromiceiomimus and friends discuss Very Important Things, ranging from the nature of love all the way to whether or not who smelt it is truly the same as whosoever dealt it. (This hasn&apos;t actually happened in the comic, but it&apos;s actually not a bad idea).</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/dco/large_rec-201701251558.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/dinosaur-comics/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Edge City</string>
+                <key>shortDesc</key>
+                <string>They&apos;re the stars of Edge City, a nationally-syndicated, ground-breaking comic strip about a hip, Jewish-American family juggling relationships, careers, ...</string>
+                <key>longDesc</key>
+                <string>They&apos;re the stars of Edge City, a nationally-syndicated, ground-breaking comic strip about a hip, Jewish-American family juggling relationships, careers, and tradition at the fast-pace of modern life. Fueled by caffeine and gasoline, Len and Abby and their kids, Colin and Carly, power their way through self-employment, after school activities, pursuing their dreams, and lining up for carpool. It&apos;s life on the edge every day in Edge City!</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/ec/large_rec-201701251558.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/edge-city/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Fusco Brothers</string>
+                <key>shortDesc</key>
+                <string>J.C. Duffy’s hilariously unique comic strip features the four Fusco bachelors</string>
+                <key>longDesc</key>
+                <string>J.C. Duffy’s hilariously unique comic strip features the four Fusco bachelors - Rolf, Lance, Al, and Lars, along with Lance’s girlfriend, Gloria, as well as Axel, the Fusco’s faithful wolverine. These wacky characters startle and delight readers with their off-the-wall antics and verbal acrobatics.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/fu/large_rec-201701251556.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/thefuscobrothers/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Get a Life</string>
+                <key>shortDesc</key>
+                <string>Get a life!&quot; is a common admonition, one more easily uttered than accomplished. Tim Lachowski&apos;s cartoon panel of the same name offers telling glimpses of the process in all its awkward absurdity</string>
+                <key>longDesc</key>
+                <string>&quot;Get a life!&quot; is a common admonition, one more easily uttered than accomplished. Tim Lachowski&apos;s cartoon panel of the same name offers telling glimpses of the process in all its awkward absurdity. Whether or not its sly dry capture of lifeâ€™s rimshot moments helps readers achieve the goal, it faithfully provides those engaged in the attempt an insightful daily laugh.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/gal/large_rec-201701251556.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/getalife/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Ginger Meggs</string>
+                <key>shortDesc</key>
+                <string>Ginger Meggs, Australia&apos;s most popular and longest-running comic strip, was created in the early 1920s by Jimmy Bancks.</string>
+                <key>longDesc</key>
+                <string>Ginger Meggs, Australia&apos;s most popular and longest-running comic strip, was created in the early 1920s by Jimmy Bancks. The strip follows the escapades of a red-haired prepubescent mischief-maker who lives in an inner suburban working-class household. While employed at The Bulletin, Bancks submitted cartoons to the Sydney Sunday Sun, where he began his Us Fellers strip in 1921 in the &quot;Sunbeams&quot; section of the Sunday Sun. Ginger first appeared in Us Fellers on 13 November 1921, drawn by Bancks.[1] When Bancks died on 1 July 1952 from a heart attack, Ron Vivian took over the strip (1953-1973), followed by Lloyd Piper (1973-1982), James Kemsley (1983-2007) and since 2007, Jason Chatfield...</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/gin/large_rec-201701251554.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/gingermeggs/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Goats</string>
+                <key>shortDesc</key>
+                <string>Goats is a sci-fi parody epic, humor imagined on an epic scale. More than a simple gag-a-day strip, ...</string>
+                <key>longDesc</key>
+                <string>Goats is a sci-fi parody epic, humor imagined on an epic scale. More than a simple gag-a-day strip, the anarchic and hyper-inventive Goats has a sprawling storyline starring two ordinary techies who are tasked with saving the universe from utter destruction and the demonic chickens, cyborg goldfish, omnisexual aliens, disgruntled hackers, Mayan death gods, and random celebrities they encounter along the way.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/goat/large_rec.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/goats/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Grizzwells</string>
+                <key>shortDesc</key>
+                <string>About The Grizzwells Comic Strips</string>
+                <key>longDesc</key>
+                <string>For a family strip with bite, you can&apos;t do better than The Grizzwells, starring a four-bear family of grizzlies.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/gw/large_rec-201701251556.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/thegrizzwells/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Human Cull</string>
+                <key>shortDesc</key>
+                <string>Human Cull is a tongue-in-cheek cartoon about an alien making the world a better place by removing the most annoying people.</string>
+                <key>longDesc</key>
+                <string>Human Cull is a tongue-in-cheek cartoon about an alien making the world a better place by removing the most annoying people. Litter-droppers, telemarketers and other miscreants are all vaporised painlessly by ray gun, leaving a nicer world. Alex Hallatt came up with Human Cull after seeing someone dropping litter. She didn’t want to confront him, but channelled her frustration into a little green man who could. Alex also has a syndicated comic strip called Arctic Circle and illustrates all sorts of other things that you can see at www.alexhallatt.com. Her first chapter book for kids, FAB (Friends Against Bullying) Club is now out in paperback.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/hcu/large_rec-201701251557.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/human-cull/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>In the Bleachers</string>
+                <key>shortDesc</key>
+                <string>Whatever your athletic interest, golf, baseball, running, or basketball and whether you haven’t picked up a ball since high school ...</string>
+                <key>longDesc</key>
+                <string>Whatever your athletic interest, golf, baseball, running, or basketball and whether you haven’t picked up a ball since high school or you’re a serious sports fanatic, everyone can see the humor and irony highlighted by In the Bleachers. Steve Moore helps us laugh at ourselves and those in the professional spotlight by drawing attention to the comedy of sports.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/bl/large_rec-201701251555.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/inthebleachers/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Ink Pen</string>
+                <key>shortDesc</key>
+                <string>Ink Pen: the insider’s look at the seedy underbelly of cartoon character employment. Find out what happened to loveable Bixby the Rat!</string>
+                <key>longDesc</key>
+                <string>Ink Pen: the insider’s look at the seedy underbelly of cartoon character employment. Find out what happened to loveable Bixby the Rat! Witness the struggles of Ham Hock, the talking pig, as he tries to break into a business that sees him as nothing more than a slab of meat. Meet (briefly) the plucky sidekicks, thrust into danger by careless superheroes and the villains they duel.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/ink/large_rec-201701251556.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/inkpen/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Jane&apos;s World</string>
+                <key>shortDesc</key>
+                <string>Jane’s World stars the loveable misfit, Jane Wyatt. It’s a comic full of girl-on-girl action, chicks with guns, a vegan menace, vintage Winnebagos, ...</string>
+                <key>longDesc</key>
+                <string>Jane’s World stars the loveable misfit, Jane Wyatt. It’s a comic full of girl-on-girl action, chicks with guns, a vegan menace, vintage Winnebagos, drag queens, and downward career spirals. You know, the usual for stability-challenged Jane. In short, Jane is a magnet for the kind of drama that makes for good comedy.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/jw/large_jw_rec_201806070913.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/janesworld/2018/08/07</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Kid Beowulf</string>
+                <key>shortDesc</key>
+                <string>Kid Beowulf is an action adventure comic strip inspired by the original epic poem, Beowulf.</string>
+                <key>longDesc</key>
+                <string>Kid Beowulf is an action adventure comic strip inspired by the original epic poem, Beowulf.  In the original epic poem Beowulf and Grendel are sworn enemies, in Kid Beowulf they are brothers! The first book in the series &quot;Kid Beowulf: The Blood-Bound Oath&quot; is the mysterious origin story of the twins.  Book two, &quot;Kid Beowulf: The Song of Roland&quot; follows the brothers and their adventure into France where they meet the French hero Roland, and the great king Charlemagne.  Both stories have been serialized online at GoComics since 2012. The Kid Beowulf series is available to buy in print through Andrews McMeel Publishing.  Kid Beowulf will appeal to fans of Bone, Asterix, TinTin, and Avatar: The Last Airbender.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/kb/large_kb_rec_201702021317.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/kid-beowulf/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Kliban&apos;s Cats</string>
+                <key>shortDesc</key>
+                <string>If by some strange happenstance you have never before seen a Kliban cat drawing, you will instantly recognize that each and every one of them captures the essence of…</string>
+                <key>longDesc</key>
+                <string>If by some strange happenstance you have never before seen a Kliban cat drawing, you will instantly recognize that each and every one of them captures the essence of…. cat. A well-established illustrator and cartoonist (Playboy, The New Yorker, Never Eat Anything Bigger Than Your Head, et al) B. Kliban used to devote off-moments in his studio to drawing his felines Nitty, Norton, Burton Rustle and Noko Marie the Snake. An editor friend saw this work and convinced Kliban to let her take it publishers, and in 1975 Workman published CAT, a huge bestseller which inspired an outbreak of cat love that has not abated to this day. That groundbreaking book was followed by more books, and more drawings, which manifested on calendars, cards, mugs, ceramics, clothing – almost 9,000 unique items to date. And the book that started it all is still in print. Cat people of the world, rejoice -- and savor the twice-a-week pleasure of KLIBAN’S CATS.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/klic/large_rec-201701251557.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/klibans-cats/2018/08/07</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Lard&apos;s World Peace Tips</string>
+                <key>shortDesc</key>
+                <string>Lard&apos;s World Peace Tips&apos; is a unique new comic strip about a small grey man with a mission to create world peace.</string>
+                <key>longDesc</key>
+                <string>&apos;Lard&apos;s World Peace Tips&apos; is a unique new comic strip about a small grey man with a mission to create world peace. Along with his friends Alice and Little Joe and a massive cast of other animals, vegetables and minerals, Lard is set to inspire people of all ages to perform acts of kindness and generosity…or just have a good laugh. In a time of global uncertainty, Lard&apos;s eccentric wisdom offers a witty and unorthodox alternative that might just work...! Go Lard!!!! &apos;Lard&apos;s World Peace Tips&apos; is created by Keith Tutt (Pablo – the little red fox) and illustrator Daniel Saunders.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/ltwp/large_rec-201701251558.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/lards-world-peace-tips/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Lucky Cow</string>
+                <key>shortDesc</key>
+                <string>Drive down any main street in America and you will undoubtedly pass by at least one, most likely two or three restaurants of the fast food variety.</string>
+                <key>longDesc</key>
+                <string>Drive down any main street in America and you will undoubtedly pass by at least one, most likely two or three restaurants of the fast food variety. Pushing burgers, tacos, fried chicken and milk shakes, these quick stops have become a familiar source of comfort for travelers far from home and a favorite stop for a late-night snack. Mark Pett’s LUCKY COW delves into the humor of the fast food, minimum wage experience, as teenagers struggle to balance school, their social lives and working at Lucky Cow and the managers hope to keep major disasters to a minimum during peak business hours. It all adds up to a hilarious combination.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/luc/large_rec-201701251556.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/luckycow/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Microcosm</string>
+                <key>shortDesc</key>
+                <string>Microcosm is a comic that explores our little solar system in this big universe. It is a unique blend of astronomy and science with a whole lot of humor mixed in.</string>
+                <key>longDesc</key>
+                <string>Microcosm is a comic that explores our little solar system in this big universe. It is a unique blend of astronomy and science with a whole lot of humor mixed in. Ever wonder what Pluto thinks about being demoted to a dwarf planet? Or what the gas giants would talk about if they were on Spacebook? Wonder no more! Outer space can be a harsh, unforgiving place, and together our planets are making the best of it.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/quark/large_rec-201701251558.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/microcosm/2018/07/31</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Non Sequitur</string>
+                <key>shortDesc</key>
+                <string>Non Sequitur is Wiley Miller&apos;s wry look at the absurdities of everyday life. A hit with fans of all ages, the strip is syndicated in more than 700 newspapers.</string>
+                <key>longDesc</key>
+                <string>Non Sequitur is Wiley Miller&apos;s wry look at the absurdities of everyday life. A hit with fans of all ages, the strip is syndicated in more than 700 newspapers. Non Sequitur has received four National Cartoonists Society divisional awards, the most prestigious in cartooning. Wiley Miller also won the 2013 Ruben Award for Outstanding Cartoonist of the Year. It is the only comic strip to win the coveted award in its first year of syndication and the only one to ever win in both the best comic strip and best comic panel categories. This hilarious creation is not only creative but also clever. It tackles current cultural issues such as politics, celebrities, male-female relations, materialistic desires and society&apos;s obsession with weight. Non Sequitur will have you laughing at the controversy of everyday life.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/nq/large_rec-201701251555.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/nonsequitur/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Ollie and Quentin</string>
+                <key>shortDesc</key>
+                <string>Ollie and Quentin is a buddy comic about the unlikely friendship between a seagull and an adventurous lugworm.</string>
+                <key>longDesc</key>
+                <string>Ollie and Quentin is a buddy comic about the unlikely friendship between a seagull and an adventurous lugworm. They treat us to their bird&apos;s eye and worm&apos;s eye views of the bizarre human world in which we live. Ollie and Quentin are best friends despite the obvious food chain disparity that suggests Ollie should be more interested in Quentin as a snack rather than as a friend. They both live in the pretty coastal town of Bigley Bay with Nobby, an affable single guy who serves as both foil and witness to their silly, mischievous high jinks.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/oq/large_rec-201701251557.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/ollie-and-quentin/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Pibgorn</string>
+                <key>shortDesc</key>
+                <string>A fantastic saga of adventure both high and low, of forbidden passion and iambic pentameter, of fays, fools, organists, demons, accordions, heaven, ...</string>
+                <key>longDesc</key>
+                <string>A fantastic saga of adventure both high and low, of forbidden passion and iambic pentameter, of fays, fools, organists, demons, accordions, heaven, hell and Shakespeare, Pibgorn follows the whims and flights of its eponymous fairy heroine as she plies her conviction that there must be more to life than depositing dew drops on dandelions and sleeping under mushrooms.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/pib/large_rec-201701251554.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/pibgorn/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Pop Culture Shock Therapy</string>
+                <key>shortDesc</key>
+                <string>Pop Culture Shock Therapy is a single panel newspaper comic by New Jersey cartoonist Doug Bratton that parodies entertainment media, ...</string>
+                <key>longDesc</key>
+                <string>Pop Culture Shock Therapy is a single panel newspaper comic by New Jersey cartoonist Doug Bratton that parodies entertainment media, from television and film to cartoon characters and celebrities. Launched as a self-syndicated feature to college newspapers in 2002, Pop Culture Shock Therapy is now syndicated as a weekly feature by Ink Bottle Syndicate and appears in newspapers throughout the United States. In 2010, Pop Culture Shock Therapy earned its creator a Reuben Division Award Nomination for Best Newspaper comic panel. A combination “best of” collection and humor book titled The Deranged Stalker’s Journal of Pop Culture Shock Therapy was released by Andrews McMeel Publishing.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/pcst/large_rec-201701251557.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/pop-culture-shock-therapy/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>PreTeena</string>
+                <key>shortDesc</key>
+                <string>Remember those transitional years between childhood and adolescence -- the days when you were playing on the swing set one minute, ...</string>
+                <key>longDesc</key>
+                <string>Remember those transitional years between childhood and adolescence -- the days when you were playing on the swing set one minute, and daydreaming about the fifth-grade love of your life the next? This is the life of Teena Keene -- almost 11 years old, a fifth grader and a good student. She’s an avid inline skater and not quite ready to give up her dolls. But makeup and boys, particularly Gordo Brandt, are beginning to vie for her attention. Teena teeters between child and budding teen, and enjoys being a little of both.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/pr/large_rec-201701251555.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/preteena/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Rubes</string>
+                <key>shortDesc</key>
+                <string>Talking cows, less-than-bright kids and multiple varieties of flora and fauna make their appearance in the witty offbeat cartoon panel, ...</string>
+                <key>longDesc</key>
+                <string>Talking cows, less-than-bright kids and multiple varieties of flora and fauna make their appearance in the witty offbeat cartoon panel, Rubes by Leigh Rubin. Rubin’s hilarious cast of characters and absurd view of the world have made Rubes a favorite with readers everywhere.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/crrub/large_rec-201701251555.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/rubes/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Sketchshark Comics</string>
+                <key>shortDesc</key>
+                <string>About Sketchshark Comics Comic Strips</string>
+                <key>longDesc</key>
+                <string>Sketchshark Comics by Megan Dong is a surreal and hilarious comic about everything from depressive Pomeranians to extremely sassy aquatic creatures.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/sketch/large_rec-201701251559.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/sketchshark-comics/2018/03/26</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Speechless</string>
+                <key>shortDesc</key>
+                <string>SPEECHLESS is based on the old adage that a picture is worth a thousand words. It&apos;s mainly visual humor, ...</string>
+                <key>longDesc</key>
+                <string>SPEECHLESS is based on the old adage that a picture is worth a thousand words. It&apos;s mainly visual humor, with the occasional poignant episode thrown in for some relief/balance. At times it may take a bit more observational skills on the part of the reader, but hopefully that very fact will increase the reader&apos;s rewards when they finally &quot;get it&quot;. And appropriately enough, animals which for the most part are &quot;speechless&quot;, will play a majority role in the feature.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/wor/large_rec-201701251557.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/speechless/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Tarzan</string>
+                <key>shortDesc</key>
+                <string>The legendary hero Tarzan enjoys the distinction of starring in the first adventure comic strip, the first continuity strip, ...</string>
+                <key>longDesc</key>
+                <string>The legendary hero Tarzan enjoys the distinction of starring in the first adventure comic strip, the first continuity strip, and the first strip to appeal to readers for multiple generations. Some of these storylines date back decades, but the ape man&apos;s adventures never get old.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/tz/large_rec-201701251556.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/tarzan/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Tank McNamara</string>
+                <key>shortDesc</key>
+                <string>Jeff Millar and Bill Hinds have displayed a knack for finding the absurdity in big-time athletics and using it to turn sports fans into devoted readers</string>
+                <key>longDesc</key>
+                <string>Jeff Millar and Bill Hinds have displayed a knack for finding the absurdity in big-time athletics and using it to turn sports fans into devoted readers - especially with the ever-popular &quot;Sports Jerk of the Year&quot; contest. Sports is Tank McNamara’s beat, his livelihood. A former professional football player who’s now a TV sportscaster, Tank McNamara reports on the breaking sports stories of the day: the hot players and angry coaches, the pending lawsuits and drawn-out strikes, the constant roar and ever-increasing hype that make organized sports one of the world’s most lucrative businesses.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/tm/large_rec-201701251555.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/tankmcnamara/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Wandering Melon</string>
+                <key>shortDesc</key>
+                <string>When my melon goes off on a free-style cerebral stroll, untethered from the constraints of boring stuff like logic and reason it sometimes just meanders aimlessly for a while and then eventually returns empty handed.</string>
+                <key>longDesc</key>
+                <string>When my melon goes off on a free-style cerebral stroll, untethered from the constraints of boring stuff like logic and reason it sometimes just meanders aimlessly for a while and then eventually returns empty handed. Other times however, it comes back bearing some interesting little nuggets. For example; an idea for a weird invention or toy, a goofy little animation, a quirky memory from childhood or a slightly dark gag cartoon. Who knows what the wandering melon is going to drag home from its journeys?! OK, ok enough of the melon analogies. The Wandering Melon comic is a collection of “art” resulting from whatever ideas pop into my head. This makes it a little hard to categorize but hopefully it will put a smile on your face or at least make you say, “Hmmm, that was odd”. I hope that you all become HARDCORE and REPEAT Melons!</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/wml/large_rec-201701251558.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/the-wandering-melon/2018/08/04</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Widdershins</string>
+                <key>shortDesc</key>
+                <string>Widdershins is a series of Victorian-era adventure stories, set in the fictional town of Widdershins, ...</string>
+                <key>longDesc</key>
+                <string>Widdershins is a series of Victorian-era adventure stories, set in the fictional town of Widdershins, West Yorkshire- England’s magical epicentre, home to bounty hunters, failed wizards, stage magicians, and more, besides.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/wid/large_wid_rec_201703081409.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/widdershins/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>World of Wonder</string>
+                <key>shortDesc</key>
+                <string>About World of Wonder, for 15 years, World of Wonder has been exploring the realms of history, science, nature and technology in newspapers around the world.</string>
+                <key>longDesc</key>
+                <string>About World of Wonder, for 15 years, World of Wonder has been exploring the realms of history, science, nature and technology in newspapers around the world. Creator Laurie Triefeldt, an award-winning graphic journalist, uses beautiful, full-color illustrations to give readers mini-lessons on such diverse topics as storms, Utah, castles, monarch butterflies, Vikings and jellyfish. In 2007, World of Wonder won the National Cartoonists Society&apos;s award for best newspaper illustration. In 2006 and 2002, World of Wonder also won a Distinguished Achievement Award for Excellence in Educational Publishing from the Association of Educational Publishers.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/wow/large_rec-201701251557.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/world-of-wonder/2018/08/05</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Yaffle</string>
+                <key>shortDesc</key>
+                <string>‘Yaffle’ is a local or dialect English name for the green woodpecker; a fascinating bird possessing an incredibly unique laugh.</string>
+                <key>longDesc</key>
+                <string>‘Yaffle’ is a local or dialect English name for the green woodpecker; a fascinating bird possessing an incredibly unique laugh. Since we are often found perched in trees creating our offbeat panels we thought what better name to use for our strip then one of this wonderful giggling bird! Watch for our little friend secretly hidden in every panel.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/yaff/large_yaff_rec_201803270907.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/yaffle/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Zack Hill</string>
+                <key>shortDesc</key>
+                <string>Ten-year-old Zack now lives with his widowed mother, who runs a boarding house full of oddballs.</string>
+                <key>longDesc</key>
+                <string>Ten-year-old Zack now lives with his widowed mother, who runs a boarding house full of oddballs. A hyperactive kid with an overactive imagination, Zack sometimes causes her to pull her hair out as she tries to make ends meet.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/crzhi/large_rec-201701251556.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/zackhill/2018/08/08</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>9 Chickweed Lane</string>
+                <key>shortDesc</key>
+                <string>A rarity in the comics, 9 Chickweed Lane spotlights music and dance with superb artistry that complements Brooke McEldowney&apos;s strong-minded characters.</string>
+                <key>longDesc</key>
+                <string>A rarity in the comics, 9 Chickweed Lane spotlights music and dance with superb artistry that complements Brooke McEldowney&apos;s strong-minded characters. A popular comic strip about three generations of family, 9 Chickweed Lane features strong characters, flights of fancy and an intuitive grasp of all kinds of relationships. The strip was recognized in 2006 for its brilliant artistry and intellectual humor when it was named Best Newspaper Comic Strip by the National Cartoonists Society. The strip appears in 60 newspapers worldwide, including the Los Angeles Times, Houston Chronicle, Calgary Sun and Columbus Dispatch. Central character Edda Burber is dancing to the beat of a different drummer these days as McEldowney focuses 9 Chickweed Lane more on the story of a young woman who moves away from home to perform with a prestigious metropolitan ballet company in New York City. Although it may seem like a completely new strip, 9 Chickweed Lane is peopled with very familiar friends, like furry feline Solange, and Edda&apos;s childhood friend and recent love interest, Amos.</string>
+                <key>imageUrl</key>
+                <string>https://avatar.amuniversal.com/feature_avatars/recommendation_images/features/cw/large_rec-201701251556.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.gocomics.com/9chickweedlane/2018/08/08</string>
+            </dict>
+        </array>
+        <key>news</key>
+        <array>
+            <dict>
+                <key>title</key>
+                <string>A 347-Acre Estate in Kent, England, Lists for £5.675M</string>
+                <key>content</key>
+                <string>A 347-acre agricultural and residential estate in Kent, England, hit the market earlier this month for £5.675 million (US$7.25 million), according to a spokesperson for BTF Partnership, the brokerage representing the property.
+                    
+                    The property has been owned by the Thoburn family for the past 100 years, but they are selling upon the death of Patricia Thoburn at 90 years old last October, according to a news release. The Thoburn family could not be reached for comment.</string>
+                <key>imageUrl</key>
+                <string>https://mansion-global-app.s3.amazonaws.com/article-images/2018/08/high-res-36549_006.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.mansionglobal.com/articles/a-347-acre-estate-in-kent-england-lists-for-5-675m-106100</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Lake Tahoe Home Where Howard Hughes Lived Until His Death Sells for $17.5M</string>
+                <key>content</key>
+                <string>A lakefront property in Lake Tahoe, Nevada, owned for more than two decades by the notorious businessman, pilot and director Howard Hughes, has sold for $17.5 million after being on and off the market for five years, listing records show.</string>
+                <key>imageUrl</key>
+                <string>https://mansion-global-app.s3.amazonaws.com/article-images/2018/08/HowardHughesTahoeHouse.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.mansionglobal.com/articles/lake-tahoe-home-where-howard-hughes-lived-until-his-death-sells-for-17-5m-106586</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>London Buyer Demographic Shifting</string>
+                <key>content</key>
+                <string>The demographics and motivation of buyers in London is shifting, as the capital comes to terms with the upcoming Brexit and property tax changes, according to a report Monday from Black Brick, a London-based real estate agency.</string>
+                <key>imageUrl</key>
+                <string>https://static.mansionglobal.com/production/media/article-images/de641617b43185fc98336137f82e3534/large_GettyImages-9407002461.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.mansionglobal.com/articles/london-buyer-demographic-shifting-106256</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Toll Brothers Profit Jumps as Wealthy Americans Spend</string>
+                <key>content</key>
+                <string>One of the nation’s largest builders of high-end homes rode strong sales to a 30% jump in quarterly profit, bucking weakness in the broader U.S. housing market and bolstering evidence that the wealthiest Americans are spending big as the economy strengthens.</string>
+                <key>imageUrl</key>
+                <string>https://static2.mansionglobal.com/production/media/article-images/f376d3cb4b3ecbe0fbc34dc05cf2f7a2/large_S1-AV642_TOLLBR_M_20180820183708.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.mansionglobal.com/articles/toll-brothers-profit-jumps-as-wealthy-americans-spend-106306</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Supertalls Give a Boost Manhattan Luxury Activity</string>
+                <key>content</key>
+                <string>Manhattan’s supertall luxury towers brought some eye-popping sales to an otherwise unimpressive week for the borough’s high-end real estate market, according to the Olshan Report on Monday.</string>
+                <key>imageUrl</key>
+                <string>https://static2.mansionglobal.com/production/media/article-images/f16c19b8ac54e871bd6f830d643f1a89/large_GettyImages-643997141.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.mansionglobal.com/articles/supertalls-give-a-boost-manhattan-luxury-activity-106072</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>New N.Y. Rangers Coach David Quinn Buys $2.6M Chelsea Loft</string>
+                <key>content</key>
+                <string>David Quinn, the new head coach of the New York Rangers, is putting down roots in the Big Apple, starting with a $2.67 million loft in Chelsea.
+                    
+                    Mr. Quinn, who’s making the move to New York City following a five-year stint as the men's hockey coach at Boston University, closed Wednesday afternoon on a one-bedroom apartment at Chelsea Mercantile, a 100-year-old, limestone-clad garment factory converted into luxury condominiums.</string>
+                <key>imageUrl</key>
+                <string>https://mansion-global-app.s3.amazonaws.com/article-images/2018/08/rangers2.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.mansionglobal.com/articles/new-rangers-coach-david-quinn-buys-2-6m-chelsea-loft-106439</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Meryl Streep Lists Tribeca Penthouse for Almost $25 Million</string>
+                <key>content</key>
+                <string>Meryl Streep, who holds the record for the most Academy Award nominations of any actor, is making some changes to her real estate portfolio.
+                    
+                    On Thursday, she put her Manhattan penthouse on the market for $24.6 million.</string>
+                <key>imageUrl</key>
+                <string>https://m.wsj.net/video/20180823/082318_streep/082318_streep_1280x720.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.mansionglobal.com/articles/meryl-streep-lists-tribeca-penthouse-for-almost-25-million-106259</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>TV's writers' rooms have a mother of a problem</string>
+                <key>content</key>
+                <string>The writer's assistant was exhausted.
+                    It was April, she was spending 10 to 12 hours a day working on a production for a comedy pilot, and the baby she was carrying was due in the first week of May.
+                    "I was real knocked up," she says, with the kind of comedic edge to her voice that implies she's someone who knows how to deliver a perfectly timed punchline.</string>
+                <key>imageUrl</key>
+                <string>https://cdn.cnn.com/cnnnext/dam/assets/180726141620-mother-screen-writers-super-169.jpg</string>
+                <key>pageUrl</key>
+                <string>https://edition.cnn.com/2018/08/03/entertainment/tv-writer-moms-part-1/index.html</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Talbingo residents worried the town's tourism will suffer from Snowy 2.0</string>
+                <key>content</key>
+                <string>Residents in the town of Talbingo in southern New South Wales are worried the Snowy 2.0 project will destroy their town.
+                    
+                    In the summer months, locals said the population of the small country town grew ten-fold, mostly thanks to water sport enthusiasts who flocked to Talbingo Dam.
+                    
+                    But, if Snowy Hydro's project goes ahead, there are concern boats could be banned from using the waterway while construction works are completed.</string>
+                <key>imageUrl</key>
+                <string>http://www.abc.net.au/news/image/10078838-3x2-700x467.jpg</string>
+                <key>pageUrl</key>
+                <string>http://www.abc.net.au/news/2018-08-24/talbingo-tourism-threatened-by-snowy-scheme/10078388</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Super Netball: Meet 'silent assassin' Karla Pretorius, Sunshine Coast Lightning's grand final weapon</string>
+                <key>content</key>
+                <string>Sunshine Coast Lightning goal defence, Karla Pretorius, will play a vital role in her team's attempt to create history and win back-to-back Super Netball titles in Perth this weekend.</string>
+                <key>imageUrl</key>
+                <string>http://www.abc.net.au/news/image/10160384-3x2-700x467.jpg</string>
+                <key>pageUrl</key>
+                <string>http://www.abc.net.au/news/2018-08-24/super-netball:sunshine-coast-lightning-grand-final/10160292</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Hurricane Lane brings torrential rains to Hawaii&apos;s Big Island</string>
+                <key>content</key>
+                <string>Nearly 20 inches of rain fell on parts of Hawaii’s Big Island as Hurricane Lane approached the state early Friday, with flooding and landslides blocking roads.
+                    
+                    Lane weakened to a Category 3 storm, but by 5 p.m. local time Thursday (11 p.m. ET) still had maximum sustained winds of 120 mph Thursday. The hurricane&apos;s center was around 240 miles south of Honolulu, and was moving north-northwest at 6 mph.</string>
+                <key>imageUrl</key>
+                <string>https://media4.s-nbcnews.com/j/MSNBC/Components/Video/201808/f_mash_la_hawaii_ugc2_180823.860;484;7;70;5.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.nbcnews.com/news/weather/torrential-rains-hit-hawaii-s-big-island-hurricane-lane-approaches-n903316</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Cincinnati Enquirer tweet goes viral after masses confuse them with supermarket tabloid</string>
+                <key>content</key>
+                <string>The National Enquirer is gracing the nation’s headlines again on Thursday, but somehow a newsroom in Cincinnati is receiving all the attention on social media.</string>
+                <key>imageUrl</key>
+                <string>https://media4.s-nbcnews.com/j/newscms/2018_34/2542381/180823-Cincinnati-Enquirer-ac-848p_dc308f3be97a5d755c7e8d00c1c0a7f8.fit-2000w.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.nbcnews.com/news/us-news/cincinnati-enquirer-tweet-goes-viral-after-masses-confuse-them-supermarket-n903401</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Trump, allies use Mollie Tibbetts killing as rallying cry, but her family is not on board</string>
+                <key>content</key>
+                <string>President Donald Trump and his Republican allies seem to be convinced there is political gold in the tragic death of Iowa college student Mollie Tibbetts — and they began mining for it as soon as her accused killer was identified as a Mexican immigrant.</string>
+                <key>imageUrl</key>
+                <string>https://media1.s-nbcnews.com/j/newscms/2018_34/2541616/180823-mollie-tibbetts-al-1124_c48637c3e4c2ea12c5dfcbc6dfccb7ae.fit-2000w.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.nbcnews.com/news/us-news/trump-allies-use-mollie-tibbetts-killing-rallying-cry-her-family-n903226</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Mexican psychedelics meets lasers: Meet Burning Man favorite Mayan Warrior</string>
+                <key>content</key>
+                <string>Much of the nightlife for the nearly 70,000 attendees of the upcoming Burning Man 2018 is inspired by DJ sound systems in portable venues, resulting in open-air raves raging into the morning hours amid Nevada&apos;s Black Rock Desert.</string>
+                <key>imageUrl</key>
+                <string>https://media4.s-nbcnews.com/j/newscms/2018_33/2536156/180818-art-car-mayan-warrior-1-ew-628p_c45d12e8fc2736f8215c1a57738e2c07.fit-2000w.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.nbcnews.com/news/latino/mexican-psychedelics-meets-lasers-meet-burning-man-favorite-mayan-warrior-n901841</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Hurricane Lane on course for collision with Hawaii</string>
+                <key>content</key>
+                <string>Hawaii residents strapped in and forecasters warned of &quot;life-threatening impacts&quot; for the arrival of what could turn out to be the strongest hurricane to hit the islands in a quarter-century.</string>
+                <key>imageUrl</key>
+                <string>https://media2.s-nbcnews.com/j/MSNBC/Components/Video/201808/nc_hawaii_preps_180822.860;484;7;70;5.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.nbcnews.com/news/weather/life-threatening-hurricane-lane-course-overnight-collision-hawaii-n903016</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Verizon admits &apos;throttling&apos; data to Calif. firefighters amid blaze</string>
+                <key>content</key>
+                <string>Verizon is admitting that it made a mistake in slowing the wireless data speeds of California firefighters as they battled what has been called the largest fire in state history this month.</string>
+                <key>imageUrl</key>
+                <string>https://media2.s-nbcnews.com/j/newscms/2018_32/2527996/180811-mendocino-complex-fire-al-1634_07b57e830c4c319e4d326b07e1f53483.fit-2000w.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.nbcnews.com/tech/tech-news/verizon-admits-throttling-data-calif-firefighters-amid-blaze-n902991</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>DNA tells the story of a Neanderthal mom and a Denisovan dad</string>
+                <key>content</key>
+                <string>People’s sexual indiscretions may follow them for a very long time. Scientists say they just determined that the bone of a girl who died 50,000 years ago shows that she had a Neanderthal mother and a Denisovan father.</string>
+                <key>imageUrl</key>
+                <string>https://media4.s-nbcnews.com/j/newscms/2018_34/2540401/180822-denisova-cave-view-above-crop-se-344p_625e3187946f8d212a1706a6d0c8c4de.fit-2000w.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.nbcnews.com/science/science-news/dna-tells-story-neanderthal-mom-denisovan-dad-n902961</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Mollie Tibbetts case: Undocumented immigrant charged with murder of missing Iowa student</string>
+                <key>content</key>
+                <string>An undocumented immigrant has been charged with the murder of a University of Iowa college student who was last seen during an evening jog over a month ago, authorities said Tuesday.
+                    
+                    Cristhian Bahena Rivera, 24, was charged with first-degree murder in the death of Mollie Tibbetts, 20, according to the Iowa Division of Criminal Investigation.</string>
+                <key>imageUrl</key>
+                <string>https://media4.s-nbcnews.com/j/MSNBC/Components/Video/201808/tdy_news_mott_iowa_mollie_180822_1920x1080.860;484;7;70;5.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.nbcnews.com/news/us-news/mollie-tibbetts-missing-iowa-college-student-believed-be-found-dead-n902471</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>The Goutte d’Or - emerging design hub of Paris</string>
+                <key>content</key>
+                <string>“What I really like is the feeling of being in a village,” said furniture designer Fabrice Daigremont. “Everyone knows each other. If you need advice or to borrow a tool, you can just pop into one of the other workshops and someone will be able to help.” Daigremont, who designs and makes high-end lamps, tables and stools alongside his work as an architect, is talking about the Goutte d’Or district of north Paris, where he has a showroom and workshop.</string>
+                <key>imageUrl</key>
+                <string>http://ichef.bbci.co.uk/wwfeatures/wm/live/1600_640/images/live/p0/6j/50/p06j50nr.jpg</string>
+                <key>pageUrl</key>
+                <string>http://www.bbc.com/travel/story/20180823-the-goutte-dor-emerging-design-hub-of-paris</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Is this phrase the Swiss Army knife of Japanese?</string>
+                <key>content</key>
+                <string>There are some languages where deploying one tiny little phrase unlocks doors.
+                    It’s a phrase that “makes Japan go around,” according to Shihoko Goto, senior associate at the Woodrow Wilson Center, a US think tank, referring to a commonplace (yet ambiguous) Japanese phrase: ‘yoroshiku onegaishimasu’.</string>
+                <key>imageUrl</key>
+                <string>http://ichef.bbci.co.uk/wwfeatures/wm/live/1600_640/images/live/p0/6h/qk/p06hqknm.jpg</string>
+                <key>pageUrl</key>
+                <string>http://www.bbc.com/capital/story/20180821-is-this-phrase-the-swiss-army-knife-of-japanese</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>How to make flavoured vodka</string>
+                <key>content</key>
+                <string>Want some inspiration for your next kitchen project? Try making your own flavoured vodka with our easy step-by-step technique and recipes. Whether you want something fresh and fruity, savoury and herby or clean and crisp with a spicy kick, we have something to fill up your glass. </string>
+                <key>imageUrl</key>
+                <string>https://www.bbcgoodfood.com/sites/default/files/guide/guide-image/2018/08/cosmo-cocktail.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.bbcgoodfood.com/howto/guide/how-make-flavoured-vodka</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Norway’s plan for a fleet of electric plannes</string>
+                <key>content</key>
+                <string>In July 2018, Norway’s transport minister Ketil Solvik-Olsen and Dag Falk-Petersen, the head of the country’s airport company Avinor, took a very special flight together.
+                    In front of the press they squeezed into the cockpit of a two-seat plane made by the Slovenian company Pipistrel. With Falk-Petersen at the controls, the pair took a short flight lasting a few minutes around Oslo in an Alpha Electro G2.</string>
+                <key>imageUrl</key>
+                <string>http://ichef.bbci.co.uk/wwfeatures/wm/live/1600_640/images/live/p0/6j/56/p06j5655.jpg</string>
+                <key>pageUrl</key>
+                <string>http://www.bbc.com/future/story/20180814-norways-plan-for-a-fleet-of-electric-planes</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>Aerial photos reveal the stark divide between rich and poor</string>
+                <key>content</key>
+                <string>The photos are part of Mr Miller&apos;s Unequal Scenes project, which he started in April 2016 to challenge people&apos;s acceptance of inequality.
+                    The South African-based photographer says: &quot;From the minute you land in Cape Town, you are surrounded by shacks.</string>
+                <key>imageUrl</key>
+                <string>https://ichef.bbci.co.uk/news/976/cpsprodpb/1066C/production/_103108176_mdrum_rich_meets_poor-18.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.bbc.com/news/in-pictures-45257901</string>
+            </dict>
+            <dict>
+                <key>title</key>
+                <string>A Grade II-Listed House in Surrey on Five Acres</string>
+                <key>content</key>
+                <string>This almost 700-year-old country house on the outskirts of a quaint English village is looking for a new lord or lady of the manor.
+                    
+                    Known as Barhatch Farm, the Grade II-listed house is a &quot;seriously historic house,&quot; according to listing agent Lottie Geaves of Savills.</string>
+                <key>imageUrl</key>
+                <string>https://m.wsj.net/video/20180821/082218lotd_uk/082218lotd_uk_1280x720.jpg</string>
+                <key>pageUrl</key>
+                <string>https://www.mansionglobal.com/articles/a-grade-ii-listed-house-in-surrey-on-five-acres-105547</string>
+            </dict>
+        </array>
+    </dict>
+</plist>
