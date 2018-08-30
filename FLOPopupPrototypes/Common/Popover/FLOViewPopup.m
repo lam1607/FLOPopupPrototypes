@@ -43,7 +43,7 @@
         _contentView = contentView;
         _backgroundView = [[FLOPopoverBackgroundView alloc] initWithFrame:contentView.frame];
         _anchorPoint = CGPointMake(1.0f, 1.0f);
-        _showArrow = NO;
+        _shouldShowArrow = NO;
         _animated = NO;
         _closesWhenPopoverResignsKey = NO;
         _closesWhenApplicationBecomesInactive = NO;
@@ -59,7 +59,7 @@
         _contentView = contentViewController.view;
         _backgroundView = [[FLOPopoverBackgroundView alloc] initWithFrame:contentViewController.view.frame];
         _anchorPoint = CGPointMake(1.0f, 1.0f);
-        _showArrow = NO;
+        _shouldShowArrow = NO;
         _animated = NO;
         _closesWhenPopoverResignsKey = NO;
         _closesWhenApplicationBecomesInactive = NO;
@@ -261,7 +261,10 @@
     
     NSRect popoverScreenRect = popoverRect();
     
-    [self.backgroundView setNeedArrow:self.showArrow];
+    [self.backgroundView setViewMovable:self.popoverMovable];
+    [self.backgroundView setBorderRadius:PopoverBackgroundViewBorderRadius];
+    [self.backgroundView setShouldShowArrow:self.shouldShowArrow];
+    
     [self.backgroundView setArrowColor:self.contentView.layer.backgroundColor];
     CGSize size = [self.backgroundView sizeForBackgroundViewWithContentSize:contentViewSize popoverEdge:popoverEdge];
     self.backgroundView.frame = (NSRect){ .size = size };
@@ -274,7 +277,7 @@
     
     self.popoverView = self.backgroundView;
     
-    [self.backgroundView setNeedShadow:YES];
+    [self.backgroundView setShouldShowShadow:YES];
     [self.backgroundView setFrame:[applicationWindow convertRectFromScreen:popoverScreenRect]];
     [applicationWindow.contentView addSubview:self.backgroundView positioned:NSWindowAbove relativeTo:self.positioningView];
     
@@ -284,20 +287,16 @@
 - (void)close {
     if (!self.shown) return;
     
-    void (^closePopoverView)(void) = ^{
-        if ([self.popoverView isDescendantOf:applicationWindow.contentView]) {
-            [self removeApplicationEventsMonitor];
-            
-            [self.popoverView removeFromSuperview];
-            self.popoverView = nil;
-            
-            if (popoverDidClose != nil) popoverDidClose(self);
-            
-            self.contentView.frame = CGRectMake(self.contentView.frame.origin.x, self.contentView.frame.origin.y, self.originalViewSize.width, self.originalViewSize.height);
-        }
-    };
-    
-    closePopoverView();
+    if ([self.popoverView isDescendantOf:applicationWindow.contentView]) {
+        [self removeApplicationEventsMonitor];
+        
+        [self.popoverView removeFromSuperview];
+        self.popoverView = nil;
+        
+        if (popoverDidClose != nil) popoverDidClose(self);
+        
+        self.contentView.frame = CGRectMake(self.contentView.frame.origin.x, self.contentView.frame.origin.y, self.originalViewSize.width, self.originalViewSize.height);
+    }
 }
 
 
@@ -335,15 +334,19 @@
 
 - (void)registerApplicationEventsMonitor {
     if (!applicationEvent) {
-        applicationEvent = [NSEvent addLocalMonitorForEventsMatchingMask:(NSRightMouseDownMask | NSScrollWheelMask | NSLeftMouseDownMask) handler:^(NSEvent* event) {
-            if ((event.type == NSEventTypeLeftMouseDown) || (event.type == NSEventTypeRightMouseDown)) {
-                NSPoint eventPoint = [self.popoverView convertPoint:event.locationInWindow fromView:nil];
-                BOOL didClickInsidePopoverView = NSPointInRect(eventPoint, self.popoverView.bounds);
-                
-                if ((self.closesWhenPopoverResignsKey) && (didClickInsidePopoverView == NO)) {
+        applicationEvent = [NSEvent addLocalMonitorForEventsMatchingMask:(NSEventMaskLeftMouseDown | NSEventMaskRightMouseDown) handler:^(NSEvent* event) {
+            if (self.closesWhenPopoverResignsKey) {
+                if (self.popoverView.window != event.window) {
                     [self performSelector:@selector(close) withObject:nil afterDelay:0.1f];
                 } else {
-                    DLog(@"Did click inside self.popoverView");
+                    NSPoint eventPoint = [self.popoverView convertPoint:event.locationInWindow fromView:nil];
+                    BOOL didClickInsidePopoverView = NSPointInRect(eventPoint, self.popoverView.frame);
+                    
+                    if (didClickInsidePopoverView == NO) {
+                        [self performSelector:@selector(close) withObject:nil afterDelay:0.1f];
+                    } else {
+                        DLog(@"Did click inside self.popoverView");
+                    }
                 }
             }
             

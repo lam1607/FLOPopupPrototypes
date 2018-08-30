@@ -8,12 +8,6 @@
 
 #import "News.h"
 
-@interface News ()
-
-@property (nonatomic, strong) NSImage *_newsImage;
-
-@end
-
 @implementation News
 
 #pragma mark -
@@ -27,7 +21,8 @@
             NSString *imageUrl = [contentDict objectForKey:@"imageUrl"];
             NSString *pageUrl = [contentDict objectForKey:@"pageUrl"];
             
-            return [self initWithTitle:title content:content imageUrl:imageUrl pageUrl:pageUrl];
+            self = [self initWithTitle:title imageUrl:imageUrl pageUrl:pageUrl];
+            self.content = content;
         }
     }
     
@@ -43,17 +38,6 @@
     }
     
     return self;
-}
-
-#pragma mark -
-#pragma mark - Processes
-#pragma mark -
-- (void)setImage:(NSImage *)image {
-    self._newsImage = image;
-}
-
-- (NSImage *)getImage {
-    return self._newsImage;
 }
 
 @end

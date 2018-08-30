@@ -55,16 +55,11 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
     CGContextRef currentContext = NSGraphicsContext.currentContext.graphicsPort;
     
     if (currentContext != nil) {
-        self.pathColor = (self.pathColor != nil) ? self.pathColor : [NSColor.brownColor CGColor];
+        self.pathColor = (self.pathColor != nil) ? self.pathColor : [NSColor.whiteColor CGColor];
         
-        //        NSSize myShadowOffset = NSMakeSize(-0.1, 0.1);
-        //        CGContextSetShadow(currentContext, myShadowOffset, 5);
-        
-        //        CGContextAddRect(currentContext, self.bounds);
         CGContextAddPath(currentContext, self.clippingPath);
         CGContextSetBlendMode(currentContext, kCGBlendModeCopy);
         CGContextSetFillColorWithColor(currentContext, self.pathColor);
-        //        CGContextFillPath(currentContext);
         CGContextEOFillPath(currentContext);
     }
 }
@@ -90,6 +85,12 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 @property (nonatomic, assign, readwrite) NSRectEdge popoverEdge;
 @property (nonatomic, assign, readwrite) NSRect popoverOrigin;
 
+@property (nonatomic, assign) BOOL shouldMovable;
+@property (nonatomic, assign) BOOL shouldDetach;
+
+@property (nonatomic, assign) NSPoint originalMouseOffset;
+@property (nonatomic, assign) BOOL dragging;
+
 - (NSRectEdge)arrowEdgeForPopoverEdge:(NSRectEdge)popoverEdge;
 
 @end
@@ -102,6 +103,7 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
     
     _arrowSize = NSZeroSize;
     _fillColor = NSColor.clearColor;
+    self.borderRadius = PopoverBackgroundViewBorderRadius;
     
     _clippingView = [[FLOPopoverClippingView alloc] initWithFrame:self.bounds];
     self.clippingView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
@@ -119,6 +121,19 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 - (void)viewWillDraw {
     [super viewWillDraw];
     [self updateClippingView];
+}
+
+#pragma mark -
+#pragma mark - Getter/Setter
+#pragma mark -
+- (void)setFillColor:(NSColor *)fillColor {
+    _fillColor = fillColor;
+    [self.fillColor set];
+}
+
+- (void)setBorderRadius:(CGFloat)borderRadius {
+    self.wantsLayer = YES;
+    self.layer.cornerRadius = borderRadius;
 }
 
 #pragma mark -
@@ -148,7 +163,7 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 
 - (void)updateClippingView {
     // There's no point if it's not in a window
-//    if (self.window == nil) return;
+    //    if (self.window == nil) return;
     
     if (NSEqualSizes(self.arrowSize, NSZeroSize) == NO) {
         CGPathRef clippingPath = [self newPopoverPathForEdge:self.popoverEdge inFrame:self.clippingView.bounds];
@@ -160,22 +175,31 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 #pragma mark -
 #pragma mark - Processes
 #pragma mark -
-- (void)setBackgroundColor:(NSColor *)color {
-    self.fillColor = color;
-    [self.fillColor set];
+- (void)setViewMovable:(BOOL)movable {
+    self.borderRadius = PopoverBackgroundViewBorderRadius;
+    self.shouldMovable = movable;
+    _fillColor = [NSColor.whiteColor colorWithAlphaComponent:0.86f];
 }
 
-- (void)setNeedShadow:(BOOL)needed {
-    NSShadow *dropShadow = [[NSShadow alloc] init];
-    [dropShadow setShadowColor:[NSColor lightGrayColor]];
-    [dropShadow setShadowOffset:NSMakeSize(-0.5f, 0.5f)];
-    [dropShadow setShadowBlurRadius:5.0f];
-    
-    [self setWantsLayer:YES];
-    [self setShadow:dropShadow];
+- (void)setWindowDetachable:(BOOL)detachable {
+    self.borderRadius = PopoverBackgroundViewBorderRadius;
+    self.shouldDetach = detachable;
+    _fillColor = [NSColor.whiteColor colorWithAlphaComponent:0.86f];
 }
 
-- (void)setNeedArrow:(BOOL)needed {
+- (void)setShouldShowShadow:(BOOL)needed {
+    if (needed) {
+        NSShadow *dropShadow = [[NSShadow alloc] init];
+        [dropShadow setShadowColor:[NSColor lightGrayColor]];
+        [dropShadow setShadowOffset:NSMakeSize(-0.5f, 0.5f)];
+        [dropShadow setShadowBlurRadius:5.0f];
+        
+        [self setWantsLayer:YES];
+        [self setShadow:dropShadow];
+    }
+}
+
+- (void)setShouldShowArrow:(BOOL)needed {
     self.arrowSize = needed ? CGSizeMake(PopoverBackgroundViewArrowWidth, PopoverBackgroundViewArrowHeight) : NSZeroSize;
     
     if (NSEqualSizes(self.arrowSize, NSZeroSize) == NO) {
@@ -234,7 +258,16 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 }
 
 - (NSRect)contentViewFrameForBackgroundFrame:(NSRect)backgroundFrame popoverEdge:(NSRectEdge)popoverEdge {
-    NSRect returnFrame = NSInsetRect(backgroundFrame, 1.0, 1.0);
+    NSRect returnFrame = NSInsetRect(backgroundFrame, 1.0f, 1.0f);
+    
+    if (NSEqualSizes(self.arrowSize, NSZeroSize) && (self.shouldMovable || self.shouldDetach)) {
+        returnFrame.size.height -= PopoverBackgroundViewArrowHeight;
+        returnFrame.size.width -= PopoverBackgroundViewArrowHeight;
+        returnFrame.origin.x += PopoverBackgroundViewArrowHeight / 2;
+        returnFrame.origin.y += PopoverBackgroundViewArrowHeight / 2;
+        
+        return returnFrame;
+    }
     
     switch (popoverEdge) {
         case NSRectEdgeMinX:
@@ -362,6 +395,55 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
     CGPathAddLineToPoint(path, NULL, maxBasePoint.x, maxBasePoint.y);
     
     return path;
+}
+
+#pragma mark -
+#pragma mark - Mouse events
+#pragma mark -
+- (void)mouseDown:(NSEvent *)event {
+    BOOL isFLOWindowPopover = self.window != [NSApp mainWindow];
+    self.originalMouseOffset = isFLOWindowPopover ? event.locationInWindow : [self convertPoint:event.locationInWindow fromView:self.window.contentView];
+    self.dragging = NO;
+}
+
+- (void)mouseDragged:(NSEvent *)event {
+    self.dragging = YES;
+    
+    if (NSEqualSizes(self.arrowSize, NSZeroSize) && (self.shouldMovable || self.shouldDetach)) {
+        if (self.dragging) {
+            BOOL isFLOWindowPopover = self.window != [NSApp mainWindow];
+            
+            NSPoint currentMouseOffset = isFLOWindowPopover ? event.locationInWindow : [self convertPoint:event.locationInWindow fromView:self.window.contentView];
+            NSPoint difference = NSMakePoint(currentMouseOffset.x - self.originalMouseOffset.x, currentMouseOffset.y - self.originalMouseOffset.y);
+            NSPoint currentOrigin = isFLOWindowPopover ? self.window.frame.origin : self.frame.origin;
+            NSPoint nextOrigin = NSMakePoint(currentOrigin.x + difference.x, currentOrigin.y + difference.y);
+            
+            if (isFLOWindowPopover) {
+                [self.window setFrameOrigin:nextOrigin];
+            } else {
+                [self setFrameOrigin:nextOrigin];
+            }
+        }
+    }
+}
+
+- (void)mouseUp:(NSEvent *)event {
+    if (self.dragging) {
+        BOOL isFLOWindowPopover = self.window != [NSApp mainWindow];
+        
+        if (NSEqualSizes(self.arrowSize, NSZeroSize) && self.shouldDetach && isFLOWindowPopover) {
+            if ([[NSApp mainWindow].childWindows containsObject:self.window]) {
+                self.shouldDetach = NO;
+                self.shouldMovable = NO;
+                
+                if ([self.delegate respondsToSelector:@selector(didDragViewToBecomeDetachableWindow:)]) {
+                    [self.delegate didDragViewToBecomeDetachableWindow:self.window];
+                }
+            }
+        }
+        
+        self.dragging = NO;
+    }
 }
 
 @end

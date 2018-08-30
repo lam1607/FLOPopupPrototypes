@@ -10,7 +10,7 @@
 
 #import "FLOPopoverBackgroundView.h"
 
-@interface FLOWindowPopup (){
+@interface FLOWindowPopup () <FLOPopoverBackgroundViewDelegate> {
     NSWindow *applicationWindow;
     NSEvent *applicationEvent;
 }
@@ -43,7 +43,7 @@
         _contentView = contentView;
         _backgroundView = [[FLOPopoverBackgroundView alloc] initWithFrame:contentView.frame];
         _anchorPoint = CGPointMake(1.0f, 1.0f);
-        _showArrow = NO;
+        _shouldShowArrow = NO;
         _animated = NO;
         _closesWhenPopoverResignsKey = NO;
         _closesWhenApplicationBecomesInactive = NO;
@@ -59,7 +59,7 @@
         _contentView = contentViewController.view;
         _backgroundView = [[FLOPopoverBackgroundView alloc] initWithFrame:contentViewController.view.frame];
         _anchorPoint = CGPointMake(1.0f, 1.0f);
-        _showArrow = NO;
+        _shouldShowArrow = NO;
         _animated = NO;
         _closesWhenPopoverResignsKey = NO;
         _closesWhenApplicationBecomesInactive = NO;
@@ -81,6 +81,14 @@
 
 - (void)setApplicationWindow:(NSWindow *)window {
     applicationWindow = window;
+}
+
+- (void)resetContentViewControllerRect:(NSNotification *)notification {
+    self.contentViewController.view.frame = CGRectMake(self.contentViewController.view.frame.origin.x, self.contentViewController.view.frame.origin.y, self.originalViewSize.width, self.originalViewSize.height);
+    
+    if ([notification.name isEqualToString:NSWindowWillCloseNotification]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:nil];
+    }
 }
 
 #pragma mark -
@@ -162,9 +170,11 @@
         return returnRect;
     };
     
+    __weak typeof(applicationWindow) wApplicationWindow = applicationWindow;
+    
     BOOL (^checkPopoverSizeForScreenWithPopoverEdge)(NSRectEdge) = ^(NSRectEdge popoverEdge) {
         NSRect popoverRect = popoverRectForEdge(popoverEdge);
-        return NSContainsRect(applicationWindow.screen.visibleFrame, popoverRect);
+        return NSContainsRect(wApplicationWindow.screen.visibleFrame, popoverRect);
     };
     
     //This is as ugly as sin… but it gets the job done. I couldn't think of a nice way to code this but still get the desired behavior
@@ -185,7 +195,7 @@
         };
         
         NSRect (^fitRectToScreen)(NSRect) = ^NSRect (NSRect proposedRect) {
-            NSRect screenRect = applicationWindow.screen.visibleFrame;
+            NSRect screenRect = wApplicationWindow.screen.visibleFrame;
             
             if (proposedRect.origin.y < NSMinY(screenRect)) {
                 proposedRect.origin.y = NSMinY(screenRect);
@@ -206,7 +216,7 @@
         
         BOOL (^screenRectContainsRectEdge)(NSRectEdge) = ^ BOOL (NSRectEdge edge) {
             NSRect proposedRect = popoverRectForEdge(edge);
-            NSRect screenRect = applicationWindow.screen.visibleFrame;
+            NSRect screenRect = wApplicationWindow.screen.visibleFrame;
             
             BOOL minYInBounds = (edge == NSRectEdgeMinY && NSMinY(proposedRect) >= NSMinY(screenRect));
             BOOL maxYInBounds = (edge == NSRectEdgeMaxY && NSMaxY(proposedRect) <= NSMaxY(screenRect));
@@ -234,7 +244,15 @@
     
     NSRect popoverScreenRect = popoverRect();
     
-    [self.backgroundView setNeedArrow:self.showArrow];
+    [self.backgroundView setViewMovable:self.popoverMovable];
+    [self.backgroundView setWindowDetachable:self.popoverShouldDetach];
+    [self.backgroundView setBorderRadius:PopoverBackgroundViewBorderRadius];
+    [self.backgroundView setShouldShowArrow:self.shouldShowArrow];
+    
+    if (self.popoverShouldDetach) {
+        self.backgroundView.delegate = self;
+    }
+    
     [self.backgroundView setArrowColor:self.contentView.layer.backgroundColor];
     CGSize size = [self.backgroundView sizeForBackgroundViewWithContentSize:contentViewSize popoverEdge:popoverEdge];
     self.backgroundView.frame = (NSRect){ .size = size };
@@ -245,7 +263,7 @@
     self.contentView.frame = contentViewFrame;
     [self.backgroundView addSubview:self.contentView positioned:NSWindowAbove relativeTo:nil];
     
-    self.popoverWindow = [[NSWindow alloc] initWithContentRect:popoverScreenRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+    self.popoverWindow = [[NSWindow alloc] initWithContentRect:popoverScreenRect styleMask:NSWindowStyleMaskBorderless backing:NSBackingStoreBuffered defer:YES];
     self.popoverWindow.hasShadow = YES;
     self.popoverWindow.releasedWhenClosed = NO;
     self.popoverWindow.opaque = NO;
@@ -261,18 +279,14 @@
 - (void)close {
     if (!self.shown) return;
     
-    void (^closePopoverWindow)(void) = ^{
-        [self removeAllApplicationEvents];
-        
-        [applicationWindow removeChildWindow:self.popoverWindow];
-        [self.popoverWindow close];
-        
-        if (popoverDidClose != nil) popoverDidClose(self);
-        
-        self.contentViewController.view.frame = CGRectMake(self.contentViewController.view.frame.origin.x, self.contentViewController.view.frame.origin.y, self.originalViewSize.width, self.originalViewSize.height);
-    };
+    [self removeAllApplicationEvents];
     
-    closePopoverWindow();
+    [applicationWindow removeChildWindow:self.popoverWindow];
+    [self.popoverWindow close];
+    
+    if (popoverDidClose != nil) popoverDidClose(self);
+    
+    [self resetContentViewControllerRect:nil];
 }
 
 #pragma mark -
@@ -309,15 +323,19 @@
 
 - (void)registerApplicationEventsMonitor {
     if (!applicationEvent) {
-        applicationEvent = [NSEvent addLocalMonitorForEventsMatchingMask:(NSRightMouseDownMask | NSScrollWheelMask | NSLeftMouseDownMask) handler:^(NSEvent* event) {
-            if ((event.type == NSEventTypeLeftMouseDown) || (event.type == NSEventTypeRightMouseDown)) {
-                NSPoint eventPoint = [self.popoverWindow.contentView convertPoint:event.locationInWindow fromView:nil];
-                BOOL didClickInsidePopoverView = NSPointInRect(eventPoint, self.popoverWindow.contentView.bounds);
-                
-                if ((self.closesWhenPopoverResignsKey) && (didClickInsidePopoverView == NO)) {
+        applicationEvent = [NSEvent addLocalMonitorForEventsMatchingMask:(NSEventMaskLeftMouseDown | NSEventMaskRightMouseDown) handler:^(NSEvent* event) {
+            if (self.closesWhenPopoverResignsKey) {
+                if (self.popoverWindow != event.window) {
                     [self performSelector:@selector(close) withObject:nil afterDelay:0.1f];
                 } else {
-                    DLog(@"Did click inside self.popoverView");
+                    NSPoint eventPoint = [self.popoverWindow.contentView convertPoint:event.locationInWindow fromView:nil];
+                    BOOL didClickInsidePopoverWindow = NSPointInRect(eventPoint, self.popoverWindow.contentView.bounds);
+                    
+                    if (didClickInsidePopoverWindow == NO) {
+                        [self performSelector:@selector(close) withObject:nil afterDelay:0.1f];
+                    } else {
+                        DLog(@"Did click inside self.popoverWindow");
+                    }
                 }
             }
             
@@ -351,5 +369,30 @@
     }
 }
 
+#pragma mark -
+#pragma mark - FLOPopoverBackgroundViewDelegate
+#pragma mark -
+- (void)didDragViewToBecomeDetachableWindow:(NSWindow *)detachedWindow {
+    if (detachedWindow == self.popoverWindow) {
+        if ([applicationWindow.childWindows containsObject:detachedWindow]) {
+            [applicationWindow removeChildWindow:self.popoverWindow];
+            
+            NSView *contentView = self.popoverWindow.contentView;
+            NSRect windowRect = self.popoverWindow.frame;
+            NSUInteger styleMask = NSWindowStyleMaskTitled + NSWindowStyleMaskClosable;
+            
+            NSWindow *temp = [[NSWindow alloc] initWithContentRect:windowRect styleMask:styleMask backing:NSBackingStoreBuffered defer:YES];
+            NSRect detachableWindowRect = [temp frameRectForContentRect:windowRect];
+            
+            contentView.wantsLayer = YES;
+            contentView.layer.cornerRadius = 0.0f;
+            [self.popoverWindow setStyleMask:styleMask];
+            [self.popoverWindow setFrame:detachableWindowRect display:YES];
+            [self.popoverWindow makeKeyAndOrderFront:nil];
+            
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetContentViewControllerRect:) name:NSWindowWillCloseNotification object:nil];
+        }
+    }
+}
 
 @end

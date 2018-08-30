@@ -89,4 +89,9 @@
 + (CGFloat)heightForWidth:(CGFloat)width string:(NSAttributedString*)string;
 + (NSSize)sizeForWidth:(CGFloat)width height:(CGFloat)height string:(NSAttributedString*)string;
 
+#pragma mark -
+#pragma mark - Device
+#pragma mark -
++ (NSSize)screenSize;
+
 @end

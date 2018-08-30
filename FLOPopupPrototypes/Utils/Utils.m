@@ -255,4 +255,11 @@
     return size;
 }
 
+#pragma mark -
+#pragma mark - Device
+#pragma mark -
++ (NSSize)screenSize {
+    return [[NSScreen mainScreen] frame].size;
+}
+
 @end

@@ -44,10 +44,20 @@ typedef NS_ENUM(NSInteger, FLOPopoverType) {
 
 /* @Properties
  */
-@property (nonatomic, assign) BOOL showArrow;
+@property (nonatomic, assign) BOOL shouldShowArrow;
 @property (nonatomic, assign) BOOL animated;
 @property (nonatomic, assign) BOOL closesWhenPopoverResignsKey;
 @property (nonatomic, assign) BOOL closesWhenApplicationBecomesInactive;
+
+/**
+ * Make the popover movable.
+ */
+@property (nonatomic, assign) BOOL popoverMovable;
+
+/**
+ * Make the popover detach from its parent window. Only apply for FLOWindowPopover type.
+ */
+@property (nonatomic, assign) BOOL popoverShouldDetach;
 
 /* @Utilities
  */

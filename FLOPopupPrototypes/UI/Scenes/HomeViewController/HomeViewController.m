@@ -88,12 +88,15 @@
 //    NSRectEdgeMaxX = CGRectMaxXEdge,
 //    NSRectEdgeMaxY = CGRectMaxYEdge,
 
+//    FLOViewPopover,
+//    FLOWindowPopover,
+
 - (void)showWindowPopupAtSender:(NSView *)sender {
     DLog(@"showWindowPopupAtSender %@", sender);
 }
 
 - (void)showViewPopupAtSender:(NSView *)sender {
-    if (!self._popoverNews) {
+    if (self._popoverNews == nil) {
         NewsViewController *viewcontroller = [[NewsViewController alloc] initWithNibName:NSStringFromClass([NewsViewController class]) bundle:nil];
         NSRect viewframe = [self.view visibleRect];
         CGFloat menuHeight = self.vMenu.frame.size.height;
@@ -104,15 +107,16 @@
         self._popoverNews = [[FLOPopover alloc] initWithContentViewController:viewcontroller popoverType:FLOViewPopover];
     }
     
-    self._popoverNews.closesWhenPopoverResignsKey = YES;
+    //    self._popoverNews.shouldShowArrow = YES;
+    //    self._popoverNews.closesWhenPopoverResignsKey = YES;
     //    self._popoverNews.closesWhenApplicationBecomesInactive = YES;
-    self._popoverNews.showArrow = YES;
+    //    self._popoverNews.popoverMovable = YES;
     
     [self showPopover:self._popoverNews preferredEdge:NSRectEdgeMinY atSender:sender];
 }
 
 - (void)showDataMixAtSender:(NSView *)sender {
-    if (!self._popoverData) {
+    if (self._popoverData == nil) {
         DataViewController *viewcontroller = [[DataViewController alloc] initWithNibName:NSStringFromClass([DataViewController class]) bundle:nil];
         NSRect viewframe = [self.view visibleRect];
         CGFloat menuHeight = self.vMenu.frame.size.height;
@@ -123,9 +127,11 @@
         self._popoverData = [[FLOPopover alloc] initWithContentViewController:viewcontroller popoverType:FLOWindowPopover];
     }
     
+    //    self._popoverData.shouldShowArrow = YES;
     //    self._popoverData.closesWhenPopoverResignsKey = YES;
     //    self._popoverData.closesWhenApplicationBecomesInactive = YES;
-    //    self._popoverData.showArrow = YES;
+    //    self._popoverData.popoverMovable = YES;
+    self._popoverData.popoverShouldDetach = YES;
     
     [self showPopover:self._popoverData preferredEdge:NSRectEdgeMaxX atSender:sender];
 }
@@ -134,15 +140,15 @@
 #pragma mark - Actions
 #pragma mark -
 - (IBAction)btnShowWindowPopup_clicked:(NSButton *)sender {
-    [self._homePresenter doSelectSender:@{@"type": @"main", @"object": sender}];
+    [self._homePresenter doSelectSender:@{@"type": @"windowPopup", @"object": sender}];
 }
 
 - (IBAction)btnShowViewPopup_clicked:(NSButton *)sender {
-    [self._homePresenter doSelectSender:@{@"type": @"settings", @"object": sender}];
+    [self._homePresenter doSelectSender:@{@"type": @"viewPopup", @"object": sender}];
 }
 
 - (IBAction)btnShowDataMix_clicked:(NSButton *)sender {
-    [self._homePresenter doSelectSender:@{@"type": @"data", @"object": sender}];
+    [self._homePresenter doSelectSender:@{@"type": @"mix", @"object": sender}];
 }
 
 #pragma mark -
@@ -155,11 +161,11 @@
     if ([senderInfo objectForKey:keyObject] && [[senderInfo objectForKey:keyObject] isKindOfClass:[NSView class]]) {
         NSView *sender = (NSView *) [senderInfo objectForKey:keyObject];
         
-        if ([[senderInfo objectForKey:keyType] isEqualToString:@"main"]) {
+        if ([[senderInfo objectForKey:keyType] isEqualToString:@"windowPopup"]) {
             [self showWindowPopupAtSender:sender];
-        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"settings"]) {
+        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"viewPopup"]) {
             [self showViewPopupAtSender:sender];
-        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"data"]) {
+        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"mix"]) {
             [self showDataMixAtSender:sender];
         }
     }

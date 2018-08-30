@@ -63,6 +63,10 @@
 - (void)setupUI {
     [self setBackgroundColor:[NSColor colorBackground] cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.view];
     
+    NSSize screenSize = [Utils screenSize];
+    NSTableColumn *column = [self.outlineViewData tableColumnWithIdentifier:@"DataCellViewColumn"];
+    column.maxWidth = screenSize.width;
+    
     self.outlineViewData.backgroundColor = [NSColor clearColor];
     self.outlineViewData.rowHeight = 269.0f;
     [self.outlineViewData registerNib:[[NSNib alloc] initWithNibNamed:NSStringFromClass([DataCellView class]) bundle:nil] forIdentifier:NSStringFromClass([DataCellView class])];

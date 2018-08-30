@@ -11,10 +11,15 @@
 
 @interface FLOViewPopup : NSResponder <FLOPopoverService>
 
-@property (nonatomic, assign) BOOL showArrow;
+@property (nonatomic, assign) BOOL shouldShowArrow;
 @property (nonatomic, assign) BOOL animated;
 @property (nonatomic, assign) BOOL closesWhenPopoverResignsKey;
 @property (nonatomic, assign) BOOL closesWhenApplicationBecomesInactive;
+
+// Make the popover movable.
+//
+@property (nonatomic, assign) BOOL popoverMovable;
+
 
 - (void)setApplicationWindow:(NSWindow *)window;
 /* @Display
