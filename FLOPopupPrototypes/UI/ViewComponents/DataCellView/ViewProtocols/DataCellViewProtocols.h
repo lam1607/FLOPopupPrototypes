@@ -10,6 +10,6 @@
 
 @protocol DataCellViewProtocols <NSObject>
 @optional
-- (void)updateCellView;
+- (void)updateCellViewImage;
 
 @end

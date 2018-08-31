@@ -10,9 +10,7 @@
 #import "FLOViewPopup.h"
 #import "FLOWindowPopup.h"
 
-@interface FLOPopover () {
-    NSWindow *applicationWindow;
-}
+@interface FLOPopover ()
 
 @property (nonatomic, strong) FLOWindowPopup<FLOPopoverService> *windowPopup;
 @property (nonatomic, strong) FLOViewPopup<FLOPopoverService> *viewPopup;
@@ -40,13 +38,14 @@
 
 - (instancetype)initWithContentView:(NSView *)contentView popoverType:(FLOPopoverType)popoverType {
     if (self = [super init]) {
-        applicationWindow = [NSApp mainWindow];
         self.contentView = contentView;
         self.popupType = popoverType;
+        self.alwaysOnTop = NO;
         self.shouldShowArrow = NO;
+        self.animated = NO;
         self.closesWhenPopoverResignsKey = NO;
+        self.closesWhenApplicationBecomesInactive = NO;
         self.popoverMovable = NO;
-        self.popoverShouldDetach = NO;
     }
     
     return self;
@@ -54,11 +53,15 @@
 
 - (instancetype)initWithContentViewController:(NSViewController *)contentViewController popoverType:(FLOPopoverType)popoverType {
     if (self = [super init]) {
-        applicationWindow = [NSApp mainWindow];
         self.contentViewController = contentViewController;
         self.popupType = popoverType;
+        self.alwaysOnTop = NO;
         self.shouldShowArrow = NO;
+        self.animated = NO;
         self.closesWhenPopoverResignsKey = NO;
+        self.closesWhenApplicationBecomesInactive = NO;
+        self.popoverMovable = NO;
+        self.popoverShouldDetach = NO;
     }
     
     return self;
@@ -67,7 +70,6 @@
 - (void)setupPopupView {
     if (!self.viewPopup) {
         self.viewPopup = [[FLOViewPopup alloc] initWithContentView:self.contentViewController.view];
-        [self.viewPopup setApplicationWindow:applicationWindow];
         [self bindEventsForPopover:self.viewPopup];
     }
 }
@@ -75,7 +77,6 @@
 - (void)setupPopupWindow {
     if (!self.windowPopup) {
         self.windowPopup = [[FLOWindowPopup alloc] initWithContentViewController:self.contentViewController];
-        [self.windowPopup setApplicationWindow:applicationWindow];
         [self bindEventsForPopover:self.windowPopup];
     }
 }
@@ -109,6 +110,13 @@
             // default is FLOViewPopover
             break;
     }
+}
+
+- (void)setAlwaysOnTop:(BOOL)alwaysOnTop {
+    _alwaysOnTop = alwaysOnTop;
+    
+    self.viewPopup.alwaysOnTop = alwaysOnTop;
+    self.windowPopup.alwaysOnTop = alwaysOnTop;
 }
 
 - (void)setShouldShowArrow:(BOOL)needed {
@@ -170,11 +178,11 @@
 #pragma mark -
 #pragma mark - Display
 #pragma mark -
-- (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView preferredEdge:(NSRectEdge)preferredEdge {
+- (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView edgeType:(FLOPopoverEdgeType)edgeType {
     if (self.popupType == FLOWindowPopover) {
-        [self.windowPopup showRelativeToRect:positioningRect ofView:positioningView preferredEdge:preferredEdge];
+        [self.windowPopup showRelativeToRect:positioningRect ofView:positioningView edgeType:edgeType];
     } else {
-        [self.viewPopup showRelativeToRect:positioningRect ofView:positioningView preferredEdge:preferredEdge];
+        [self.viewPopup showRelativeToRect:positioningRect ofView:positioningView edgeType:edgeType];
     }
 }
 

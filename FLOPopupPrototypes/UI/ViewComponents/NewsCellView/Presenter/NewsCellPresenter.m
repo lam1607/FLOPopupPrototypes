@@ -45,13 +45,13 @@
                 [obj setImage:image];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.view updateCellView];
+                    [self.view updateCellViewImage];
                 });
             }];
         });
     } else {
         self._image = [obj getImage];
-        [self.view updateCellView];
+        [self.view updateCellViewImage];
     }
 }
 

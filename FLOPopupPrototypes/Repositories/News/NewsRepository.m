@@ -28,11 +28,11 @@
 }
 
 #pragma mark -
-#pragma mark - NewsServiceProtocols implementation
+#pragma mark - NewsRepositoryProtocols implementation
 #pragma mark -
 - (NSArray<News *> *)fetchNews {
     NSMutableArray *news = [[NSMutableArray alloc] init];
-    NSArray<NSDictionary *> *newsDicts = [self._service getMockupData];
+    NSArray<NSDictionary *> *newsDicts = [self._service getMockupDataType:@"news"];
     
     [newsDicts enumerateObjectsUsingBlock:^(NSDictionary *contentDict, NSUInteger idx, BOOL *stop) {
         News *item = [[News alloc] initWithContent:contentDict];
@@ -40,14 +40,6 @@
     }];
     
     return news;
-}
-
-- (void)fetchImageFromUrl:(NSURL *)url completion:(void (^)(NSImage *image))complete {
-    [self._service fetchDataFromUrl:url completion:^(NSData *data) {
-        if (complete) {
-            complete((data != nil) ? [[NSImage alloc] initWithData:data] : nil);
-        }
-    }];
 }
 
 @end

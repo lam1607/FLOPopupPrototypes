@@ -8,6 +8,8 @@
 
 #import "FLOPopoverBackgroundView.h"
 
+#import "FLOPopoverWindowController.h"
+
 static CGFloat getMedianXFromRects(CGRect r1, CGRect r2) {
     CGFloat minX = fmax(NSMinX(r1), NSMinX(r2));
     CGFloat maxX = fmin(NSMaxX(r1), NSMaxX(r2));
@@ -162,9 +164,6 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 }
 
 - (void)updateClippingView {
-    // There's no point if it's not in a window
-    //    if (self.window == nil) return;
-    
     if (NSEqualSizes(self.arrowSize, NSZeroSize) == NO) {
         CGPathRef clippingPath = [self newPopoverPathForEdge:self.popoverEdge inFrame:self.clippingView.bounds];
         self.clippingView.clippingPath = clippingPath;
@@ -178,13 +177,13 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 - (void)setViewMovable:(BOOL)movable {
     self.borderRadius = PopoverBackgroundViewBorderRadius;
     self.shouldMovable = movable;
-    _fillColor = [NSColor.whiteColor colorWithAlphaComponent:0.86f];
+    _fillColor = (self.shouldMovable || self.shouldDetach) ? [NSColor.whiteColor colorWithAlphaComponent:0.86f] : NSColor.clearColor;
 }
 
 - (void)setWindowDetachable:(BOOL)detachable {
     self.borderRadius = PopoverBackgroundViewBorderRadius;
     self.shouldDetach = detachable;
-    _fillColor = [NSColor.whiteColor colorWithAlphaComponent:0.86f];
+    _fillColor = (self.shouldMovable || self.shouldDetach) ? [NSColor.whiteColor colorWithAlphaComponent:0.86f] : NSColor.clearColor;
 }
 
 - (void)setShouldShowShadow:(BOOL)needed {
@@ -301,7 +300,7 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
     CGFloat minY = NSMinY(contentRect);
     CGFloat maxY = NSMaxY(contentRect);
     
-    NSWindow *window = (self.window != nil) ? self.window : [NSApp mainWindow];
+    NSWindow *window = (self.window != nil) ? self.window : [[FLOPopoverWindow sharedInstance] applicationWindow];
     CGRect windowRect = [window convertRectFromScreen:self.popoverOrigin];
     CGRect originRect = [self convertRect:windowRect fromView:nil];
     CGFloat midOriginX = floor(getMedianXFromRects(originRect, contentRect));
@@ -401,7 +400,7 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 #pragma mark - Mouse events
 #pragma mark -
 - (void)mouseDown:(NSEvent *)event {
-    BOOL isFLOWindowPopover = self.window != [NSApp mainWindow];
+    BOOL isFLOWindowPopover = self.window != [[FLOPopoverWindow sharedInstance] applicationWindow];
     self.originalMouseOffset = isFLOWindowPopover ? event.locationInWindow : [self convertPoint:event.locationInWindow fromView:self.window.contentView];
     self.dragging = NO;
 }
@@ -411,7 +410,7 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
     
     if (NSEqualSizes(self.arrowSize, NSZeroSize) && (self.shouldMovable || self.shouldDetach)) {
         if (self.dragging) {
-            BOOL isFLOWindowPopover = self.window != [NSApp mainWindow];
+            BOOL isFLOWindowPopover = self.window != [[FLOPopoverWindow sharedInstance] applicationWindow];
             
             NSPoint currentMouseOffset = isFLOWindowPopover ? event.locationInWindow : [self convertPoint:event.locationInWindow fromView:self.window.contentView];
             NSPoint difference = NSMakePoint(currentMouseOffset.x - self.originalMouseOffset.x, currentMouseOffset.y - self.originalMouseOffset.y);
@@ -429,10 +428,11 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 
 - (void)mouseUp:(NSEvent *)event {
     if (self.dragging) {
-        BOOL isFLOWindowPopover = self.window != [NSApp mainWindow];
+        NSWindow *applicationWindow = [[FLOPopoverWindow sharedInstance] applicationWindow];
+        BOOL isFLOWindowPopover = self.window != applicationWindow;
         
         if (NSEqualSizes(self.arrowSize, NSZeroSize) && self.shouldDetach && isFLOWindowPopover) {
-            if ([[NSApp mainWindow].childWindows containsObject:self.window]) {
+            if ([applicationWindow.childWindows containsObject:self.window]) {
                 self.shouldDetach = NO;
                 self.shouldMovable = NO;
                 

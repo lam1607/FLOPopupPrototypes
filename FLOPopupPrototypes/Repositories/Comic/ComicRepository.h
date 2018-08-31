@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #import "ComicRepositoryProtocols.h"
+#import "BaseRepository.h"
 
-@interface ComicRepository : NSObject <ComicRepositoryProtocols>
+@interface ComicRepository : BaseRepository <ComicRepositoryProtocols>
 
 @end

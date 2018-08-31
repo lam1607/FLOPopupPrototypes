@@ -24,7 +24,7 @@
 }
 
 - (void)doSelectSender:(NSDictionary *)senderInfo {
-    [self.view showViewAtSender:senderInfo];
+    [self.view showPopoverAtSender:senderInfo];
 }
 
 @end

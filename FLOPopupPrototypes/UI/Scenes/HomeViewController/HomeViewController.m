@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 
+#import "FilmsViewController.h"
 #import "NewsViewController.h"
 #import "DataViewController.h"
 
@@ -25,6 +26,7 @@
 
 @property (nonatomic, strong) HomePresenter *_homePresenter;
 
+@property (nonatomic, strong) FLOPopover *_popoverFilms;
 @property (nonatomic, strong) FLOPopover *_popoverNews;
 @property (nonatomic, strong) FLOPopover *_popoverData;
 
@@ -74,25 +76,34 @@
 #pragma mark -
 #pragma mark - Processes
 #pragma mark -
-- (void)showPopover:(FLOPopover *)aPopover preferredEdge:(NSRectEdge)preferredEdge atSender:(NSView *)sender {
+- (void)showPopover:(FLOPopover *)aPopover edgeType:(FLOPopoverEdgeType)edgeType atSender:(NSView *)sender {
     __block FLOPopover *_aPopover = aPopover;
     
     NSView *positioningView = ((sender.superview != nil) ? sender.superview : sender);
     NSRect positioningRect = positioningView.bounds;
     
-    [_aPopover showRelativeToRect:positioningRect ofView:positioningView preferredEdge:preferredEdge];
+    [_aPopover showRelativeToRect:positioningRect ofView:positioningView edgeType:edgeType];
 }
 
-//    NSRectEdgeMinX = CGRectMinXEdge,
-//    NSRectEdgeMinY = CGRectMinYEdge,
-//    NSRectEdgeMaxX = CGRectMaxXEdge,
-//    NSRectEdgeMaxY = CGRectMaxYEdge,
-
-//    FLOViewPopover,
-//    FLOWindowPopover,
-
 - (void)showWindowPopupAtSender:(NSView *)sender {
-    DLog(@"showWindowPopupAtSender %@", sender);
+    if (self._popoverFilms == nil) {
+        FilmsViewController *viewcontroller = [[FilmsViewController alloc] initWithNibName:NSStringFromClass([FilmsViewController class]) bundle:nil];
+        NSRect viewframe = [self.view visibleRect];
+        CGFloat menuHeight = self.vMenu.frame.size.height;
+        CGFloat width = 0.8f * (viewframe.size.width - 100.0f);
+        CGFloat height = viewframe.size.height - menuHeight;
+        [viewcontroller.view setFrame:NSMakeRect(0.0f, 0.0f, width, height)];
+        
+        self._popoverFilms = [[FLOPopover alloc] initWithContentViewController:viewcontroller popoverType:FLOWindowPopover];
+    }
+    
+    //    self._popoverFilms.alwaysOnTop = YES;
+    //    self._popoverFilms.shouldShowArrow = YES;
+    //    self._popoverFilms.closesWhenPopoverResignsKey = YES;
+    //    self._popoverFilms.closesWhenApplicationBecomesInactive = YES;
+    self._popoverFilms.popoverMovable = YES;
+    
+    [self showPopover:self._popoverFilms edgeType:FLOPopoverEdgeTypeHorizontalBelowLeftEdge atSender:sender];
 }
 
 - (void)showViewPopupAtSender:(NSView *)sender {
@@ -107,12 +118,13 @@
         self._popoverNews = [[FLOPopover alloc] initWithContentViewController:viewcontroller popoverType:FLOViewPopover];
     }
     
+    //    self._popoverNews.alwaysOnTop = YES;
     //    self._popoverNews.shouldShowArrow = YES;
     //    self._popoverNews.closesWhenPopoverResignsKey = YES;
     //    self._popoverNews.closesWhenApplicationBecomesInactive = YES;
     //    self._popoverNews.popoverMovable = YES;
     
-    [self showPopover:self._popoverNews preferredEdge:NSRectEdgeMinY atSender:sender];
+    [self showPopover:self._popoverNews edgeType:FLOPopoverEdgeTypeHorizontalBelowLeftEdge atSender:sender];
 }
 
 - (void)showDataMixAtSender:(NSView *)sender {
@@ -120,20 +132,21 @@
         DataViewController *viewcontroller = [[DataViewController alloc] initWithNibName:NSStringFromClass([DataViewController class]) bundle:nil];
         NSRect viewframe = [self.view visibleRect];
         CGFloat menuHeight = self.vMenu.frame.size.height;
-        CGFloat width = 300.0f;
+        CGFloat width = 0.5f * (viewframe.size.width - 100.0f);
         CGFloat height = viewframe.size.height - menuHeight;
         [viewcontroller.view setFrame:NSMakeRect(0.0f, 0.0f, width, height)];
         
         self._popoverData = [[FLOPopover alloc] initWithContentViewController:viewcontroller popoverType:FLOWindowPopover];
     }
     
+    self._popoverData.alwaysOnTop = YES;
     //    self._popoverData.shouldShowArrow = YES;
     //    self._popoverData.closesWhenPopoverResignsKey = YES;
     //    self._popoverData.closesWhenApplicationBecomesInactive = YES;
     //    self._popoverData.popoverMovable = YES;
     self._popoverData.popoverShouldDetach = YES;
     
-    [self showPopover:self._popoverData preferredEdge:NSRectEdgeMaxX atSender:sender];
+    [self showPopover:self._popoverData edgeType:FLOPopoverEdgeTypeHorizontalBelowRightEdge atSender:sender];
 }
 
 #pragma mark -
@@ -154,7 +167,7 @@
 #pragma mark -
 #pragma mark - HomeViewProtocols implementation
 #pragma mark -
-- (void)showViewAtSender:(NSDictionary *)senderInfo {
+- (void)showPopoverAtSender:(NSDictionary *)senderInfo {
     NSString *keyType = @"type";
     NSString *keyObject = @"object";
     

@@ -47,6 +47,7 @@
     self.vContainer.wantsLayer = YES;
     self.vContainer.layer.cornerRadius = [CORNER_RADIUSES[0] doubleValue];
     self.vContainer.layer.backgroundColor = [[NSColor whiteColor] CGColor];
+    [Utils setShadowForView:self.vContainer];
     
     self.imgView.wantsLayer = YES;
     self.imgView.layer.backgroundColor = [[NSColor colorUltraLightGray] CGColor];
@@ -84,7 +85,7 @@
 #pragma mark -
 #pragma mark - ComicDataCellViewProtocols implementation
 #pragma mark -
-- (void)updateCellView {
+- (void)updateCellViewImage {
     if ([self._dataCellPresenter getComicImage]) {
         self.imgView.image = [self._dataCellPresenter getComicImage];
     }

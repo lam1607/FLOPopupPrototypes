@@ -10,6 +10,6 @@
 
 @protocol HomeViewProtocols <NSObject>
 @optional
-- (void)showViewAtSender:(NSDictionary *)senderInfo;
+- (void)showPopoverAtSender:(NSDictionary *)senderInfo;
 
 @end

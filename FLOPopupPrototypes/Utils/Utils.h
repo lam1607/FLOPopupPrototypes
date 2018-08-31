@@ -60,6 +60,7 @@
 #pragma mark - Format view
 #pragma mark -
 + (void)setViewTransparent:(NSView *)view withBackgroundColor:(NSColor *)color;
++ (void)setShadowForView:(NSView *)view;
 
 #pragma mark -
 #pragma mark - Checking

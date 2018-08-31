@@ -8,6 +8,10 @@
 
 #import "BaseViewController.h"
 
-@interface FilmsViewController : BaseViewController
+#import "FilmsViewProtocols.h"
+#import "FilmRepository.h"
+#import "FilmsPresenter.h"
+
+@interface FilmsViewController : BaseViewController <FilmsViewProtocols>
 
 @end

@@ -8,12 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "FLOPopoverWindowController.h"
-
-typedef NS_ENUM(NSInteger, FLOPopoverType) {
-    FLOWindowPopover,
-    FLOViewPopover
-};
+#import "FLOPopoverConstants.h"
 
 @protocol FLOPopoverDelegate <NSObject>
 
@@ -44,6 +39,7 @@ typedef NS_ENUM(NSInteger, FLOPopoverType) {
 
 /* @Properties
  */
+@property (nonatomic, assign) BOOL alwaysOnTop;
 @property (nonatomic, assign) BOOL shouldShowArrow;
 @property (nonatomic, assign) BOOL animated;
 @property (nonatomic, assign) BOOL closesWhenPopoverResignsKey;
@@ -66,6 +62,6 @@ typedef NS_ENUM(NSInteger, FLOPopoverType) {
 
 /* @Display
  */
-- (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView preferredEdge:(NSRectEdge)preferredEdge;
+- (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView edgeType:(FLOPopoverEdgeType)edgeType;
 
 @end

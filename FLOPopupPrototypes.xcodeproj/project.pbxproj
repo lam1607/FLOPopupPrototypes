@@ -31,6 +31,9 @@
 		DE0F11A921300CED002F393B /* NewsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F11A821300CED002F393B /* NewsCellView.m */; };
 		DE0F11AB21300CF6002F393B /* NewsCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE0F11AA21300CF6002F393B /* NewsCellView.xib */; };
 		DE0F11B021300F1E002F393B /* NewsCellPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F11AF21300F1E002F393B /* NewsCellPresenter.m */; };
+		DE15EC572138E272008E792D /* FilmService.m in Sources */ = {isa = PBXBuildFile; fileRef = DE15EC562138E272008E792D /* FilmService.m */; };
+		DE15EC5C2138E2EA008E792D /* FilmRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = DE15EC5B2138E2EA008E792D /* FilmRepository.m */; };
+		DE15EC612138E536008E792D /* FilmCellPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE15EC602138E536008E792D /* FilmCellPresenter.m */; };
 		DE75B830212AD1F300CA6742 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = DE75B82F212AD1F300CA6742 /* Utils.m */; };
 		DE75B83B212AD3E500CA6742 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE75B839212AD3E500CA6742 /* HomeViewController.m */; };
 		DE75B841212AD45F00CA6742 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE75B840212AD45F00CA6742 /* BaseViewController.m */; };
@@ -41,6 +44,9 @@
 		DEB1BCD72137FD6D0046E20E /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB1BCD62137FD6D0046E20E /* Film.m */; };
 		DEB1BCDB2137FE6B0046E20E /* AbstractData.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB1BCDA2137FE6B0046E20E /* AbstractData.m */; };
 		DEB2828F212BED7700C98D05 /* NSColor+FLOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */; };
+		DEC5A7D02138EA11008239AD /* FilmsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5A7CF2138EA11008239AD /* FilmsPresenter.m */; };
+		DEC5A7D521394EDC008239AD /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5A7D421394EDC008239AD /* BaseService.m */; };
+		DEC5A7DA213950F7008239AD /* BaseRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5A7D9213950F7008239AD /* BaseRepository.m */; };
 		DED501C5212E6A3B00A190F7 /* CustomNSOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = DED501C4212E6A3B00A190F7 /* CustomNSOutlineView.m */; };
 		DEFE5F91212BA7F800428ECE /* HomePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5F90212BA7F800428ECE /* HomePresenter.m */; };
 		DEFE5F96212BAF1C00428ECE /* DataCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5F95212BAF1C00428ECE /* DataCellView.m */; };
@@ -130,6 +136,16 @@
 		DE0F11AD21300DEE002F393B /* NewsCellPresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCellPresenterProtocols.h; sourceTree = "<group>"; };
 		DE0F11AE21300F1E002F393B /* NewsCellPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCellPresenter.h; sourceTree = "<group>"; };
 		DE0F11AF21300F1E002F393B /* NewsCellPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsCellPresenter.m; sourceTree = "<group>"; };
+		DE15EC542138E265008E792D /* FilmServiceProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmServiceProtocols.h; sourceTree = "<group>"; };
+		DE15EC552138E272008E792D /* FilmService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmService.h; sourceTree = "<group>"; };
+		DE15EC562138E272008E792D /* FilmService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilmService.m; sourceTree = "<group>"; };
+		DE15EC592138E2E1008E792D /* FilmRepositoryProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmRepositoryProtocols.h; sourceTree = "<group>"; };
+		DE15EC5A2138E2EA008E792D /* FilmRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmRepository.h; sourceTree = "<group>"; };
+		DE15EC5B2138E2EA008E792D /* FilmRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilmRepository.m; sourceTree = "<group>"; };
+		DE15EC5D2138E4A1008E792D /* FilmCellViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmCellViewProtocols.h; sourceTree = "<group>"; };
+		DE15EC5E2138E4EA008E792D /* FilmCellPresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmCellPresenterProtocols.h; sourceTree = "<group>"; };
+		DE15EC5F2138E536008E792D /* FilmCellPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmCellPresenter.h; sourceTree = "<group>"; };
+		DE15EC602138E536008E792D /* FilmCellPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilmCellPresenter.m; sourceTree = "<group>"; };
 		DE75B82D212AD1F300CA6742 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		DE75B82E212AD1F300CA6742 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DE75B82F212AD1F300CA6742 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
@@ -150,6 +166,16 @@
 		DEB1BCDA2137FE6B0046E20E /* AbstractData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AbstractData.m; sourceTree = "<group>"; };
 		DEB2828D212BED7700C98D05 /* NSColor+FLOAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+FLOAdditions.h"; sourceTree = "<group>"; };
 		DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+FLOAdditions.m"; sourceTree = "<group>"; };
+		DEC5A7CC2138E9D7008239AD /* FilmsViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmsViewProtocols.h; sourceTree = "<group>"; };
+		DEC5A7CD2138EA03008239AD /* FilmsPresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmsPresenterProtocols.h; sourceTree = "<group>"; };
+		DEC5A7CE2138EA11008239AD /* FilmsPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmsPresenter.h; sourceTree = "<group>"; };
+		DEC5A7CF2138EA11008239AD /* FilmsPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilmsPresenter.m; sourceTree = "<group>"; };
+		DEC5A7D121394790008239AD /* FLOPopoverConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLOPopoverConstants.h; sourceTree = "<group>"; };
+		DEC5A7D321394EDC008239AD /* BaseService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseService.h; sourceTree = "<group>"; };
+		DEC5A7D421394EDC008239AD /* BaseService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseService.m; sourceTree = "<group>"; };
+		DEC5A7D7213950CE008239AD /* BaseRepositoryProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseRepositoryProtocols.h; sourceTree = "<group>"; };
+		DEC5A7D8213950F7008239AD /* BaseRepository.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseRepository.h; sourceTree = "<group>"; };
+		DEC5A7D9213950F7008239AD /* BaseRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseRepository.m; sourceTree = "<group>"; };
 		DED501C3212E6A3B00A190F7 /* CustomNSOutlineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNSOutlineView.h; sourceTree = "<group>"; };
 		DED501C4212E6A3B00A190F7 /* CustomNSOutlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNSOutlineView.m; sourceTree = "<group>"; };
 		DEFE5F8D212BA7AE00428ECE /* HomeViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewProtocols.h; sourceTree = "<group>"; };
@@ -327,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				A3F1059A212ABA50008AD365 /* extensions */,
+				DEC5A7D121394790008239AD /* FLOPopoverConstants.h */,
 				A3F10584212AB69F008AD365 /* FLOPopover.h */,
 				A3F1058D212AB69F008AD365 /* FLOPopover.m */,
 				A3F10589212AB69F008AD365 /* FLOPopoverService.h */,
@@ -449,6 +476,26 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		DE15EC532138E243008E792D /* Film */ = {
+			isa = PBXGroup;
+			children = (
+				DE15EC542138E265008E792D /* FilmServiceProtocols.h */,
+				DE15EC552138E272008E792D /* FilmService.h */,
+				DE15EC562138E272008E792D /* FilmService.m */,
+			);
+			path = Film;
+			sourceTree = "<group>";
+		};
+		DE15EC582138E2CA008E792D /* Film */ = {
+			isa = PBXGroup;
+			children = (
+				DE15EC592138E2E1008E792D /* FilmRepositoryProtocols.h */,
+				DE15EC5A2138E2EA008E792D /* FilmRepository.h */,
+				DE15EC5B2138E2EA008E792D /* FilmRepository.m */,
+			);
+			path = Film;
+			sourceTree = "<group>";
+		};
 		DE75B82C212AD1F300CA6742 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,6 +583,7 @@
 		DEB1BCC42137F4B30046E20E /* ViewProtocols */ = {
 			isa = PBXGroup;
 			children = (
+				DEC5A7CC2138E9D7008239AD /* FilmsViewProtocols.h */,
 			);
 			path = ViewProtocols;
 			sourceTree = "<group>";
@@ -543,6 +591,9 @@
 		DEB1BCC52137F4BA0046E20E /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				DEC5A7CD2138EA03008239AD /* FilmsPresenterProtocols.h */,
+				DEC5A7CE2138EA11008239AD /* FilmsPresenter.h */,
+				DEC5A7CF2138EA11008239AD /* FilmsPresenter.m */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -562,6 +613,7 @@
 		DEB1BCCD2137F9E80046E20E /* ViewProtocols */ = {
 			isa = PBXGroup;
 			children = (
+				DE15EC5D2138E4A1008E792D /* FilmCellViewProtocols.h */,
 			);
 			path = ViewProtocols;
 			sourceTree = "<group>";
@@ -569,6 +621,9 @@
 		DEB1BCCE2137F9EF0046E20E /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				DE15EC5E2138E4EA008E792D /* FilmCellPresenterProtocols.h */,
+				DE15EC5F2138E536008E792D /* FilmCellPresenter.h */,
+				DE15EC602138E536008E792D /* FilmCellPresenter.m */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -587,6 +642,26 @@
 			children = (
 				DEB1BCD92137FE6B0046E20E /* AbstractData.h */,
 				DEB1BCDA2137FE6B0046E20E /* AbstractData.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		DEC5A7D221394EC7008239AD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				DEFE5F9A212BAF9900428ECE /* BaseServiceProtocols.h */,
+				DEC5A7D321394EDC008239AD /* BaseService.h */,
+				DEC5A7D421394EDC008239AD /* BaseService.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		DEC5A7D6213950B7008239AD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				DEC5A7D7213950CE008239AD /* BaseRepositoryProtocols.h */,
+				DEC5A7D8213950F7008239AD /* BaseRepository.h */,
+				DEC5A7D9213950F7008239AD /* BaseRepository.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -627,8 +702,9 @@
 		DEFE5F99212BAF8100428ECE /* Sevices */ = {
 			isa = PBXGroup;
 			children = (
-				DEFE5F9A212BAF9900428ECE /* BaseServiceProtocols.h */,
+				DEC5A7D221394EC7008239AD /* Base */,
 				DEFE5F9B212BAFA800428ECE /* Comic */,
+				DE15EC532138E243008E792D /* Film */,
 				DE0F1196212FFBBC002F393B /* News */,
 			);
 			path = Sevices;
@@ -647,7 +723,9 @@
 		DEFE5FA2212BB03200428ECE /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				DEC5A7D6213950B7008239AD /* Base */,
 				DEFE5FA3212BB03A00428ECE /* Comic */,
+				DE15EC582138E2CA008E792D /* Film */,
 				DE0F119B212FFC43002F393B /* News */,
 			);
 			path = Repositories;
@@ -883,6 +961,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE0F11B021300F1E002F393B /* NewsCellPresenter.m in Sources */,
+				DE15EC572138E272008E792D /* FilmService.m in Sources */,
+				DEC5A7D521394EDC008239AD /* BaseService.m in Sources */,
 				A3F105A5212ABA50008AD365 /* NSValue+FLOAdditions.m in Sources */,
 				DE0F11A921300CED002F393B /* NewsCellView.m in Sources */,
 				A3F1058E212AB69F008AD365 /* FLOWindowPopup.m in Sources */,
@@ -890,7 +970,9 @@
 				DEFE5FCB212BC35100428ECE /* CustomNSTableRowView.m in Sources */,
 				DEFE5F96212BAF1C00428ECE /* DataCellView.m in Sources */,
 				DEFE5FC5212BC2A400428ECE /* DataPresenter.m in Sources */,
+				DE15EC5C2138E2EA008E792D /* FilmRepository.m in Sources */,
 				DE0F118F212FF95D002F393B /* NewsViewController.m in Sources */,
+				DEC5A7DA213950F7008239AD /* BaseRepository.m in Sources */,
 				DEB1BCD22137FA030046E20E /* FilmCellView.m in Sources */,
 				DEFE5FB9212BB5B400428ECE /* BaseWindowController.m in Sources */,
 				A3F105A3212ABA50008AD365 /* CABasicAnimation+Extensions.m in Sources */,
@@ -902,6 +984,8 @@
 				DEFE5FB6212BB17E00428ECE /* DataCellPresenter.m in Sources */,
 				DE75B83B212AD3E500CA6742 /* HomeViewController.m in Sources */,
 				DEFE5FCE212BCA6A00428ECE /* FLOPopoverBackgroundView.m in Sources */,
+				DEC5A7D02138EA11008239AD /* FilmsPresenter.m in Sources */,
+				DE15EC612138E536008E792D /* FilmCellPresenter.m in Sources */,
 				DEB1BCC92137F4D00046E20E /* FilmsViewController.m in Sources */,
 				DEFE5FBF212BC24C00428ECE /* DataViewController.m in Sources */,
 				DEB1BCD72137FD6D0046E20E /* Film.m in Sources */,

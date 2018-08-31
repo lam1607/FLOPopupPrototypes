@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BaseRepositoryProtocols.h"
+
 @class Comic;
 
-@protocol ComicRepositoryProtocols <NSObject>
+@protocol ComicRepositoryProtocols <BaseRepositoryProtocols>
 
 - (NSArray<Comic *> *)fetchComics;
-- (void)fetchImageFromUrl:(NSURL *)url completion:(void (^)(NSImage *image))complete;
 
 @end

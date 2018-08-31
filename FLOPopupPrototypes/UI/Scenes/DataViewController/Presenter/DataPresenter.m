@@ -12,7 +12,7 @@
 
 @interface DataPresenter ()
 
-@property (nonatomic, strong) NSMutableArray *_comicData;
+@property (nonatomic, strong) NSArray<Comic *> *_comics;
 
 @end
 
@@ -36,7 +36,7 @@
 - (void)fetchData {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSArray<Comic *> *comics = [self.repository fetchComics];
-        self._comicData = [[NSMutableArray alloc] initWithArray:comics];
+        self._comics = [[NSArray alloc] initWithArray:comics];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.view reloadDataOutlineView];
@@ -45,7 +45,7 @@
 }
 
 - (NSArray<Comic *> *)comics {
-    return self._comicData;
+    return self._comics;
 }
 
 @end

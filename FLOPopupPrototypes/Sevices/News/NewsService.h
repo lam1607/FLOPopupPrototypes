@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BaseService.h"
+
 #import "NewsServiceProtocols.h"
 
-@interface NewsService : NSObject <NewsServiceProtocols>
+@interface NewsService : BaseService <NewsServiceProtocols>
 
 @end

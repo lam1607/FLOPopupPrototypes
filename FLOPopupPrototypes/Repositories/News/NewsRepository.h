@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #import "NewsRepositoryProtocols.h"
+#import "BaseRepository.h"
 
-@interface NewsRepository : NSObject <NewsRepositoryProtocols>
+@interface NewsRepository : BaseRepository <NewsRepositoryProtocols>
 
 @end

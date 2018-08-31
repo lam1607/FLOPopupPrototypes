@@ -116,6 +116,16 @@
     view.layer.backgroundColor = [[color colorWithAlphaComponent:COLOR_ALPHA] CGColor];
 }
 
++ (void)setShadowForView:(NSView *)view {
+    NSShadow *dropShadow = [[NSShadow alloc] init];
+    [dropShadow setShadowColor:[NSColor lightGrayColor]];
+    [dropShadow setShadowOffset:NSMakeSize(-1.0f, 1.0f)];
+    [dropShadow setShadowBlurRadius:[CORNER_RADIUSES[0] doubleValue]];
+    
+    [view setWantsLayer:YES];
+    [view setShadow:dropShadow];
+}
+
 #pragma mark -
 #pragma mark - Checking
 #pragma mark -

@@ -7,10 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
+#import "FLOPopoverConstants.h"
+
 #import "FLOPopoverService.h"
 
 @interface FLOViewPopup : NSResponder <FLOPopoverService>
 
+@property (nonatomic, assign) BOOL alwaysOnTop;
 @property (nonatomic, assign) BOOL shouldShowArrow;
 @property (nonatomic, assign) BOOL animated;
 @property (nonatomic, assign) BOOL closesWhenPopoverResignsKey;
@@ -20,9 +24,8 @@
 //
 @property (nonatomic, assign) BOOL popoverMovable;
 
-
-- (void)setApplicationWindow:(NSWindow *)window;
 /* @Display
  */
-- (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView preferredEdge:(NSRectEdge)preferredEdge;
+- (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView edgeType:(FLOPopoverEdgeType)edgeType;
+
 @end
