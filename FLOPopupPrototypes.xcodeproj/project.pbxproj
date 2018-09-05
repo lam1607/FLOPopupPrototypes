@@ -48,6 +48,7 @@
 		DEC5A7D521394EDC008239AD /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5A7D421394EDC008239AD /* BaseService.m */; };
 		DEC5A7DA213950F7008239AD /* BaseRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5A7D9213950F7008239AD /* BaseRepository.m */; };
 		DED501C5212E6A3B00A190F7 /* CustomNSOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = DED501C4212E6A3B00A190F7 /* CustomNSOutlineView.m */; };
+		DEF08515213FDD7A00C73F09 /* NSView+Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF08514213FDD7900C73F09 /* NSView+Animator.m */; };
 		DEFE5F91212BA7F800428ECE /* HomePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5F90212BA7F800428ECE /* HomePresenter.m */; };
 		DEFE5F96212BAF1C00428ECE /* DataCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5F95212BAF1C00428ECE /* DataCellView.m */; };
 		DEFE5F98212BAF2C00428ECE /* DataCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEFE5F97212BAF2C00428ECE /* DataCellView.xib */; };
@@ -178,6 +179,8 @@
 		DEC5A7D9213950F7008239AD /* BaseRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseRepository.m; sourceTree = "<group>"; };
 		DED501C3212E6A3B00A190F7 /* CustomNSOutlineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNSOutlineView.h; sourceTree = "<group>"; };
 		DED501C4212E6A3B00A190F7 /* CustomNSOutlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNSOutlineView.m; sourceTree = "<group>"; };
+		DEF08513213FDD7900C73F09 /* NSView+Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Animator.h"; sourceTree = "<group>"; };
+		DEF08514213FDD7900C73F09 /* NSView+Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Animator.m"; sourceTree = "<group>"; };
 		DEFE5F8D212BA7AE00428ECE /* HomeViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewProtocols.h; sourceTree = "<group>"; };
 		DEFE5F8E212BA7DB00428ECE /* HomePresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePresenterProtocols.h; sourceTree = "<group>"; };
 		DEFE5F8F212BA7F800428ECE /* HomePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePresenter.h; sourceTree = "<group>"; };
@@ -381,6 +384,8 @@
 				A3F1059D212ABA50008AD365 /* FLOKeyframeAnimation.m */,
 				A3F105A1212ABA50008AD365 /* NSValue+FLOAdditions.h */,
 				A3F1059E212ABA50008AD365 /* NSValue+FLOAdditions.m */,
+				DEF08513213FDD7900C73F09 /* NSView+Animator.h */,
+				DEF08514213FDD7900C73F09 /* NSView+Animator.m */,
 				DEB2828D212BED7700C98D05 /* NSColor+FLOAdditions.h */,
 				DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */,
 			);
@@ -970,6 +975,7 @@
 				DEFE5FCB212BC35100428ECE /* CustomNSTableRowView.m in Sources */,
 				DEFE5F96212BAF1C00428ECE /* DataCellView.m in Sources */,
 				DEFE5FC5212BC2A400428ECE /* DataPresenter.m in Sources */,
+				DEF08515213FDD7A00C73F09 /* NSView+Animator.m in Sources */,
 				DE15EC5C2138E2EA008E792D /* FilmRepository.m in Sources */,
 				DE0F118F212FF95D002F393B /* NewsViewController.m in Sources */,
 				DEC5A7DA213950F7008239AD /* BaseRepository.m in Sources */,

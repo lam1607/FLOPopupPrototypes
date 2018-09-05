@@ -8,9 +8,9 @@
 
 #import "FLOViewPopup.h"
 
-#import "FLOPopoverBackgroundView.h"
-
 #import "FLOPopoverWindowController.h"
+
+#import "FLOPopoverBackgroundView.h"
 
 @interface FLOViewPopup () {
     NSWindow *applicationWindow;
@@ -23,6 +23,9 @@
 
 @property (nonatomic, strong) NSView *contentView;
 @property (nonatomic, strong) NSViewController *contentViewController;
+
+@property (nonatomic, assign) FLOPopoverAnimationBehaviour animationBehaviour;
+@property (nonatomic, assign) FLOPopoverAnimationTransition animationType;
 
 @property (nonatomic, strong) FLOPopoverBackgroundView *backgroundView;
 @property (nonatomic) NSRect positioningRect;
@@ -48,6 +51,8 @@
         _alwaysOnTop = NO;
         _shouldShowArrow = NO;
         _animated = NO;
+        _animationBehaviour = FLOPopoverAnimationBehaviorNone;
+        _animationType = FLOPopoverAnimationLeftToRight;
         _closesWhenPopoverResignsKey = NO;
         _closesWhenApplicationBecomesInactive = NO;
     }
@@ -140,9 +145,16 @@
 #pragma mark -
 #pragma mark - Display
 #pragma mark -
+- (void)setAnimationBehaviour:(FLOPopoverAnimationBehaviour)animationBehaviour type:(FLOPopoverAnimationTransition)animationType {
+    self.animationBehaviour = animationBehaviour;
+    self.animationType = animationType;
+}
+
 - (void)showRelativeToRect:(NSRect)rect ofView:(NSView *)view edgeType:(FLOPopoverEdgeType)edgeType {
     if (self.shown) {
-        [self close];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(close) object:nil];
+        [self performSelector:@selector(close) withObject:nil afterDelay:0.1f];
+        
         return;
     }
     
@@ -191,11 +203,12 @@
     self.contentView.frame = contentViewFrame;
     [self.backgroundView addSubview:self.contentView positioned:NSWindowAbove relativeTo:nil];
     
-    self.popoverView = self.backgroundView;
-    
     [self.backgroundView setShouldShowShadow:YES];
     [self.backgroundView setFrame:[applicationWindow convertRectFromScreen:popoverScreenRect]];
     [applicationWindow.contentView addSubview:self.backgroundView positioned:NSWindowAbove relativeTo:self.positioningView];
+    
+    [self popoverShowing:YES animated:self.animated];
+    self.popoverView = self.backgroundView;
     
     if (popoverDidShow != nil) popoverDidShow(self);
     
@@ -211,6 +224,7 @@
     
     if ([self.popoverView isDescendantOf:applicationWindow.contentView]) {
         [self removeApplicationEventsMonitor];
+        [self popoverShowing:NO animated:self.animated];
         
         [self.popoverView removeFromSuperview];
         self.popoverView = nil;
@@ -365,6 +379,107 @@
     }
     
     return [self popoverRectForEdge:&popoverEdge];
+}
+
+#pragma mark -
+#pragma mark - Display animations
+#pragma mark -
+- (void)popoverShowing:(BOOL)showing animated:(BOOL)animated {
+    if (animated) {
+        switch (self.animationBehaviour) {
+            case FLOPopoverAnimationBehaviorTransform:
+                break;
+            case FLOPopoverAnimationBehaviorTransition:
+                if (showing) {
+                    [self showPopoverTransitionAnimation];
+                } else {
+                    [self closePopoverTransitionAnimation];
+                }
+                break;
+            default:
+                return;
+        }
+    }
+}
+
+- (void)showPopoverTransitionAnimation {
+    if (self.animationBehaviour == FLOPopoverAnimationBehaviorTransition) {
+        NSRect fromFrame = self.backgroundView.frame;
+        NSRect toFrame = fromFrame;
+        
+        switch (self.animationType) {
+            case FLOPopoverAnimationLeftToRight:
+                fromFrame.origin.x -= toFrame.size.width / 2;
+                break;
+            case FLOPopoverAnimationRightToLeft:
+                fromFrame.origin.x += toFrame.size.width / 2;
+                break;
+            case FLOPopoverAnimationTopToBottom:
+                fromFrame.origin.y += toFrame.size.height / 2;
+                break;
+            case FLOPopoverAnimationBottomToTop:
+                fromFrame.origin.y -= toFrame.size.height / 2;
+                break;
+            case FLOPopoverAnimationFromMiddle:
+                break;
+            default:
+                break;
+        }
+        
+        [self movePopoverAnimatedFromFrame:fromFrame toFrame:toFrame showing:YES];
+    }
+}
+
+- (void)closePopoverTransitionAnimation {
+    if (self.animationBehaviour == FLOPopoverAnimationBehaviorTransition) {
+        NSRect fromFrame = self.backgroundView.frame;
+        NSRect toFrame = fromFrame;
+        
+        switch (self.animationType) {
+            case FLOPopoverAnimationLeftToRight:
+                toFrame.origin.x -= fromFrame.size.width / 2;
+                break;
+            case FLOPopoverAnimationRightToLeft:
+                toFrame.origin.x += fromFrame.size.width / 2;
+                break;
+            case FLOPopoverAnimationTopToBottom:
+                toFrame.origin.y += fromFrame.size.height / 2;
+                break;
+            case FLOPopoverAnimationBottomToTop:
+                toFrame.origin.y -= fromFrame.size.height / 2;
+                break;
+            case FLOPopoverAnimationFromMiddle:
+                break;
+            default:
+                break;
+        }
+        
+        [self movePopoverAnimatedFromFrame:fromFrame toFrame:toFrame showing:NO];
+    }
+}
+
+- (void)movePopoverAnimatedFromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame showing:(BOOL)showing {
+    // flag = TRUE : animation for window displying
+    // flag = FALSE: animation for window closing
+    if (showing) {
+        [self.backgroundView setFrame:toFrame];
+    }
+    
+    NSString *fadeEffect = showing ? NSViewAnimationFadeInEffect : NSViewAnimationFadeOutEffect;
+    
+    NSDictionary *resizeEffect = [[NSDictionary alloc] initWithObjectsAndKeys: self.backgroundView, NSViewAnimationTargetKey,
+                                  [NSValue valueWithRect:fromFrame], NSViewAnimationStartFrameKey,
+                                  [NSValue valueWithRect:toFrame], NSViewAnimationEndFrameKey,
+                                  fadeEffect, NSViewAnimationEffectKey, nil];
+    
+    NSArray *effects = [[NSArray alloc] initWithObjects:resizeEffect, nil];
+    NSViewAnimation *animation = [[NSViewAnimation alloc] initWithViewAnimations:effects];
+    
+    // Use our standard window-resize animation speed for the transition
+    animation.animationBlockingMode = NSAnimationBlocking;
+    animation.duration = 0.25f;
+    animation.animationCurve = NSAnimationLinear;
+    [animation startAnimation];
 }
 
 #pragma mark -

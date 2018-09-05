@@ -126,6 +126,13 @@
     self.windowPopup.shouldShowArrow = needed;
 }
 
+- (void)setAnimated:(BOOL)animated {
+    _animated = animated;
+    
+    self.viewPopup.animated = animated;
+    self.windowPopup.animated = animated;
+}
+
 - (void)setClosesWhenPopoverResignsKey:(BOOL)closeWhenResign {
     _closesWhenPopoverResignsKey = closeWhenResign;
     
@@ -178,6 +185,11 @@
 #pragma mark -
 #pragma mark - Display
 #pragma mark -
+- (void)setAnimationBehaviour:(FLOPopoverAnimationBehaviour)animationBehaviour type:(FLOPopoverAnimationTransition)animationType {
+    [self.viewPopup setAnimationBehaviour:animationBehaviour type:animationType];
+    [self.windowPopup setAnimationBehaviour:animationBehaviour type:animationType];
+}
+
 - (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView edgeType:(FLOPopoverEdgeType)edgeType {
     if (self.popupType == FLOWindowPopover) {
         [self.windowPopup showRelativeToRect:positioningRect ofView:positioningView edgeType:edgeType];
