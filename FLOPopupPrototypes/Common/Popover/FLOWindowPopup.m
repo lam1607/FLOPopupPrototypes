@@ -18,7 +18,8 @@
 @interface FLOWindowPopup () <FLOPopoverBackgroundViewDelegate, CAAnimationDelegate> {
     NSWindow *applicationWindow;
     NSEvent *applicationEvent;
-    NSWindow *_animationWindow;
+    NSWindow *_snapshotWindow;
+    CALayer *_snapshotLayer;
 }
 
 @property (nonatomic, strong) NSWindow *popoverWindow;
@@ -82,6 +83,7 @@
 }
 
 - (void)dealloc {
+    [_snapshotWindow close];
     [self.popoverWindow close];
 }
 
@@ -240,8 +242,8 @@
 - (void)close {
     if (!self.shown) return;
     
-    [self removeAllApplicationEvents];
     [self popoverShowing:NO animated:self.animated];
+    [self removeAllApplicationEvents];
     
     [applicationWindow removeChildWindow:self.popoverWindow];
     [self.popoverWindow close];
@@ -395,79 +397,71 @@
 
 - (void)popoverTransitionAnimationShowing:(BOOL)showing {
     if (self.animationBehaviour == FLOPopoverAnimationBehaviorTransition) {
-        NSRect fromFrame = self.popoverWindow.frame;
-        NSRect toFrame = fromFrame;
-
-        _animationWindow = [[NSWindow alloc] initWithContentRect:applicationWindow.screen.visibleFrame styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
-        [_animationWindow setOpaque:NO];
-        [_animationWindow setHasShadow:NO];
-        [_animationWindow setBackgroundColor:[NSColor clearColor]];
-        [_animationWindow.contentView setWantsLayer:YES];
-        [_animationWindow setLevel:NSScreenSaverWindowLevel];
-
-        [CATransaction begin];
-        CALayer *windowSnapshot = [self snapshotToImageLayerFromView:self.popoverWindow.contentView];
-        [CATransaction commit];
-
-        NSRect windowSnapshotRect = fromFrame;
-
-        if (self.animationType == FLOPopoverAnimationLeftToRight) {
-            windowSnapshotRect.origin.x -= toFrame.size.width / 2;
-        } else if (self.animationType == FLOPopoverAnimationRightToLeft) {
-            windowSnapshotRect.origin.x += toFrame.size.width / 2;
-        } else if (self.animationType == FLOPopoverAnimationBottomToTop) {
-            windowSnapshotRect.origin.y += toFrame.size.height / 2;
-        } else if (self.animationType == FLOPopoverAnimationTopToBottom) {
-            windowSnapshotRect.origin.y -= toFrame.size.height / 2;
-        } else {
+        if (_snapshotWindow == nil) {
+            _snapshotWindow = [[NSWindow alloc] initWithContentRect:applicationWindow.screen.visibleFrame styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+            _snapshotWindow.releasedWhenClosed = YES;
+            _snapshotWindow.opaque = NO;
+            _snapshotWindow.hasShadow = NO;
+            _snapshotWindow.backgroundColor = [NSColor clearColor];
+            _snapshotWindow.contentView.wantsLayer = YES;
+            _snapshotWindow.level = NSScreenSaverWindowLevel;
         }
-
-        windowSnapshot.frame = [_animationWindow convertRectFromScreen:windowSnapshotRect];
-
-        //============================================================================================================
-        // Add snapshots to animation window
-        //============================================================================================================
-        [CATransaction begin];
-        [[_animationWindow.contentView layer] addSublayer:windowSnapshot];
-        [CATransaction commit];
-
-        [_animationWindow makeKeyAndOrderFront:nil];
-
+        
+        if (_snapshotLayer.superlayer == nil) {
+            _snapshotLayer = [self snapshotToImageLayerFromView:self.popoverWindow.contentView];
+            _snapshotLayer.frame = [_snapshotWindow convertRectFromScreen:self.popoverWindow.frame];
+            
+            [[_snapshotWindow.contentView layer] addSublayer:_snapshotLayer];
+        }
+        
+        [_snapshotWindow makeKeyAndOrderFront:nil];
+        
         //============================================================================================================
         // Animation for snapshots
         //============================================================================================================
-        [CATransaction begin];
-        CAAnimation *snapshotAnimation = [self showingAnimated:showing fromFrame:fromFrame toFrame:toFrame animationType:self.animationType];
-        [CATransaction commit];
-
-        //============================================================================================================
-        // Start animation
-        //============================================================================================================
+        CAAnimation *snapshotAnimation = [self showingAnimated:showing withLayer:_snapshotLayer animationType:self.animationType];
+        
         snapshotAnimation.delegate = self;
-        [self.popoverWindow orderOut:nil];
+        self.popoverWindow.alphaValue = 0.0f;
         [CATransaction begin];
-        [windowSnapshot addAnimation:snapshotAnimation forKey:@"position"];
+        [_snapshotLayer addAnimation:snapshotAnimation forKey:nil];
         [CATransaction commit];
     }
 }
 
-//- (void)showPopoverTransitionAnimation {
+//- (void)popoverTransitionAnimationShowing:(BOOL)showing {
 //    if (self.animationBehaviour == FLOPopoverAnimationBehaviorTransition) {
 //        NSRect fromFrame = self.popoverWindow.frame;
 //        NSRect toFrame = fromFrame;
 //
 //        switch (self.animationType) {
 //            case FLOPopoverAnimationLeftToRight:
-//                fromFrame.origin.x -= toFrame.size.width / 2;
+//                if (showing) {
+//                    fromFrame.origin.x -= toFrame.size.width / 2;
+//                } else {
+//                    toFrame.origin.x -= fromFrame.size.width / 2;
+//                }
 //                break;
 //            case FLOPopoverAnimationRightToLeft:
-//                fromFrame.origin.x += toFrame.size.width / 2;
+//                if (showing) {
+//                    fromFrame.origin.x += toFrame.size.width / 2;
+//                } else {
+//                    toFrame.origin.x += fromFrame.size.width / 2;
+//                }
 //                break;
 //            case FLOPopoverAnimationTopToBottom:
-//                fromFrame.origin.y += toFrame.size.height / 2;
+//                if (showing) {
+//                    fromFrame.origin.y += toFrame.size.height / 2;
+//                } else {
+//                    toFrame.origin.y += fromFrame.size.height / 2;
+//                }
 //                break;
 //            case FLOPopoverAnimationBottomToTop:
-//                fromFrame.origin.y -= toFrame.size.height / 2;
+//                if (showing) {
+//                    fromFrame.origin.y -= toFrame.size.height / 2;
+//                } else {
+//                    toFrame.origin.y -= fromFrame.size.height / 2;
+//                }
 //                break;
 //            case FLOPopoverAnimationFromMiddle:
 //                break;
@@ -475,57 +469,29 @@
 //                break;
 //        }
 //
-//        [self movePopoverAnimatedFromFrame:fromFrame toFrame:toFrame showing:YES];
-//    }
-//}
-//
-//- (void)closePopoverTransitionAnimation {
-//    if (self.animationBehaviour == FLOPopoverAnimationBehaviorTransition) {
-//        NSRect fromFrame = self.popoverWindow.frame;
-//        NSRect toFrame = fromFrame;
-//
-//        switch (self.animationType) {
-//            case FLOPopoverAnimationLeftToRight:
-//                toFrame.origin.x -= fromFrame.size.width / 2;
-//                break;
-//            case FLOPopoverAnimationRightToLeft:
-//                toFrame.origin.x += fromFrame.size.width / 2;
-//                break;
-//            case FLOPopoverAnimationTopToBottom:
-//                toFrame.origin.y += fromFrame.size.height / 2;
-//                break;
-//            case FLOPopoverAnimationBottomToTop:
-//                toFrame.origin.y -= fromFrame.size.height / 2;
-//                break;
-//            case FLOPopoverAnimationFromMiddle:
-//                break;
-//            default:
-//                break;
-//        }
-//
-//        [self movePopoverAnimatedFromFrame:fromFrame toFrame:toFrame showing:NO];
+//        [self movePopoverAnimatedFromFrame:fromFrame toFrame:toFrame showing:showing];
 //    }
 //}
 //
 //- (void)movePopoverAnimatedFromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame showing:(BOOL)showing {
 //    self.popoverWindow.styleMask = NSWindowStyleMaskBorderless;
 //    self.popoverWindow.movableByWindowBackground  = true;
-//
+//    
 //    if (showing) {
 //        [self.popoverWindow setFrame:toFrame display:NO];
 //        self.popoverWindow.alphaValue = 0.0f;
 //    }
-//
+//    
 //    NSString *fadeEffect = showing ? NSViewAnimationFadeInEffect : NSViewAnimationFadeOutEffect;
-//
+//    
 //    NSDictionary *resizeEffect = [[NSDictionary alloc] initWithObjectsAndKeys: self.popoverWindow, NSViewAnimationTargetKey,
 //                                  [NSValue valueWithRect:fromFrame], NSViewAnimationStartFrameKey,
 //                                  [NSValue valueWithRect:toFrame], NSViewAnimationEndFrameKey,
 //                                  fadeEffect, NSViewAnimationEffectKey, nil];
-//
+//    
 //    NSArray *effects = [[NSArray alloc] initWithObjects:resizeEffect, nil];
 //    NSViewAnimation *animation = [[NSViewAnimation alloc] initWithViewAnimations:effects];
-//
+//    
 //    // Use our standard window-resize animation speed for the transition
 //    animation.animationBlockingMode = NSAnimationBlocking;
 //    animation.duration = 0.25f;
@@ -559,7 +525,7 @@
     // Make view snapshot
     NSBitmapImageRep *imageRep = [view bitmapImageRepForCachingDisplayInRect:view.bounds];
     [view cacheDisplayInRect:view.bounds toBitmapImageRep:imageRep];
-    NSImage *image = [[NSImage alloc] initWithSize:view.frame.size];
+    NSImage *image = [[NSImage alloc] initWithSize:view.bounds.size];
     [image addRepresentation:imageRep];
     CALayer *layer = [CALayer layer];
     layer.contents = image;
@@ -572,60 +538,62 @@
     return layer;
 }
 
-- (CAAnimation *)showingAnimated:(BOOL)showing fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame animationType:(FLOPopoverAnimationTransition)animationType {
+- (CAAnimation *)showingAnimated:(BOOL)showing withLayer:(CALayer *)layer animationType:(FLOPopoverAnimationTransition)animationType {
     // Set transition direction
     NSString *transitionKeypath = (animationType == FLOPopoverAnimationBottomToTop || animationType == FLOPopoverAnimationTopToBottom) ? @"position.y" : @"position.x";
     CABasicAnimation *transitionAnimation = [CABasicAnimation animationWithKeyPath:transitionKeypath];
     
+    NSPoint fromPostion = layer.position;
+    NSPoint toPostion = layer.position;
+    
     if (animationType == FLOPopoverAnimationLeftToRight) {
         if (showing) {
-            fromFrame.origin.x -= toFrame.size.width / 2;
+            fromPostion.x -= layer.frame.size.width / 2;
         } else {
-            toFrame.origin.x -= fromFrame.size.width / 2;
+            toPostion.x -= layer.frame.size.width / 2;
         }
     } else if (animationType == FLOPopoverAnimationRightToLeft) {
         if (showing) {
-            fromFrame.origin.x += toFrame.size.width / 2;
+            fromPostion.x += layer.frame.size.width / 2;
         } else {
-            toFrame.origin.x += fromFrame.size.width / 2;
-        }
-    } else if (animationType == FLOPopoverAnimationBottomToTop) {
-        if (showing) {
-            fromFrame.origin.y += toFrame.size.height / 2;
-        } else {
-            toFrame.origin.y += fromFrame.size.height / 2;
+            toPostion.x += layer.frame.size.width / 2;
         }
     } else if (animationType == FLOPopoverAnimationTopToBottom) {
         if (showing) {
-            fromFrame.origin.y -= toFrame.size.height / 2;
+            layer.position = NSMakePoint(fromPostion.x, fromPostion.y + layer.frame.size.height / 2);
+            toPostion.y += layer.frame.size.height / 2;
         } else {
-            toFrame.origin.y -= fromFrame.size.height / 2;
+            fromPostion.y += layer.frame.size.height / 2;
+        }
+    } else if (animationType == FLOPopoverAnimationBottomToTop) {
+        if (showing) {
+            layer.position = NSMakePoint(fromPostion.x, fromPostion.y - layer.frame.size.height / 2);
+            toPostion.y -= layer.frame.size.height / 2;
+        } else {
+            fromPostion.y -= layer.frame.size.height / 2;
         }
     } else {
     }
     
-    NSRect fromRect = [_animationWindow convertRectFromScreen:fromFrame];
-    NSRect toRect = [_animationWindow convertRectFromScreen:toFrame];
+    NSValue *fromValue = [NSValue valueWithPoint:fromPostion];
+    NSValue *toValue = [NSValue valueWithPoint:toPostion];
     
-    NSValue *fromValue = [NSValue valueWithPoint:fromRect.origin];
-    NSValue *toValue = [NSValue valueWithPoint:toRect.origin];
+    if ((animationType == FLOPopoverAnimationLeftToRight) || (animationType == FLOPopoverAnimationRightToLeft)) {
+        transitionAnimation.fromValue = fromValue;
+        transitionAnimation.toValue = toValue;
+    } else {
+        transitionAnimation.byValue = @(fromPostion.y - toPostion.y);
+    }
     
-    transitionAnimation.fromValue = fromValue;
-    transitionAnimation.toValue = toValue;
-    
-    CAKeyframeAnimation *fadeInAndOutAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
-    fadeInAndOutAnimation.autoreverses = NO;
-    fadeInAndOutAnimation.keyTimes = @[@(0.0), @(2.0 / 8.0), @(5.0 / 8.0), @(1.0)];
-    fadeInAndOutAnimation.values = @[@(0.0), @(1.0), @(1.0), @(0.0)];
-    fadeInAndOutAnimation.removedOnCompletion = NO;
-    fadeInAndOutAnimation.fillMode = kCAFillModeForwards;
+    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opacityAnimation.fromValue = showing ? @(0.0) : @(0.5);
+    opacityAnimation.toValue = showing ? @(1.0) : @(0.0);
     
     CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
-    animationGroup.animations = [NSArray arrayWithObjects:transitionAnimation, fadeInAndOutAnimation, nil];
+    animationGroup.animations = [NSArray arrayWithObjects:transitionAnimation, opacityAnimation, nil];
     animationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    animationGroup.duration = 0.25f;
-    animationGroup.fillMode = kCAFillModeForwards;
-    animationGroup.removedOnCompletion = NO;
+    animationGroup.duration = 5.25f;
+    animationGroup.removedOnCompletion = YES;
     
     return animationGroup;
 }
@@ -634,9 +602,12 @@
 #pragma mark - CAAnimationDelegate
 #pragma mark -
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag {
-    [self.popoverWindow makeKeyAndOrderFront:nil];
-    [_animationWindow orderOut:nil];
-    _animationWindow = nil;
+    if (self.shown) {
+        [self.popoverWindow makeKeyAndOrderFront:nil];
+        self.popoverWindow.alphaValue = 1.0f;
+    }
+    
+    [_snapshotWindow orderOut:nil];
 }
 
 #pragma mark -
