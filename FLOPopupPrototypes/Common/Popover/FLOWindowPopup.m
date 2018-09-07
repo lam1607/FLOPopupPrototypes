@@ -242,7 +242,10 @@
 - (void)close {
     if (!self.shown) return;
     
-    [self popoverShowing:NO animated:self.animated];
+    if ([applicationWindow.childWindows containsObject:self.popoverWindow]) {
+        [self popoverShowing:NO animated:self.animated];
+    }
+    
     [self removeAllApplicationEvents];
     
     [applicationWindow removeChildWindow:self.popoverWindow];
@@ -407,12 +410,14 @@
             _snapshotWindow.level = NSScreenSaverWindowLevel;
         }
         
-        if (_snapshotLayer.superlayer == nil) {
-            _snapshotLayer = [self snapshotToImageLayerFromView:self.popoverWindow.contentView];
-            _snapshotLayer.frame = [_snapshotWindow convertRectFromScreen:self.popoverWindow.frame];
-            
-            [[_snapshotWindow.contentView layer] addSublayer:_snapshotLayer];
+        if (_snapshotLayer.superlayer != nil) {
+            [_snapshotLayer removeFromSuperlayer];
         }
+        
+        _snapshotLayer = [self snapshotToImageLayerFromView:self.popoverWindow.contentView];
+        _snapshotLayer.frame = [_snapshotWindow convertRectFromScreen:self.popoverWindow.frame];
+        
+        [[_snapshotWindow.contentView layer] addSublayer:_snapshotLayer];
         
         [_snapshotWindow makeKeyAndOrderFront:nil];
         

@@ -407,9 +407,11 @@
 
 - (void)popoverTransitionAnimationShowing:(BOOL)showing {
     if (self.animationBehaviour == FLOPopoverAnimationBehaviorTransition) {
-        _snapshotView = [[NSView alloc] initWithFrame:applicationWindow.contentView.frame];
-        _snapshotView.wantsLayer = YES;
-        _snapshotView.layer.backgroundColor = [[NSColor clearColor] CGColor];
+        if (_snapshotView == nil) {
+            _snapshotView = [[NSView alloc] initWithFrame:applicationWindow.contentView.frame];
+            _snapshotView.wantsLayer = YES;
+            _snapshotView.layer.backgroundColor = [[NSColor clearColor] CGColor];
+        }
         
         if (_snapshotLayer.superlayer != nil) {
             [_snapshotLayer removeFromSuperlayer];
