@@ -9,6 +9,8 @@
 #ifndef FLOPopoverConstants_h
 #define FLOPopoverConstants_h
 
+static CGFloat const FLOPopoverAnimationTimeIntervalStandard = 0.2f;
+
 typedef NS_ENUM(NSInteger, FLOPopoverType) {
     FLOWindowPopover,
     FLOViewPopover

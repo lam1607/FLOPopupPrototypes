@@ -200,6 +200,8 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 
 - (void)setShouldShowArrow:(BOOL)needed {
     self.arrowSize = needed ? CGSizeMake(PopoverBackgroundViewArrowWidth, PopoverBackgroundViewArrowHeight) : NSZeroSize;
+    [self setViewMovable:NO];
+    [self setWindowDetachable:NO];
     
     if (NSEqualSizes(self.arrowSize, NSZeroSize) == NO) {
         [self updateClippingView];

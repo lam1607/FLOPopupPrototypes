@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface CABasicAnimation (Extensions)
+
 + (CAAnimation *)transformAxisXAnimationWithDuration:(NSTimeInterval)aDuration
                               forLayerBeginningOnTop:(BOOL)beginsOnTop
                                          scaleFactor:(CGFloat)scaleFactor
@@ -25,7 +26,7 @@
                                            toOpacity:(CGFloat)toOpacity;
 + (CAAnimation *)resizeAnimationWithDuration:(NSTimeInterval)aDuration fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame fromOpacity:(CGFloat)fromOpacity toOpacity:(CGFloat)toOpacity;
 
-+(CAAnimation *)flipAnimationWithDuration:(NSTimeInterval)duration forLayerBeginningOnTop:(BOOL)beginsOnTop scaleFactor:(CGFloat)scaleFactor;
++ (CAAnimation *)flipAnimationWithDuration:(NSTimeInterval)duration forLayerBeginningOnTop:(BOOL)beginsOnTop scaleFactor:(CGFloat)scaleFactor;
 + (CAAnimation *)disappearAxisXAnimationWithDuration:(NSTimeInterval)aDuration
                               forLayerBeginningOnTop:(BOOL)beginsOnTop
                                          scaleFactor:(CGFloat)scaleFactor
@@ -36,4 +37,5 @@
                                         translationY:(CGFloat)transY;
 #pragma mark rotate anim
 + (void)rotateAnimationForKey:(NSString *)animKey withDuration:(NSTimeInterval)aDuration forButton:(NSButton *)rotateBtn;
+
 @end

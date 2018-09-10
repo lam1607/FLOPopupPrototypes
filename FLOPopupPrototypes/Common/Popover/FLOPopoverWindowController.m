@@ -13,6 +13,8 @@
 @property (nonatomic, strong, readwrite) NSWindow *topWindow;
 @property (nonatomic, strong, readwrite) NSView *topView;
 
+@property (nonatomic, strong, readwrite) NSWindow *animatedWindow;
+
 @end
 
 @implementation FLOPopoverWindow
@@ -49,12 +51,42 @@
     return _topView;
 }
 
+- (NSWindow *)animatedWindow {
+    NSWindow *window = [[NSWindow alloc] initWithContentRect:self.applicationWindow.screen.visibleFrame styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+    
+    window.hidesOnDeactivate = YES;
+    window.releasedWhenClosed = YES;
+    window.opaque = NO;
+    window.hasShadow = NO;
+    window.backgroundColor = [NSColor clearColor];
+    window.contentView.wantsLayer = YES;
+    window.level = NSScreenSaverWindowLevel;
+    
+    return window;
+}
+
 - (void)setTopmostWindow:(NSWindow *)topmostWindow {
     _topWindow = topmostWindow;
 }
 
 - (void)setTopmostView:(NSView *)topmostView {
     _topView = topmostView;
+}
+
+#pragma mark -
+#pragma mark - Utilities
+#pragma mark -
+- (NSWindow *)snapshotWindowFromView:(NSView *)view {
+    NSWindow *window = [[NSWindow alloc] initWithContentRect:view.bounds styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+    
+    window.hidesOnDeactivate = YES;
+    window.releasedWhenClosed = NO;
+    window.opaque = NO;
+    window.hasShadow = YES;
+    window.backgroundColor = [NSColor clearColor];
+    window.contentView.wantsLayer = YES;
+    
+    return window;
 }
 
 @end

@@ -11,20 +11,23 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "FLOGraphicsContext.h"
+#import "NSWindow+Animator.h"
+
 #import "FLOPopoverWindowController.h"
 
 #import "FLOPopoverBackgroundView.h"
 
-@interface FLOViewPopup () <CAAnimationDelegate> {
+#import "FLOPopoverUtils.h"
+
+@interface FLOViewPopup () <NSAnimationDelegate> {
     NSWindow *applicationWindow;
     NSEvent *applicationEvent;
+    NSWindow *_animatedWindow;
+    NSWindow *_snapshotWindow;
     NSView *_snapshotView;
-    CALayer *_snapshotLayer;
 }
 
 @property (nonatomic, strong) NSView *popoverView;
-
-@property (nonatomic, readonly, getter = isShown) BOOL shown;
 
 @property (nonatomic, strong) NSView *contentView;
 @property (nonatomic, strong) NSViewController *contentViewController;
@@ -60,6 +63,8 @@
         _animationType = FLOPopoverAnimationLeftToRight;
         _closesWhenPopoverResignsKey = NO;
         _closesWhenApplicationBecomesInactive = NO;
+        
+        [self registerWindowResizeEvent];
     }
     
     return self;
@@ -77,18 +82,22 @@
         _animated = NO;
         _closesWhenPopoverResignsKey = NO;
         _closesWhenApplicationBecomesInactive = NO;
+        
+        [self registerWindowResizeEvent];
     }
     
     return self;
 }
 
 - (void)dealloc {
-    if ([self.popoverView isDescendantOf:applicationWindow.contentView]) {
+    if ([self.popoverView isDescendantOf:self.positioningView.window.contentView]) {
         [self.popoverView removeFromSuperview];
         self.popoverView = nil;
         
         [_snapshotView removeFromSuperview];
     }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark -
@@ -167,6 +176,7 @@
     
     self.positioningRect = rect;
     self.positioningView = view;
+    _snapshotView = self.backgroundView;
     
     [self setPopoverEdgeType:edgeType];
     
@@ -212,9 +222,10 @@
     
     [self.backgroundView setShouldShowShadow:YES];
     [self.backgroundView setFrame:[applicationWindow convertRectFromScreen:popoverScreenRect]];
-    [applicationWindow.contentView addSubview:self.backgroundView positioned:NSWindowAbove relativeTo:self.positioningView];
+    [self.positioningView.window.contentView addSubview:self.backgroundView positioned:NSWindowAbove relativeTo:self.positioningView];
     
     [self popoverShowing:YES animated:self.animated];
+    
     self.popoverView = self.backgroundView;
     
     if (popoverDidShow != nil) popoverDidShow(self);
@@ -229,7 +240,7 @@
 - (void)close {
     if (!self.shown) return;
     
-    if ([self.popoverView isDescendantOf:applicationWindow.contentView]) {
+    if ([self.popoverView isDescendantOf:self.positioningView.window.contentView]) {
         [self removeApplicationEventsMonitor];
         [self popoverShowing:NO animated:self.animated];
         
@@ -407,212 +418,75 @@
 
 - (void)popoverTransitionAnimationShowing:(BOOL)showing {
     if (self.animationBehaviour == FLOPopoverAnimationBehaviorTransition) {
-        if (_snapshotView == nil) {
-            _snapshotView = [[NSView alloc] initWithFrame:applicationWindow.contentView.frame];
-            _snapshotView.wantsLayer = YES;
-            _snapshotView.layer.backgroundColor = [[NSColor clearColor] CGColor];
+        if (_animatedWindow == nil) {
+            //============================================================================================================
+            // Create animation window
+            //============================================================================================================
+            _animatedWindow = [[FLOPopoverWindow sharedInstance] animatedWindow];
         }
         
-        if (_snapshotLayer.superlayer != nil) {
-            [_snapshotLayer removeFromSuperlayer];
+        if ([_animatedWindow.childWindows containsObject:_snapshotWindow]) {
+            [_animatedWindow removeChildWindow:_snapshotWindow];
+            [_snapshotWindow close];
         }
         
-        _snapshotLayer = [self snapshotToImageLayerFromView:self.contentView];
-        _snapshotLayer.frame = self.backgroundView.frame;
+        // Make the popover content view display itself for snapshot preparing.
+        _snapshotView.alphaValue = 1.0f;
         
-        [[_snapshotView layer] addSublayer:_snapshotLayer];
-        [applicationWindow.contentView addSubview:_snapshotView positioned:NSWindowAbove relativeTo:self.backgroundView];
+        if (showing && (_snapshotWindow == nil)) {
+            //============================================================================================================
+            // Create snapshot window for containing the snapshot image of the popover content view
+            //============================================================================================================
+            _snapshotWindow = [[FLOPopoverWindow sharedInstance] snapshotWindowFromView:_snapshotView];
+            // Wait 10 ms for the popover content view loads its UI in the first time popover opened.
+            usleep(10000);
+        }
         
         //============================================================================================================
-        // Animation for snapshots
+        // Take a snapshot image of the popover content view
         //============================================================================================================
-        CAAnimation *snapshotAnimation = [self showingAnimated:showing withLayer:_snapshotLayer animationType:self.animationType];
+        [self takeSnapshotImageFromView:_snapshotView toWindow:_snapshotWindow];
+        // After snapshot process finished, make the popover content view invisible to start animation.
+        _snapshotView.alphaValue = 0.0f;
         
-        self.backgroundView.needsDisplay = NO;
-        snapshotAnimation.delegate = self;
-        [CATransaction begin];
-        [_snapshotLayer addAnimation:snapshotAnimation forKey:nil];
-        [CATransaction commit];
+        [_animatedWindow addChildWindow:_snapshotWindow ordered:NSWindowAbove];
+        [_snapshotWindow setFrame:[self.positioningView.window convertRectToScreen:_snapshotView.frame] display:NO];
+        [_animatedWindow makeKeyAndOrderFront:nil];
+        
+        NSRect fromFrame = [self.positioningView.window convertRectToScreen:_snapshotView.frame];
+        NSRect toFrame = fromFrame;
+        
+        [FLOPopoverUtils calculateFromFrame:&fromFrame toFrame:&toFrame withAnimationType:self.animationType showing:showing];
+        
+        //============================================================================================================
+        // Animation for snapshot window
+        //============================================================================================================
+        [_snapshotWindow setIsVisible:showing];
+        // FLOPopoverAnimationTimeIntervalStandard
+        [_snapshotWindow moveAnimatedFromFrame:fromFrame toFrame:toFrame source:self];
     }
-}
-
-//- (void)popoverTransitionAnimationShowing:(BOOL)showing {
-//    if (self.animationBehaviour == FLOPopoverAnimationBehaviorTransition) {
-//        NSRect fromFrame = self.backgroundView.frame;
-//        NSRect toFrame = fromFrame;
-//
-//        switch (self.animationType) {
-//            case FLOPopoverAnimationLeftToRight:
-//                if (showing) {
-//                    fromFrame.origin.x -= toFrame.size.width / 2;
-//                } else {
-//                    toFrame.origin.x -= fromFrame.size.width / 2;
-//                }
-//                break;
-//            case FLOPopoverAnimationRightToLeft:
-//                if (showing) {
-//                    fromFrame.origin.x += toFrame.size.width / 2;
-//                } else {
-//                    toFrame.origin.x += fromFrame.size.width / 2;
-//                }
-//                break;
-//            case FLOPopoverAnimationTopToBottom:
-//                if (showing) {
-//                    fromFrame.origin.y += toFrame.size.height / 2;
-//                } else {
-//                    toFrame.origin.y += fromFrame.size.height / 2;
-//                }
-//                break;
-//            case FLOPopoverAnimationBottomToTop:
-//                if (showing) {
-//                    fromFrame.origin.y -= toFrame.size.height / 2;
-//                } else {
-//                    toFrame.origin.y -= fromFrame.size.height / 2;
-//                }
-//                break;
-//            case FLOPopoverAnimationFromMiddle:
-//                break;
-//            default:
-//                break;
-//        }
-//
-//        [self movePopoverAnimatedFromFrame:fromFrame toFrame:toFrame showing:showing];
-//    }
-//}
-//
-//- (void)movePopoverAnimatedFromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame showing:(BOOL)showing {
-//    if (showing) {
-//        [self.backgroundView setFrame:toFrame];
-//    }
-//
-//    NSString *fadeEffect = showing ? NSViewAnimationFadeInEffect : NSViewAnimationFadeOutEffect;
-//
-//    NSDictionary *resizeEffect = [[NSDictionary alloc] initWithObjectsAndKeys: self.backgroundView, NSViewAnimationTargetKey,
-//                                  [NSValue valueWithRect:fromFrame], NSViewAnimationStartFrameKey,
-//                                  [NSValue valueWithRect:toFrame], NSViewAnimationEndFrameKey,
-//                                  fadeEffect, NSViewAnimationEffectKey, nil];
-//
-//    NSArray *effects = [[NSArray alloc] initWithObjects:resizeEffect, nil];
-//    NSViewAnimation *animation = [[NSViewAnimation alloc] initWithViewAnimations:effects];
-//
-//    // Use our standard window-resize animation speed for the transition
-//    animation.animationBlockingMode = NSAnimationBlocking;
-//    animation.duration = 0.25f;
-//    animation.animationCurve = NSAnimationLinear;
-//    [animation startAnimation];
-//}
-
-/**
- * Convert rectangle from one view coordinates to another
- *
- * @param rect <#rect description#>
- * @param fromView <#fromView description#>
- * @param toView <#toView description#>
- * @return <#return value description#>
- */
-- (CGRect)rect:(NSRect)rect fromView:(NSView *)fromView toView:(NSView *)toView {
-    rect = [fromView convertRect:rect toView:nil];
-    rect = [fromView.window convertRectToScreen:rect];
-    rect = [toView.window convertRectFromScreen:rect];
-    rect = [toView convertRect:rect fromView:nil];
-    
-    return NSRectToCGRect(rect);
 }
 
 /**
- * Get snapshot of selected view as layer with bitmap image
+ * Get snapshot of selected view as bitmap image then add it to the target window.
  *
- * @param view <#view description#>
- * @return <#return value description#>
+ * @param view target view for taking snapshot.
+ * @param window snapshot window will be used for animation.
  */
-- (CALayer *)snapshotToImageLayerFromView:(NSView*)view {
-    // Make view snapshot
-    NSBitmapImageRep *imageRep = [view bitmapImageRepForCachingDisplayInRect:view.bounds];
-    [view cacheDisplayInRect:view.bounds toBitmapImageRep:imageRep];
-    NSImage *image = [[NSImage alloc] initWithSize:view.bounds.size];
-    [image addRepresentation:imageRep];
-    CALayer *layer = [CALayer layer];
-    layer.contents = image;
-    // Add shadow of window to snapshot
-    [layer setShadowOpacity:0.5];
-    [layer setShadowColor:[[NSColor lightGrayColor] CGColor]];
-    [layer setShadowOffset:NSMakeSize(-0.5f, 0.5f)];
-    [layer setShadowRadius:5.0f];
-    
-    return layer;
-}
-
-- (CAAnimation *)showingAnimated:(BOOL)showing withLayer:(CALayer *)layer animationType:(FLOPopoverAnimationTransition)animationType {
-    // Set transition direction
-    NSString *transitionKeypath = (animationType == FLOPopoverAnimationBottomToTop || animationType == FLOPopoverAnimationTopToBottom) ? @"position.y" : @"position.x";
-    CABasicAnimation *transitionAnimation = [CABasicAnimation animationWithKeyPath:transitionKeypath];
-    
-    NSPoint fromPostion = layer.position;
-    NSPoint toPostion = layer.position;
-    
-    if (animationType == FLOPopoverAnimationLeftToRight) {
-        if (showing) {
-            fromPostion.x -= layer.frame.size.width / 2;
-        } else {
-            toPostion.x -= layer.frame.size.width / 2;
-        }
-    } else if (animationType == FLOPopoverAnimationRightToLeft) {
-        if (showing) {
-            fromPostion.x += layer.frame.size.width / 2;
-        } else {
-            toPostion.x += layer.frame.size.width / 2;
-        }
-    } else if (animationType == FLOPopoverAnimationTopToBottom) {
-        if (showing) {
-            layer.position = NSMakePoint(fromPostion.x, fromPostion.y + layer.frame.size.height / 2);
-            toPostion.y += layer.frame.size.height / 2;
-        } else {
-            fromPostion.y += layer.frame.size.height / 2;
-        }
-    } else if (animationType == FLOPopoverAnimationBottomToTop) {
-        if (showing) {
-            layer.position = NSMakePoint(fromPostion.x, fromPostion.y - layer.frame.size.height / 2);
-            toPostion.y -= layer.frame.size.height / 2;
-        } else {
-            fromPostion.y -= layer.frame.size.height / 2;
-        }
-    } else {
-    }
-    
-    NSValue *fromValue = [NSValue valueWithPoint:fromPostion];
-    NSValue *toValue = [NSValue valueWithPoint:toPostion];
-    
-    if ((animationType == FLOPopoverAnimationLeftToRight) || (animationType == FLOPopoverAnimationRightToLeft)) {
-        transitionAnimation.fromValue = fromValue;
-        transitionAnimation.toValue = toValue;
-    } else {
-        transitionAnimation.byValue = @(fromPostion.y - toPostion.y);
-    }
-    
-    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    opacityAnimation.fromValue = showing ? @(0.0) : @(0.5);
-    opacityAnimation.toValue = showing ? @(1.0) : @(0.0);
-    
-    CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
-    animationGroup.animations = [NSArray arrayWithObjects:transitionAnimation, opacityAnimation, nil];
-    animationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    animationGroup.duration = 3.15f;
-    animationGroup.removedOnCompletion = YES;
-    
-    return animationGroup;
+- (void)takeSnapshotImageFromView:(NSView *)view toWindow:(NSWindow *)window {
+    NSImage *image = [FLOGraphicsContext snapshotImageFromView:view];
+    [window.contentView layer].contents = image;
 }
 
 #pragma mark -
-#pragma mark - CAAnimationDelegate
+#pragma mark - NSAnimationDelegate
 #pragma mark -
-- (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag {
-    if (self.popoverView.superview != nil) {
-        self.backgroundView.alphaValue = 1.0f;
+- (void)animationDidEnd:(NSAnimation *)animation {
+    if (self.popoverView.superview == nil) {
+        _snapshotView.alphaValue = 1.0f;
     }
     
-    if ([_snapshotView isDescendantOf:applicationWindow.contentView]) {
-        [_snapshotView removeFromSuperview];
-    }
+    [_animatedWindow orderOut:nil];
 }
 
 #pragma mark -
@@ -678,6 +552,14 @@
     }
 }
 
+- (void)registerWindowResizeEvent {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
+}
+
+- (void)removeWindowResizeEvent {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResizeNotification object:nil];
+}
+
 #pragma mark -
 #pragma mark - Utilities
 #pragma mark -
@@ -692,6 +574,16 @@
 - (void)appResignedActive:(NSNotification *)notification {
     if ([notification.name isEqualToString:NSApplicationDidResignActiveNotification]) {
         [self performSelector:@selector(close) withObject:nil afterDelay:0.1f];
+    }
+}
+
+- (void)windowDidResize:(NSNotification *)notification {
+    if ([notification.name isEqualToString:NSWindowDidResizeNotification] && [notification.object isKindOfClass:[NSWindow class]]) {
+        NSWindow *resizedWindow = (NSWindow *) notification.object;
+        
+        if (resizedWindow == [[FLOPopoverWindow sharedInstance] applicationWindow]) {
+            DLog(@"resizedWindow.frame = %@", NSStringFromRect(resizedWindow.frame));
+        }
     }
 }
 

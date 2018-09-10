@@ -48,6 +48,8 @@
 		DEC5A7D521394EDC008239AD /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5A7D421394EDC008239AD /* BaseService.m */; };
 		DEC5A7DA213950F7008239AD /* BaseRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5A7D9213950F7008239AD /* BaseRepository.m */; };
 		DED501C5212E6A3B00A190F7 /* CustomNSOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = DED501C4212E6A3B00A190F7 /* CustomNSOutlineView.m */; };
+		DEE1CE7621465B2F007E7721 /* FLOPopoverUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE1CE7521465B2F007E7721 /* FLOPopoverUtils.m */; };
+		DEE1CE7921465D34007E7721 /* NSWindow+Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE1CE7821465D34007E7721 /* NSWindow+Animator.m */; };
 		DEF08515213FDD7A00C73F09 /* NSView+Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF08514213FDD7900C73F09 /* NSView+Animator.m */; };
 		DEFE5F91212BA7F800428ECE /* HomePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5F90212BA7F800428ECE /* HomePresenter.m */; };
 		DEFE5F96212BAF1C00428ECE /* DataCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5F95212BAF1C00428ECE /* DataCellView.m */; };
@@ -179,6 +181,10 @@
 		DEC5A7D9213950F7008239AD /* BaseRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseRepository.m; sourceTree = "<group>"; };
 		DED501C3212E6A3B00A190F7 /* CustomNSOutlineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNSOutlineView.h; sourceTree = "<group>"; };
 		DED501C4212E6A3B00A190F7 /* CustomNSOutlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNSOutlineView.m; sourceTree = "<group>"; };
+		DEE1CE7421465B2F007E7721 /* FLOPopoverUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLOPopoverUtils.h; sourceTree = "<group>"; };
+		DEE1CE7521465B2F007E7721 /* FLOPopoverUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLOPopoverUtils.m; sourceTree = "<group>"; };
+		DEE1CE7721465D34007E7721 /* NSWindow+Animator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSWindow+Animator.h"; sourceTree = "<group>"; };
+		DEE1CE7821465D34007E7721 /* NSWindow+Animator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+Animator.m"; sourceTree = "<group>"; };
 		DEF08513213FDD7900C73F09 /* NSView+Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Animator.h"; sourceTree = "<group>"; };
 		DEF08514213FDD7900C73F09 /* NSView+Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Animator.m"; sourceTree = "<group>"; };
 		DEFE5F8D212BA7AE00428ECE /* HomeViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewProtocols.h; sourceTree = "<group>"; };
@@ -366,6 +372,8 @@
 				A3F10582212AB69F008AD365 /* FLOWindowPopup.m */,
 				DEFE5FCC212BCA6A00428ECE /* FLOPopoverBackgroundView.h */,
 				DEFE5FCD212BCA6A00428ECE /* FLOPopoverBackgroundView.m */,
+				DEE1CE7421465B2F007E7721 /* FLOPopoverUtils.h */,
+				DEE1CE7521465B2F007E7721 /* FLOPopoverUtils.m */,
 				A3F1058C212AB69F008AD365 /* FLOPopoverWindowController.h */,
 				A3F10585212AB69F008AD365 /* FLOPopoverWindowController.m */,
 				A3F10586212AB69F008AD365 /* FLOPopoverWindowController.xib */,
@@ -382,12 +390,14 @@
 				A3F1059B212ABA50008AD365 /* CABasicAnimation+Extensions.m */,
 				A3F105A2212ABA50008AD365 /* FLOKeyframeAnimation.h */,
 				A3F1059D212ABA50008AD365 /* FLOKeyframeAnimation.m */,
+				DEB2828D212BED7700C98D05 /* NSColor+FLOAdditions.h */,
+				DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */,
 				A3F105A1212ABA50008AD365 /* NSValue+FLOAdditions.h */,
 				A3F1059E212ABA50008AD365 /* NSValue+FLOAdditions.m */,
 				DEF08513213FDD7900C73F09 /* NSView+Animator.h */,
 				DEF08514213FDD7900C73F09 /* NSView+Animator.m */,
-				DEB2828D212BED7700C98D05 /* NSColor+FLOAdditions.h */,
-				DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */,
+				DEE1CE7721465D34007E7721 /* NSWindow+Animator.h */,
+				DEE1CE7821465D34007E7721 /* NSWindow+Animator.m */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -1001,10 +1011,12 @@
 				A3F105A4212ABA50008AD365 /* FLOKeyframeAnimation.m in Sources */,
 				DE0F11A0212FFC75002F393B /* News.m in Sources */,
 				DEB2828F212BED7700C98D05 /* NSColor+FLOAdditions.m in Sources */,
+				DEE1CE7621465B2F007E7721 /* FLOPopoverUtils.m in Sources */,
 				A3F1055E212AB4F5008AD365 /* AppDelegate.m in Sources */,
 				A3F10523212AB45D008AD365 /* main.m in Sources */,
 				DE75B841212AD45F00CA6742 /* BaseViewController.m in Sources */,
 				DE0F1194212FF9C0002F393B /* NewsPresenter.m in Sources */,
+				DEE1CE7921465D34007E7721 /* NSWindow+Animator.m in Sources */,
 				A3F10592212AB69F008AD365 /* FLOViewPopup.m in Sources */,
 				DEFE5FAC212BB09A00428ECE /* Comic.m in Sources */,
 				A3F10590212AB69F008AD365 /* FLOPopoverWindowController.m in Sources */,

@@ -195,7 +195,7 @@ static CALayer *subLayer;
 }
 
 #pragma mark utilities
-- (void)animatedDisplayWillBeginAtPoint:(NSPoint)beginPoint endedAtPoint:(NSPoint)endedPoint handler:(void(^)())handler {
+- (void)animatedDisplayWillBeginAtPoint:(NSPoint)beginPoint endedAtPoint:(NSPoint)endedPoint handler:(void(^)(void))handler {
      [self.layer removeAllAnimations];
      // along x-axis / this is
      CABasicAnimation *animationx = [CABasicAnimation animationWithKeyPath:nil];
@@ -221,7 +221,7 @@ static CALayer *subLayer;
      [CATransaction commit];
 }
 
-- (void)animatedCloseWillBeginAtPoint:(NSPoint)beginPoint endedAtPoint:(NSPoint)endedPoint handler:(void(^)())handler {
+- (void)animatedCloseWillBeginAtPoint:(NSPoint)beginPoint endedAtPoint:(NSPoint)endedPoint handler:(void(^)(void))handler {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:nil];
     CABasicAnimation *opacityAnim = [CABasicAnimation animationWithKeyPath:nil];
     opacityAnim.fromValue = @(0.5);
@@ -244,7 +244,6 @@ static CALayer *subLayer;
     [self.layer addAnimation:opacityAnim forKey:@"opacity"];
     [self.layer addAnimation:animation forKey:@"position.x"];
     [CATransaction commit];
-
 }
 
 @end
