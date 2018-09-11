@@ -62,6 +62,8 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
         CGContextAddPath(currentContext, self.clippingPath);
         CGContextSetBlendMode(currentContext, kCGBlendModeCopy);
         CGContextSetFillColorWithColor(currentContext, self.pathColor);
+        //        [[NSColor colorMoss] setStroke];
+        //        CGContextDrawPath(currentContext, kCGPathFillStroke);
         CGContextEOFillPath(currentContext);
     }
 }
@@ -200,10 +202,10 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 
 - (void)setShouldShowArrow:(BOOL)needed {
     self.arrowSize = needed ? CGSizeMake(PopoverBackgroundViewArrowWidth, PopoverBackgroundViewArrowHeight) : NSZeroSize;
-    [self setViewMovable:NO];
-    [self setWindowDetachable:NO];
     
     if (NSEqualSizes(self.arrowSize, NSZeroSize) == NO) {
+        [self setViewMovable:NO];
+        [self setWindowDetachable:NO];
         [self updateClippingView];
     }
 }

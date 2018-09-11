@@ -10,8 +10,8 @@
 
 @interface NSWindow (Animator)
 
-- (void)moveAnimatedFromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame;
-- (void)moveAnimatedFromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame source:(id)source;
-- (void)moveAnimatedFromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame duration:(NSTimeInterval)duration source:(id)source;
+- (void)showingAnimated:(BOOL)showing fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame;
+- (void)showingAnimated:(BOOL)showing fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame source:(id)source;
+- (void)showingAnimated:(BOOL)showing fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame duration:(NSTimeInterval)duration source:(id)source;
 
 @end

@@ -14,6 +14,7 @@
 @property (nonatomic, strong, readwrite) NSView *topView;
 
 @property (nonatomic, strong, readwrite) NSWindow *animatedWindow;
+@property (nonatomic, strong, readwrite) NSWindow *snapshotWindow;
 
 @end
 
@@ -52,17 +53,33 @@
 }
 
 - (NSWindow *)animatedWindow {
-    NSWindow *window = [[NSWindow alloc] initWithContentRect:self.applicationWindow.screen.visibleFrame styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+    if (_animatedWindow == nil) {
+        _animatedWindow = [[NSWindow alloc] initWithContentRect:self.applicationWindow.screen.visibleFrame styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+        
+        _animatedWindow.hidesOnDeactivate = YES;
+        _animatedWindow.releasedWhenClosed = NO;
+        _animatedWindow.opaque = NO;
+        _animatedWindow.hasShadow = NO;
+        _animatedWindow.backgroundColor = [NSColor clearColor];
+        _animatedWindow.contentView.wantsLayer = YES;
+    }
     
-    window.hidesOnDeactivate = YES;
-    window.releasedWhenClosed = YES;
-    window.opaque = NO;
-    window.hasShadow = NO;
-    window.backgroundColor = [NSColor clearColor];
-    window.contentView.wantsLayer = YES;
-    window.level = NSScreenSaverWindowLevel;
+    return _animatedWindow;
+}
+
+- (NSWindow *)snapshotWindow {
+    if (_snapshotWindow == nil) {
+        _snapshotWindow = [[NSWindow alloc] initWithContentRect:NSZeroRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+        
+        _snapshotWindow.hidesOnDeactivate = YES;
+        _snapshotWindow.releasedWhenClosed = NO;
+        _snapshotWindow.opaque = NO;
+        _snapshotWindow.hasShadow = YES;
+        _snapshotWindow.backgroundColor = [NSColor clearColor];
+        _snapshotWindow.contentView.wantsLayer = YES;
+    }
     
-    return window;
+    return _snapshotWindow;
 }
 
 - (void)setTopmostWindow:(NSWindow *)topmostWindow {
@@ -77,16 +94,9 @@
 #pragma mark - Utilities
 #pragma mark -
 - (NSWindow *)snapshotWindowFromView:(NSView *)view {
-    NSWindow *window = [[NSWindow alloc] initWithContentRect:view.bounds styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+    [self.snapshotWindow setFrame:view.bounds display:NO];
     
-    window.hidesOnDeactivate = YES;
-    window.releasedWhenClosed = NO;
-    window.opaque = NO;
-    window.hasShadow = YES;
-    window.backgroundColor = [NSColor clearColor];
-    window.contentView.wantsLayer = YES;
-    
-    return window;
+    return self.snapshotWindow;
 }
 
 @end

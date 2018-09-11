@@ -15,6 +15,8 @@
 #import "FLOGraphicsContext.h"
 #import "FLOKeyframeAnimation.h"
 
+#import "FLOPopoverConstants.h"
+
 @implementation NSView (Animator)
 - (NSImage *)imageRepresentationOffscreen:(NSRect)screenBounds {
     // Grab the image representation of the window, without the shadows.
@@ -244,6 +246,55 @@ static CALayer *subLayer;
     [self.layer addAnimation:opacityAnim forKey:@"opacity"];
     [self.layer addAnimation:animation forKey:@"position.x"];
     [CATransaction commit];
+}
+
+- (void)showingAnimated:(BOOL)showing fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame {
+    [self showingAnimated:showing fromFrame:fromFrame toFrame:toFrame source:nil];
+}
+
+- (void)showingAnimated:(BOOL)showing fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame source:(id)source {
+    [self showingAnimated:showing fromFrame:fromFrame toFrame:toFrame duration:FLOPopoverAnimationTimeIntervalStandard source:source];
+}
+
+- (void)showingAnimated:(BOOL)showing fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame duration:(NSTimeInterval)duration source:(id)source {
+    NSString *fadeEffect = showing ? NSViewAnimationFadeInEffect : NSViewAnimationFadeOutEffect;
+
+    NSDictionary *effectAttr = [[NSDictionary alloc] initWithObjectsAndKeys: self, NSViewAnimationTargetKey,
+                                [NSValue valueWithRect:fromFrame], NSViewAnimationStartFrameKey,
+                                [NSValue valueWithRect:toFrame], NSViewAnimationEndFrameKey,
+                                fadeEffect, NSViewAnimationEffectKey, nil];
+
+    NSArray *effects = [[NSArray alloc] initWithObjects:effectAttr, nil];
+    NSViewAnimation *animation = [[NSViewAnimation alloc] initWithViewAnimations:effects];
+
+    animation.animationBlockingMode = NSAnimationBlocking;
+    animation.duration = 3.2;
+    animation.delegate = source;
+    [animation startAnimation];
+}
+
+- (void)showingAnimated:(BOOL)showing fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame completionHandler:(void(^)(void))complete {
+    [self showingAnimated:showing fromFrame:fromFrame toFrame:toFrame duration:FLOPopoverAnimationTimeIntervalStandard completionHandler:complete];
+}
+
+- (void)showingAnimated:(BOOL)showing fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame duration:(NSTimeInterval)duration completionHandler:(void(^)(void))complete {
+    [[self animator] setFrameOrigin:fromFrame.origin];
+    [[self animator] setAlphaValue:showing ? 0.0f : 1.0f];
+    
+    [NSAnimationContext beginGrouping];
+    [[NSAnimationContext currentContext] setDuration:duration];
+    [[NSAnimationContext currentContext] setCompletionHandler:^{
+        [self setFrame:toFrame];
+        [[self animator] setFrameOrigin:toFrame.origin];
+        
+        if (complete != nil) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:complete];
+        }
+    }];
+    
+    [[self animator] setFrameOrigin:toFrame.origin];
+    [[self animator] setAlphaValue:showing ? 1.0f : 0.0f];
+    [NSAnimationContext endGrouping];
 }
 
 @end

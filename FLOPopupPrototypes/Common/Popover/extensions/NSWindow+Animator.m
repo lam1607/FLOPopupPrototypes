@@ -12,19 +12,19 @@
 
 @implementation NSWindow (Animator)
 
-- (void)moveAnimatedFromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame {
-    [self moveAnimatedFromFrame:fromFrame toFrame:toFrame duration:FLOPopoverAnimationTimeIntervalStandard source:nil];
+- (void)showingAnimated:(BOOL)showing fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame {
+    [self showingAnimated:showing fromFrame:fromFrame toFrame:toFrame source:nil];
 }
 
-- (void)moveAnimatedFromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame source:(id)source {
-    [self moveAnimatedFromFrame:fromFrame toFrame:toFrame duration:FLOPopoverAnimationTimeIntervalStandard source:source];
+- (void)showingAnimated:(BOOL)showing fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame source:(id)source {
+    [self showingAnimated:showing fromFrame:fromFrame toFrame:toFrame duration:FLOPopoverAnimationTimeIntervalStandard source:source];
 }
 
-- (void)moveAnimatedFromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame duration:(NSTimeInterval)duration source:(id)source {
+- (void)showingAnimated:(BOOL)showing fromFrame:(NSRect)fromFrame toFrame:(NSRect)toFrame duration:(NSTimeInterval)duration source:(id)source {
     self.styleMask = NSWindowStyleMaskBorderless;
     self.movableByWindowBackground = YES;
     
-    if (self.isVisible) {
+    if (showing) {
         [self setFrame:toFrame display:NO];
         self.alphaValue = 0.0f;
     }
