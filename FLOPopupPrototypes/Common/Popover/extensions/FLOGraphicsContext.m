@@ -80,4 +80,24 @@ CGContextRef FLOCreateGraphicsContext(CGSize size, CGColorSpaceRef colorSpace) {
     return shotImage;
 }
 
+// 20180910
+// https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html
+// Creating NSImage Objects
+// Listing 5-3  Drawing to an offscreen window
++ (NSImage *)snapshotImageFromView:(NSView *)view {
+    // Must display the target view before capturing.
+    [view display]; // Draw to the backing buffer
+    [view lockFocus];
+    NSBitmapImageRep *bitmapRep = [view bitmapImageRepForCachingDisplayInRect:view.bounds];
+    [view unlockFocus];
+    
+    [bitmapRep setSize:view.bounds.size];
+    [view cacheDisplayInRect:view.bounds toBitmapImageRep:bitmapRep];
+
+    NSImage *image = [[NSImage alloc] initWithSize:view.bounds.size];
+    [image addRepresentation:bitmapRep];
+
+    return image;
+}
+
 @end

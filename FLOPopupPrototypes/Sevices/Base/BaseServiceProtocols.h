@@ -12,5 +12,6 @@
 
 @optional
 - (void)fetchDataFromUrl:(NSURL *)url completion:(void (^)(NSData *data))complete;
+- (NSArray<NSDictionary *> *)getMockupDataType:(NSString *)mockType;
 
 @end

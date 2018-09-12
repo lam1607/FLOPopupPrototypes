@@ -8,6 +8,8 @@
 
 #import "FLOPopoverBackgroundView.h"
 
+#import "FLOPopoverWindowController.h"
+
 static CGFloat getMedianXFromRects(CGRect r1, CGRect r2) {
     CGFloat minX = fmax(NSMinX(r1), NSMinX(r2));
     CGFloat maxX = fmin(NSMaxX(r1), NSMaxX(r2));
@@ -55,16 +57,13 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
     CGContextRef currentContext = NSGraphicsContext.currentContext.graphicsPort;
     
     if (currentContext != nil) {
-        self.pathColor = (self.pathColor != nil) ? self.pathColor : [NSColor.brownColor CGColor];
+        self.pathColor = (self.pathColor != nil) ? self.pathColor : [NSColor.whiteColor CGColor];
         
-        //        NSSize myShadowOffset = NSMakeSize(-0.1, 0.1);
-        //        CGContextSetShadow(currentContext, myShadowOffset, 5);
-        
-        //        CGContextAddRect(currentContext, self.bounds);
         CGContextAddPath(currentContext, self.clippingPath);
         CGContextSetBlendMode(currentContext, kCGBlendModeCopy);
         CGContextSetFillColorWithColor(currentContext, self.pathColor);
-        //        CGContextFillPath(currentContext);
+        //        [[NSColor colorMoss] setStroke];
+        //        CGContextDrawPath(currentContext, kCGPathFillStroke);
         CGContextEOFillPath(currentContext);
     }
 }
@@ -89,6 +88,12 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 @property (nonatomic, strong, readonly) FLOPopoverClippingView *clippingView;
 @property (nonatomic, assign, readwrite) NSRectEdge popoverEdge;
 @property (nonatomic, assign, readwrite) NSRect popoverOrigin;
+
+@property (nonatomic, assign) BOOL shouldMovable;
+@property (nonatomic, assign) BOOL shouldDetach;
+
+@property (nonatomic, assign) NSPoint originalMouseOffset;
+@property (nonatomic, assign) BOOL dragging;
 
 - (NSRectEdge)arrowEdgeForPopoverEdge:(NSRectEdge)popoverEdge;
 
@@ -122,6 +127,19 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 }
 
 #pragma mark -
+#pragma mark - Getter/Setter
+#pragma mark -
+- (void)setFillColor:(NSColor *)fillColor {
+    _fillColor = fillColor;
+    [self.fillColor set];
+}
+
+- (void)setBorderRadius:(CGFloat)borderRadius {
+    self.wantsLayer = YES;
+    self.layer.cornerRadius = borderRadius;
+}
+
+#pragma mark -
 #pragma mark - Others
 #pragma mark -
 - (NSRectEdge)arrowEdgeForPopoverEdge:(NSRectEdge)popoverEdge {
@@ -147,9 +165,6 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 }
 
 - (void)updateClippingView {
-    // There's no point if it's not in a window
-//    if (self.window == nil) return;
-    
     if (NSEqualSizes(self.arrowSize, NSZeroSize) == NO) {
         CGPathRef clippingPath = [self newPopoverPathForEdge:self.popoverEdge inFrame:self.clippingView.bounds];
         self.clippingView.clippingPath = clippingPath;
@@ -160,25 +175,34 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 #pragma mark -
 #pragma mark - Processes
 #pragma mark -
-- (void)setBackgroundColor:(NSColor *)color {
-    self.fillColor = color;
-    [self.fillColor set];
+- (void)setViewMovable:(BOOL)movable {
+    self.shouldMovable = movable;
+    _fillColor = (self.shouldMovable || self.shouldDetach) ? [NSColor.whiteColor colorWithAlphaComponent:0.86f] : NSColor.clearColor;
 }
 
-- (void)setNeedShadow:(BOOL)needed {
-    NSShadow *dropShadow = [[NSShadow alloc] init];
-    [dropShadow setShadowColor:[NSColor lightGrayColor]];
-    [dropShadow setShadowOffset:NSMakeSize(-0.5f, 0.5f)];
-    [dropShadow setShadowBlurRadius:5.0f];
-    
-    [self setWantsLayer:YES];
-    [self setShadow:dropShadow];
+- (void)setWindowDetachable:(BOOL)detachable {
+    self.shouldDetach = detachable;
+    _fillColor = (self.shouldMovable || self.shouldDetach) ? [NSColor.whiteColor colorWithAlphaComponent:0.86f] : NSColor.clearColor;
 }
 
-- (void)setNeedArrow:(BOOL)needed {
+- (void)setShouldShowShadow:(BOOL)needed {
+    if (needed) {
+        NSShadow *dropShadow = [[NSShadow alloc] init];
+        [dropShadow setShadowColor:[NSColor lightGrayColor]];
+        [dropShadow setShadowOffset:NSMakeSize(-0.5f, 0.5f)];
+        [dropShadow setShadowBlurRadius:5.0f];
+        
+        [self setWantsLayer:YES];
+        [self setShadow:dropShadow];
+    }
+}
+
+- (void)setShouldShowArrow:(BOOL)needed {
     self.arrowSize = needed ? CGSizeMake(PopoverBackgroundViewArrowWidth, PopoverBackgroundViewArrowHeight) : NSZeroSize;
     
     if (NSEqualSizes(self.arrowSize, NSZeroSize) == NO) {
+        [self setViewMovable:NO];
+        [self setWindowDetachable:NO];
         [self updateClippingView];
     }
 }
@@ -234,7 +258,16 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 }
 
 - (NSRect)contentViewFrameForBackgroundFrame:(NSRect)backgroundFrame popoverEdge:(NSRectEdge)popoverEdge {
-    NSRect returnFrame = NSInsetRect(backgroundFrame, 1.0, 1.0);
+    NSRect returnFrame = NSInsetRect(backgroundFrame, 0.0f, 0.0f);
+    
+    if (NSEqualSizes(self.arrowSize, NSZeroSize) && (self.shouldMovable || self.shouldDetach)) {
+        returnFrame.size.height -= PopoverBackgroundViewArrowHeight;
+        returnFrame.size.width -= PopoverBackgroundViewArrowHeight;
+        returnFrame.origin.x += PopoverBackgroundViewArrowHeight / 2;
+        returnFrame.origin.y += PopoverBackgroundViewArrowHeight / 2;
+        
+        return returnFrame;
+    }
     
     switch (popoverEdge) {
         case NSRectEdgeMinX:
@@ -268,7 +301,7 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
     CGFloat minY = NSMinY(contentRect);
     CGFloat maxY = NSMaxY(contentRect);
     
-    NSWindow *window = (self.window != nil) ? self.window : [NSApp mainWindow];
+    NSWindow *window = (self.window != nil) ? self.window : [[FLOPopoverWindow sharedInstance] applicationWindow];
     CGRect windowRect = [window convertRectFromScreen:self.popoverOrigin];
     CGRect originRect = [self convertRect:windowRect fromView:nil];
     CGFloat midOriginX = floor(getMedianXFromRects(originRect, contentRect));
@@ -362,6 +395,60 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
     CGPathAddLineToPoint(path, NULL, maxBasePoint.x, maxBasePoint.y);
     
     return path;
+}
+
+#pragma mark -
+#pragma mark - Mouse events
+#pragma mark -
+- (void)mouseDown:(NSEvent *)event {
+    BOOL isFLOWindowPopover = self.window != [[FLOPopoverWindow sharedInstance] applicationWindow];
+    self.originalMouseOffset = isFLOWindowPopover ? event.locationInWindow : [self convertPoint:event.locationInWindow fromView:self.window.contentView];
+    self.dragging = NO;
+}
+
+- (void)mouseDragged:(NSEvent *)event {
+    self.dragging = YES;
+    
+    if (NSEqualSizes(self.arrowSize, NSZeroSize) && (self.shouldMovable || self.shouldDetach)) {
+        if (self.dragging) {
+            BOOL isFLOWindowPopover = self.window != [[FLOPopoverWindow sharedInstance] applicationWindow];
+            
+            NSPoint currentMouseOffset = isFLOWindowPopover ? event.locationInWindow : [self convertPoint:event.locationInWindow fromView:self.window.contentView];
+            NSPoint difference = NSMakePoint(currentMouseOffset.x - self.originalMouseOffset.x, currentMouseOffset.y - self.originalMouseOffset.y);
+            NSPoint currentOrigin = isFLOWindowPopover ? self.window.frame.origin : self.frame.origin;
+            NSPoint nextOrigin = NSMakePoint(currentOrigin.x + difference.x, currentOrigin.y + difference.y);
+            
+            if (isFLOWindowPopover) {
+                [self.window setFrameOrigin:nextOrigin];
+            } else {
+                [self setFrameOrigin:nextOrigin];
+            }
+        }
+    }
+}
+
+- (void)mouseUp:(NSEvent *)event {
+    if (self.dragging) {
+        NSWindow *applicationWindow = [[FLOPopoverWindow sharedInstance] applicationWindow];
+        BOOL isFLOWindowPopover = self.window != applicationWindow;
+        
+        if ([self.delegate respondsToSelector:@selector(didPopoverMakeMovement)]) {
+            [self.delegate didPopoverMakeMovement];
+        }
+        
+        if (NSEqualSizes(self.arrowSize, NSZeroSize) && self.shouldDetach && isFLOWindowPopover) {
+            if ([applicationWindow.childWindows containsObject:self.window]) {
+                self.shouldDetach = NO;
+                self.shouldMovable = NO;
+                
+                if ([self.delegate respondsToSelector:@selector(didPopoverBecomeDetachableWindow:)]) {
+                    [self.delegate didPopoverBecomeDetachableWindow:self.window];
+                }
+            }
+        }
+        
+        self.dragging = NO;
+    }
 }
 
 @end

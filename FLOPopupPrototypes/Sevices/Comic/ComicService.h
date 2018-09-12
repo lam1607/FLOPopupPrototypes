@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BaseService.h"
+
 #import "ComicServiceProtocols.h"
 
-@interface ComicService : NSObject <ComicServiceProtocols>
+@interface ComicService : BaseService <ComicServiceProtocols>
 
 @end

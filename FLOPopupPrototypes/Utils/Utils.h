@@ -60,6 +60,7 @@
 #pragma mark - Format view
 #pragma mark -
 + (void)setViewTransparent:(NSView *)view withBackgroundColor:(NSColor *)color;
++ (void)setShadowForView:(NSView *)view;
 
 #pragma mark -
 #pragma mark - Checking
@@ -88,5 +89,10 @@
 + (NSSize)sizeOfControl:(NSControl *)control withWidth:(CGFloat)width;
 + (CGFloat)heightForWidth:(CGFloat)width string:(NSAttributedString*)string;
 + (NSSize)sizeForWidth:(CGFloat)width height:(CGFloat)height string:(NSAttributedString*)string;
+
+#pragma mark -
+#pragma mark - Device
+#pragma mark -
++ (NSSize)screenSize;
 
 @end

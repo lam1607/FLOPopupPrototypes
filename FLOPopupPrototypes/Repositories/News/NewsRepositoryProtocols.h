@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BaseRepositoryProtocols.h"
+
 @class News;
 
-@protocol NewsRepositoryProtocols <NSObject>
+@protocol NewsRepositoryProtocols <BaseRepositoryProtocols>
 
 - (NSArray<News *> *)fetchNews;
-- (void)fetchImageFromUrl:(NSURL *)url completion:(void (^)(NSImage *image))complete;
 
 @end

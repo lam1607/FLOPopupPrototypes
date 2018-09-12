@@ -58,6 +58,10 @@
 - (void)setupUI {
     [self setBackgroundColor:[NSColor colorBackground] cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.view];
     
+    NSSize screenSize = [Utils screenSize];
+    NSTableColumn *column = [self.tableViewData tableColumnWithIdentifier:@"NewsCellViewColumn"];
+    column.maxWidth = screenSize.width;
+    
     self.tableViewData.backgroundColor = [NSColor clearColor];
     self.tableViewData.rowHeight = 254.0f;
     [self.tableViewData registerNib:[[NSNib alloc] initWithNibNamed:NSStringFromClass([NewsCellView class]) bundle:nil] forIdentifier:NSStringFromClass([NewsCellView class])];

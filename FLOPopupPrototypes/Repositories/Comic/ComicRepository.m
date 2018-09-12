@@ -32,7 +32,7 @@
 #pragma mark -
 - (NSArray<Comic *> *)fetchComics {
     NSMutableArray *comics = [[NSMutableArray alloc] init];
-    NSArray<NSDictionary *> *comicDicts = [self._service getMockupData];
+    NSArray<NSDictionary *> *comicDicts = [self._service getMockupDataType:@"comics"];
     
     [comicDicts enumerateObjectsUsingBlock:^(NSDictionary *contentDict, NSUInteger idx, BOOL *stop) {
         Comic *item = [[Comic alloc] initWithContent:contentDict];
@@ -40,14 +40,6 @@
     }];
     
     return comics;
-}
-
-- (void)fetchImageFromUrl:(NSURL *)url completion:(void (^)(NSImage *image))complete {
-    [self._service fetchDataFromUrl:url completion:^(NSData *data) {
-        if (complete) {
-            complete((data != nil) ? [[NSImage alloc] initWithData:data] : nil);
-        }
-    }];
 }
 
 @end

@@ -12,6 +12,4 @@
 
 @protocol NewsServiceProtocols <BaseServiceProtocols>
 
-- (NSArray<NSDictionary *> *)getMockupData;
-
 @end

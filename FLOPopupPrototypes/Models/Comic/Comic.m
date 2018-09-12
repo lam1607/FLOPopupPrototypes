@@ -8,12 +8,6 @@
 
 #import "Comic.h"
 
-@interface Comic ()
-
-@property (nonatomic, strong) NSImage *_comicImage;
-
-@end
-
 @implementation Comic
 
 #pragma mark -
@@ -28,7 +22,9 @@
             NSString *imageUrl = [contentDict objectForKey:@"imageUrl"];
             NSString *pageUrl = [contentDict objectForKey:@"pageUrl"];
             
-            self = [self initWithName:name shortDesc:shortDesc longDesc:longDesc imageUrl:imageUrl pageUrl:pageUrl];
+            self = [self initWithName:name imageUrl:imageUrl pageUrl:pageUrl];
+            self.shortDesc = shortDesc;
+            self.longDesc = longDesc;
         }
     }
     
@@ -46,17 +42,6 @@
     }
     
     return self;
-}
-
-#pragma mark -
-#pragma mark - Processes
-#pragma mark -
-- (void)setImage:(NSImage *)image {
-    self._comicImage = image;
-}
-
-- (NSImage *)getImage {
-    return self._comicImage;
 }
 
 @end

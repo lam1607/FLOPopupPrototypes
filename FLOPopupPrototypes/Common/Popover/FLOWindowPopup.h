@@ -7,18 +7,32 @@
 //
 
 #import <Cocoa/Cocoa.h>
+
+#import "FLOPopoverConstants.h"
+
 #import "FLOPopoverService.h"
 
 @interface FLOWindowPopup : NSResponder <FLOPopoverService>
 
-@property (nonatomic, assign) BOOL showArrow;
+@property (nonatomic, readonly, getter = isShown) BOOL shown;
+
+@property (nonatomic, assign) BOOL alwaysOnTop;
+@property (nonatomic, assign) BOOL shouldShowArrow;
 @property (nonatomic, assign) BOOL animated;
 @property (nonatomic, assign) BOOL closesWhenPopoverResignsKey;
 @property (nonatomic, assign) BOOL closesWhenApplicationBecomesInactive;
 
-- (void)setApplicationWindow:(NSWindow *)window;
+// Make the popover movable.
+//
+@property (nonatomic, assign) BOOL popoverMovable;
+
+// Make the popover detach from its parent window.
+//
+@property (nonatomic, assign) BOOL popoverShouldDetach;
+
 /* @Display
  */
-- (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView preferredEdge:(NSRectEdge)preferredEdge;
+- (void)setAnimationBehaviour:(FLOPopoverAnimationBehaviour)animationBehaviour type:(FLOPopoverAnimationTransition)animationType;
+- (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView edgeType:(FLOPopoverEdgeType)edgeType;
 
 @end

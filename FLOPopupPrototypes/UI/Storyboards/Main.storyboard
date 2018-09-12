@@ -707,11 +707,15 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="HomeViewController" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="2800" height="1800"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <imageView horizontalCompressionResistancePriority="249" verticalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Y8i-ib-bNN">
+                                <rect key="frame" x="0.0" y="0.0" width="2800" height="1800"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="Washington" id="5ox-hz-Opb"/>
+                            </imageView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="WeF-sb-hLO" userLabel="View Menu">
-                                <rect key="frame" x="0.0" y="220" width="480" height="50"/>
+                                <rect key="frame" x="0.0" y="1750" width="2800" height="50"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="uQl-Vp-Bbc" userLabel="View Show Window Popup">
                                         <rect key="frame" x="10" y="5" width="152" height="40"/>
@@ -756,7 +760,7 @@
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="4xE-ia-sMm" userLabel="View Show Data Mix">
-                                        <rect key="frame" x="356" y="5" width="114" height="40"/>
+                                        <rect key="frame" x="2676" y="5" width="114" height="40"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="95S-F2-TuG" userLabel="Btn Show Data Mix">
                                                 <rect key="frame" x="10" y="0.0" width="94" height="40"/>
@@ -792,9 +796,13 @@
                             </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="WeF-sb-hLO" secondAttribute="trailing" id="Cl4-9o-rJU"/>
-                            <constraint firstItem="WeF-sb-hLO" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="bYn-2R-408"/>
-                            <constraint firstItem="WeF-sb-hLO" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="erm-Lb-XCv"/>
+                            <constraint firstItem="Y8i-ib-bNN" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="8wb-rS-4gh"/>
+                            <constraint firstAttribute="bottom" secondItem="Y8i-ib-bNN" secondAttribute="bottom" id="D6m-e7-OHC"/>
+                            <constraint firstItem="Y8i-ib-bNN" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="KT7-si-xcs"/>
+                            <constraint firstItem="WeF-sb-hLO" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="OZa-xU-FvP"/>
+                            <constraint firstAttribute="trailing" secondItem="WeF-sb-hLO" secondAttribute="trailing" id="YA7-mP-j48"/>
+                            <constraint firstAttribute="trailing" secondItem="Y8i-ib-bNN" secondAttribute="trailing" id="ZZI-We-B95"/>
+                            <constraint firstItem="WeF-sb-hLO" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="jUs-pM-rGd"/>
                         </constraints>
                     </view>
                     <connections>
@@ -812,4 +820,7 @@
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Washington" width="2800" height="1800"/>
+    </resources>
 </document>

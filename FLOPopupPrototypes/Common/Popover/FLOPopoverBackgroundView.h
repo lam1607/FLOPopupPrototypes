@@ -34,7 +34,17 @@ static CGFloat const PopoverBackgroundViewArrowHeight = 14.0;
 #pragma mark -
 #pragma mark - FLOPopoverBackgroundView
 #pragma mark -
+@protocol FLOPopoverBackgroundViewDelegate <NSObject>
+
+@optional
+- (void)didPopoverMakeMovement;
+- (void)didPopoverBecomeDetachableWindow:(NSWindow *)detachedWindow;
+
+@end
+
 @interface FLOPopoverBackgroundView : NSView
+
+@property (nonatomic, weak) id<FLOPopoverBackgroundViewDelegate> delegate;
 
 // Given a size of the content this should be overridden by subclasses to
 // describe how big the overall popover should be.
@@ -84,9 +94,12 @@ static CGFloat const PopoverBackgroundViewArrowHeight = 14.0;
 // The color used to fill the shape of the background view.
 @property (nonatomic, strong) NSColor *fillColor;
 
-- (void)setBackgroundColor:(NSColor *)color;
-- (void)setNeedShadow:(BOOL)needed;
-- (void)setNeedArrow:(BOOL)needed;
+@property (nonatomic, assign) CGFloat borderRadius;
+
+- (void)setViewMovable:(BOOL)movable;
+- (void)setWindowDetachable:(BOOL)detachable;
+- (void)setShouldShowShadow:(BOOL)needed;
+- (void)setShouldShowArrow:(BOOL)needed;
 - (void)setArrowColor:(CGColorRef)color;
 - (void)setPopoverEdge:(NSRectEdge)popoverEdge;
 - (void)setPopoverOrigin:(NSRect)popoverOrigin;

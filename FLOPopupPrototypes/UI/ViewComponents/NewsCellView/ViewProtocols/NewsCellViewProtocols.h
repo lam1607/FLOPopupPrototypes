@@ -10,6 +10,6 @@
 
 @protocol NewsCellViewProtocols <NSObject>
 @optional
-- (void)updateCellView;
+- (void)updateCellViewImage;
 
 @end

@@ -27,7 +27,7 @@
 - (void)setupUI {
     NSRect visibleFrame = [self.window.screen visibleFrame];
     CGFloat width = 0.5f * visibleFrame.size.width;
-    CGFloat height = 0.4f * visibleFrame.size.height;
+    CGFloat height = 0.69f * visibleFrame.size.height;
     CGFloat x = (visibleFrame.size.width - width) / 2;
     CGFloat y = (visibleFrame.size.height + visibleFrame.origin.y - height) / 2;
     NSRect viewFrame = NSMakeRect(x, y, width, height);

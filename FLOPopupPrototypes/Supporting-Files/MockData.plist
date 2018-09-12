@@ -761,5 +761,500 @@
                 <string>https://www.mansionglobal.com/articles/a-grade-ii-listed-house-in-surrey-on-five-acres-105547</string>
             </dict>
         </array>
+        <key>films</key>
+        <array>
+            <dict>
+                <key>name</key>
+                <string>The Nun</string>
+                <key>releaseDate</key>
+                <string>2018-09-07</string>
+                <key>synopsis</key>
+                <string>When a young nun at a cloistered abbey in Romania takes her own life, a priest with a haunted past and a novitiate on the threshold of her final vows are sent by the Vatican to investigate. Together they uncover the order's unholy secret. Risking not only their lives but their faith and their very souls, they confront a malevolent force in the form of the same demonic nun that first terrorized audiences in "The Conjuring 2", as the abbey becomes a horrific battleground between the living and the damned.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/246316/246316h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/246316_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Predator</string>
+                <key>releaseDate</key>
+                <string>2018-09-13</string>
+                <key>synopsis</key>
+                <string>From the outer reaches of space to the small-town streets of suburbia, the hunt comes home in Shane Black's explosive reinvention of the Predator series. Now, the universe's most lethal hunters are stronger, smarter and deadlier than ever before, having genetically upgraded themselves with DNA from other species. When a young boy accidentally triggers their return to Earth, only a ragtag crew of ex-soldiers and a disgruntled science teacher can prevent the end of the human race.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/227902/227902h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/227902_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Bohemian Rhapsody</string>
+                <key>releaseDate</key>
+                <string>2018-10-24</string>
+                <key>synopsis</key>
+                <string>Bohemian Rhapsody is a foot-stomping celebration of Queen, their music and their extraordinary lead singer Freddie Mercury, who defied stereotypes and shattered convention to become one of the most beloved entertainers on the planet. The film traces the meteoric rise of the band through their iconic songs and revolutionary sound, their near-implosion as Mercury's lifestyle spirals out of control, and their triumphant reunion on the eve of Live Aid, where Mercury, facing a life-threatening illness, leads the band in one of the greatest performances in the history of rock music. In the process, cementing the legacy of a band that were always more like a family, and who continue to inspire outsiders, dreamers and music lovers to this day.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/249928/249928h1.jpg</string>
+                <key>trailerUrl</key>
+                <string></string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The House With A Clock In Its Walls</string>
+                <key>releaseDate</key>
+                <string>2018-09-21</string>
+                <key>synopsis</key>
+                <string>In the tradition of Amblin classics where fantastical events occur in the most unexpected places, Jack Black and two-time Academy Award® winner Cate Blanchett star in THE HOUSE WITH A CLOCK IN ITS WALLS, from Amblin Entertainment.  The magical adventure tells the spine-tingling tale of 10-year-old Lewis (Owen Vaccaro) who goes to live with his uncle in a creaky old house with a mysterious tick-tocking heart.  But his new town's sleepy façade jolts to life with a secret world of warlocks and witches when Lewis accidentally awakens the dead.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/258136/258136h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/258136_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Funny Girl: The Musical</string>
+                <key>releaseDate</key>
+                <string>2018-10-24</string>
+                <key>synopsis</key>
+                <string>Funny Girl first opened on Broadway on the 26th March 1964 at the Winter Garden Theatre. It later transferred to the Majestic Theatre and The Broadway Theatre and closed in 1967.The original book was written by Isobel Lennart, music composed by Jule Styne and lyrics written by Bob Merrill. The musical is semi-biographical, based on the life and career of Broadway star, film actress and Comedienne Fanny Brice. Lennart originally named the book for the show My Man; this was changed to Funny Girl during the creation of the production. Ray Stark, Brice's son-in-law via her daughter Frances, produced the original version of the stage show.</string>
+                <key>imageUrl</key>
+                <string></string>
+                <key>trailerUrl</key>
+                <string></string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Wife</string>
+                <key>releaseDate</key>
+                <string>2018-09-28</string>
+                <key>synopsis</key>
+                <string>After nearly forty years of marriage, JOAN and JOE CASTLEMAN (Glenn Close and Jonathan Pryce) are complements. Where Joe is casual, Joan is elegant. Where Joe is vain, Joan is self-effacing. And where Joe enjoys his very public role as Great American Novelist, Joan pours her considerable intellect, grace, charm, and diplomacy into the private role of Great Man's Wife. Joe is about to be awarded the Nobel Prize for his acclaimed and prolific body of work. Joe's literary star has blazed since he and Joan first met in the late 1950. THE WIFE interweaves the story of the couple's youthful passion and ambition with a portrait of a marriage, thirty-plus years later - a lifetime's shared compromises, secrets, betrayals, and mutual love.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/255318/255318h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/255318_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Mirai (Mirai no Mirai)</string>
+                <key>releaseDate</key>
+                <string>2018-11-02</string>
+                <key>synopsis</key>
+                <string>Kun, a little boy, enjoys a happy childhood until the arrival of his baby sister, Mirai. As the new baby becomes the center of his parents' attention, he becomes increasingly jealous. Little by little, he withdraws into himself. In the backyard where he likes to take refuge, grows a magical family tree. Kun finds himself suddenly catapulted into a fantastic world where the past and the present mingle. One after another, he meets his relatives at different ages: his mother, as a little girl; his great-grandfather, as an energetic young man; and his little sister, as a teenager. Through these adventures, Kun is able to discover his own story.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/267369/267369h1.jpg</string>
+                <key>trailerUrl</key>
+                <string></string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Faces, Places (Visages, villages)</string>
+                <key>releaseDate</key>
+                <string>2018-09-21</string>
+                <key>synopsis</key>
+                <string>Agnes Varda and JR have things in common: their passion for images in general and more particularly questionning the places where they are showed, how they are shared, exposed. Agnès chose cinema. JR chose to create open-air photographic galleries.When Agnès and JR met in 2015, they immediately wanted to work together, shoot a film in France, far from the cities. Random encounters or prepared projects, they will go towards the others and get them to follow them on their trip with JR's photographic truck. The film is also about their friendship that grows during the shooting, between surprises and malice, laughing of their differences.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/249715/249715h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/249715_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The King of Thieves</string>
+                <key>releaseDate</key>
+                <string>2018-09-14</string>
+                <key>synopsis</key>
+                <string>KING OF THIEVES is the incredible true story of the spectacular Hatton Garden diamond heist, the biggest and most daring in British history, humorously told through career best performances from a stellar cast.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/271194/271194h2.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/271194_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>A Simple Favor</string>
+                <key>releaseDate</key>
+                <string>2018-09-21</string>
+                <key>synopsis</key>
+                <string>A SIMPLE FAVOR, directed by Paul Feig, centers around Stephanie (Anna Kendrick), a mommy vlogger who seeks to uncover the truth behind her best friend Emily's (Blake Lively) sudden disappearance from their small town. Stephanie is joined by Emily's husband Sean (Henry Golding) in this stylish thriller filled with twists and betrayals, secrets and revelations, love and loyalty, murder and revenge.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/267479/267479h1.jpg</string>
+                <key>trailerUrl</key>
+                <string></string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Crazy Rich Asians</string>
+                <key>releaseDate</key>
+                <string>2018-09-14</string>
+                <key>synopsis</key>
+                <string>"Crazy Rich Asians" follows native New Yorker Rachel Chu (Wu) as she accompanies her longtime boyfriend, Nick Young (Golding), to his best friend's wedding in Singapore.  Excited about visiting Asia for the first time but nervous about meeting Nick's family, Rachel is unprepared to learn that Nick has neglected to mention a few key details about his life.  It turns out that he is not only the scion of one of the country's wealthiest families but also one of its most sought-after bachelors.  Being on Nick's arm puts a target on Rachel's back, with jealous socialites and, worse, Nick's own disapproving mother (Yeoh) taking aim.  And it soon becomes clear that while money can't buy love, it can definitely complicate things.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/245041/245041h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/245041_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>American Animals</string>
+                <key>releaseDate</key>
+                <string>2018-09-07</string>
+                <key>synopsis</key>
+                <string>The extraordinary and thrilling true story of four friends (Evan Peters, Barry Keoghan, Blake Jenner, and Jared Abrahamson) living an ordinary existence who brazenly attempt to execute one of the most audacious art heists in US history. But not everything is as it seems, and as the daring theft unfolds through each of their perspectives, each of them start to question whether their attempts to inject excitement and purpose into their lives is simply a misguided attempt at achieving the American Dream.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/263762/263762h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/263762_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Black 47</string>
+                <key>releaseDate</key>
+                <string>2018-09-07</string>
+                <key>synopsis</key>
+                <string>One man's ruthless pursuit of justice plays out against the darkest chapter of Irish history in this riveting revenge thriller. In 1847, battle-hardened soldier Feeney (James Frecheville) deserts the British army to return home to Ireland, where he finds his country ravaged beyond recognition by the Great Famine. When he discovers that his mother has died of starvation and his brother has been hanged by the British, something snaps, sending Feeney on a relentless quest to get even with the powers-that-be who have wronged both his family and his country. There is only one man who can stop Feeney's bloody crusade: disgraced British army veteran Hannah (Hugo Weaving), whose own loyalties may be more complex than they appear</string>
+                <key>imageUrl</key>
+                <string></string>
+                <key>trailerUrl</key>
+                <string></string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string></string>
+                <key>releaseDate</key>
+                <string></string>
+                <key>synopsis</key>
+                <string></string>
+                <key>imageUrl</key>
+                <string></string>
+                <key>trailerUrl</key>
+                <string></string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Miseducation of Cameron Post</string>
+                <key>releaseDate</key>
+                <string>2018-09-07</string>
+                <key>synopsis</key>
+                <string>Cameron Post (Chloë Grace Moretz) looks the part of a perfect high school girl. But after she's caught with another girl in the back seat of a car on prom night, Cameron is quickly shipped off to a conversion therapy center that treats teens struggling with same-sex attraction. At the facility, Cameron is subjected to outlandish discipline, dubious de-gaying methods, and earnest Christian rock songs but this unusual setting also provides her with an unlikely gay community. For the first time, Cameron connects with peers, and she's able to find her place among fellow outcasts.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/263768/263768h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/263768_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Matangi/Maya/M.I.A</string>
+                <key>releaseDate</key>
+                <string>2018-09-21</string>
+                <key>synopsis</key>
+                <string>Drawn from a cache of personal video recordings from the past 22 years, director Steve Loveridge's Sundance award winning MATANGI / MAYA / M.I.A. is a startlingly personal profile of the critically acclaimed artist, chronicling her remarkable journey from refugee immigrant to pop star. She began as Matangi. Daughter of the founder of Sri Lanka's armed Tamil resistance, she hid from the government in the face of a vicious and bloody civil war. When her family fled to the UK, she became Maya, a precocious and creative immigrant teenager in London. Finally, the world met her as M.I.A. when she emerged on the global stage, having created a mashup, cut-and-paste identity that pulled from every corner of her journey along the way; a sonic sketchbook that blended Tamil politics, art school punk, hip-hop beats and the unwavering, ultra-confident voice of a burgeoning multicultural youth. Never one to compromise on her vision, Maya kept her camera rolling throughout. MATANGI / MAYA / M.I.A. provides unparalleled, intimate access to the artist in her battles with the music industry and mainstream media as her success and fame explodes, becoming one of the most recognizable, outspoken and provocative voices in music today.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/263812/263812h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/263812_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Disney's Christopher Robin</string>
+                <key>releaseDate</key>
+                <string>2018-08-17</string>
+                <key>synopsis</key>
+                <string>In the heat-warming live action adventure "Disney's Christopher Robin" the young boy who loved embarking on adventures in the Hundred Acre Wood with a band of spirited and loveable stuffed animals, has grown up and lost his way. Now it is up to his childhood friends to venture into our world and help Christopher Robin remember the loving and playful boy who is still inside.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/264884/264884h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/264884_high_V2.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Happytime Murders</string>
+                <key>releaseDate</key>
+                <string>2018-08-17</string>
+                <key>synopsis</key>
+                <string>No Sesame. All Street. THE HAPPYTIME MURDERS is a filthy comedy set in the underbelly of Los Angeles where puppets and humans coexist. Two clashing detectives with a shared secret, one human (Melissa McCarthy) and one puppet, are forced to work together again to solve the brutal murders of the former cast of a beloved classic puppet television show.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/219035/219035h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/219035_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Mamma Mia! Here We Go Again</string>
+                <key>releaseDate</key>
+                <string>2018-07-20</string>
+                <key>synopsis</key>
+                <string>Ten years after Mamma Mia! The Movie, you are invited to return to the magical Greek island of Kalokairi in an all-new original musical based on the songs of ABBA.  With the film's original cast returning and new additions including Lily James (Cinderella, Baby Driver). As the film goes back and forth in time to show how relationships forged in the past resonate in the present, James will play the role of Young Donna.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/251463/251463h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/251463_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Meg</string>
+                <key>releaseDate</key>
+                <string>2018-08-10</string>
+                <key>synopsis</key>
+                <string>A deep-sea submersible part of an international undersea observation program has been attacked by a massive creature, previously thought to be extinct, and now lies disabled at the bottom of the deepest trench in the Pacific with its crew trapped inside. With time running out, expert deep sea rescue diver Jonas Taylor is recruited by a visionary Chinese oceanographer, against the wishes of his daughter Suyin, to save the crew and the ocean itself from this unstoppable threat: a pre-historic 75-foot-long shark known as the Megalodon. What no one could have imagined is that, years before, Taylor had encountered this same terrifying creature. Now, teamed with Suyin, he must confront his fears and risk his own life to save everyone trapped below bringing him face to face once more with the greatest and largest predator of all time.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/232774/232774h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/232774_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Searching</string>
+                <key>releaseDate</key>
+                <string>2018-08-31</string>
+                <key>synopsis</key>
+                <string>After David Kim (John Cho)'s 16-year-old daughter goes missing, a local investigation is opened and a detective is assigned to the case. But 37 hours later and without a single lead, David decides to search the one place no one has looked yet, where all secrets are kept today: his daughter's laptop. In a hyper-modern thriller told via the technology devices we use every day to communicate, David must trace his daughter's digital footprints before she disappears forever.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/8517/008517h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/8517_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Incredibles 2</string>
+                <key>releaseDate</key>
+                <string>2018-07-13</string>
+                <key>synopsis</key>
+                <string>Everyone's favorite family of superheroes is back in Incredibles 2 but this time Helen (voice of Holly Hunter) is in the spotlight, leaving Bob (voice of Craig T. Nelson) at home with Violet (voice of Sarah Vowell) and Dash (voice of Huck Milner) to navigate the day-to-day heroics of normal life. It's a tough transition for everyone, made tougher by the fact that the family is still unaware of baby Jack-Jack's emerging superpowers. When a new villain hatches a brilliant and dangerous plot, the family and Frozone (voice of Samuel L. Jackson) must find a way to work together again which is easier said than done, even when they're all Incredible.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/219672/219672h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/219672_high_V3.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>BlacKkKlansman</string>
+                <key>releaseDate</key>
+                <string>2018-08-24</string>
+                <key>synopsis</key>
+                <string>From visionary filmmaker Spike Lee comes the incredible true story of an American hero. It's the early 1970s, and Ron Stallworth (John David Washington) is the first African-American detective to serve in the Colorado Springs Police Department. Determined to make a name for himself, Stallworth bravely sets out on a dangerous mission: infiltrate and expose the Ku Klux Klan. The young detective soon recruits a more seasoned colleague, Flip Zimmerman (Adam Driver), into the undercover investigation of a lifetime. Together, they team up to take down the extremist hate group as the organization aims to sanitize its violent rhetoric to appeal to the mainstream. Produced by the team behind the Academy-Award winning Get Out.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/269760/269760h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/269760_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Equalizer 2</string>
+                <key>releaseDate</key>
+                <string>2018-08-17</string>
+                <key>synopsis</key>
+                <string>Denzel Washington returns to one of his signature roles in the first sequel of his career. Robert McCall serves an unflinching justice for the exploited and oppressed - but how far will he go when that is someone he loves?</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/212415/212415h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/212415_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Yardie</string>
+                <key>releaseDate</key>
+                <string>2018-08-24</string>
+                <key>synopsis</key>
+                <string>On a hot night in Kingston, Jamaica, 1973, Jerry Dread stops the music at an outdoor party to encourage a truce between warring gangs. His little brother Denis looks on from the crowd as an assassin's bullet rings out, taking Jerry's life. A decade later, Denis is the right-hand man to gang-boss Fox, who sends him on a loyalty-testing mission to London. But when the mission goes wrong, Denis hides out with an old flame and decides to find his brother's killer.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/263807/263807h2.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/263807_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Hotel Transylvania 3: Summer Vacation</string>
+                <key>releaseDate</key>
+                <string>2018-07-27</string>
+                <key>synopsis</key>
+                <string>In Sony Pictures Animation's Hotel Transylvania 3, Mavis surprises Dracula with a family voyage on a luxury monster cruise ship so he can take a summer vacation from providing everyone else's vacation at the hotel, and the rest of Drac's Pack cannot resist tagging along.   The monsters are all having a great time, indulging in all of the shipboard fun the cruise has to offer, from monster volleyball to colossus sized buffets and exotic excursions, but then the unexpected happens as Drac falls for the intriguing-yet-dangerous captain of the ship.  Balancing family, friends, and a budding romance might just be too much, even for the most powerful vampire.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/221876/221876h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/221876_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Children Act</string>
+                <key>releaseDate</key>
+                <string>2018-08-24</string>
+                <key>synopsis</key>
+                <string>As her marriage to Jack (Stanley Tucci) flounders, eminent High Court judge Fiona Maye (Emma Thompson) has a life-changing decision to make at work - should she force a teenage boy, Adam (Fionn Whitehead), to have the blood transfusion that will save his life? Her unorthodox visit to his hospital bedside has a profound impact on them both, stirring strong new emotions in the boy and long-buried feelings in her.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/255308/255308h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/255308_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Spy Who Dumped Me</string>
+                <key>releaseDate</key>
+                <string>2018-08-24</string>
+                <key>synopsis</key>
+                <string>Audrey (Mila Kunis) and Morgan (Kate McKinnon), two thirty-year-old best friends in Los Angeles, are thrust unexpectedly into an international conspiracy when Audrey's ex-boyfriend shows up at their apartment with a team of deadly assassins on his trail. Surprising even themselves, the duo jump into action, on the run throughout Europe from assassins and a suspicious-but-charming British agent, as they hatch a plan to save the world.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/250293/250293h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/250293_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Ant-Man and the Wasp</string>
+                <key>releaseDate</key>
+                <string>2018-08-03</string>
+                <key>synopsis</key>
+                <string>From the Marvel Cinematic Universe comes a new chapter featuring heroes with the astonishing ability to shrink: "Ant-Man and The Wasp". In the aftermath of "Captain America:  Civil War", Scott Lang (Rudd) grapples with the consequences of his choices as both a Super Hero and a father.  As he struggles to rebalance his home life with his responsibilities as Ant-Man, he's confronted by Hope van Dyne (Lilly) and Dr. Hank Pym (Douglas) with an urgent new mission. Scott must once again put on the suit and learn to fight alongside The Wasp as the team works together to uncover secrets from their past.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/219670/219670h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/219670_high_V2.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Mission: Impossible - Fallout</string>
+                <key>releaseDate</key>
+                <string>2018-07-25</string>
+                <key>synopsis</key>
+                <string>The best intentions often come back to haunt you.  MISSION: IMPOSSIBLE - FALLOUT finds Ethan Hunt (Tom Cruise) and his IMF team (Alec Baldwin, Simon Pegg, Ving Rhames) along with some familiar allies (Rebecca Ferguson, Michelle Monaghan) in a race against time after a mission gone wrong.  Henry Cavill, Angela Bassett, and Vanessa Kirby also join the dynamic cast with filmmaker Christopher McQuarrie returning to the helm.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/241678/241678h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/241678_high_V2.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>The Festival</string>
+                <key>releaseDate</key>
+                <string>2018-08-17</string>
+                <key>synopsis</key>
+                <string>When Nick's (Joe Thomas) girlfriend dumps him at graduation, he has a colossal meltdown in front of the entire university. He's convinced his life is over, but his best mate Shane (Hammed Animashaun) has the perfect solution: three days at an epic music festival. With the help of "festival aficionado" and certified oddball Amy (Emmy Award? nominee Claudia O'Doherty), Shane tries to get Nick to embrace the music, the mayhem and the mud.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/261298/261298h2.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/261298_uk_high_V2.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Luis and the Aliens</string>
+                <key>releaseDate</key>
+                <string>2018-08-24</string>
+                <key>synopsis</key>
+                <string>Growing up as half-orphan with an Ufologist-Dad (Armin Sonntag) who's obsessed to prove to the whole world that alien exist, 12-year-old Luis hasn't had an easy and certainly not a normal life. As nobody believes Armin Sonntag, not even Luis, it's quite a big surprise when one day, three awkward little aliens (Mog, Nag and Wabo) crash-land right in front of Luis. Excited and without bias, Luis wants to show his Dad his discovery and finds out that his father would 'shockfrost' his new friends. Meanwhile the school principal suspects that Luis cannot be getting the attention and upbringing from his father that the boy needs and decides that Luis should be sent to a boarding school. A wild adventure starts where Luis and his friends from outer space try to reach the huge mothership, to bring the aliens home. And perhaps Luis should just leave with them to get away from all these problems here on Earth...</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/264035/264035h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/264035_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Slender Man</string>
+                <key>releaseDate</key>
+                <string>2018-08-24</string>
+                <key>synopsis</key>
+                <string>In a small town in Massachusetts, four high school girls perform a ritual in an attempt to debunk the lore of SLENDER MAN. When one of the girls goes mysteriously missing, they begin to suspect that she is, in fact, his latest victim.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/243963/243963h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/243963_high_V2.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Alpha</string>
+                <key>releaseDate</key>
+                <string>2018-08-24</string>
+                <key>synopsis</key>
+                <string>An epic adventure set in the last Ice Age. Europe, 20,000 years ago. While on his first hunt with his tribe's most elite group, a young man is injured and left for dead. Awakening to find himself broken and alone -- he must learn to survive and navigate the harsh and unforgiving wilderness. Reluctantly taming a lone wolf abandoned by its pack, the pair learn to rely on each other and become unlikely allies, enduring countless dangers and overwhelming odds in order to find their way home before the deadly winter arrives.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/236409/236409h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/236409_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Action Point</string>
+                <key>releaseDate</key>
+                <string>2018-08-31</string>
+                <key>synopsis</key>
+                <string>Everyone's favorite daredevil Johnny Knoxville is back to his hilariously painful antics in the upcoming comedy ACTION POINT. Knoxville stars as D.C., the crackpot owner of a low-rent, out-of-control amusement park where the rides are designed with minimum safety for maximum fun. Just as D.C.'s estranged teenage daughter Boogie comes to visit, a corporate mega-park opens nearby and jeopardizes the future of Action Point. To save his beloved theme park and his relationship with his daughter, D.C. and his loony crew of misfits risk everything to pull out all the stops - and stunts - making for another wild ride from the star of BAD GRANDPA and JACKASS.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/248282/248282h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/248282_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Upgrade</string>
+                <key>releaseDate</key>
+                <string>2018-08-31</string>
+                <key>synopsis</key>
+                <string>Grey Trace, a technophobe in a utopian near-future when computers control nearly everything - from cars to crime-surveillance - is paralyzed in a freak mugging.  But when a billionaire technologist offers him an experimental paralysis cure, an implanted computer chip called STEM. Grey finds that the chip has a voice and a mind of its own.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/265572/265572h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/265572_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Cold War (Zimna wojna)</string>
+                <key>releaseDate</key>
+                <string>2018-08-14</string>
+                <key>synopsis</key>
+                <string>A passionate love story between two people of different backgrounds and temperaments, who are fatefully mismatched and yet condemned to each other. Set against the background of the Cold War in the 1950s in Poland, Berlin, Yugoslavia and Paris, the film depicts an impossible love story in impossible times.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/270621/270621h2.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/270621_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Teen Titans GO! to the Movies</string>
+                <key>releaseDate</key>
+                <string>2018-08-03</string>
+                <key>synopsis</key>
+                <string>When the Teen Titans go to the big screen, they go big! "Teen Titans GO! to the Movies" finds our egocentric, wildly satirical Super Heroes in their first feature film extravaganza - a fresh, gleefully clever, kid-appropriately crass and tongue-in-cheek play on the superhero genre, complete with musical numbers. It seems to the Teens that all the major superheroes out there are starring in their own movies everyone but the Teen Titans, that is!  But de facto leader Robin is determined to remedy the situation, and be seen as a star instead of a sidekick.  If only they could get the hottest Hollywood film director to notice them.  With a few madcap ideas and a song in their heart, the Teen Titans head to Tinsel Town, certain to pull off their dream.  But when the group is radically misdirected by a seriously super villain and his maniacal plan to take over the Earth, things really go awry.  The team finds their friendship and their fighting spirit failing, putting the very fate of the Teen Titans themselves on the line!</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/258091/258091h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/258091_high_V2.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>A Stork's Journey</string>
+                <key>releaseDate</key>
+                <string>2018-08-31</string>
+                <key>synopsis</key>
+                <string>A Stork's Journey follows Richard, a sparrow orphaned at birth and raised by storks who believes that he is a stork, too! But when winter comes and the storks prepare to migrate to Africa, his stork family must reveal his true identity and leave him behind in the forest with the other sparrows since he would not survive the long journey. Determined to prove he is a stork after all, Richard ventures south on an epic adventure, accompanied by friends big and small, to unleash his true potential and be reunited with his family.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/246377/246377h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/246377_uk_high.mp4</string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Giant Pear (Den utrolige historie om den kaempestore paere)</string>
+                <key>releaseDate</key>
+                <string>2018-07-27</string>
+                <key>synopsis</key>
+                <string>"Life peacefully passes by in the cosy coastal village of Sunnytown, where a little cat named Mitcho and a small elephant Sebastian spend their time. All seems quite ordinary until one day, the beloved mayor, JB, unexpectedly disappears from the town! While fishing, Mitcho catches a message in a bottle - enclosed is a tiny seed, which the duo plant, and a letter from the missing JB, who writes that he is stranded on a Mysterious Island and has made a great discovery. Then, just as things can't get any stranger, Mitcho and Sebastian wake up the next day to see the seed they planted has magically turned into...a giant pear! Using the ginormous pear as a boat, our two new friends must gather their courage and embark on a great journey, facing sea dragons, pirates and curious ghosts to help save the Mayor and bring him home. Bright, bouncy and busy from start, take a great big bite of The Giant Pear, the perfect family adventure!</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/242278/242278h1.jpg</string>
+                <key>trailerUrl</key>
+                <string></string>
+            </dict>
+            <dict>
+                <key>name</key>
+                <string>Jurassic World: Fallen Kingdom</string>
+                <key>releaseDate</key>
+                <string>2018-06-06</string>
+                <key>synopsis</key>
+                <string>It's been three years since theme park and luxury resort Jurassic World was destroyed by dinosaurs out of containment.  Isla Nublar now sits abandoned by humans while the surviving dinosaurs fend for themselves in the jungles. When the island's dormant volcano begins roaring to life, Owen (Chris Pratt) and Claire (Bryce Dallas Howard) mount a campaign to rescue the remaining dinosaurs from this extinction-level event.  Owen is driven to find Blue, his lead raptor who's still missing in the wild, and Claire has grown a respect for these creatures she now makes her mission.  Arriving on the unstable island as lava begins raining down, their expedition uncovers a conspiracy that could return our entire planet to a perilous order not seen since prehistoric times.</string>
+                <key>imageUrl</key>
+                <string>https://d3ltpb4h29tx4j.cloudfront.net/214486/214486h1.jpg</string>
+                <key>trailerUrl</key>
+                <string>https://dzm1iom8kpoas.cloudfront.net/214486_high_V3.mp4</string>
+            </dict>
+        </array>
     </dict>
 </plist>

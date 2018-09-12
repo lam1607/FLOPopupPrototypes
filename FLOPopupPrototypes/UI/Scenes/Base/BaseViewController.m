@@ -10,6 +10,8 @@
 
 @interface BaseViewController ()
 
+@property (weak) IBOutlet NSVisualEffectView *visualEVBackground;
+
 @end
 
 @implementation BaseViewController
@@ -21,6 +23,18 @@
 
 - (void)viewWillAppear {
     [super viewWillAppear];
+    
+    [self setupUI];
+}
+
+#pragma mark -
+#pragma mark - Setup UI
+#pragma mark -
+- (void)setupUI {
+    self.visualEVBackground.wantsLayer = YES;
+    [self.visualEVBackground setBlendingMode:NSVisualEffectBlendingModeBehindWindow];
+    [self.visualEVBackground setMaterial:NSVisualEffectMaterialDark];
+    [self.visualEVBackground setState:NSVisualEffectStateActive];
 }
 
 #pragma mark -

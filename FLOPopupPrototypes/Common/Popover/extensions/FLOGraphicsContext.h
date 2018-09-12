@@ -16,5 +16,6 @@ extern CGContextRef FLOCreateGraphicsContext(CGSize size, CGColorSpaceRef colorS
 + (NSImage *)imageRepresentationOnRect:(NSRect)rect representationWindow:(NSWindow *)representationWindow;
 + (NSImage *)screenShotView:(NSView *)aView forRect:(NSRect)aRect inWindow:(NSWindow *)aWindow;
 + (NSImage *)desktopScreenShotOnFrame:(NSRect)onFrame;
++ (NSImage *)snapshotImageFromView:(NSView *)view;
 
 @end

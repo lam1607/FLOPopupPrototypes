@@ -12,6 +12,4 @@
 
 @protocol ComicServiceProtocols <BaseServiceProtocols>
 
-- (NSArray<NSDictionary *> *)getMockupData;
-
 @end

@@ -8,12 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "FLOPopoverWindowController.h"
-
-typedef NS_ENUM(NSInteger, FLOPopoverType) {
-    FLOWindowPopover,
-    FLOViewPopover
-};
+#import "FLOPopoverConstants.h"
 
 @protocol FLOPopoverDelegate <NSObject>
 
@@ -44,10 +39,21 @@ typedef NS_ENUM(NSInteger, FLOPopoverType) {
 
 /* @Properties
  */
-@property (nonatomic, assign) BOOL showArrow;
+@property (nonatomic, assign) BOOL alwaysOnTop;
+@property (nonatomic, assign) BOOL shouldShowArrow;
 @property (nonatomic, assign) BOOL animated;
 @property (nonatomic, assign) BOOL closesWhenPopoverResignsKey;
 @property (nonatomic, assign) BOOL closesWhenApplicationBecomesInactive;
+
+/**
+ * Make the popover movable.
+ */
+@property (nonatomic, assign) BOOL popoverMovable;
+
+/**
+ * Make the popover detach from its parent window. Only apply for FLOWindowPopover type.
+ */
+@property (nonatomic, assign) BOOL popoverShouldDetach;
 
 /* @Utilities
  */
@@ -56,6 +62,7 @@ typedef NS_ENUM(NSInteger, FLOPopoverType) {
 
 /* @Display
  */
-- (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView preferredEdge:(NSRectEdge)preferredEdge;
+- (void)setAnimationBehaviour:(FLOPopoverAnimationBehaviour)animationBehaviour type:(FLOPopoverAnimationTransition)animationType;
+- (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView edgeType:(FLOPopoverEdgeType)edgeType;
 
 @end
