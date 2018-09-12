@@ -107,7 +107,6 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
     
     _arrowSize = NSZeroSize;
     _fillColor = NSColor.clearColor;
-    self.borderRadius = PopoverBackgroundViewBorderRadius;
     
     _clippingView = [[FLOPopoverClippingView alloc] initWithFrame:self.bounds];
     self.clippingView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
@@ -177,13 +176,11 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 #pragma mark - Processes
 #pragma mark -
 - (void)setViewMovable:(BOOL)movable {
-    self.borderRadius = PopoverBackgroundViewBorderRadius;
     self.shouldMovable = movable;
     _fillColor = (self.shouldMovable || self.shouldDetach) ? [NSColor.whiteColor colorWithAlphaComponent:0.86f] : NSColor.clearColor;
 }
 
 - (void)setWindowDetachable:(BOOL)detachable {
-    self.borderRadius = PopoverBackgroundViewBorderRadius;
     self.shouldDetach = detachable;
     _fillColor = (self.shouldMovable || self.shouldDetach) ? [NSColor.whiteColor colorWithAlphaComponent:0.86f] : NSColor.clearColor;
 }
@@ -261,7 +258,7 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
 }
 
 - (NSRect)contentViewFrameForBackgroundFrame:(NSRect)backgroundFrame popoverEdge:(NSRectEdge)popoverEdge {
-    NSRect returnFrame = NSInsetRect(backgroundFrame, 1.0f, 1.0f);
+    NSRect returnFrame = NSInsetRect(backgroundFrame, 0.0f, 0.0f);
     
     if (NSEqualSizes(self.arrowSize, NSZeroSize) && (self.shouldMovable || self.shouldDetach)) {
         returnFrame.size.height -= PopoverBackgroundViewArrowHeight;
@@ -435,13 +432,17 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
         NSWindow *applicationWindow = [[FLOPopoverWindow sharedInstance] applicationWindow];
         BOOL isFLOWindowPopover = self.window != applicationWindow;
         
+        if ([self.delegate respondsToSelector:@selector(didPopoverMakeMovement)]) {
+            [self.delegate didPopoverMakeMovement];
+        }
+        
         if (NSEqualSizes(self.arrowSize, NSZeroSize) && self.shouldDetach && isFLOWindowPopover) {
             if ([applicationWindow.childWindows containsObject:self.window]) {
                 self.shouldDetach = NO;
                 self.shouldMovable = NO;
                 
-                if ([self.delegate respondsToSelector:@selector(didDragViewToBecomeDetachableWindow:)]) {
-                    [self.delegate didDragViewToBecomeDetachableWindow:self.window];
+                if ([self.delegate respondsToSelector:@selector(didPopoverBecomeDetachableWindow:)]) {
+                    [self.delegate didPopoverBecomeDetachableWindow:self.window];
                 }
             }
         }

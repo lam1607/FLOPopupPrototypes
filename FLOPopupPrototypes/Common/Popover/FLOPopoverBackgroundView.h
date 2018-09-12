@@ -37,7 +37,8 @@ static CGFloat const PopoverBackgroundViewArrowHeight = 14.0;
 @protocol FLOPopoverBackgroundViewDelegate <NSObject>
 
 @optional
-- (void)didDragViewToBecomeDetachableWindow:(NSWindow *)detachedWindow;
+- (void)didPopoverMakeMovement;
+- (void)didPopoverBecomeDetachableWindow:(NSWindow *)detachedWindow;
 
 @end
 
