@@ -51,6 +51,8 @@ static CGFloat getMedianYFromRects(CGRect r1, CGRect r2) {
     if (self.clippingPath == NULL) return;
     
     [self setupArrowPath];
+    self.wantsLayer = YES;
+    self.layer.backgroundColor = [[NSColor clearColor] CGColor];
 }
 
 - (void)setupArrowPath {

@@ -8,6 +8,8 @@
 
 #import "HomeViewController.h"
 
+#import "FLOPopoverWindowController.h"
+
 #import "FilmsViewController.h"
 #import "NewsViewController.h"
 #import "DataViewController.h"
@@ -17,6 +19,8 @@
 @interface HomeViewController ()
 
 @property (weak) IBOutlet NSView *vMenu;
+@property (weak) IBOutlet NSView *vChangeMode;
+@property (weak) IBOutlet NSButton *btnChangeMode;
 @property (weak) IBOutlet NSView *vShowWindowPopup;
 @property (weak) IBOutlet NSButton *btnShowWindowPopup;
 @property (weak) IBOutlet NSView *vShowViewPopup;
@@ -29,6 +33,10 @@
 @property (nonatomic, strong) FLOPopover *_popoverFilms;
 @property (nonatomic, strong) FLOPopover *_popoverNews;
 @property (nonatomic, strong) FLOPopover *_popoverData;
+
+@property (nonatomic, strong) FilmsViewController *filmsViewController;
+@property (nonatomic, strong) NewsViewController *newsViewController;
+@property (nonatomic, strong) DataViewController *dataViewController;
 
 @end
 
@@ -63,6 +71,9 @@
     NSDictionary *titleAttributes = [NSDictionary dictionaryWithObjectsAndKeys: [NSFont systemFontOfSize:14.0f weight:NSFontWeightRegular], NSFontAttributeName,
                                      [NSColor whiteColor], NSForegroundColorAttributeName, nil];
     
+    [self setBackgroundColor:[NSColor colorDust] cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.vChangeMode];
+    [self setTitle:@"Change window mode" attributes:titleAttributes forControl:self.btnChangeMode];
+    
     [self setBackgroundColor:[NSColor colorTeal] cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.vShowWindowPopup];
     [self setTitle:@"Show window popup" attributes:titleAttributes forControl:self.btnShowWindowPopup];
     
@@ -76,6 +87,11 @@
 #pragma mark -
 #pragma mark - Processes
 #pragma mark -
+- (void)changeWindowMode {
+    [[FLOPopoverWindow sharedInstance] setWindowMode];
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLO_NOTIFICATION_WINDOW_DID_CHANGE_MODE object:nil userInfo:nil];
+}
+
 - (void)showPopover:(FLOPopover *)aPopover edgeType:(FLOPopoverEdgeType)edgeType atSender:(NSView *)sender {
     __block FLOPopover *_aPopover = aPopover;
     
@@ -86,15 +102,17 @@
 }
 
 - (void)showWindowPopupAtSender:(NSView *)sender {
+    NSRect visibleRect = [self.view visibleRect];
+    CGFloat menuHeight = self.vMenu.frame.size.height;
+    CGFloat width = 0.8f * (visibleRect.size.width - 100.0f);
+    CGFloat height = visibleRect.size.height - menuHeight;
+    NSRect contentViewRect = NSMakeRect(0.0f, 0.0f, width, height);
+    
     if (self._popoverFilms == nil) {
-        FilmsViewController *viewcontroller = [[FilmsViewController alloc] initWithNibName:NSStringFromClass([FilmsViewController class]) bundle:nil];
-        NSRect viewframe = [self.view visibleRect];
-        CGFloat menuHeight = self.vMenu.frame.size.height;
-        CGFloat width = 0.8f * (viewframe.size.width - 100.0f);
-        CGFloat height = viewframe.size.height - menuHeight;
-        [viewcontroller.view setFrame:NSMakeRect(0.0f, 0.0f, width, height)];
+        self.filmsViewController = [[FilmsViewController alloc] initWithNibName:NSStringFromClass([FilmsViewController class]) bundle:nil];
+        [self.filmsViewController.view setFrame:contentViewRect];
         
-        self._popoverFilms = [[FLOPopover alloc] initWithContentViewController:viewcontroller popoverType:FLOWindowPopover];
+        self._popoverFilms = [[FLOPopover alloc] initWithContentViewController:self.filmsViewController popoverType:FLOWindowPopover];
     }
     
     //    self._popoverFilms.alwaysOnTop = YES;
@@ -104,20 +122,26 @@
     //    self._popoverFilms.closesWhenApplicationBecomesInactive = YES;
     //    self._popoverFilms.popoverMovable = YES;
     
+    //    if (NSEqualRects(self.filmsViewController.view.frame, contentViewRect) == NO) {
+    //        [self.filmsViewController.view setFrame:contentViewRect];
+    //    }
+    
     [self._popoverFilms setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationLeftToRight];
     [self showPopover:self._popoverFilms edgeType:FLOPopoverEdgeTypeHorizontalBelowLeftEdge atSender:sender];
 }
 
 - (void)showViewPopupAtSender:(NSView *)sender {
+    NSRect visibleRect = [self.view visibleRect];
+    CGFloat menuHeight = self.vMenu.frame.size.height;
+    CGFloat width = 500.0f;
+    CGFloat height = visibleRect.size.height - menuHeight;
+    NSRect contentViewRect = NSMakeRect(0.0f, 0.0f, width, height);
+    
     if (self._popoverNews == nil) {
-        NewsViewController *viewcontroller = [[NewsViewController alloc] initWithNibName:NSStringFromClass([NewsViewController class]) bundle:nil];
-        NSRect viewframe = [self.view visibleRect];
-        CGFloat menuHeight = self.vMenu.frame.size.height;
-        CGFloat width = 500.0f;
-        CGFloat height = viewframe.size.height - menuHeight;
-        [viewcontroller.view setFrame:NSMakeRect(0.0f, 0.0f, width, height)];
+        self.newsViewController = [[NewsViewController alloc] initWithNibName:NSStringFromClass([NewsViewController class]) bundle:nil];
+        [self.newsViewController.view setFrame:contentViewRect];
         
-        self._popoverNews = [[FLOPopover alloc] initWithContentViewController:viewcontroller popoverType:FLOViewPopover];
+        self._popoverNews = [[FLOPopover alloc] initWithContentViewController:self.newsViewController popoverType:FLOViewPopover];
     }
     
     //    self._popoverNews.alwaysOnTop = YES;
@@ -127,20 +151,26 @@
     //    self._popoverNews.closesWhenApplicationBecomesInactive = YES;
     //    self._popoverNews.popoverMovable = YES;
     
+    //    if (NSEqualRects(self.newsViewController.view.frame, contentViewRect) == NO) {
+    //        [self.newsViewController.view setFrame:contentViewRect];
+    //    }
+    
     [self._popoverNews setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationLeftToRight];
     [self showPopover:self._popoverNews edgeType:FLOPopoverEdgeTypeHorizontalBelowLeftEdge atSender:sender];
 }
 
 - (void)showDataMixAtSender:(NSView *)sender {
+    NSRect visibleRect = [self.view visibleRect];
+    CGFloat menuHeight = self.vMenu.frame.size.height;
+    CGFloat width = 0.5f * (visibleRect.size.width - 100.0f);
+    CGFloat height = visibleRect.size.height - menuHeight;
+    NSRect contentViewRect = NSMakeRect(0.0f, 0.0f, width, height);
+    
     if (self._popoverData == nil) {
-        DataViewController *viewcontroller = [[DataViewController alloc] initWithNibName:NSStringFromClass([DataViewController class]) bundle:nil];
-        NSRect viewframe = [self.view visibleRect];
-        CGFloat menuHeight = self.vMenu.frame.size.height;
-        CGFloat width = 0.5f * (viewframe.size.width - 100.0f);
-        CGFloat height = viewframe.size.height - menuHeight;
-        [viewcontroller.view setFrame:NSMakeRect(0.0f, 0.0f, width, height)];
+        self.dataViewController = [[DataViewController alloc] initWithNibName:NSStringFromClass([DataViewController class]) bundle:nil];
+        [self.dataViewController.view setFrame:contentViewRect];
         
-        self._popoverData = [[FLOPopover alloc] initWithContentViewController:viewcontroller popoverType:FLOWindowPopover];
+        self._popoverData = [[FLOPopover alloc] initWithContentViewController:self.dataViewController popoverType:FLOWindowPopover];
     }
     
     self._popoverData.alwaysOnTop = YES;
@@ -148,8 +178,12 @@
     self._popoverData.animated = YES;
     //    self._popoverData.closesWhenPopoverResignsKey = YES;
     //    self._popoverData.closesWhenApplicationBecomesInactive = YES;
-    //    self._popoverData.popoverMovable = YES;
-    self._popoverData.popoverShouldDetach = YES;
+    self._popoverData.popoverMovable = YES;
+    //    self._popoverData.popoverShouldDetach = YES;
+    
+    //    if (NSEqualRects(self.dataViewController.view.frame, contentViewRect) == NO) {
+    //        [self.dataViewController.view setFrame:contentViewRect];
+    //    }
     
     [self._popoverData setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationRightToLeft];
     [self showPopover:self._popoverData edgeType:FLOPopoverEdgeTypeHorizontalBelowRightEdge atSender:sender];
@@ -158,6 +192,10 @@
 #pragma mark -
 #pragma mark - Actions
 #pragma mark -
+- (IBAction)btnChangeMode_clicked:(NSButton *)sender {
+    [self._homePresenter doSelectSender:@{@"type": @"changeMode", @"object": sender}];
+}
+
 - (IBAction)btnShowWindowPopup_clicked:(NSButton *)sender {
     [self._homePresenter doSelectSender:@{@"type": @"windowPopup", @"object": sender}];
 }
@@ -180,7 +218,9 @@
     if ([senderInfo objectForKey:keyObject] && [[senderInfo objectForKey:keyObject] isKindOfClass:[NSView class]]) {
         NSView *sender = (NSView *) [senderInfo objectForKey:keyObject];
         
-        if ([[senderInfo objectForKey:keyType] isEqualToString:@"windowPopup"]) {
+        if ([[senderInfo objectForKey:keyType] isEqualToString:@"changeMode"]) {
+            [self changeWindowMode];
+        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"windowPopup"]) {
             [self showWindowPopupAtSender:sender];
         } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"viewPopup"]) {
             [self showViewPopupAtSender:sender];

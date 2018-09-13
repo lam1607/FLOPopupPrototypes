@@ -10,6 +10,10 @@
 
 @interface FLOPopoverWindow ()
 
+@property (nonatomic, assign, readwrite) FLOWindowMode windowMode;
+@property (nonatomic, assign, readwrite) NSRect windowNormalFrame;
+@property (nonatomic, assign, readwrite) CGFloat windowTitleBarHeight;
+
 @property (nonatomic, strong, readwrite) NSWindow *topWindow;
 @property (nonatomic, strong, readwrite) NSView *topView;
 
@@ -20,6 +24,8 @@
 
 @implementation FLOPopoverWindow
 
+@synthesize windowMode = _windowMode;
+@synthesize windowTitleBarHeight = _windowTitleBarHeight;
 @synthesize topWindow = _topWindow;
 @synthesize topView = _topView;
 
@@ -32,6 +38,7 @@
     
     dispatch_once(&onceToken, ^{
         _sharedInstance = [[FLOPopoverWindow alloc] init];
+        _sharedInstance.windowMode = FLOWindowModeNormal;
     });
     
     return _sharedInstance;
@@ -42,6 +49,18 @@
 #pragma mark -
 - (NSWindow *)applicationWindow {
     return [NSApp mainWindow];
+}
+
+- (FLOWindowMode)windowMode {
+    return _windowMode;
+}
+
+- (NSRect)windowNormalFrame {
+    return _windowNormalFrame;
+}
+
+- (CGFloat)windowTitleBarHeight {
+    return _windowTitleBarHeight;
 }
 
 - (NSWindow *)topWindow {
@@ -80,6 +99,19 @@
     }
     
     return _snapshotWindow;
+}
+
+- (void)setWindowMode {
+    if (_windowMode == FLOWindowModeNormal) {
+        _windowMode = FLOWindowModeDesktop;
+        _windowNormalFrame = self.applicationWindow.frame;
+    } else {
+        _windowMode = FLOWindowModeNormal;
+    }
+}
+
+- (void)setWindowTitleBarHeight {
+    _windowTitleBarHeight = self.applicationWindow.frame.size.height - self.applicationWindow.contentView.frame.size.height;
 }
 
 - (void)setTopmostWindow:(NSWindow *)topmostWindow {

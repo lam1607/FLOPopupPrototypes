@@ -20,7 +20,7 @@
 
 #import "FLOPopoverUtils.h"
 
-@interface FLOWindowPopup () <FLOPopoverBackgroundViewDelegate> {
+@interface FLOWindowPopup () <FLOPopoverBackgroundViewDelegate, NSAnimationDelegate> {
     NSWindow *_applicationWindow;
     NSEvent *_applicationEvent;
     NSWindow *_animatedWindow;
@@ -217,7 +217,7 @@
     self.backgroundView.popoverOrigin = positionOnScreenRect;
     self.originalViewSize = self.contentView.frame.size;
     
-    NSSize contentViewSize = NSEqualSizes(self.contentSize, NSZeroSize) ? self.originalViewSize : self.contentSize;
+    NSSize contentViewSize = (NSEqualSizes(self.contentSize, NSZeroSize) || NSEqualSizes(self.contentSize, self.originalViewSize)) ? self.originalViewSize : self.contentSize;
     NSRectEdge popoverEdge = self.preferredEdge;
     NSRect popoverScreenRect = [self popoverRect];
     
@@ -247,21 +247,20 @@
     self.popoverWindow.backgroundColor = NSColor.clearColor;
     self.popoverWindow.contentView = self.backgroundView;
     
+    [self.positioningView.window addChildWindow:self.popoverWindow ordered:NSWindowAbove];
+    
     if (NSEqualRects(self.popoverOriginalRect, NSZeroRect)) {
         self.popoverOriginalRect = popoverScreenRect;
         self.popoverVerticalMargins = [[FLOPopoverWindow sharedInstance] applicationWindow].frame.size.height - popoverScreenRect.size.height;
     }
-    
-    [self.positioningView.window addChildWindow:self.popoverWindow ordered:NSWindowAbove];
-    [self.popoverWindow makeKeyAndOrderFront:nil];
-    
-    [self popoverShowing:YES animated:self.animated];
     
     if (self.alwaysOnTop) {
         [[FLOPopoverWindow sharedInstance] setTopmostWindow:self.popoverWindow];
     }
     
     [self setTopMostWindowIfNecessary];
+    
+    [self popoverShowing:YES animated:self.animated];
 }
 
 - (void)close {
@@ -278,6 +277,9 @@
 
 - (void)popoverDidFinishShowing:(BOOL)showing {
     if (showing == YES) {
+        [self.popoverWindow makeKeyAndOrderFront:nil];
+        self.popoverWindow.alphaValue = 1.0f;
+        
         if (popoverDidShow != nil) popoverDidShow(self);
     } else {
         if (popoverDidClose != nil) popoverDidClose(self);
@@ -415,6 +417,7 @@
 - (void)popoverShowing:(BOOL)showing animated:(BOOL)animated {
     BOOL shouldShowAnimated = animated;
     
+#ifndef FLO_CONST_SHOULD_USE_ANIMATION_FRAME
     if (shouldShowAnimated &&
         ((showing == NO) && ((self.popoverMovable == YES) || (self.popoverShouldDetach == YES)) && (self.popoverDidMove == YES))) {
         shouldShowAnimated = NO;
@@ -425,6 +428,7 @@
         shouldShowAnimated = NO;
         self.applicationWindowDidChange = NO;
     }
+#endif
     
     if (shouldShowAnimated) {
         switch (self.animationBehaviour) {
@@ -442,6 +446,14 @@
 }
 
 - (void)popoverTransitionAnimationShowing:(BOOL)showing {
+#ifdef FLO_CONST_SHOULD_USE_ANIMATION_FRAME
+    [self popoverTransitionAnimationFrameShowing:showing];
+#else
+    [self popoverTransitionAnimationContextShowing:showing];
+#endif
+}
+
+- (void)popoverTransitionAnimationContextShowing:(BOOL)showing {
     if (self.animationBehaviour == FLOPopoverAnimationBehaviorTransition) {
         if (_animatedWindow == nil) {
             //============================================================================================================
@@ -472,7 +484,6 @@
         // Take a snapshot image of the popover content view
         //============================================================================================================
         [_snapshotView setHidden:NO];
-        //        [self setPopoverVisualEffectHiddenIfNeeded:YES];
         [self takeSnapshotImageFromView:self.popoverWindow.contentView toView:_snapshotView];
         
         if (![_snapshotView isDescendantOf:_animatedWindow.contentView]) {
@@ -497,8 +508,19 @@
         [[_snapshotView animator] setFrameOrigin:fromFrame.origin];
         
         [_snapshotView showingAnimated:showing fromPosition:fromFrame.origin toPosition:toFrame.origin completionHandler:^{
-            [wself animationDidEnd:showing];
+            [wself animationContextDidEnd:showing];
         }];
+    }
+}
+
+- (void)popoverTransitionAnimationFrameShowing:(BOOL)showing {
+    if (self.animationBehaviour == FLOPopoverAnimationBehaviorTransition) {
+        NSRect fromFrame = self.popoverWindow.frame;
+        NSRect toFrame = fromFrame;
+        
+        [FLOPopoverUtils calculateFromFrame:&fromFrame toFrame:&toFrame withAnimationType:self.animationType showing:showing];
+        
+        [self.popoverWindow showingAnimated:showing fromFrame:fromFrame toFrame:toFrame source:self];
     }
 }
 
@@ -513,13 +535,7 @@
     [snapshotView layer].contents = image;
 }
 
-- (void)animationDidEnd:(BOOL)showing {
-    //    [self setPopoverVisualEffectHiddenIfNeeded:NO];
-    
-    if (showing == YES) {
-        self.popoverWindow.alphaValue = 1.0f;
-    }
-    
+- (void)animationContextDidEnd:(BOOL)showing {
     [self popoverDidFinishShowing:showing];
     
     if ([_snapshotView isDescendantOf:_animatedWindow.contentView]) {
@@ -541,6 +557,13 @@
             view.alphaValue = needed ? 0.0f : 1.0f;
         }
     }];
+}
+
+#pragma mark -
+#pragma mark - NSAnimationDelegate
+#pragma mark -
+- (void)animationDidEnd:(NSAnimation *)animation {
+    [self popoverDidFinishShowing:self.shown];
 }
 
 #pragma mark -

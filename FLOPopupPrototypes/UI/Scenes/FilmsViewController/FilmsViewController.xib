@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="FilmsViewController">
             <connections>
                 <outlet property="collectionViewData" destination="yQN-FJ-RpZ" id="1Nf-uo-4ds"/>
+                <outlet property="scrollView" destination="mZj-uy-OBV" id="jkT-LR-FjR"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
                 <outlet property="visualEVBackground" destination="u20-Au-HLH" id="eJD-ql-FTd"/>
             </connections>

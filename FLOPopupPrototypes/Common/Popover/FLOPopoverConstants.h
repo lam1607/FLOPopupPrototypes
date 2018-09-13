@@ -9,7 +9,16 @@
 #ifndef FLOPopoverConstants_h
 #define FLOPopoverConstants_h
 
-static CGFloat const FLOPopoverAnimationTimeIntervalStandard = 0.2f;
+#define FLO_CONST_SHOULD_USE_ANIMATION_FRAME
+#define FLO_CONST_ANIMATION_TIME_INTERVAL_STANDARD                                          0.2f
+
+#define FLO_NOTIFICATION_WINDOW_WILL_CHANGE_MODE                                            @"FLO_Notification_WindowWillChangeMode"
+#define FLO_NOTIFICATION_WINDOW_DID_CHANGE_MODE                                             @"FLO_Notification_WindowDidChangeMode"
+
+typedef NS_ENUM(NSInteger, FLOWindowMode) {
+    FLOWindowModeNormal,
+    FLOWindowModeDesktop
+};
 
 typedef NS_ENUM(NSInteger, FLOPopoverType) {
     FLOWindowPopover,

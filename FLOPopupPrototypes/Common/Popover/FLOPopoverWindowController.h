@@ -8,10 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "FLOPopoverConstants.h"
+
 // FLOPopoverWindow subclased of NSWindow (can see AnimatedWindow in FloProj)
 @interface FLOPopoverWindow : NSWindow
 
 @property (nonatomic, strong, readonly) NSWindow *applicationWindow;
+@property (nonatomic, assign, readonly) FLOWindowMode windowMode;
+@property (nonatomic, assign, readonly) NSRect windowNormalFrame;
+@property (nonatomic, assign, readonly) CGFloat windowTitleBarHeight;
 
 @property (nonatomic, strong, readonly) NSWindow *topWindow;
 @property (nonatomic, strong, readonly) NSView *topView;
@@ -20,6 +25,8 @@
 
 + (FLOPopoverWindow *)sharedInstance;
 
+- (void)setWindowMode;
+- (void)setWindowTitleBarHeight;
 - (void)setTopmostWindow:(NSWindow *)topmostWindow;
 - (void)setTopmostView:(NSView *)topmostView;
 

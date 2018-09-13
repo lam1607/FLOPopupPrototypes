@@ -44,6 +44,14 @@
 		DEB1BCD72137FD6D0046E20E /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB1BCD62137FD6D0046E20E /* Film.m */; };
 		DEB1BCDB2137FE6B0046E20E /* AbstractData.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB1BCDA2137FE6B0046E20E /* AbstractData.m */; };
 		DEB2828F212BED7700C98D05 /* NSColor+FLOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */; };
+		DEC4DD63214A3DA2000D1D29 /* AppleScript.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC4DD62214A3DA2000D1D29 /* AppleScript.m */; };
+		DEC4DD66214A4320000D1D29 /* AppleScriptBridge.applescript in Sources */ = {isa = PBXBuildFile; fileRef = DEC4DD65214A4320000D1D29 /* AppleScriptBridge.applescript */; };
+		DEC4DD69214A43E6000D1D29 /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD68214A43E6000D1D29 /* AppleScriptObjC.framework */; };
+		DEC4DD6B214A43ED000D1D29 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD6A214A43ED000D1D29 /* Cocoa.framework */; };
+		DEC4DD6D214A43F3000D1D29 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD6C214A43F2000D1D29 /* Quartz.framework */; };
+		DEC4DD6F214A43F8000D1D29 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD6E214A43F8000D1D29 /* QuartzCore.framework */; };
+		DEC4DD71214A43FE000D1D29 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD70214A43FD000D1D29 /* Foundation.framework */; };
+		DEC4DD73214A440C000D1D29 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD72214A440C000D1D29 /* AppKit.framework */; };
 		DEC5A7D02138EA11008239AD /* FilmsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5A7CF2138EA11008239AD /* FilmsPresenter.m */; };
 		DEC5A7D521394EDC008239AD /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5A7D421394EDC008239AD /* BaseService.m */; };
 		DEC5A7DA213950F7008239AD /* BaseRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5A7D9213950F7008239AD /* BaseRepository.m */; };
@@ -169,6 +177,15 @@
 		DEB1BCDA2137FE6B0046E20E /* AbstractData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AbstractData.m; sourceTree = "<group>"; };
 		DEB2828D212BED7700C98D05 /* NSColor+FLOAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+FLOAdditions.h"; sourceTree = "<group>"; };
 		DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+FLOAdditions.m"; sourceTree = "<group>"; };
+		DEC4DD61214A3DA2000D1D29 /* AppleScript.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleScript.h; sourceTree = "<group>"; };
+		DEC4DD62214A3DA2000D1D29 /* AppleScript.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppleScript.m; sourceTree = "<group>"; };
+		DEC4DD65214A4320000D1D29 /* AppleScriptBridge.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = AppleScriptBridge.applescript; sourceTree = "<group>"; };
+		DEC4DD68214A43E6000D1D29 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
+		DEC4DD6A214A43ED000D1D29 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		DEC4DD6C214A43F2000D1D29 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		DEC4DD6E214A43F8000D1D29 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DEC4DD70214A43FD000D1D29 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DEC4DD72214A440C000D1D29 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		DEC5A7CC2138E9D7008239AD /* FilmsViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmsViewProtocols.h; sourceTree = "<group>"; };
 		DEC5A7CD2138EA03008239AD /* FilmsPresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmsPresenterProtocols.h; sourceTree = "<group>"; };
 		DEC5A7CE2138EA11008239AD /* FilmsPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmsPresenter.h; sourceTree = "<group>"; };
@@ -228,6 +245,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEC4DD73214A440C000D1D29 /* AppKit.framework in Frameworks */,
+				DEC4DD71214A43FE000D1D29 /* Foundation.framework in Frameworks */,
+				DEC4DD6F214A43F8000D1D29 /* QuartzCore.framework in Frameworks */,
+				DEC4DD6D214A43F3000D1D29 /* Quartz.framework in Frameworks */,
+				DEC4DD6B214A43ED000D1D29 /* Cocoa.framework in Frameworks */,
+				DEC4DD69214A43E6000D1D29 /* AppleScriptObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +278,7 @@
 				A3F1052C212AB45D008AD365 /* FLOPopupPrototypesTests */,
 				A3F10537212AB45D008AD365 /* FLOPopupPrototypesUITests */,
 				A3F10514212AB45D008AD365 /* Products */,
+				DEC4DD67214A43E5000D1D29 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -354,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				A3F10580212AB69F008AD365 /* Popover */,
+				DEC4DD60214A3D77000D1D29 /* Scripts */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -659,6 +684,37 @@
 				DEB1BCDA2137FE6B0046E20E /* AbstractData.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		DEC4DD60214A3D77000D1D29 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				DEC4DD64214A42CD000D1D29 /* AppleScript */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		DEC4DD64214A42CD000D1D29 /* AppleScript */ = {
+			isa = PBXGroup;
+			children = (
+				DEC4DD61214A3DA2000D1D29 /* AppleScript.h */,
+				DEC4DD62214A3DA2000D1D29 /* AppleScript.m */,
+				DEC4DD65214A4320000D1D29 /* AppleScriptBridge.applescript */,
+			);
+			path = AppleScript;
+			sourceTree = "<group>";
+		};
+		DEC4DD67214A43E5000D1D29 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DEC4DD72214A440C000D1D29 /* AppKit.framework */,
+				DEC4DD70214A43FD000D1D29 /* Foundation.framework */,
+				DEC4DD6E214A43F8000D1D29 /* QuartzCore.framework */,
+				DEC4DD6C214A43F2000D1D29 /* Quartz.framework */,
+				DEC4DD6A214A43ED000D1D29 /* Cocoa.framework */,
+				DEC4DD68214A43E6000D1D29 /* AppleScriptObjC.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DEC5A7D221394EC7008239AD /* Base */ = {
@@ -981,6 +1037,7 @@
 				A3F105A5212ABA50008AD365 /* NSValue+FLOAdditions.m in Sources */,
 				DE0F11A921300CED002F393B /* NewsCellView.m in Sources */,
 				A3F1058E212AB69F008AD365 /* FLOWindowPopup.m in Sources */,
+				DEC4DD66214A4320000D1D29 /* AppleScriptBridge.applescript in Sources */,
 				DE75B830212AD1F300CA6742 /* Utils.m in Sources */,
 				DEFE5FCB212BC35100428ECE /* CustomNSTableRowView.m in Sources */,
 				DEFE5F96212BAF1C00428ECE /* DataCellView.m in Sources */,
@@ -988,6 +1045,7 @@
 				DEF08515213FDD7A00C73F09 /* NSView+Animator.m in Sources */,
 				DE15EC5C2138E2EA008E792D /* FilmRepository.m in Sources */,
 				DE0F118F212FF95D002F393B /* NewsViewController.m in Sources */,
+				DEC4DD63214A3DA2000D1D29 /* AppleScript.m in Sources */,
 				DEC5A7DA213950F7008239AD /* BaseRepository.m in Sources */,
 				DEB1BCD22137FA030046E20E /* FilmCellView.m in Sources */,
 				DEFE5FB9212BB5B400428ECE /* BaseWindowController.m in Sources */,
