@@ -16,11 +16,19 @@
 
 #import "FLOPopover.h"
 
+#import "AppleScript.h"
+
 @interface HomeViewController ()
 
 @property (weak) IBOutlet NSView *vMenu;
+
 @property (weak) IBOutlet NSView *vChangeMode;
 @property (weak) IBOutlet NSButton *btnChangeMode;
+@property (weak) IBOutlet NSView *vOpenFinderApp;
+@property (weak) IBOutlet NSButton *btnOpenFinderApp;
+@property (weak) IBOutlet NSView *vOpenSafariApp;
+@property (weak) IBOutlet NSButton *btnOpenSafariApp;
+
 @property (weak) IBOutlet NSView *vShowWindowPopup;
 @property (weak) IBOutlet NSButton *btnShowWindowPopup;
 @property (weak) IBOutlet NSView *vShowViewPopup;
@@ -74,22 +82,38 @@
     [self setBackgroundColor:[NSColor colorDust] cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.vChangeMode];
     [self setTitle:@"Change window mode" attributes:titleAttributes forControl:self.btnChangeMode];
     
+    [self setBackgroundColor:[NSColor colorMoss] cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.vOpenFinderApp];
+    [self setTitle:@"Open Finder" attributes:titleAttributes forControl:self.btnOpenFinderApp];
+    
+    [self setBackgroundColor:[NSColor colorOrange] cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.vOpenSafariApp];
+    [self setTitle:@"Open Safari" attributes:titleAttributes forControl:self.btnOpenSafariApp];
+    
     [self setBackgroundColor:[NSColor colorTeal] cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.vShowWindowPopup];
-    [self setTitle:@"Show window popup" attributes:titleAttributes forControl:self.btnShowWindowPopup];
+    [self setTitle:@"Window popover" attributes:titleAttributes forControl:self.btnShowWindowPopup];
     
     [self setBackgroundColor:[NSColor colorLavender] cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.vShowViewPopup];
-    [self setTitle:@"Show view popup" attributes:titleAttributes forControl:self.btnShowViewPopup];
+    [self setTitle:@"View popover" attributes:titleAttributes forControl:self.btnShowViewPopup];
     
     [self setBackgroundColor:[NSColor colorViolet] cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.vShowDataMix];
-    [self setTitle:@"Show data mix" attributes:titleAttributes forControl:self.btnShowDataMix];
+    [self setTitle:@"Mix popover" attributes:titleAttributes forControl:self.btnShowDataMix];
 }
 
 #pragma mark -
 #pragma mark - Processes
 #pragma mark -
 - (void)changeWindowMode {
-    [[FLOPopoverWindow sharedInstance] setWindowMode];
+    [[FLOPopoverWindowController sharedInstance] setWindowMode];
     [[NSNotificationCenter defaultCenter] postNotificationName:FLO_NOTIFICATION_WINDOW_DID_CHANGE_MODE object:nil userInfo:nil];
+}
+
+- (void)openEntitlementApplicationWithIdentifier:(NSString *)appIdentifier {
+    NSURL *appUrl = [NSURL fileURLWithPath:[Utils getAppPathWithIdentifier:appIdentifier]];
+    
+    if (![[NSWorkspace sharedWorkspace] launchApplicationAtURL:appUrl options:NSWorkspaceLaunchDefault configuration:[NSDictionary dictionary] error:NULL]) {
+        NSString *appName = [Utils getAppNameWithIdentifier:appIdentifier];
+        
+        AppleScriptOpenApp(appName);
+    }
 }
 
 - (void)showPopover:(FLOPopover *)aPopover edgeType:(FLOPopoverEdgeType)edgeType atSender:(NSView *)sender {
@@ -196,6 +220,14 @@
     [self._homePresenter doSelectSender:@{@"type": @"changeMode", @"object": sender}];
 }
 
+- (IBAction)btnOpenFinderApp_clicked:(NSButton *)sender {
+    [self._homePresenter doSelectSender:@{@"type": @"openFinder", @"object": sender}];
+}
+
+- (IBAction)btnOpenSafariApp_clicked:(NSButton *)sender {
+    [self._homePresenter doSelectSender:@{@"type": @"openSafari", @"object": sender}];
+}
+
 - (IBAction)btnShowWindowPopup_clicked:(NSButton *)sender {
     [self._homePresenter doSelectSender:@{@"type": @"windowPopup", @"object": sender}];
 }
@@ -220,6 +252,10 @@
         
         if ([[senderInfo objectForKey:keyType] isEqualToString:@"changeMode"]) {
             [self changeWindowMode];
+        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"openFinder"]) {
+            [self openEntitlementApplicationWithIdentifier:FLO_ENTITLEMENT_APP_IDENTIFIER_FINDER];
+        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"openSafari"]) {
+            [self openEntitlementApplicationWithIdentifier:FLO_ENTITLEMENT_APP_IDENTIFIER_SAFARI];
         } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"windowPopup"]) {
             [self showWindowPopupAtSender:sender];
         } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"viewPopup"]) {

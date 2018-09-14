@@ -58,7 +58,7 @@
 
 - (instancetype)initWithContentView:(NSView *)contentView {
     if (self = [super init]) {
-        _applicationWindow = [[FLOPopoverWindow sharedInstance] applicationWindow];
+        _applicationWindow = [[FLOPopoverWindowController sharedInstance] applicationWindow];
         _contentView = contentView;
         _backgroundView = [[FLOPopoverBackgroundView alloc] initWithFrame:contentView.frame];
         _anchorPoint = CGPointMake(0.0f, 0.0f);
@@ -76,7 +76,7 @@
 
 - (instancetype)initWithContentViewController:(NSViewController *)contentViewController {
     if (self = [super init]) {
-        _applicationWindow = [[FLOPopoverWindow sharedInstance] applicationWindow];
+        _applicationWindow = [[FLOPopoverWindowController sharedInstance] applicationWindow];
         _contentViewController = contentViewController;
         _contentView = contentViewController.view;
         _backgroundView = [[FLOPopoverBackgroundView alloc] initWithFrame:contentViewController.view.frame];
@@ -240,7 +240,7 @@
     
     if (NSEqualRects(self.popoverOriginalRect, NSZeroRect)) {
         self.popoverOriginalRect = [_applicationWindow convertRectFromScreen:popoverScreenRect];
-        self.popoverVerticalMargins = [[FLOPopoverWindow sharedInstance] applicationWindow].frame.size.height - popoverScreenRect.size.height;
+        self.popoverVerticalMargins = [[FLOPopoverWindowController sharedInstance] applicationWindow].frame.size.height - popoverScreenRect.size.height;
     }
     
     if (self.alwaysOnTop) {
@@ -672,7 +672,7 @@
     if ([notification.name isEqualToString:NSWindowDidMoveNotification] && [notification.object isKindOfClass:[NSWindow class]]) {
         NSWindow *movedWindow = (NSWindow *) notification.object;
         
-        if (movedWindow == [[FLOPopoverWindow sharedInstance] applicationWindow]) {
+        if (movedWindow == [[FLOPopoverWindowController sharedInstance] applicationWindow]) {
             self.applicationWindowDidChange = YES;
         }
     }
@@ -682,7 +682,7 @@
     if ([notification.name isEqualToString:NSWindowDidResizeNotification] && [notification.object isKindOfClass:[NSWindow class]]) {
         NSWindow *resizedWindow = (NSWindow *) notification.object;
         
-        if (resizedWindow == [[FLOPopoverWindow sharedInstance] applicationWindow]) {
+        if (resizedWindow == [[FLOPopoverWindowController sharedInstance] applicationWindow]) {
             NSRect popoverRect = self.popoverView.frame;
             CGFloat popoverHeight = resizedWindow.frame.size.height - self.popoverVerticalMargins;
             popoverRect = NSMakeRect(popoverRect.origin.x, popoverRect.origin.y, popoverRect.size.width, popoverHeight);

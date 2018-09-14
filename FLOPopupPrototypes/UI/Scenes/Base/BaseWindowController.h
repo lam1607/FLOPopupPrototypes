@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface BaseWindowController : NSWindowController
+#import "FLOPopoverWindowController.h"
+
+@interface BaseWindowController : FLOPopoverWindowController
 
 @end

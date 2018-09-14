@@ -15,6 +15,9 @@
 #define FLO_NOTIFICATION_WINDOW_WILL_CHANGE_MODE                                            @"FLO_Notification_WindowWillChangeMode"
 #define FLO_NOTIFICATION_WINDOW_DID_CHANGE_MODE                                             @"FLO_Notification_WindowDidChangeMode"
 
+#define FLO_ENTITLEMENT_APP_IDENTIFIER_FINDER                                               @"com.apple.finder"
+#define FLO_ENTITLEMENT_APP_IDENTIFIER_SAFARI                                               @"com.apple.safari"
+
 typedef NS_ENUM(NSInteger, FLOWindowMode) {
     FLOWindowModeNormal,
     FLOWindowModeDesktop
