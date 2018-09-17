@@ -8,18 +8,27 @@
 
 #import "FLOPopoverWindowController.h"
 
+#import "AppDelegate.h"
+
+#import "AppleScript.h"
+
+#pragma mark -
+#pragma mark - FLOPopoverWindow
+#pragma mark -
 @interface FLOPopoverWindow ()
+
+@property (nonatomic, strong, readwrite) NSWindow *appMainWindow;
 
 @property (nonatomic, strong, readwrite) NSWindow *topWindow;
 @property (nonatomic, strong, readwrite) NSView *topView;
 
 @property (nonatomic, strong, readwrite) NSWindow *animatedWindow;
-@property (nonatomic, strong, readwrite) NSWindow *snapshotWindow;
 
 @end
 
 @implementation FLOPopoverWindow
 
+@synthesize appMainWindow = _appMainWindow;
 @synthesize topWindow = _topWindow;
 @synthesize topView = _topView;
 
@@ -32,6 +41,7 @@
     
     dispatch_once(&onceToken, ^{
         _sharedInstance = [[FLOPopoverWindow alloc] init];
+        _sharedInstance.appMainWindow = [NSApp mainWindow];
     });
     
     return _sharedInstance;
@@ -40,8 +50,8 @@
 #pragma mark -
 #pragma mark - Getter/Setter
 #pragma mark -
-- (NSWindow *)applicationWindow {
-    return [NSApp mainWindow];
+- (NSWindow *)appMainWindow {
+    return _appMainWindow;
 }
 
 - (NSWindow *)topWindow {
@@ -54,7 +64,7 @@
 
 - (NSWindow *)animatedWindow {
     if (_animatedWindow == nil) {
-        _animatedWindow = [[NSWindow alloc] initWithContentRect:self.applicationWindow.screen.visibleFrame styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+        _animatedWindow = [[NSWindow alloc] initWithContentRect:self.appMainWindow.screen.visibleFrame styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
         
         _animatedWindow.hidesOnDeactivate = YES;
         _animatedWindow.releasedWhenClosed = NO;
@@ -67,21 +77,6 @@
     return _animatedWindow;
 }
 
-- (NSWindow *)snapshotWindow {
-    if (_snapshotWindow == nil) {
-        _snapshotWindow = [[NSWindow alloc] initWithContentRect:NSZeroRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
-        
-        _snapshotWindow.hidesOnDeactivate = YES;
-        _snapshotWindow.releasedWhenClosed = NO;
-        _snapshotWindow.opaque = NO;
-        _snapshotWindow.hasShadow = YES;
-        _snapshotWindow.backgroundColor = [NSColor clearColor];
-        _snapshotWindow.contentView.wantsLayer = YES;
-    }
-    
-    return _snapshotWindow;
-}
-
 - (void)setTopmostWindow:(NSWindow *)topmostWindow {
     _topWindow = topmostWindow;
 }
@@ -90,27 +85,15 @@
     _topView = topmostView;
 }
 
-#pragma mark -
-#pragma mark - Utilities
-#pragma mark -
-- (NSWindow *)snapshotWindowFromView:(NSView *)view {
-    [self.snapshotWindow setFrame:view.bounds display:NO];
-    
-    return self.snapshotWindow;
-}
-
 @end
 
+#pragma mark -
+#pragma mark - FLOPopoverWindowController
+#pragma mark -
 @interface FLOPopoverWindowController ()
 
 @end
 
 @implementation FLOPopoverWindowController
-
-- (void)windowDidLoad {
-    [super windowDidLoad];
-
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-}
 
 @end

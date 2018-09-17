@@ -272,4 +272,48 @@
     return [[NSScreen mainScreen] frame].size;
 }
 
+#pragma mark -
+#pragma mark - Application utilities
+#pragma mark -
++ (NSString *)getAppPathWithIdentifier:(NSString *)bundleIdentifier {
+    NSString *path = nil;
+    NSArray *urls = [[NSFileManager defaultManager] URLsForDirectory:NSApplicationDirectory inDomains:NSLocalDomainMask];
+    NSArray *properties = [NSArray arrayWithObjects: NSURLLocalizedNameKey, NSURLCreationDateKey, NSURLLocalizedTypeDescriptionKey, nil];
+    NSError *error = nil;
+    
+    NSArray *array = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:[urls objectAtIndex:0]
+                                                   includingPropertiesForKeys:properties
+                                                                      options:(NSDirectoryEnumerationSkipsHiddenFiles)
+                                                                        error:&error];
+    
+    if (array != nil) {
+        for (NSURL *appUrl in array) {
+            NSString *appPath = [appUrl path];
+            NSBundle *appBundle = [NSBundle bundleWithPath:appPath];
+            
+            if ([bundleIdentifier isEqualToString:[appBundle bundleIdentifier]]) {
+                path = appPath;
+                break;
+            }
+        }
+    }
+    
+    if (path == nil) {
+        path = [[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:bundleIdentifier];
+    }
+    
+    return path;
+}
+
++ (NSString *)getAppNameWithIdentifier:(NSString *)bundleIdentifier {
+    if (![Utils isEmptyObject:bundleIdentifier]) {
+        NSString *path = [[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:bundleIdentifier];
+        path = [Utils getAppPathWithIdentifier:bundleIdentifier];
+        
+        return [[NSFileManager defaultManager] displayNameAtPath:path];
+    }
+    
+    return nil;
+}
+
 @end

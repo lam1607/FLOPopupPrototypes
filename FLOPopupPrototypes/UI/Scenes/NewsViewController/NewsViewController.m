@@ -15,6 +15,7 @@
 
 @interface NewsViewController () <NSTableViewDelegate, NSTableViewDataSource>
 
+@property (weak) IBOutlet NSScrollView *scrollView;
 @property (weak) IBOutlet NSTableView *tableViewData;
 
 @property (nonatomic, strong) NewsRepository *_newsRepository;
@@ -56,7 +57,8 @@
 #pragma mark - Setup UI
 #pragma mark -
 - (void)setupUI {
-    [self setBackgroundColor:[NSColor colorBackground] cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.view];
+    //    [self setBackgroundColor:[NSColor clearColor] cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.view];
+    [self setBackgroundColor:[NSColor clearColor] forView:self.view];
     
     NSSize screenSize = [Utils screenSize];
     NSTableColumn *column = [self.tableViewData tableColumnWithIdentifier:@"NewsCellViewColumn"];

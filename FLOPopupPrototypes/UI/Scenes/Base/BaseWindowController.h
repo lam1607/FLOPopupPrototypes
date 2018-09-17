@@ -10,4 +10,19 @@
 
 @interface BaseWindowController : NSWindowController
 
+@property (nonatomic, assign, readonly) FLOWindowMode windowMode;
+@property (nonatomic, assign, readonly) BOOL windowInDesktopMode;
+@property (nonatomic, assign, readonly) NSRect windowNormalFrame;
+@property (nonatomic, assign, readonly) CGFloat windowTitleBarHeight;
+
++ (BaseWindowController *)sharedInstance;
+
+- (void)setWindowMode;
+- (void)setWindowTitleBarHeight;
+
+- (void)activate;
+- (void)hideChildenWindowsOnDeactivate;
+- (void)showChildenWindowsOnActivate;
+- (void)hideOtherAppsExceptThoseInside;
+
 @end

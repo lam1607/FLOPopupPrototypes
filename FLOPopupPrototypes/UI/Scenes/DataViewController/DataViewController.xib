@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="DataViewController">
             <connections>
                 <outlet property="outlineViewData" destination="Sfw-WA-wQj" id="Eng-BZ-obo"/>
+                <outlet property="scrollView" destination="d8a-W8-Rpw" id="4Tn-Ps-Wga"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
                 <outlet property="visualEVBackground" destination="8iT-gv-rfn" id="R0T-8R-rJl"/>
             </connections>

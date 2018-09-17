@@ -8,6 +8,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NewsViewController">
             <connections>
+                <outlet property="scrollView" destination="7lu-CP-cFj" id="XGv-Bq-TtC"/>
                 <outlet property="tableViewData" destination="ZTi-NY-wyo" id="vnC-ed-7co"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
                 <outlet property="visualEVBackground" destination="eeG-qe-eUm" id="OCq-VJ-3wL"/>

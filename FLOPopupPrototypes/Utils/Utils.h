@@ -95,4 +95,10 @@
 #pragma mark -
 + (NSSize)screenSize;
 
+#pragma mark -
+#pragma mark - Application utilities
+#pragma mark -
++ (NSString *)getAppPathWithIdentifier:(NSString *)bundleIdentifier;
++ (NSString *)getAppNameWithIdentifier:(NSString *)bundleIdentifier;
+
 @end
