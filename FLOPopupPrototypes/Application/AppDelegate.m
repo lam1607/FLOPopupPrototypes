@@ -9,10 +9,11 @@
 #import "AppDelegate.h"
 
 #import "FLOPopoverWindowController.h"
+#import "BaseWindowController.h"
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong) NSMutableDictionary *_entitlementAppBundleIdentifiers;
+@property (nonatomic, strong) NSMutableDictionary *_entitlementAppStatuses;
 @property (nonatomic, strong) NSString *_lastBundleIdentifier;
 
 @end
@@ -21,8 +22,19 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    if (self._entitlementAppStatuses == nil) {
+        self._entitlementAppStatuses = [[NSMutableDictionary alloc] init];
+    }
     
-    self._entitlementAppBundleIdentifiers = [[NSMutableDictionary alloc] init];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserverForName:NSWorkspaceDidActivateApplicationNotification object:nil queue:nil usingBlock:^(NSNotification *notif) {
+         NSRunningApplication *app = [notif.userInfo objectForKey:NSWorkspaceApplicationKey];
+         
+         if (![app.bundleIdentifier isEqualToString:[[NSBundle mainBundle] bundleIdentifier]]) {
+             DLog(@"NSWorkspaceDidActivateApplicationNotification name: %@ - bundle: %@", app.localizedName, app.bundleIdentifier);
+             
+             self._lastBundleIdentifier = app.bundleIdentifier;
+         }
+     }];
 }
 
 
@@ -31,27 +43,21 @@
 }
 
 - (void)applicationDidResignActive:(NSNotification *)notification {
-    DLog(@"applicationDidResignActive");
-    
-    if ([[FLOPopoverWindowController sharedInstance] windowInDesktopMode]) {
-        [[FLOPopoverWindowController sharedInstance] hideChildenWindowsOnDeactivate];
+    if ([[BaseWindowController sharedInstance] windowInDesktopMode]) {
+        [[BaseWindowController sharedInstance] hideChildenWindowsOnDeactivate];
     }
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification {
-    DLog(@"applicationDidBecomeActive");
-    
-    if ([[FLOPopoverWindowController sharedInstance] windowInDesktopMode]) {
-        [[FLOPopoverWindowController sharedInstance] showChildenWindowsOnActivate];
+    if ([[BaseWindowController sharedInstance] windowInDesktopMode]) {
+        [[BaseWindowController sharedInstance] showChildenWindowsOnActivate];
     }
     
-//    [[FlowWindowController getInstance] activate];
-//
-//    if ([[LCLFloViewController getInstance] checkPresentationMode] && [FlowSettings getInstance].backgroundVisible) {
-//        if (![self isEntitlementAppFocused]) {
-//            [[LCLFloViewController getInstance] hideAllAppsExceptThoseInWorkspace];
-//        }
-//    }
+    [[BaseWindowController sharedInstance] activate];
+    
+    if ([[BaseWindowController sharedInstance] windowInDesktopMode] && ![self isEntitlementAppFocused]) {
+        [[BaseWindowController sharedInstance] hideOtherAppsExceptThoseInside];
+    }
 }
 
 #pragma mark -
@@ -61,25 +67,29 @@
     if (!bundleId.length) return;
     // Yes: entitlement app has been activated
     // NO: entitlemnt app has been inactivated
-    [self._entitlementAppBundleIdentifiers setObject:[NSNumber numberWithBool:NO] forKey:bundleId];
+    if (self._entitlementAppStatuses == nil) {
+        self._entitlementAppStatuses = [[NSMutableDictionary alloc] init];
+    }
+    
+    [self._entitlementAppStatuses setObject:[NSNumber numberWithBool:NO] forKey:bundleId];
 }
 
 - (void)removeEntitlementBundleId:(NSString *)bundleId {
     if (!bundleId.length) return;
     
-    [self._entitlementAppBundleIdentifiers removeObjectForKey:bundleId];
+    [self._entitlementAppStatuses removeObjectForKey:bundleId];
 }
 
 - (void)activateEntitlementForBundleId:(NSString *)bundleId {
     if (!bundleId.length) return;
     
-    NSNumber *obj = [self._entitlementAppBundleIdentifiers objectForKey:bundleId];
+    NSNumber *obj = [self._entitlementAppStatuses objectForKey:bundleId];
     
     if (obj != nil) {
         BOOL status = [obj boolValue];
         
         if (status == NO) {
-            [self._entitlementAppBundleIdentifiers setObject:[NSNumber numberWithBool:YES] forKey:bundleId];
+            [self._entitlementAppStatuses setObject:[NSNumber numberWithBool:YES] forKey:bundleId];
         }
     }
 }
@@ -87,13 +97,13 @@
 - (void)inactivateEntitlementForBundleId:(NSString *)bundleId {
     if (!bundleId.length) return;
     
-    NSNumber *obj = [self._entitlementAppBundleIdentifiers objectForKey:bundleId];
+    NSNumber *obj = [self._entitlementAppStatuses objectForKey:bundleId];
     
     if (obj != nil) {
         BOOL status = [obj boolValue];
         
         if (status == YES) {
-            [self._entitlementAppBundleIdentifiers setObject:[NSNumber numberWithBool:NO] forKey:bundleId];
+            [self._entitlementAppStatuses setObject:[NSNumber numberWithBool:NO] forKey:bundleId];
         }
     }
 }
@@ -101,7 +111,7 @@
 - (BOOL)isEntitlementAppForBundleId:(NSString *)bundleId {
     if (!bundleId.length) return NO;
     
-    return ([self._entitlementAppBundleIdentifiers objectForKey:bundleId] != nil) ? YES : NO;
+    return ([self._entitlementAppStatuses objectForKey:bundleId] != nil) ? YES : NO;
 }
 
 - (BOOL)isEntitlementAppFocusedForBundleId:(NSString *)bundleId {
@@ -109,7 +119,7 @@
     
     if (!result) return NO;
     
-    NSNumber *obj = [self._entitlementAppBundleIdentifiers objectForKey:bundleId];
+    NSNumber *obj = [self._entitlementAppStatuses objectForKey:bundleId];
     
     if (obj != nil) {
         result = [obj boolValue];

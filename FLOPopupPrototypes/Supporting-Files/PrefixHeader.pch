@@ -9,6 +9,8 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+#import <Foundation/Foundation.h>
+
 #import "Constants.h"
 #import "NSColor+FLOAdditions.h"
 #import "Utils.h"

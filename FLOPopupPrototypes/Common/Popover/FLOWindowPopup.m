@@ -21,7 +21,7 @@
 #import "FLOPopoverUtils.h"
 
 @interface FLOWindowPopup () <FLOPopoverBackgroundViewDelegate, NSAnimationDelegate> {
-    NSWindow *_applicationWindow;
+    NSWindow *_appMainWindow;
     NSEvent *_applicationEvent;
     NSWindow *_animatedWindow;
     NSWindow *_snapshotWindow;
@@ -29,6 +29,7 @@
 }
 
 @property (nonatomic, strong) NSWindow *popoverWindow;
+@property (nonatomic, assign) NSWindowLevel popoverWindowLevel;
 @property (nonatomic, assign) NSRect popoverOriginalRect;
 @property (nonatomic, assign) CGFloat popoverVerticalMargins;
 @property (nonatomic, assign) BOOL popoverDidMove;
@@ -58,7 +59,7 @@
 
 - (instancetype)initWithContentView:(NSView *)contentView {
     if (self = [super init]) {
-        _applicationWindow = [[FLOPopoverWindowController sharedInstance] applicationWindow];
+        _appMainWindow = [[FLOPopoverWindow sharedInstance] appMainWindow];
         _contentView = contentView;
         _backgroundView = [[FLOPopoverBackgroundView alloc] initWithFrame:contentView.frame];
         _anchorPoint = CGPointMake(0.0f, 0.0f);
@@ -76,7 +77,7 @@
 
 - (instancetype)initWithContentViewController:(NSViewController *)contentViewController {
     if (self = [super init]) {
-        _applicationWindow = [[FLOPopoverWindowController sharedInstance] applicationWindow];
+        _appMainWindow = [[FLOPopoverWindow sharedInstance] appMainWindow];
         _contentViewController = contentViewController;
         _contentView = contentViewController.view;
         _backgroundView = [[FLOPopoverBackgroundView alloc] initWithFrame:contentViewController.view.frame];
@@ -92,7 +93,7 @@
 }
 
 - (void)dealloc {
-    _applicationWindow = nil;
+    _appMainWindow = nil;
     _applicationEvent = nil;
     _contentViewController = nil;
     _contentView = nil;
@@ -158,11 +159,14 @@
 
 - (void)setTopMostWindowIfNecessary {
     NSWindow *topWindow = [[FLOPopoverWindow sharedInstance] topWindow];
-    NSArray *windowStack = _applicationWindow.childWindows;
+    NSArray *windowStack = _appMainWindow.childWindows;
     
     if ((topWindow != nil) && [windowStack containsObject:topWindow]) {
-        [_applicationWindow removeChildWindow:topWindow];
-        [_applicationWindow addChildWindow:topWindow ordered:NSWindowAbove];
+        NSWindowLevel topWindowLevel = topWindow.level;
+        
+        [_appMainWindow removeChildWindow:topWindow];
+        [_appMainWindow addChildWindow:topWindow ordered:NSWindowAbove];
+        topWindow.level = topWindowLevel;
     }
 }
 
@@ -177,6 +181,15 @@
 #pragma mark -
 #pragma mark - Display
 #pragma mark -
+/**
+ * Set level for popover. Only used for FLOWindowPopover type.
+ *
+ * @param level the level of window popover.
+ */
+- (void)setPopoverLevel:(NSWindowLevel)level {
+    self.popoverWindowLevel = level;
+}
+
 - (void)setAnimationBehaviour:(FLOPopoverAnimationBehaviour)animationBehaviour type:(FLOPopoverAnimationTransition)animationType {
     self.animationBehaviour = animationBehaviour;
     self.animationType = animationType;
@@ -249,9 +262,11 @@
     
     [self.positioningView.window addChildWindow:self.popoverWindow ordered:NSWindowAbove];
     
+    self.popoverWindow.level = self.popoverWindowLevel;
+    
     if (NSEqualRects(self.popoverOriginalRect, NSZeroRect)) {
         self.popoverOriginalRect = popoverScreenRect;
-        self.popoverVerticalMargins = [[FLOPopoverWindowController sharedInstance] applicationWindow].frame.size.height - popoverScreenRect.size.height;
+        self.popoverVerticalMargins = _appMainWindow.frame.size.height - popoverScreenRect.size.height;
     }
     
     if (self.alwaysOnTop) {
@@ -668,7 +683,7 @@
     if ([notification.name isEqualToString:NSWindowDidMoveNotification] && [notification.object isKindOfClass:[NSWindow class]]) {
         NSWindow *movedWindow = (NSWindow *) notification.object;
         
-        if (movedWindow == [[FLOPopoverWindowController sharedInstance] applicationWindow]) {
+        if (movedWindow == _appMainWindow) {
             self.applicationWindowDidChange = YES;
         }
     }
@@ -683,7 +698,7 @@
         NSWindow *resizedWindow = (NSWindow *) notification.object;
         NSRect popoverRect = [self popoverRectForEdge:self.preferredEdge];
         
-        if (resizedWindow == [[FLOPopoverWindowController sharedInstance] applicationWindow]) {
+        if (resizedWindow == _appMainWindow) {
             CGFloat popoverHeight = resizedWindow.frame.size.height - self.popoverVerticalMargins;
             CGFloat deltaHeight = popoverRect.size.height - popoverHeight;
             CGFloat popoverOriginX = popoverRect.origin.x;

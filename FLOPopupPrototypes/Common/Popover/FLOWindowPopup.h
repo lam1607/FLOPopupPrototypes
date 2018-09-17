@@ -32,6 +32,14 @@
 
 /* @Display
  */
+
+/**
+ * Set level for popover. Only used for FLOWindowPopover type.
+ *
+ * @param level the level of window popover.
+ */
+- (void)setPopoverLevel:(NSWindowLevel)level;
+
 - (void)setAnimationBehaviour:(FLOPopoverAnimationBehaviour)animationBehaviour type:(FLOPopoverAnimationTransition)animationType;
 - (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView edgeType:(FLOPopoverEdgeType)edgeType;
 

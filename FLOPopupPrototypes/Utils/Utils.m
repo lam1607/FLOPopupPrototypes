@@ -308,9 +308,7 @@
 + (NSString *)getAppNameWithIdentifier:(NSString *)bundleIdentifier {
     if (![Utils isEmptyObject:bundleIdentifier]) {
         NSString *path = [[NSWorkspace sharedWorkspace] absolutePathForAppBundleWithIdentifier:bundleIdentifier];
-        DLog(@"getAppNameWithIdentifier path = %@", path);
         path = [Utils getAppPathWithIdentifier:bundleIdentifier];
-        DLog(@"Utils getAppPathWithIdentifier path = %@", path);
         
         return [[NSFileManager defaultManager] displayNameAtPath:path];
     }

@@ -8,7 +8,9 @@
 
 #import "HomeViewController.h"
 
-#import "FLOPopoverWindowController.h"
+#import "AppDelegate.h"
+
+#import "BaseWindowController.h"
 
 #import "FilmsViewController.h"
 #import "NewsViewController.h"
@@ -46,6 +48,8 @@
 @property (nonatomic, strong) NewsViewController *newsViewController;
 @property (nonatomic, strong) DataViewController *dataViewController;
 
+@property (nonatomic, strong) NSArray<NSString *> *entitlementAppBundles;
+
 @end
 
 @implementation HomeViewController
@@ -55,6 +59,7 @@
     // Do view setup here.
     
     [self initialize];
+    [self setupEntitlementAppBundles];
     [self setupUI];
 }
 
@@ -68,6 +73,8 @@
 - (void)initialize {
     self._homePresenter = [[HomePresenter alloc] init];
     [self._homePresenter attachView:self];
+    
+    self.entitlementAppBundles = [[NSArray alloc] initWithObjects: FLO_ENTITLEMENT_APP_IDENTIFIER_FINDER, FLO_ENTITLEMENT_APP_IDENTIFIER_SAFARI, nil];
 }
 
 #pragma mark -
@@ -101,28 +108,56 @@
 #pragma mark -
 #pragma mark - Processes
 #pragma mark -
+- (void)setupEntitlementAppBundles {
+    AppDelegate *appDelegate = (AppDelegate *) [[NSApplication sharedApplication] delegate];
+    
+    [self.entitlementAppBundles enumerateObjectsUsingBlock:^(NSString *bundle, NSUInteger idx, BOOL *stop) {
+        [appDelegate addEntitlementBundleId:bundle];
+    }];
+}
+
 - (void)changeWindowMode {
-    [[FLOPopoverWindowController sharedInstance] setWindowMode];
+    [[BaseWindowController sharedInstance] setWindowMode];
     [[NSNotificationCenter defaultCenter] postNotificationName:FLO_NOTIFICATION_WINDOW_DID_CHANGE_MODE object:nil userInfo:nil];
 }
 
 - (void)openEntitlementApplicationWithIdentifier:(NSString *)appIdentifier {
+    AppDelegate *appDelegate = (AppDelegate *) [[NSApplication sharedApplication] delegate];
     NSURL *appUrl = [NSURL fileURLWithPath:[Utils getAppPathWithIdentifier:appIdentifier]];
     
     if (![[NSWorkspace sharedWorkspace] launchApplicationAtURL:appUrl options:NSWorkspaceLaunchDefault configuration:[NSDictionary dictionary] error:NULL]) {
+        // If the application cannot be launched, then re-launch it by script
         NSString *appName = [Utils getAppNameWithIdentifier:appIdentifier];
-        
         AppleScriptOpenApp(appName);
+        
+        [appDelegate activateEntitlementForBundleId:appIdentifier];
+    } else {
+        [appDelegate activateEntitlementForBundleId:appIdentifier];
     }
 }
 
-- (void)showPopover:(FLOPopover *)aPopover edgeType:(FLOPopoverEdgeType)edgeType atSender:(NSView *)sender {
-    __block FLOPopover *_aPopover = aPopover;
+- (void)setWindowLevelForPopover:(FLOPopover *)popover {
+    NSWindowLevel popoverWindowLevel = [BaseWindowController sharedInstance].window.level;
+    
+    if ([[BaseWindowController sharedInstance] windowInDesktopMode]) {
+        if (popover.alwaysOnTop == YES) {
+            popoverWindowLevel = NSStatusWindowLevel;
+        } else {
+            popoverWindowLevel = NSFloatingWindowLevel;
+        }
+    }
+    
+    [popover setPopoverLevel:popoverWindowLevel];
+}
+
+- (void)showPopover:(FLOPopover *)popover edgeType:(FLOPopoverEdgeType)edgeType atSender:(NSView *)sender {
+    __block FLOPopover *_popover = popover;
     
     NSView *positioningView = ((sender.superview != nil) ? sender.superview : sender);
     NSRect positioningRect = positioningView.bounds;
     
-    [_aPopover showRelativeToRect:positioningRect ofView:positioningView edgeType:edgeType];
+    [self setWindowLevelForPopover:_popover];
+    [_popover showRelativeToRect:positioningRect ofView:positioningView edgeType:edgeType];
 }
 
 - (void)showWindowPopupAtSender:(NSView *)sender {

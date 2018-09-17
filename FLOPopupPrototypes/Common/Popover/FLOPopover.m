@@ -185,6 +185,17 @@
 #pragma mark -
 #pragma mark - Display
 #pragma mark -
+/**
+ * Set level for popover. Only used for FLOWindowPopover type.
+ *
+ * @param level the level of window popover.
+ */
+- (void)setPopoverLevel:(NSWindowLevel)level {
+    if (self.popupType == FLOWindowPopover) {
+        [self.windowPopup setPopoverLevel:level];
+    }
+}
+
 - (void)setAnimationBehaviour:(FLOPopoverAnimationBehaviour)animationBehaviour type:(FLOPopoverAnimationTransition)animationType {
     [self.viewPopup setAnimationBehaviour:animationBehaviour type:animationType];
     [self.windowPopup setAnimationBehaviour:animationBehaviour type:animationType];
