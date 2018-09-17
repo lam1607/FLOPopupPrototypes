@@ -33,6 +33,10 @@
              DLog(@"NSWorkspaceDidActivateApplicationNotification name: %@ - bundle: %@", app.localizedName, app.bundleIdentifier);
              
              self._lastBundleIdentifier = app.bundleIdentifier;
+             
+             if ([[BaseWindowController sharedInstance] windowInDesktopMode]) {
+                 [[BaseWindowController sharedInstance] hideChildenWindowsOnDeactivate];
+             }
          }
      }];
 }
@@ -124,6 +128,7 @@
     if (obj != nil) {
         result = [obj boolValue];
     }
+    
     return result;
 }
 
