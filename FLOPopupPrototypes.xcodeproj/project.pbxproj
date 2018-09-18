@@ -22,6 +22,11 @@
 		A3F105A4212ABA50008AD365 /* FLOKeyframeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1059D212ABA50008AD365 /* FLOKeyframeAnimation.m */; };
 		A3F105A5212ABA50008AD365 /* NSValue+FLOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1059E212ABA50008AD365 /* NSValue+FLOAdditions.m */; };
 		A3F105A6212ABA50008AD365 /* FLOGraphicsContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1059F212ABA50008AD365 /* FLOGraphicsContext.m */; };
+		DE01F26D2150988B00D7C073 /* ComicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE01F26B2150988B00D7C073 /* ComicsViewController.m */; };
+		DE01F26E2150988B00D7C073 /* ComicsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE01F26C2150988B00D7C073 /* ComicsViewController.xib */; };
+		DE01F273215098DB00D7C073 /* ComicsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE01F272215098DB00D7C073 /* ComicsPresenter.m */; };
+		DE01F2782150DDCA00D7C073 /* ComicCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE01F2772150DDCA00D7C073 /* ComicCellView.m */; };
+		DE01F27A2150DDD700D7C073 /* ComicCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE01F2792150DDD700D7C073 /* ComicCellView.xib */; };
 		DE0F118F212FF95D002F393B /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F118D212FF95D002F393B /* NewsViewController.m */; };
 		DE0F1190212FF95D002F393B /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE0F118E212FF95D002F393B /* NewsViewController.xib */; };
 		DE0F1194212FF9C0002F393B /* NewsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0F1193212FF9C0002F393B /* NewsPresenter.m */; };
@@ -125,6 +130,16 @@
 		A3F105A0212ABA50008AD365 /* CABasicAnimation+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CABasicAnimation+Extensions.h"; sourceTree = "<group>"; };
 		A3F105A1212ABA50008AD365 /* NSValue+FLOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+FLOAdditions.h"; sourceTree = "<group>"; };
 		A3F105A2212ABA50008AD365 /* FLOKeyframeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOKeyframeAnimation.h; sourceTree = "<group>"; };
+		DE01F26A2150988B00D7C073 /* ComicsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComicsViewController.h; sourceTree = "<group>"; };
+		DE01F26B2150988B00D7C073 /* ComicsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComicsViewController.m; sourceTree = "<group>"; };
+		DE01F26C2150988B00D7C073 /* ComicsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicsViewController.xib; sourceTree = "<group>"; };
+		DE01F26F215098B400D7C073 /* ComicsViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComicsViewProtocols.h; sourceTree = "<group>"; };
+		DE01F270215098C500D7C073 /* ComicsPresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComicsPresenterProtocols.h; sourceTree = "<group>"; };
+		DE01F271215098DB00D7C073 /* ComicsPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComicsPresenter.h; sourceTree = "<group>"; };
+		DE01F272215098DB00D7C073 /* ComicsPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComicsPresenter.m; sourceTree = "<group>"; };
+		DE01F2762150DDCA00D7C073 /* ComicCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComicCellView.h; sourceTree = "<group>"; };
+		DE01F2772150DDCA00D7C073 /* ComicCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComicCellView.m; sourceTree = "<group>"; };
+		DE01F2792150DDD700D7C073 /* ComicCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicCellView.xib; sourceTree = "<group>"; };
 		DE0F118C212FF95D002F393B /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
 		DE0F118D212FF95D002F393B /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		DE0F118E212FF95D002F393B /* NewsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsViewController.xib; sourceTree = "<group>"; };
@@ -362,6 +377,7 @@
 				DEB1BCC32137F48E0046E20E /* FilmsViewController */,
 				DE0F1189212FF92E002F393B /* NewsViewController */,
 				DEFE5F92212BAEB000428ECE /* DataViewController */,
+				DE01F2672150984800D7C073 /* ComicsViewController */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -425,6 +441,46 @@
 				DEE1CE7821465D34007E7721 /* NSWindow+Animator.m */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		DE01F2672150984800D7C073 /* ComicsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE01F2682150986700D7C073 /* Presenter */,
+				DE01F2692150987100D7C073 /* ViewProtocols */,
+				DE01F26A2150988B00D7C073 /* ComicsViewController.h */,
+				DE01F26B2150988B00D7C073 /* ComicsViewController.m */,
+				DE01F26C2150988B00D7C073 /* ComicsViewController.xib */,
+			);
+			path = ComicsViewController;
+			sourceTree = "<group>";
+		};
+		DE01F2682150986700D7C073 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				DE01F270215098C500D7C073 /* ComicsPresenterProtocols.h */,
+				DE01F271215098DB00D7C073 /* ComicsPresenter.h */,
+				DE01F272215098DB00D7C073 /* ComicsPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		DE01F2692150987100D7C073 /* ViewProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				DE01F26F215098B400D7C073 /* ComicsViewProtocols.h */,
+			);
+			path = ViewProtocols;
+			sourceTree = "<group>";
+		};
+		DE01F2752150DDAD00D7C073 /* ComicCellView */ = {
+			isa = PBXGroup;
+			children = (
+				DE01F2762150DDCA00D7C073 /* ComicCellView.h */,
+				DE01F2772150DDCA00D7C073 /* ComicCellView.m */,
+				DE01F2792150DDD700D7C073 /* ComicCellView.xib */,
+			);
+			path = ComicCellView;
 			sourceTree = "<group>";
 		};
 		DE0F1189212FF92E002F393B /* NewsViewController */ = {
@@ -564,6 +620,7 @@
 				DEB1BCCC2137F9D60046E20E /* FilmCellView */,
 				DE0F11A421300CAA002F393B /* NewsCellView */,
 				DEFE5F93212BAF0100428ECE /* DataCellView */,
+				DE01F2752150DDAD00D7C073 /* ComicCellView */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -997,6 +1054,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE01F27A2150DDD700D7C073 /* ComicCellView.xib in Resources */,
 				A3F10561212AB519008AD365 /* Assets.xcassets in Resources */,
 				DE0F11AB21300CF6002F393B /* NewsCellView.xib in Resources */,
 				A3F10569212AB5EB008AD365 /* Main.storyboard in Resources */,
@@ -1007,6 +1065,7 @@
 				DEFE5FC0212BC24C00428ECE /* DataViewController.xib in Resources */,
 				DEFE5FA1212BB01500428ECE /* MockData.plist in Resources */,
 				DE0F1190212FF95D002F393B /* NewsViewController.xib in Resources */,
+				DE01F26E2150988B00D7C073 /* ComicsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,6 +1092,8 @@
 			files = (
 				DE0F11B021300F1E002F393B /* NewsCellPresenter.m in Sources */,
 				DE15EC572138E272008E792D /* FilmService.m in Sources */,
+				DE01F2782150DDCA00D7C073 /* ComicCellView.m in Sources */,
+				DE01F273215098DB00D7C073 /* ComicsPresenter.m in Sources */,
 				DEC5A7D521394EDC008239AD /* BaseService.m in Sources */,
 				A3F105A5212ABA50008AD365 /* NSValue+FLOAdditions.m in Sources */,
 				DE0F11A921300CED002F393B /* NewsCellView.m in Sources */,
@@ -1066,6 +1127,7 @@
 				DEFE5F91212BA7F800428ECE /* HomePresenter.m in Sources */,
 				A3F10594212AB69F008AD365 /* FLOPopover.m in Sources */,
 				DE0F11A3212FFE76002F393B /* NewsRepository.m in Sources */,
+				DE01F26D2150988B00D7C073 /* ComicsViewController.m in Sources */,
 				A3F105A4212ABA50008AD365 /* FLOKeyframeAnimation.m in Sources */,
 				DE0F11A0212FFC75002F393B /* News.m in Sources */,
 				DEB2828F212BED7700C98D05 /* NSColor+FLOAdditions.m in Sources */,

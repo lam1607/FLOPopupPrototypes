@@ -94,7 +94,7 @@ static BaseWindowController *_sharedInstance = nil;
 #pragma mark -
 - (void)setupUI {
     NSRect visibleFrame = [self.window.screen visibleFrame];
-    CGFloat width = 0.7f * visibleFrame.size.width;
+    CGFloat width = 0.6f * visibleFrame.size.width;
     CGFloat height = 0.7f * visibleFrame.size.height;
     CGFloat x = (visibleFrame.size.width - width) / 2;
     CGFloat y = (visibleFrame.size.height + visibleFrame.origin.y - height) / 2;

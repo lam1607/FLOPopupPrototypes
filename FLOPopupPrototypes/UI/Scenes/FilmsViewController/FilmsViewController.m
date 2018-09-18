@@ -8,10 +8,10 @@
 
 #import "FilmsViewController.h"
 
-#import "Film.h"
-
 #import "CustomNSTableRowView.h"
 #import "FilmCellView.h"
+
+#import "Film.h"
 
 @interface FilmsViewController () <NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout>
 

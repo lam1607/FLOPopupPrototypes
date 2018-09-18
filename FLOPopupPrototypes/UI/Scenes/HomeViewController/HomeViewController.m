@@ -8,19 +8,20 @@
 
 #import "HomeViewController.h"
 
-#import "AppDelegate.h"
-
 #import "BaseWindowController.h"
 
 #import "FilmsViewController.h"
 #import "NewsViewController.h"
 #import "DataViewController.h"
+#import "ComicsViewController.h"
 
 #import "FLOPopover.h"
 
+#import "AppDelegate.h"
+
 #import "AppleScript.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () <FLOPopoverDelegate>
 
 @property (weak) IBOutlet NSView *vMenu;
 
@@ -40,13 +41,14 @@
 
 @property (nonatomic, strong) HomePresenter *_homePresenter;
 
-@property (nonatomic, strong) FLOPopover *_popoverFilms;
-@property (nonatomic, strong) FLOPopover *_popoverNews;
-@property (nonatomic, strong) FLOPopover *_popoverData;
+@property (nonatomic, strong) FLOPopover *_popoverWindow;
+@property (nonatomic, strong) FLOPopover *_popoverView;
+@property (nonatomic, strong) FLOPopover *_popoverMix;
 
 @property (nonatomic, strong) FilmsViewController *filmsViewController;
 @property (nonatomic, strong) NewsViewController *newsViewController;
 @property (nonatomic, strong) DataViewController *dataViewController;
+@property (nonatomic, strong) ComicsViewController *comicsViewController;
 
 @property (nonatomic, strong) NSArray<NSString *> *entitlementAppBundles;
 
@@ -75,6 +77,13 @@
     [self._homePresenter attachView:self];
     
     self.entitlementAppBundles = [[NSArray alloc] initWithObjects: FLO_ENTITLEMENT_APP_IDENTIFIER_FINDER, FLO_ENTITLEMENT_APP_IDENTIFIER_SAFARI, nil];
+    
+    self.filmsViewController = [[FilmsViewController alloc] initWithNibName:NSStringFromClass([FilmsViewController class]) bundle:nil];
+    self.newsViewController = [[NewsViewController alloc] initWithNibName:NSStringFromClass([NewsViewController class]) bundle:nil];
+    self.dataViewController = [[DataViewController alloc] initWithNibName:NSStringFromClass([DataViewController class]) bundle:nil];
+    
+    self.comicsViewController = [[ComicsViewController alloc] initWithNibName:NSStringFromClass([ComicsViewController class]) bundle:nil];
+    [self.comicsViewController.view setFrame:NSZeroRect];
 }
 
 #pragma mark -
@@ -136,6 +145,32 @@
     }
 }
 
+- (void)observePopoverMixRelativeToViewContentSizeChange {
+    __weak typeof(self) wself = self;
+    
+    self.comicsViewController.didContentSizeChange = ^{
+        [wself handlePopoverMixRelativeToViewContentSizeChange];
+    };
+}
+
+- (void)handlePopoverMixRelativeToViewContentSizeChange {
+    NSRect visibleRect = [self.view visibleRect];
+    CGFloat menuHeight = self.vMenu.frame.size.height;
+    CGFloat verticalMargin = 10.0f;
+    CGFloat availableHeight = visibleRect.size.height - menuHeight - verticalMargin;
+    CGFloat contentHeight = [self.comicsViewController getContentSizeHeight];
+    CGFloat contentViewHeight = (contentHeight > availableHeight) ? availableHeight : contentHeight;
+    NSRect contentViewRect = self.comicsViewController.view.frame;
+    
+    contentViewRect = NSMakeRect(contentViewRect.origin.x, contentViewRect.origin.y, contentViewRect.size.width, contentViewHeight);
+    
+    CGFloat positioningRectX = visibleRect.size.width - contentViewRect.size.width - verticalMargin / 2;
+    CGFloat positioningRectY = visibleRect.size.height - menuHeight - verticalMargin / 2 - contentViewHeight;
+    NSRect positioningRect = [self.btnShowDataMix.window convertRectToScreen:NSMakeRect(positioningRectX, positioningRectY, 0.0f, 0.0f)];
+    
+    [self._popoverMix rearrangePopoverWithNewContentViewFrame:contentViewRect positioningRect:positioningRect];
+}
+
 - (void)setWindowLevelForPopover:(FLOPopover *)popover {
     NSWindowLevel popoverWindowLevel = [BaseWindowController sharedInstance].window.level;
     
@@ -150,102 +185,156 @@
     [popover setPopoverLevel:popoverWindowLevel];
 }
 
-- (void)showPopover:(FLOPopover *)popover edgeType:(FLOPopoverEdgeType)edgeType atSender:(NSView *)sender {
-    __block FLOPopover *_popover = popover;
+- (void)showRelativeToRectOfViewWithPopover:(FLOPopover *)popover edgeType:(FLOPopoverEdgeType)edgeType atView:(NSView *)positioningView {
+    NSRect positioningRect = NSMakeRect(positioningView.bounds.origin.x, positioningView.bounds.origin.y, positioningView.bounds.size.width, self.vMenu.frame.size.height);
+    positioningRect = (positioningView.superview != nil) ? positioningView.superview.bounds : positioningView.bounds;
     
-    NSView *positioningView = ((sender.superview != nil) ? sender.superview : sender);
-    NSRect positioningRect = positioningView.bounds;
-    
-    [self setWindowLevelForPopover:_popover];
-    [_popover showRelativeToRect:positioningRect ofView:positioningView edgeType:edgeType];
-}
-
-- (void)showWindowPopupAtSender:(NSView *)sender {
-    NSRect visibleRect = [self.view visibleRect];
-    CGFloat menuHeight = self.vMenu.frame.size.height;
-    CGFloat width = 0.8f * (visibleRect.size.width - 100.0f);
-    CGFloat height = visibleRect.size.height - menuHeight;
-    NSRect contentViewRect = NSMakeRect(0.0f, 0.0f, width, height);
-    
-    if (self._popoverFilms == nil) {
-        self.filmsViewController = [[FilmsViewController alloc] initWithNibName:NSStringFromClass([FilmsViewController class]) bundle:nil];
-        [self.filmsViewController.view setFrame:contentViewRect];
-        
-        self._popoverFilms = [[FLOPopover alloc] initWithContentViewController:self.filmsViewController popoverType:FLOWindowPopover];
+    if (popover.delegate == nil) {
+        popover.delegate = self;
     }
     
-    //    self._popoverFilms.alwaysOnTop = YES;
-    //    self._popoverFilms.shouldShowArrow = YES;
-    self._popoverFilms.animated = YES;
-    //    self._popoverFilms.closesWhenPopoverResignsKey = YES;
-    //    self._popoverFilms.closesWhenApplicationBecomesInactive = YES;
-    //    self._popoverFilms.popoverMovable = YES;
+    [self setWindowLevelForPopover:popover];
+    
+    if ([popover isShown]) {
+        [popover closePopover:popover];
+    } else {
+        [popover showRelativeToRect:positioningRect ofView:positioningView edgeType:edgeType];
+    }
+}
+
+- (void)showRelativeToViewWithRect:(NSRect)positioningRect byPopover:(FLOPopover *)popover atView:(NSView *)positioningView {
+    if (popover.delegate == nil) {
+        popover.delegate = self;
+    }
+    
+    [self setWindowLevelForPopover:popover];
+    
+    if ([popover isShown]) {
+        [popover closePopover:popover];
+    } else {
+        [popover showRelativeToView:positioningView withRect:positioningRect];
+    }
+}
+
+- (void)showPopoverWindowRelativeToRectOfView:(NSView *)sender {
+    NSRect visibleRect = [self.view visibleRect];
+    CGFloat menuHeight = self.vMenu.frame.size.height;
+    CGFloat verticalMargin = 10.0f;
+    CGFloat width = 400.0f;
+    CGFloat height = visibleRect.size.height - menuHeight - verticalMargin;
+    NSRect contentViewRect = NSMakeRect(0.0f, 0.0f, width, height);
+    
+    if (self._popoverWindow == nil) {
+        [self.filmsViewController.view setFrame:contentViewRect];
+        
+        self._popoverWindow = [[FLOPopover alloc] initWithContentViewController:self.filmsViewController popoverType:FLOWindowPopover];
+    }
+    
+    //    self._popoverWindow.alwaysOnTop = YES;
+    //    self._popoverWindow.shouldShowArrow = YES;
+    self._popoverWindow.animated = YES;
+    //    self._popoverWindow.closesWhenPopoverResignsKey = YES;
+    //    self._popoverWindow.closesWhenApplicationBecomesInactive = YES;
+    //    self._popoverWindow.popoverMovable = YES;
     
     //    if (NSEqualRects(self.filmsViewController.view.frame, contentViewRect) == NO) {
     //        [self.filmsViewController.view setFrame:contentViewRect];
     //    }
     
-    [self._popoverFilms setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationLeftToRight];
-    [self showPopover:self._popoverFilms edgeType:FLOPopoverEdgeTypeHorizontalBelowLeftEdge atSender:sender];
+    [self._popoverWindow setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationLeftToRight];
+    
+    [self showRelativeToRectOfViewWithPopover:self._popoverWindow edgeType:FLOPopoverEdgeTypeBelowLeftEdge atView:sender];
 }
 
-- (void)showViewPopupAtSender:(NSView *)sender {
+- (void)showPopoverViewRelativeToRectOfView:(NSView *)sender {
     NSRect visibleRect = [self.view visibleRect];
     CGFloat menuHeight = self.vMenu.frame.size.height;
-    CGFloat width = 500.0f;
-    CGFloat height = visibleRect.size.height - menuHeight;
+    CGFloat verticalMargin = 10.0f;
+    CGFloat width = 350.0f;
+    CGFloat height = visibleRect.size.height - menuHeight - verticalMargin;
     NSRect contentViewRect = NSMakeRect(0.0f, 0.0f, width, height);
     
-    if (self._popoverNews == nil) {
-        self.newsViewController = [[NewsViewController alloc] initWithNibName:NSStringFromClass([NewsViewController class]) bundle:nil];
+    if (self._popoverView == nil) {
         [self.newsViewController.view setFrame:contentViewRect];
         
-        self._popoverNews = [[FLOPopover alloc] initWithContentViewController:self.newsViewController popoverType:FLOViewPopover];
+        self._popoverView = [[FLOPopover alloc] initWithContentViewController:self.newsViewController popoverType:FLOViewPopover];
     }
     
-    //    self._popoverNews.alwaysOnTop = YES;
-    //    self._popoverNews.shouldShowArrow = YES;
-    self._popoverNews.animated = YES;
-    //    self._popoverNews.closesWhenPopoverResignsKey = YES;
-    //    self._popoverNews.closesWhenApplicationBecomesInactive = YES;
-    //    self._popoverNews.popoverMovable = YES;
+    //    self._popoverView.alwaysOnTop = YES;
+    //    self._popoverView.shouldShowArrow = YES;
+    self._popoverView.animated = YES;
+    //    self._popoverView.closesWhenPopoverResignsKey = YES;
+    //    self._popoverView.closesWhenApplicationBecomesInactive = YES;
+    //    self._popoverView.popoverMovable = YES;
     
     //    if (NSEqualRects(self.newsViewController.view.frame, contentViewRect) == NO) {
     //        [self.newsViewController.view setFrame:contentViewRect];
     //    }
     
-    [self._popoverNews setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationLeftToRight];
-    [self showPopover:self._popoverNews edgeType:FLOPopoverEdgeTypeHorizontalBelowLeftEdge atSender:sender];
+    [self._popoverView setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationLeftToRight];
+    
+    [self showRelativeToRectOfViewWithPopover:self._popoverView edgeType:FLOPopoverEdgeTypeBelowLeftEdge atView:sender];
 }
 
-- (void)showDataMixAtSender:(NSView *)sender {
+- (void)showPopoverMixRelativeToRectOfView:(NSView *)sender {
     NSRect visibleRect = [self.view visibleRect];
     CGFloat menuHeight = self.vMenu.frame.size.height;
-    CGFloat width = 0.5f * (visibleRect.size.width - 100.0f);
-    CGFloat height = visibleRect.size.height - menuHeight;
+    CGFloat verticalMargin = 10.0f;
+    CGFloat width = 350.0f;
+    CGFloat height = visibleRect.size.height - menuHeight - verticalMargin;
     NSRect contentViewRect = NSMakeRect(0.0f, 0.0f, width, height);
     
-    if (self._popoverData == nil) {
-        self.dataViewController = [[DataViewController alloc] initWithNibName:NSStringFromClass([DataViewController class]) bundle:nil];
+    if (self._popoverMix == nil) {
         [self.dataViewController.view setFrame:contentViewRect];
         
-        self._popoverData = [[FLOPopover alloc] initWithContentViewController:self.dataViewController popoverType:FLOWindowPopover];
+        self._popoverMix = [[FLOPopover alloc] initWithContentViewController:self.dataViewController popoverType:FLOWindowPopover];
     }
     
-    self._popoverData.alwaysOnTop = YES;
-    //    self._popoverData.shouldShowArrow = YES;
-    self._popoverData.animated = YES;
-    //    self._popoverData.closesWhenPopoverResignsKey = YES;
-    //    self._popoverData.closesWhenApplicationBecomesInactive = YES;
-    self._popoverData.popoverMovable = YES;
-    //    self._popoverData.popoverShouldDetach = YES;
+    self._popoverMix.alwaysOnTop = YES;
+    //    self._popoverMix.shouldShowArrow = YES;
+    self._popoverMix.animated = YES;
+    //    self._popoverMix.closesWhenPopoverResignsKey = YES;
+    //    self._popoverMix.closesWhenApplicationBecomesInactive = YES;
+    //    self._popoverMix.popoverMovable = YES;
+    //    self._popoverMix.popoverShouldDetach = YES;
     
-    //    if (NSEqualRects(self.dataViewController.view.frame, contentViewRect) == NO) {
-    //        [self.dataViewController.view setFrame:contentViewRect];
-    //    }
+    [self._popoverMix setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationRightToLeft];
     
-    [self._popoverData setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationRightToLeft];
-    [self showPopover:self._popoverData edgeType:FLOPopoverEdgeTypeHorizontalBelowRightEdge atSender:sender];
+    [self showRelativeToRectOfViewWithPopover:self._popoverMix edgeType:FLOPopoverEdgeTypeBelowRightEdge atView:sender];
+}
+
+- (void)showPopoverMixRelativeToView:(NSView *)sender {
+    NSRect visibleRect = [self.view visibleRect];
+    CGFloat menuHeight = self.vMenu.frame.size.height;
+    CGFloat verticalMargin = 10.0f;
+    CGFloat contentViewWidth = 350.0f;
+    CGFloat availableHeight = visibleRect.size.height - menuHeight - verticalMargin;
+    CGFloat contentHeight = [self.comicsViewController getContentSizeHeight];
+    CGFloat contentViewHeight = (contentHeight > availableHeight) ? availableHeight : contentHeight;
+    NSRect contentViewRect = NSMakeRect(0.0f, 0.0f, contentViewWidth, contentViewHeight);
+    
+    if (self._popoverMix == nil) {
+        [self.comicsViewController.view setFrame:contentViewRect];
+        
+        self._popoverMix = [[FLOPopover alloc] initWithContentViewController:self.comicsViewController popoverType:FLOWindowPopover];
+    }
+    
+    self._popoverMix.alwaysOnTop = YES;
+    //    self._popoverMix.shouldShowArrow = YES;
+    self._popoverMix.animated = YES;
+    //    self._popoverMix.closesWhenPopoverResignsKey = YES;
+    //    self._popoverMix.closesWhenApplicationBecomesInactive = YES;
+    //    self._popoverMix.popoverMovable = YES;
+    //    self._popoverMix.popoverShouldDetach = YES;
+    
+    CGFloat positioningRectX = visibleRect.size.width - contentViewRect.size.width - verticalMargin / 2;
+    CGFloat positioningRectY = visibleRect.size.height - menuHeight - verticalMargin / 2 - contentViewHeight;
+    NSRect positioningRect = [sender.window convertRectToScreen:NSMakeRect(positioningRectX, positioningRectY, 0.0f, 0.0f)];
+    
+    [self._popoverMix setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationRightToLeft];
+    
+    [self showRelativeToViewWithRect:positioningRect byPopover:self._popoverMix atView:sender];
+    [self observePopoverMixRelativeToViewContentSizeChange];
 }
 
 #pragma mark -
@@ -264,15 +353,15 @@
 }
 
 - (IBAction)btnShowWindowPopup_clicked:(NSButton *)sender {
-    [self._homePresenter doSelectSender:@{@"type": @"windowPopup", @"object": sender}];
+    [self._homePresenter doSelectSender:@{@"type": @"popoverWindow", @"object": sender}];
 }
 
 - (IBAction)btnShowViewPopup_clicked:(NSButton *)sender {
-    [self._homePresenter doSelectSender:@{@"type": @"viewPopup", @"object": sender}];
+    [self._homePresenter doSelectSender:@{@"type": @"popoverView", @"object": sender}];
 }
 
 - (IBAction)btnShowDataMix_clicked:(NSButton *)sender {
-    [self._homePresenter doSelectSender:@{@"type": @"mix", @"object": sender}];
+    [self._homePresenter doSelectSender:@{@"type": @"popoverMix", @"object": sender}];
 }
 
 #pragma mark -
@@ -291,14 +380,24 @@
             [self openEntitlementApplicationWithIdentifier:FLO_ENTITLEMENT_APP_IDENTIFIER_FINDER];
         } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"openSafari"]) {
             [self openEntitlementApplicationWithIdentifier:FLO_ENTITLEMENT_APP_IDENTIFIER_SAFARI];
-        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"windowPopup"]) {
-            [self showWindowPopupAtSender:sender];
-        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"viewPopup"]) {
-            [self showViewPopupAtSender:sender];
-        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"mix"]) {
-            [self showDataMixAtSender:sender];
+        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"popoverWindow"]) {
+            [self showPopoverWindowRelativeToRectOfView:sender];
+        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"popoverView"]) {
+            [self showPopoverViewRelativeToRectOfView:sender];
+        } else if ([[senderInfo objectForKey:keyType] isEqualToString:@"popoverMix"]) {
+//            [self showPopoverMixRelativeToRectOfView:sender];
+            [self showPopoverMixRelativeToView:sender];
         }
     }
+}
+
+#pragma mark -
+#pragma mark - FLOPopoverDelegate
+#pragma mark -
+- (void)popoverDidShow:(NSResponder *)popover {
+}
+
+- (void)popoverDidClose:(NSResponder *)popover {
 }
 
 @end

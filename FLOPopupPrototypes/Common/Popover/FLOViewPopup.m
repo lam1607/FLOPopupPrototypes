@@ -30,6 +30,7 @@
 
 @property (nonatomic, strong) NSView *popoverView;
 @property (nonatomic, assign) NSRect popoverOriginalRect;
+@property (nonatomic, assign) BOOL isRelativeToRectOfView;
 @property (nonatomic, assign) CGFloat popoverVerticalMargins;
 @property (nonatomic, assign) BOOL popoverDidMove;
 
@@ -117,41 +118,57 @@
 
 - (void)setPopoverEdgeType:(FLOPopoverEdgeType)edgeType {
     switch (edgeType) {
-        case FLOPopoverEdgeTypeHorizontalAboveLeftEdge:
+        case FLOPopoverEdgeTypeAboveLeftEdge:
             self.preferredEdge = NSRectEdgeMaxY;
             self.anchorPoint = CGPointMake(0.0f, 0.0f);
             break;
-        case FLOPopoverEdgeTypeHorizontalAboveRightEdge:
+        case FLOPopoverEdgeTypeAboveRightEdge:
             self.preferredEdge = NSRectEdgeMaxY;
             self.anchorPoint = CGPointMake(1.0f, 1.0f);
             break;
-        case FLOPopoverEdgeTypeHorizontalBelowLeftEdge:
+        case FLOPopoverEdgeTypeBelowLeftEdge:
             self.preferredEdge = NSRectEdgeMinY;
             self.anchorPoint = CGPointMake(0.0f, 0.0f);
             break;
-        case FLOPopoverEdgeTypeHorizontalBelowRightEdge:
+        case FLOPopoverEdgeTypeBelowRightEdge:
             self.preferredEdge = NSRectEdgeMinY;
             self.anchorPoint = CGPointMake(1.0f, 1.0f);
             break;
-        case FLOPopoverEdgeTypeVerticalBackwardBottomEdge:
+        case FLOPopoverEdgeTypeBackwardBottomEdge:
             self.preferredEdge = NSRectEdgeMinX;
             self.anchorPoint = CGPointMake(0.0f, 0.0f);
             break;
-        case FLOPopoverEdgeTypeVerticalBackwardTopEdge:
+        case FLOPopoverEdgeTypeBackwardTopEdge:
             self.preferredEdge = NSRectEdgeMinX;
             self.anchorPoint = CGPointMake(1.0f, 1.0f);
             break;
-        case FLOPopoverEdgeTypeVerticalForwardBottomEdge:
+        case FLOPopoverEdgeTypeForwardBottomEdge:
             self.preferredEdge = NSRectEdgeMaxX;
             self.anchorPoint = CGPointMake(0.0f, 0.0f);
             break;
-        case FLOPopoverEdgeTypeVerticalForwardTopEdge:
+        case FLOPopoverEdgeTypeForwardTopEdge:
             self.preferredEdge = NSRectEdgeMaxX;
             self.anchorPoint = CGPointMake(1.0f, 1.0f);
+            break;
+        case FLOPopoverEdgeTypeAboveCenter:
+            self.preferredEdge = NSRectEdgeMaxY;
+            self.anchorPoint = CGPointMake(0.5f, 0.5f);
+            break;
+        case FLOPopoverEdgeTypeBelowCenter:
+            self.preferredEdge = NSRectEdgeMinY;
+            self.anchorPoint = CGPointMake(0.5f, 0.5f);
+            break;
+        case FLOPopoverEdgeTypeBackwardCenter:
+            self.preferredEdge = NSRectEdgeMinX;
+            self.anchorPoint = CGPointMake(0.5f, 0.5f);
+            break;
+        case FLOPopoverEdgeTypeForwardCenter:
+            self.preferredEdge = NSRectEdgeMaxX;
+            self.anchorPoint = CGPointMake(0.5f, 0.5f);
             break;
         default:
             self.preferredEdge = NSRectEdgeMinY;
-            self.anchorPoint = CGPointMake(0.5f, 0.5f);
+            self.anchorPoint = CGPointMake(1.0f, 1.0f);
             break;
     }
 }
@@ -174,7 +191,23 @@
     self.animationType = animationType;
 }
 
-- (void)showRelativeToRect:(NSRect)rect ofView:(NSView *)view edgeType:(FLOPopoverEdgeType)edgeType {
+- (void)rearrangePopoverWithNewContentViewFrame:(NSRect)newFrame positioningRect:(NSRect)rect; {
+    [self.contentView setFrame:newFrame];
+    self.originalViewSize = newFrame.size;
+    self.contentSize = newFrame.size;
+    self.positioningRect = rect;
+    
+    [self showIfNeeded:NO];
+}
+
+/**
+ * Display the popover relative to the rect of positioning view
+ *
+ * @param rect is the rect that popover will be displayed relatively to.
+ * @param positioningView is the view that popover will be displayed relatively to.
+ * @param edgeType 'position' that the popover should be displayed.
+ */
+- (void)showRelativeToRect:(NSRect)rect ofView:(NSView *)positioningView edgeType:(FLOPopoverEdgeType)edgeType {
     if (self.shown) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(close) object:nil];
         [self performSelector:@selector(close) withObject:nil afterDelay:0.1f];
@@ -182,8 +215,39 @@
         return;
     }
     
+    self.isRelativeToRectOfView = YES;
+    
     self.positioningRect = rect;
-    self.positioningView = view;
+    self.positioningView = positioningView;
+    
+    [self setPopoverEdgeType:edgeType];
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(show) object:nil];
+    [self performSelector:@selector(show) withObject:nil afterDelay:0.1f];
+    
+    [self registerForApplicationEvents];
+}
+
+/**
+ * Dipslay the popover at the given rect with selected view.
+ *
+ * @param positioningView the selected view that popover should be displayed at.
+ * @param rect the given rect that popover should be displayed at.
+ * @param edgeType 'position' that the popover should be displayed.
+ */
+- (void)showRelativeToView:(NSView *)positioningView withRect:(NSRect)rect edgeType:(FLOPopoverEdgeType)edgeType {
+    if (self.shown) {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(close) object:nil];
+        [self performSelector:@selector(close) withObject:nil afterDelay:0.1f];
+        
+        return;
+    }
+    
+    self.isRelativeToRectOfView = NO;
+    
+    self.positioningRect = NSEqualRects(rect, NSZeroRect) ? [positioningView bounds] : rect;
+    self.positioningView = positioningView;
+    self.anchorPoint = CGPointMake(0.0f, 0.0f);
     
     [self setPopoverEdgeType:edgeType];
     
@@ -194,34 +258,36 @@
 }
 
 - (void)show {
-    if (self.shown) {
-        [self close];
-        return;
+    [self showIfNeeded:YES];
+}
+
+- (void)showIfNeeded:(BOOL)needed {
+    if (self.isRelativeToRectOfView) {
+        if (NSEqualRects(self.positioningRect, NSZeroRect)) {
+            self.positioningRect = [self.positioningView bounds];
+        }
+        
+        NSRect windowRelativeRect = [self.positioningView convertRect:[self.positioningView alignmentRectForFrame:self.positioningRect] toView:nil];
+        NSRect positionOnScreenRect = [self.positioningView.window convertRectToScreen:windowRelativeRect];
+        
+        self.backgroundView.popoverOrigin = positionOnScreenRect;
+    } else {
+        self.backgroundView.popoverOrigin = self.positioningRect;
     }
-    
-    if (NSEqualRects(self.positioningRect, NSZeroRect)) {
-        self.positioningRect = [self.positioningView bounds];
-    }
-    
-    NSRect windowRelativeRect = [self.positioningView convertRect:[self.positioningView alignmentRectForFrame:self.positioningRect] toView:nil];
-    NSRect positionOnScreenRect = [_appMainWindow convertRectToScreen:windowRelativeRect];
-    
-    self.backgroundView.popoverOrigin = positionOnScreenRect;
     
     self.originalViewSize = self.contentView.frame.size;
+    
     NSSize contentViewSize = (NSEqualSizes(self.contentSize, NSZeroSize) || NSEqualSizes(self.contentSize, self.originalViewSize)) ? self.originalViewSize : self.contentSize;
     NSRectEdge popoverEdge = self.preferredEdge;
     NSRect popoverScreenRect = [self popoverRect];
     
     [self.backgroundView setViewMovable:self.popoverMovable];
-    [self.backgroundView setBorderRadius:PopoverBackgroundViewBorderRadius];
     [self.backgroundView setShouldShowArrow:self.shouldShowArrow];
     [self.backgroundView setArrowColor:self.contentView.layer.backgroundColor];
     
     if (self.popoverMovable) {
         self.backgroundView.delegate = self;
     }
-    
     
     CGSize size = [self.backgroundView sizeForBackgroundViewWithContentSize:contentViewSize popoverEdge:popoverEdge];
     self.backgroundView.frame = (NSRect) { .size = size };
@@ -230,26 +296,36 @@
     NSRect contentViewFrame = [self.backgroundView contentViewFrameForBackgroundFrame:self.backgroundView.bounds popoverEdge:popoverEdge];
     self.contentView.autoresizingMask = (NSViewWidthSizable | NSViewHeightSizable);
     self.contentView.frame = contentViewFrame;
-    [self.backgroundView addSubview:self.contentView positioned:NSWindowAbove relativeTo:nil];
     
-    [self.backgroundView setShouldShowShadow:YES];
+    if (![self.contentView isDescendantOf:self.backgroundView]) {
+        [self.backgroundView addSubview:self.contentView positioned:NSWindowAbove relativeTo:nil];
+    }
+    
     [self.backgroundView setFrame:[_appMainWindow convertRectFromScreen:popoverScreenRect]];
-    [self.positioningView.window.contentView addSubview:self.backgroundView positioned:NSWindowAbove relativeTo:self.positioningView];
+    
+    if (![self.backgroundView isDescendantOf:self.positioningView.window.contentView]) {
+        [self.positioningView.window.contentView addSubview:self.backgroundView positioned:NSWindowAbove relativeTo:self.positioningView];
+    }
     
     self.popoverView = self.backgroundView;
     
-    if (NSEqualRects(self.popoverOriginalRect, NSZeroRect)) {
+    if (needed) {
+        if (NSEqualRects(self.popoverOriginalRect, NSZeroRect)) {
+            self.popoverOriginalRect = [_appMainWindow convertRectFromScreen:popoverScreenRect];
+            self.popoverVerticalMargins = _appMainWindow.frame.size.height - popoverScreenRect.size.height;
+        }
+        
+        if (self.alwaysOnTop) {
+            [[FLOPopoverWindow sharedInstance] setTopmostView:self.backgroundView];
+        }
+        
+        [self setTopMostViewIfNecessary];
+        
+        [self popoverShowing:YES animated:self.animated];
+    } else {
         self.popoverOriginalRect = [_appMainWindow convertRectFromScreen:popoverScreenRect];
         self.popoverVerticalMargins = _appMainWindow.frame.size.height - popoverScreenRect.size.height;
     }
-    
-    if (self.alwaysOnTop) {
-        [[FLOPopoverWindow sharedInstance] setTopmostView:self.backgroundView];
-    }
-    
-    [self setTopMostViewIfNecessary];
-    
-    [self popoverShowing:YES animated:self.animated];
 }
 
 - (void)close {
@@ -281,14 +357,19 @@
 #pragma mark -
 #pragma mark - Display utilities
 #pragma mark -
-- (NSRect)popoverRectForEdge:(NSRectEdge *)popoverEdge {
+- (NSRect)popoverRectForEdge:(NSRectEdge)popoverEdge {
     NSRect applicationScreenRect = [_appMainWindow convertRectToScreen:_appMainWindow.contentView.bounds];
     NSRect windowRelativeRect = [self.positioningView convertRect:[self.positioningView alignmentRectForFrame:self.positioningRect] toView:nil];
     NSRect positionOnScreenRect = [_appMainWindow convertRectToScreen:windowRelativeRect];
+    
+    if (self.isRelativeToRectOfView == NO) {
+        positionOnScreenRect = self.positioningRect;
+    }
+    
     NSSize contentViewSize = NSEqualSizes(self.contentSize, NSZeroSize) ? self.originalViewSize : self.contentSize;
     NSPoint anchorPoint = self.anchorPoint;
     
-    NSSize popoverSize = [self.backgroundView sizeForBackgroundViewWithContentSize:contentViewSize popoverEdge:*popoverEdge];
+    NSSize popoverSize = [self.backgroundView sizeForBackgroundViewWithContentSize:contentViewSize popoverEdge:popoverEdge];
     NSRect returnRect = NSMakeRect(0.0, 0.0, popoverSize.width, popoverSize.height);
     
     // In all the cases below, find the minimum and maximum position of the
@@ -301,50 +382,30 @@
     // aligns the right edge of the popover to the right edge of the origin
     // view. The anchor point determines where the popover should be between
     // these extremes.
-    if (*popoverEdge == NSRectEdgeMinY) {
+    if (popoverEdge == NSRectEdgeMinY) {
         CGFloat x0 = NSMinX(positionOnScreenRect);
         CGFloat x1 = NSMaxX(positionOnScreenRect) - contentViewSize.width;
         
         returnRect.origin.x = x0 + floor((x1 - x0) * anchorPoint.x);
         returnRect.origin.y = NSMinY(positionOnScreenRect) - popoverSize.height;
-        
-        if (returnRect.origin.y < NSMinY(applicationScreenRect)) {
-            *popoverEdge = NSRectEdgeMaxY;
-            return [self popoverRectForEdge:popoverEdge];
-        }
-    } else if (*popoverEdge == NSRectEdgeMaxY) {
+    } else if (popoverEdge == NSRectEdgeMaxY) {
         CGFloat x0 = NSMinX(positionOnScreenRect);
         CGFloat x1 = NSMaxX(positionOnScreenRect) - contentViewSize.width;
         
         returnRect.origin.x = x0 + floor((x1 - x0) * anchorPoint.x);
         returnRect.origin.y = NSMaxY(positionOnScreenRect);
-        
-        if ((returnRect.origin.y + popoverSize.height) > NSMaxY(applicationScreenRect)) {
-            *popoverEdge = NSRectEdgeMinY;
-            return [self popoverRectForEdge:popoverEdge];
-        }
-    } else if (*popoverEdge == NSRectEdgeMinX) {
+    } else if (popoverEdge == NSRectEdgeMinX) {
         CGFloat y0 = NSMinY(positionOnScreenRect);
         CGFloat y1 = NSMaxY(positionOnScreenRect) - contentViewSize.height;
         
         returnRect.origin.x = NSMinX(positionOnScreenRect) - popoverSize.width;
         returnRect.origin.y = y0 + floor((y1 - y0) * anchorPoint.y);
-        
-        if (returnRect.origin.x < NSMinX(applicationScreenRect)) {
-            *popoverEdge = NSRectEdgeMaxX;
-            return [self popoverRectForEdge:popoverEdge];
-        }
-    } else if (*popoverEdge == NSRectEdgeMaxX) {
+    } else if (popoverEdge == NSRectEdgeMaxX) {
         CGFloat y0 = NSMinY(positionOnScreenRect);
         CGFloat y1 = NSMaxY(positionOnScreenRect) - contentViewSize.height;
         
         returnRect.origin.x = NSMaxX(positionOnScreenRect);
         returnRect.origin.y = y0 + floor((y1 - y0) * anchorPoint.y);
-        
-        if ((returnRect.origin.x + popoverSize.width) > NSMaxX(applicationScreenRect)) {
-            *popoverEdge = NSRectEdgeMinX;
-            return [self popoverRectForEdge:popoverEdge];
-        }
     } else {
         returnRect = NSZeroRect;
     }
@@ -352,7 +413,7 @@
     return returnRect;
 }
 
-- (BOOL)checkPopoverSizeForScreenWithPopoverEdge:(NSRectEdge *)popoverEdge {
+- (BOOL)checkPopoverSizeForScreenWithPopoverEdge:(NSRectEdge)popoverEdge {
     NSRect applicationScreenRect = [_appMainWindow convertRectToScreen:_appMainWindow.contentView.bounds];
     NSRect popoverRect = [self popoverRectForEdge:popoverEdge];
     
@@ -394,7 +455,7 @@
 }
 
 - (BOOL)screenRectContainsRectEdge:(NSRectEdge)edge {
-    NSRect proposedRect = [self popoverRectForEdge:&edge];
+    NSRect proposedRect = [self popoverRectForEdge:edge];
     NSRect applicationScreenRect = [_appMainWindow convertRectToScreen:_appMainWindow.contentView.bounds];
     
     BOOL minYInBounds = (edge == NSRectEdgeMinY) && (NSMinY(proposedRect) >= NSMinY(applicationScreenRect));
@@ -409,11 +470,11 @@
     NSRectEdge popoverEdge = self.preferredEdge;
     NSUInteger attemptCount = 0;
     
-    while (![self checkPopoverSizeForScreenWithPopoverEdge:&popoverEdge]) {
+    while (![self checkPopoverSizeForScreenWithPopoverEdge:popoverEdge]) {
         if (attemptCount >= 4) {
             popoverEdge = [self screenRectContainsRectEdge:self.preferredEdge] ? self.preferredEdge : [self nextEdgeForEdge:self.preferredEdge];
             
-            return [self fitRectToScreen:[self popoverRectForEdge:&popoverEdge]];
+            return [self fitRectToScreen:[self popoverRectForEdge:popoverEdge]];
             break;
         }
         
@@ -421,7 +482,7 @@
         ++attemptCount;
     }
     
-    return [self popoverRectForEdge:&popoverEdge];
+    return [self popoverRectForEdge:popoverEdge];
 }
 
 #pragma mark -
@@ -655,7 +716,10 @@
 #pragma mark - Utilities
 #pragma mark -
 - (void)closePopover:(NSResponder *)sender {
-    // code ...
+    if (self.shown) {
+        [self close];
+        return;
+    }
 }
 
 - (void)closePopover:(NSResponder *)sender completion:(void (^)(void))complete {
@@ -682,10 +746,18 @@
     if ([notification.name isEqualToString:NSWindowDidResizeNotification] && [notification.object isKindOfClass:[NSWindow class]]) {
         NSWindow *resizedWindow = (NSWindow *) notification.object;
         
+        NSRectEdge edge = self.preferredEdge;
+        NSRect popoverRect = [self popoverRectForEdge:edge];
+        popoverRect = [_appMainWindow convertRectFromScreen:popoverRect];
+        
         if (resizedWindow == _appMainWindow) {
-            NSRect popoverRect = self.popoverView.frame;
-            CGFloat popoverHeight = resizedWindow.frame.size.height - self.popoverVerticalMargins;
-            popoverRect = NSMakeRect(popoverRect.origin.x, popoverRect.origin.y, popoverRect.size.width, popoverHeight);
+            CGFloat newHeight = resizedWindow.frame.size.height - self.popoverVerticalMargins;
+            CGFloat deltaHeight = popoverRect.size.height - newHeight;
+            CGFloat popoverOriginX = popoverRect.origin.x;
+            CGFloat popoverOriginY = popoverRect.origin.y + ((newHeight < self.originalViewSize.height) ? deltaHeight : 0.0f);
+            CGFloat popoverHeight = (newHeight < self.originalViewSize.height) ? newHeight : self.originalViewSize.height;
+            
+            popoverRect = NSMakeRect(popoverOriginX, popoverOriginY, popoverRect.size.width, popoverHeight);
             
             [self.popoverView setFrame:popoverRect];
             

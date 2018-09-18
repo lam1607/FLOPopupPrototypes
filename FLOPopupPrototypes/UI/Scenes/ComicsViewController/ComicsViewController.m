@@ -1,32 +1,30 @@
 //
-//  DataViewController.m
+//  ComicsViewController.m
 //  FLOPopupPrototypes
 //
-//  Created by lamnguyen on 8/21/18.
+//  Created by lamnguyen on 9/18/18.
 //  Copyright © 2018 Floware. All rights reserved.
 //
 
-#import "DataViewController.h"
+#import "ComicsViewController.h"
 
 #import "CustomNSOutlineView.h"
 #import "CustomNSTableRowView.h"
-#import "DataCellView.h"
+#import "ComicCellView.h"
 
 #import "Comic.h"
 
-@interface DataViewController () <NSOutlineViewDelegate, NSOutlineViewDataSource, CustomNSOutlineViewDelegate>
+@interface ComicsViewController () <NSOutlineViewDelegate, NSOutlineViewDataSource, CustomNSOutlineViewDelegate>
 
 @property (weak) IBOutlet NSScrollView *scrollView;
 @property (weak) IBOutlet CustomNSOutlineView *outlineViewData;
 
 @property (nonatomic, strong) ComicRepository *_comicRepository;
-@property (nonatomic, strong) DataPresenter *_dataPresenter;
-
-@property (nonatomic, strong) NSCache *_heights;
+@property (nonatomic, strong) ComicsPresenter *_comicsPresenter;
 
 @end
 
-@implementation DataViewController
+@implementation ComicsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,10 +50,8 @@
 #pragma mark -
 - (void)initialize {
     self._comicRepository = [[ComicRepository alloc] init];
-    self._dataPresenter = [[DataPresenter alloc] init];
-    [self._dataPresenter attachView:self repository:self._comicRepository];
-    
-    self._heights = [[NSCache alloc] init];
+    self._comicsPresenter = [[ComicsPresenter alloc] init];
+    [self._comicsPresenter attachView:self repository:self._comicRepository];
 }
 
 #pragma mark -
@@ -66,12 +62,11 @@
     [self setBackgroundColor:[NSColor clearColor] forView:self.view];
     
     NSSize screenSize = [Utils screenSize];
-    NSTableColumn *column = [self.outlineViewData tableColumnWithIdentifier:@"DataCellViewColumn"];
+    NSTableColumn *column = [self.outlineViewData tableColumnWithIdentifier:@"ComicCellViewColumn"];
     column.maxWidth = screenSize.width;
     
     self.outlineViewData.backgroundColor = [NSColor clearColor];
-    self.outlineViewData.rowHeight = 269.0f;
-    [self.outlineViewData registerNib:[[NSNib alloc] initWithNibNamed:NSStringFromClass([DataCellView class]) bundle:nil] forIdentifier:NSStringFromClass([DataCellView class])];
+    [self.outlineViewData registerNib:[[NSNib alloc] initWithNibNamed:NSStringFromClass([ComicCellView class]) bundle:nil] forIdentifier:NSStringFromClass([ComicCellView class])];
     self.outlineViewData.pdelegate = self;
     self.outlineViewData.delegate = self;
     self.outlineViewData.dataSource = self;
@@ -81,7 +76,7 @@
 #pragma mark - Processes
 #pragma mark -
 - (void)loadData {
-    [self._dataPresenter fetchData];
+    [self._comicsPresenter fetchData];
 }
 
 - (void)deSelectRowIfSelected {
@@ -90,30 +85,48 @@
     }
 }
 
+- (CGFloat)getContentSizeHeight {
+    NSInteger rows = self.outlineViewData.numberOfRows;
+    
+    return rows * 46.0f;
+}
+
 #pragma mark -
 #pragma mark - CustomNSOutlineViewDelegate
 #pragma mark -
 - (void)outlineView:(CustomNSOutlineView *)outlineView didSelectRow:(NSInteger)row {
-    if (row < [self._dataPresenter comics].count) {
-        Comic *selected = [[self._dataPresenter comics] objectAtIndex:row];
-        
-        [[NSWorkspace sharedWorkspace] openURL:selected.pageUrl];
-    }
+    //    if (row < [self._comicsPresenter comics].count) {
+    //        Comic *selected = [[self._comicsPresenter comics] objectAtIndex:row];
+    //
+    //        [[NSWorkspace sharedWorkspace] openURL:selected.pageUrl];
+    //    }
 }
 
 #pragma mark -
 #pragma mark - NSOutlineViewDelegate, NSOutlineViewDataSource
 #pragma mark -
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
-    return [self._dataPresenter comics].count;
+    if ([item isKindOfClass:[Comic class]]) {
+        return ((Comic *) item).subComics.count;
+    }
+    
+    return [self._comicsPresenter comics].count;
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
-    return (item == nil) ? [[self._dataPresenter comics] objectAtIndex:index] : nil;
+    if ([item isKindOfClass:[Comic class]]) {
+        return [((Comic *) item).subComics objectAtIndex:index];
+    }
+    
+    return [[self._comicsPresenter comics] objectAtIndex:index];
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
-    return NO;
+    if ([item isKindOfClass:[Comic class]]) {
+        return ((Comic *) item).subComics.count > 0;
+    }
+    
+    return YES;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
@@ -121,29 +134,10 @@
 }
 
 - (CGFloat)outlineView:(NSOutlineView *)outlineView heightOfRowByItem:(id)item {
-    NSInteger row = [outlineView rowForItem:item];
-    
-    if ([self._heights objectForKey:@(row)] && [[self._heights objectForKey:@(row)] isKindOfClass:[NSNumber class]]) {
-        return [((NSNumber *) [self._heights objectForKey:@(row)]) doubleValue];
-    }
-    
-    return 269.0f;
+    return 44.0f;
 }
 
 - (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
-    NSView *view = [outlineView viewAtColumn:0 row:row makeIfNecessary:NO];
-    
-    if ([view isKindOfClass:[DataCellView class]]) {
-        DataCellView *cellView = (DataCellView *) view;
-        
-        if (![self._heights objectForKey:@(row)]) {
-            CGFloat cellHeight = [cellView getCellHeight];
-            [self._heights setObject:@(cellHeight) forKey:@(row)];
-            
-            // Notify to the NSOutlineView reloads cell height
-            [outlineView noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndex:row]];
-        }
-    }
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
@@ -155,7 +149,7 @@
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item {
-    return YES;
+    return NO;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item {
@@ -172,14 +166,26 @@
 }
 
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(nullable NSTableColumn *)tableColumn item:(id)item {
-    DataCellView *cellView = (DataCellView *) [outlineView makeViewWithIdentifier:NSStringFromClass([DataCellView class]) owner:self];
+    ComicCellView *cellView = (ComicCellView *) [outlineView makeViewWithIdentifier:NSStringFromClass([ComicCellView class]) owner:self];
     [cellView updateUIWithData:(Comic *) item];
     
     return cellView;
 }
 
+- (void)outlineViewItemDidExpand:(NSNotification *)notification {
+    if (self.didContentSizeChange) {
+        self.didContentSizeChange();
+    }
+}
+
+- (void)outlineViewItemDidCollapse:(NSNotification *)notification {
+    if (self.didContentSizeChange) {
+        self.didContentSizeChange();
+    }
+}
+
 #pragma mark -
-#pragma mark - DataViewProtocols implementation
+#pragma mark - ComicsViewProtocols implementation
 #pragma mark -
 - (void)reloadDataOutlineView {
     [self.outlineViewData reloadData];
