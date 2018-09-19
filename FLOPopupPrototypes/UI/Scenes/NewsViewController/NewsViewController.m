@@ -8,10 +8,10 @@
 
 #import "NewsViewController.h"
 
-#import "News.h"
-
 #import "CustomNSTableRowView.h"
 #import "NewsCellView.h"
+
+#import "News.h"
 
 @interface NewsViewController () <NSTableViewDelegate, NSTableViewDataSource>
 

@@ -30,9 +30,9 @@
 //
 @property (nonatomic, assign) BOOL popoverShouldDetach;
 
-/* @Display
- */
-
+#pragma mark -
+#pragma mark - Display
+#pragma mark -
 /**
  * Set level for popover. Only used for FLOWindowPopover type.
  *
@@ -41,6 +41,25 @@
 - (void)setPopoverLevel:(NSWindowLevel)level;
 
 - (void)setAnimationBehaviour:(FLOPopoverAnimationBehaviour)animationBehaviour type:(FLOPopoverAnimationTransition)animationType;
-- (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView edgeType:(FLOPopoverEdgeType)edgeType;
+
+- (void)rearrangePopoverWithNewContentViewFrame:(NSRect)newFrame positioningRect:(NSRect)rect;;
+
+/**
+ * Display the popover relative to the rect of positioning view
+ *
+ * @param rect is the rect that popover will be displayed relatively to.
+ * @param positioningView is the view that popover will be displayed relatively to.
+ * @param edgeType 'position' that the popover should be displayed.
+ */
+- (void)showRelativeToRect:(NSRect)rect ofView:(NSView *)positioningView edgeType:(FLOPopoverEdgeType)edgeType;
+
+/**
+ * Dipslay the popover at the given rect with selected view.
+ *
+ * @param positioningView the selected view that popover should be displayed at.
+ * @param rect the given rect that popover should be displayed at.
+ * @param edgeType 'position' that the popover should be displayed.
+ */
+- (void)showRelativeToView:(NSView *)positioningView withRect:(NSRect)rect edgeType:(FLOPopoverEdgeType)edgeType;
 
 @end

@@ -94,7 +94,7 @@ static BaseWindowController *_sharedInstance = nil;
 #pragma mark -
 - (void)setupUI {
     NSRect visibleFrame = [self.window.screen visibleFrame];
-    CGFloat width = 0.7f * visibleFrame.size.width;
+    CGFloat width = 0.6f * visibleFrame.size.width;
     CGFloat height = 0.7f * visibleFrame.size.height;
     CGFloat x = (visibleFrame.size.width - width) / 2;
     CGFloat y = (visibleFrame.size.height + visibleFrame.origin.y - height) / 2;
@@ -128,6 +128,18 @@ static BaseWindowController *_sharedInstance = nil;
     [self.window setFrame:self.windowNormalFrame display:YES animate:YES];
 }
 
+- (void)showChildenWindowsOnActivate {
+    for (NSWindow *childWindow in self.window.childWindows) {
+        if (childWindow.level >= self.window.level) {
+            if (childWindow == [FLOPopoverWindow sharedInstance].topWindow) {
+                childWindow.level = NSStatusWindowLevel;
+            } else {
+                childWindow.level = NSFloatingWindowLevel;
+            }
+        }
+    }
+}
+
 - (void)hideChildenWindowsOnDeactivate {
     AppDelegate *appDelegate = (AppDelegate *) [[NSApplication sharedApplication] delegate];
     
@@ -139,24 +151,6 @@ static BaseWindowController *_sharedInstance = nil;
                 childWindow.level = NSFloatingWindowLevel;
             } else {
                 childWindow.level = self.window.level;
-            }
-        }
-    }
-}
-
-- (void)showChildenWindowsOnActivate {
-    AppDelegate *appDelegate = (AppDelegate *) [[NSApplication sharedApplication] delegate];
-    
-    for (NSWindow *childWindow in self.window.childWindows) {
-        if (childWindow.level >= self.window.level) {
-            if (![appDelegate isEntitlementAppFocused]) {
-                childWindow.level = self.window.level;
-            } else {
-                if (childWindow == [FLOPopoverWindow sharedInstance].topWindow) {
-                    childWindow.level = NSStatusWindowLevel;
-                } else {
-                    childWindow.level = NSFloatingWindowLevel;
-                }
             }
         }
     }

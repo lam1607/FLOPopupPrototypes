@@ -264,7 +264,7 @@ static CALayer *subLayer;
     [[self animator] setAlphaValue:showing ? 0.0f : 1.0f];
     
     [NSAnimationContext beginGrouping];
-    [[NSAnimationContext currentContext] setDuration:1.5 * duration];
+    [[NSAnimationContext currentContext] setDuration:1.45 * duration];
     [[self animator] setAlphaValue:showing ? 1.0f : 0.0f];
     [NSAnimationContext endGrouping];
     //============================================================================================================
@@ -280,6 +280,8 @@ static CALayer *subLayer;
     NSViewAnimation *animation = [[NSViewAnimation alloc] initWithViewAnimations:effects];
     
     animation.animationBlockingMode = NSAnimationBlocking;
+    animation.animationCurve = NSAnimationEaseInOut;
+    animation.frameRate = 0.0;
     animation.duration = duration;
     animation.delegate = source;
     [animation startAnimation];
@@ -298,7 +300,7 @@ static CALayer *subLayer;
     [[self animator] setAlphaValue:showing ? 0.0f : 1.0f];
     
     [NSAnimationContext beginGrouping];
-    [[NSAnimationContext currentContext] setDuration:5.2];
+    [[NSAnimationContext currentContext] setDuration:duration];
     [[NSAnimationContext currentContext] setCompletionHandler:^{
         [[self animator] setFrameOrigin:toPosition];
         

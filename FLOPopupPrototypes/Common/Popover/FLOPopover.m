@@ -84,6 +84,14 @@
 #pragma mark -
 #pragma mark - Getter/Setter
 #pragma mark -
+- (BOOL)isShown {
+    if (self.popupType == FLOWindowPopover) {
+        return [self.windowPopup isShown];
+    }
+    
+    return [self.viewPopup isShown];
+}
+
 - (NSView *)contentView {
     return _contentView;
 }
@@ -201,11 +209,40 @@
     [self.windowPopup setAnimationBehaviour:animationBehaviour type:animationType];
 }
 
-- (void)showRelativeToRect:(NSRect)positioningRect ofView:(NSView *)positioningView edgeType:(FLOPopoverEdgeType)edgeType {
+- (void)rearrangePopoverWithNewContentViewFrame:(NSRect)newFrame positioningRect:(NSRect)rect {
     if (self.popupType == FLOWindowPopover) {
-        [self.windowPopup showRelativeToRect:positioningRect ofView:positioningView edgeType:edgeType];
+        [self.windowPopup rearrangePopoverWithNewContentViewFrame:newFrame positioningRect:rect];
     } else {
-        [self.viewPopup showRelativeToRect:positioningRect ofView:positioningView edgeType:edgeType];
+        [self.viewPopup rearrangePopoverWithNewContentViewFrame:newFrame positioningRect:rect];
+    }
+}
+
+/**
+ * Display the popover relative to the rect of positioning view
+ *
+ * @param rect is the rect that popover will be displayed relatively to.
+ * @param positioningView is the view that popover will be displayed relatively to.
+ * @param edgeType 'position' that the popover should be displayed.
+ */
+- (void)showRelativeToRect:(NSRect)rect ofView:(NSView *)positioningView edgeType:(FLOPopoverEdgeType)edgeType {
+    if (self.popupType == FLOWindowPopover) {
+        [self.windowPopup showRelativeToRect:rect ofView:positioningView edgeType:edgeType];
+    } else {
+        [self.viewPopup showRelativeToRect:rect ofView:positioningView edgeType:edgeType];
+    }
+}
+
+/**
+ * Dipslay the popover at the given rect with selected view.
+ *
+ * @param positioningView the selected view that popover should be displayed at.
+ * @param rect the given rect that popover should be displayed at.
+ */
+- (void)showRelativeToView:(NSView *)positioningView withRect:(NSRect)rect {
+    if (self.popupType == FLOWindowPopover) {
+        [self.windowPopup showRelativeToView:positioningView withRect:rect edgeType:FLOPopoverEdgeTypeBelowLeftEdge];
+    } else {
+        [self.viewPopup showRelativeToView:positioningView withRect:rect edgeType:FLOPopoverEdgeTypeBelowLeftEdge];
     }
 }
 
@@ -213,7 +250,11 @@
 #pragma mark - Utilities
 #pragma mark -
 - (IBAction)closePopover:(FLOPopover *)sender {
-    // code ...
+    if (self.popupType == FLOWindowPopover) {
+        [self.windowPopup closePopover:sender];
+    } else {
+        [self.viewPopup closePopover:sender];
+    }
 }
 
 - (void)closePopover:(FLOPopover *)sender completion:(void(^)(void))complete {

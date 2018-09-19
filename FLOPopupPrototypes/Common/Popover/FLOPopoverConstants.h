@@ -11,6 +11,7 @@
 
 #define FLO_CONST_SHOULD_USE_ANIMATION_FRAME
 #define FLO_CONST_ANIMATION_TIME_INTERVAL_STANDARD                                          0.2f
+#define FLO_CONST_POPOVER_BOTTOM_OFFSET                                                     5.0f
 
 typedef NS_ENUM(NSInteger, FLOPopoverType) {
     FLOWindowPopover,
@@ -18,15 +19,53 @@ typedef NS_ENUM(NSInteger, FLOPopoverType) {
 };
 
 typedef NS_ENUM(NSInteger, FLOPopoverEdgeType) {
-    FLOPopoverEdgeTypeHorizontalAboveLeftEdge,
-    FLOPopoverEdgeTypeHorizontalAboveRightEdge,
-    FLOPopoverEdgeTypeHorizontalBelowLeftEdge,
-    FLOPopoverEdgeTypeHorizontalBelowRightEdge,
-    FLOPopoverEdgeTypeVerticalBackwardBottomEdge,
-    FLOPopoverEdgeTypeVerticalBackwardTopEdge,
-    FLOPopoverEdgeTypeVerticalForwardBottomEdge,
-    FLOPopoverEdgeTypeVerticalForwardTopEdge,
-    FLOPopoverEdgeTypeHorizontalBelowCenter
+    // Popover will be displayed ABOVE of the selected view,
+    // with the LEFT EDGE of popover stays at the LEFT EDGE of positioning rect (rect of selected view)
+    FLOPopoverEdgeTypeAboveLeftEdge,
+    
+    // Popover will be displayed ABOVE of the selected view,
+    // with the RIGHT EDGE of popover stays at the RIGHT EDGE of positioning rect (rect of selected view)
+    FLOPopoverEdgeTypeAboveRightEdge,
+    
+    // Popover will be displayed BELOW of the selected view,
+    // with the LEFT EDGE of popover stays at the LEFT EDGE of positioning rect (rect of selected view)
+    FLOPopoverEdgeTypeBelowLeftEdge,
+    
+    // Popover will be displayed BELOW of the selected view,
+    // with the RIGHT EDGE of popover stays at the RIGHT EDGE of positioning rect (rect of selected view)
+    FLOPopoverEdgeTypeBelowRightEdge,
+    
+    // Popover will be displayed at BACKWARD of the selected view,
+    // with the BOTTOM EDGE of popover stays at the BOTTOM EDGE of positioning rect (rect of selected view)
+    FLOPopoverEdgeTypeBackwardBottomEdge,
+    
+    // Popover will be displayed at BACKWARD of the selected view,
+    // with the TOP EDGE of popover stays at the TOP EDGE of positioning rect (rect of selected view)
+    FLOPopoverEdgeTypeBackwardTopEdge,
+    
+    // Popover will be displayed at FORWARD of the selected view,
+    // with the BOTTOM EDGE of popover stays at the BOTTOM EDGE of positioning rect (rect of selected view)
+    FLOPopoverEdgeTypeForwardBottomEdge,
+    
+    // Popover will be displayed at FORWARD of the selected view,
+    // with the TOP EDGE of popover stays at the TOP EDGE of positioning rect (rect of selected view)
+    FLOPopoverEdgeTypeForwardTopEdge,
+    
+    // Popover will be displayed ABOVE of the selected view,
+    // with the CENTER HORIZONTAL POINT of popover stays at the CENTER HORIZONTAL POINT of positioning rect (rect of selected view)
+    FLOPopoverEdgeTypeAboveCenter,
+    
+    // Popover will be displayed BELOW of the selected view,
+    // with the CENTER HORIZONTAL POINT of popover stays at the CENTER HORIZONTAL POINT of positioning rect (rect of selected view)
+    FLOPopoverEdgeTypeBelowCenter,
+    
+    // Popover will be displayed BACKWARD of the selected view,
+    // with the CENTER VERTICAL POINT of popover stays at the CENTER VERTICAL POINT of positioning rect (rect of selected view)
+    FLOPopoverEdgeTypeBackwardCenter,
+    
+    // Popover will be displayed FORWARD of the selected view,
+    // with the CENTER VERTICAL POINT of popover stays at the CENTER VERTICAL POINT of positioning rect (rect of selected view)
+    FLOPopoverEdgeTypeForwardCenter,
 };
 
 typedef NS_ENUM(NSInteger, FLOPopoverAppearance) {

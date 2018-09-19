@@ -30,9 +30,17 @@
          NSRunningApplication *app = [notif.userInfo objectForKey:NSWorkspaceApplicationKey];
          
          if (![app.bundleIdentifier isEqualToString:[[NSBundle mainBundle] bundleIdentifier]]) {
-             DLog(@"NSWorkspaceDidActivateApplicationNotification name: %@ - bundle: %@", app.localizedName, app.bundleIdentifier);
-             
-             self._lastBundleIdentifier = app.bundleIdentifier;
+             if ([[BaseWindowController sharedInstance] windowInDesktopMode]) {
+                 DLog(@"NSWorkspaceDidActivateApplicationNotification name: %@ - bundle: %@", app.localizedName, app.bundleIdentifier);
+                 
+                 self._lastBundleIdentifier = app.bundleIdentifier;
+                 
+                 [[BaseWindowController sharedInstance] hideChildenWindowsOnDeactivate];
+                 
+                 if ([self isEntitlementAppFocused]) {
+                     [[BaseWindowController sharedInstance] hideOtherAppsExceptThoseInside];
+                 }
+             }
          }
      }];
 }
@@ -124,6 +132,7 @@
     if (obj != nil) {
         result = [obj boolValue];
     }
+    
     return result;
 }
 

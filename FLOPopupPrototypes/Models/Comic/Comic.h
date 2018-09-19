@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSString *shortDesc;
 @property (nonatomic, strong) NSString *longDesc;
+@property (nonatomic, strong) NSMutableArray<Comic *> *subComics;
 
 - (instancetype)initWithName:(NSString *)name shortDesc:(NSString *)shortDesc longDesc:(NSString *)longDesc
                     imageUrl:(NSString *)imageUrl pageUrl:(NSString *)pageUrl;
