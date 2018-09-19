@@ -166,7 +166,7 @@
     
     CGFloat positioningRectX = visibleRect.size.width - contentViewRect.size.width - verticalMargin / 2;
     CGFloat positioningRectY = visibleRect.size.height - menuHeight - verticalMargin / 2 - contentViewHeight;
-    NSRect positioningRect = [self.btnShowDataMix.window convertRectToScreen:NSMakeRect(positioningRectX, positioningRectY, 0.0f, 0.0f)];
+    NSRect positioningRect = NSMakeRect(positioningRectX, positioningRectY, 0.0f, 0.0f);
     
     [self._popoverMix rearrangePopoverWithNewContentViewFrame:contentViewRect positioningRect:positioningRect];
 }
@@ -329,7 +329,7 @@
     
     CGFloat positioningRectX = visibleRect.size.width - contentViewRect.size.width - verticalMargin / 2;
     CGFloat positioningRectY = visibleRect.size.height - menuHeight - verticalMargin / 2 - contentViewHeight;
-    NSRect positioningRect = [sender.window convertRectToScreen:NSMakeRect(positioningRectX, positioningRectY, 0.0f, 0.0f)];
+    NSRect positioningRect = NSMakeRect(positioningRectX, positioningRectY, 0.0f, 0.0f);
     
     [self._popoverMix setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationRightToLeft];
     

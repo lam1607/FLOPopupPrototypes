@@ -31,11 +31,11 @@
 
 @property (nonatomic, strong) NSWindow *popoverWindow;
 @property (nonatomic, assign) NSWindowLevel popoverWindowLevel;
-@property (nonatomic, assign) NSRect popoverOriginalRect;
-@property (nonatomic, assign) BOOL isRelativeToRectOfView;
 @property (nonatomic, assign) CGFloat popoverVerticalMargins;
 @property (nonatomic, assign) BOOL popoverDidMove;
 
+@property (nonatomic, assign) BOOL isRelativeToRectOfView;
+@property (nonatomic, strong) NSView *positioningVirtualView;
 @property (nonatomic, assign) BOOL applicationWindowDidChange;
 
 @property (nonatomic, strong) NSView *contentView;
@@ -101,6 +101,9 @@
     _applicationEvent = nil;
     _contentViewController = nil;
     _contentView = nil;
+    
+    [self.positioningVirtualView removeFromSuperview];
+    self.positioningVirtualView = nil;
     
     [self.backgroundView removeFromSuperview];
     self.backgroundView = nil;
@@ -198,6 +201,82 @@
     }
 }
 
+- (void)setupPositioningVirtualViewWithView:(NSView *)positioningView positioningRect:(NSRect)positioningRect {
+    if (self.isRelativeToRectOfView == NO) {
+        if (self.positioningVirtualView == nil) {
+            self.positioningVirtualView = [[NSView alloc] initWithFrame:NSZeroRect];
+            self.positioningVirtualView.wantsLayer = YES;
+            self.positioningVirtualView.layer.backgroundColor = [NSColor.clearColor CGColor];
+            self.positioningVirtualView.translatesAutoresizingMaskIntoConstraints = NO;
+            
+            [_appMainWindow.contentView addSubview:self.positioningVirtualView];
+            
+            CGFloat virtualViewWidth = 1.0f;
+            CGFloat virtualViewHeight = 1.0f;
+            NSRect visibleRect = [_appMainWindow.contentView visibleRect];
+            NSSize contentViewSize = NSEqualSizes(self.contentSize, NSZeroSize) ? self.contentView.frame.size : self.contentSize;
+            
+            NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.positioningVirtualView
+                                                                   attribute:NSLayoutAttributeTop
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:positioningView.window.contentView
+                                                                   attribute:NSLayoutAttributeTop
+                                                                  multiplier:1
+                                                                    constant:(visibleRect.size.height + virtualViewHeight - positioningRect.origin.y - contentViewSize.height)];
+            
+            if (positioningRect.origin.x > (positioningView.window.frame.size.width / 2)) {
+                NSLayoutConstraint *trailing = [NSLayoutConstraint constraintWithItem:positioningView.window.contentView
+                                                                            attribute:NSLayoutAttributeTrailing
+                                                                            relatedBy:NSLayoutRelationEqual
+                                                                               toItem:self.positioningVirtualView
+                                                                            attribute:NSLayoutAttributeTrailing
+                                                                           multiplier:1
+                                                                             constant:(visibleRect.size.width + virtualViewWidth - positioningRect.origin.x)];
+                
+                [top setActive:YES];
+                [trailing setActive:YES];
+                
+                [positioningView.window.contentView addConstraints:@[top, trailing]];
+            } else {
+                NSLayoutConstraint *leading = [NSLayoutConstraint constraintWithItem:self.positioningVirtualView
+                                                                           attribute:NSLayoutAttributeLeading
+                                                                           relatedBy:NSLayoutRelationEqual
+                                                                              toItem:positioningView.window.contentView
+                                                                           attribute:NSLayoutAttributeLeading
+                                                                          multiplier:1
+                                                                            constant:(positioningRect.origin.x + virtualViewWidth)];
+                
+                [top setActive:YES];
+                [leading setActive:YES];
+                
+                [positioningView.window.contentView addConstraints:@[top, leading]];
+            }
+            
+            NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.positioningVirtualView
+                                                                     attribute:NSLayoutAttributeWidth
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:nil
+                                                                     attribute:NSLayoutAttributeWidth
+                                                                    multiplier:1
+                                                                      constant:virtualViewWidth];
+            NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.positioningVirtualView
+                                                                      attribute:NSLayoutAttributeHeight
+                                                                      relatedBy:NSLayoutRelationEqual
+                                                                         toItem:nil
+                                                                      attribute:NSLayoutAttributeHeight
+                                                                     multiplier:1
+                                                                       constant:virtualViewHeight];
+            
+            [width setActive:YES];
+            [height setActive:YES];
+            
+            [self.positioningVirtualView addConstraints:@[width, height]];
+        }
+        
+        [self.positioningVirtualView setHidden:NO];
+    }
+}
+
 #pragma mark -
 #pragma mark - Display
 #pragma mark -
@@ -219,7 +298,6 @@
     [self.contentView setFrame:newFrame];
     self.originalViewSize = newFrame.size;
     self.contentSize = newFrame.size;
-    self.positioningRect = rect;
     
     [self showIfNeeded:NO];
 }
@@ -269,7 +347,9 @@
     
     self.isRelativeToRectOfView = NO;
     
-    self.positioningRect = rect;
+    [self setupPositioningVirtualViewWithView:positioningView positioningRect:rect];
+    
+    self.positioningRect = (self.positioningVirtualView != nil) ? self.positioningVirtualView.bounds : NSZeroRect;
     self.positioningView = positioningView;
     self.anchorPoint = CGPointMake(0.0f, 0.0f);
     
@@ -296,12 +376,15 @@
         
         self.backgroundView.popoverOrigin = positionOnScreenRect;
     } else {
-        self.backgroundView.popoverOrigin = self.positioningRect;
+        NSRect windowRelativeRect = [self.positioningVirtualView convertRect:[self.positioningVirtualView alignmentRectForFrame:self.positioningRect] toView:nil];
+        NSRect positionOnScreenRect = [self.positioningVirtualView.window convertRectToScreen:windowRelativeRect];
+        
+        self.backgroundView.popoverOrigin = positionOnScreenRect;
     }
     
-    self.originalViewSize = self.contentView.frame.size;
+    self.originalViewSize = NSEqualSizes(self.originalViewSize, NSZeroSize) ? self.contentView.frame.size : self.originalViewSize;
     
-    NSSize contentViewSize = (NSEqualSizes(self.contentSize, NSZeroSize) || NSEqualSizes(self.contentSize, self.originalViewSize)) ? self.originalViewSize : self.contentSize;
+    NSSize contentViewSize = NSEqualSizes(self.contentSize, NSZeroSize) ? self.originalViewSize : self.contentSize;
     NSRectEdge popoverEdge = self.preferredEdge;
     NSRect popoverScreenRect = [self popoverRect];
     
@@ -341,13 +424,10 @@
     
     self.popoverWindow.level = self.popoverWindowLevel;
     
+    self.popoverVerticalMargins = _appMainWindow.contentView.visibleRect.size.height + FLO_CONST_POPOVER_BOTTOM_OFFSET - NSMaxY([_appMainWindow convertRectFromScreen:popoverScreenRect]);
+    
     if (needed) {
         _popoverTempWindow = self.popoverWindow;
-        
-        if (NSEqualRects(self.popoverOriginalRect, NSZeroRect)) {
-            self.popoverOriginalRect = popoverScreenRect;
-            self.popoverVerticalMargins = _appMainWindow.frame.size.height - popoverScreenRect.size.height;
-        }
         
         if (self.alwaysOnTop) {
             [[FLOPopoverWindow sharedInstance] setTopmostWindow:self.popoverWindow];
@@ -356,9 +436,6 @@
         [self setTopMostWindowIfNecessary];
         
         [self popoverShowing:YES animated:self.animated];
-    } else {
-        self.popoverOriginalRect = popoverScreenRect;
-        self.popoverVerticalMargins = _appMainWindow.frame.size.height - popoverScreenRect.size.height;
     }
 }
 
@@ -372,6 +449,12 @@
     
     [self.positioningView.window removeChildWindow:self.popoverWindow];
     [self.popoverWindow close];
+    
+    if (self.isRelativeToRectOfView == NO) {
+        if ([self.positioningVirtualView isDescendantOf:_appMainWindow.contentView]) {
+            [self.positioningVirtualView setHidden:YES];
+        }
+    }
     
     [self resetContentViewControllerRect:nil];
 }
@@ -395,7 +478,8 @@
     NSRect positionOnScreenRect = [self.positioningView.window convertRectToScreen:windowRelativeRect];
     
     if (self.isRelativeToRectOfView == NO) {
-        positionOnScreenRect = self.positioningRect;
+        windowRelativeRect = [self.positioningVirtualView convertRect:[self.positioningVirtualView alignmentRectForFrame:self.positioningRect] toView:nil];
+        positionOnScreenRect = [self.positioningVirtualView.window convertRectToScreen:windowRelativeRect];
     }
     
     NSSize contentViewSize = NSEqualSizes(self.contentSize, NSZeroSize) ? self.originalViewSize : self.contentSize;
@@ -599,7 +683,7 @@
         self.popoverWindow.alphaValue = 0.0f;
         
         [_animatedWindow makeKeyAndOrderFront:nil];
-
+        
         //============================================================================================================
         // Animation for snapshot view
         //============================================================================================================
@@ -780,11 +864,6 @@
         NSWindow *movedWindow = (NSWindow *) notification.object;
         
         if (movedWindow == _appMainWindow) {
-            if (self.isRelativeToRectOfView) {
-                self.positioningRect = (NSRect) { .origin = self.popoverWindow.frame.origin };
-                self.popoverOriginalRect = self.popoverWindow.frame;
-            }
-            
             self.applicationWindowDidChange = YES;
         }
     }
@@ -800,7 +879,7 @@
         NSRect popoverRect = [self popoverRectForEdge:self.preferredEdge];
         
         if (resizedWindow == _appMainWindow) {
-            CGFloat newHeight = resizedWindow.frame.size.height - self.popoverVerticalMargins;
+            CGFloat newHeight = resizedWindow.contentView.visibleRect.size.height - self.popoverVerticalMargins;
             CGFloat deltaHeight = popoverRect.size.height - newHeight;
             CGFloat popoverOriginX = popoverRect.origin.x;
             CGFloat popoverOriginY = popoverRect.origin.y + ((newHeight < self.originalViewSize.height) ? deltaHeight : 0.0f);
