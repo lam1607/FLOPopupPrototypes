@@ -8,14 +8,14 @@
 
 #import "HomeViewController.h"
 
+#import <FlowarePopover/FLOPopover.h>
+
 #import "BaseWindowController.h"
 
 #import "FilmsViewController.h"
 #import "NewsViewController.h"
 #import "DataViewController.h"
 #import "ComicsViewController.h"
-
-#import "FLOPopover.h"
 
 #import "AppDelegate.h"
 

@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 
-#import "FLOPopoverWindowController.h"
 #import "BaseWindowController.h"
 
 @interface AppDelegate ()

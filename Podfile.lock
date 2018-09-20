@@ -1,0 +1,16 @@
+PODS:
+  - FlowarePopover (0.1.0)
+
+DEPENDENCIES:
+  - FlowarePopover
+
+SPEC REPOS:
+  https://github.com/lam1607/FlowarePopover-Specs:
+    - FlowarePopover
+
+SPEC CHECKSUMS:
+  FlowarePopover: b6864286ce7fe380b8e7e0a83d024d66572b5306
+
+PODFILE CHECKSUM: 8ecd75d3b45c156674240bc7abac923885543b28
+
+COCOAPODS: 1.5.3

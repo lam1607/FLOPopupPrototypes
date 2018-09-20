@@ -7,21 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26C360E042BB985939BFF594 /* libPods-FLOPopupPrototypesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF47F6B29977F93441E78501 /* libPods-FLOPopupPrototypesTests.a */; };
+		421B8D34DD55D0860CB2C187 /* libPods-FLOPopupPrototypes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F262E31C633914C9DA5D73C /* libPods-FLOPopupPrototypes.a */; };
+		66CCB45F7C1963DF5FF56219 /* libPods-FLOPopupPrototypesUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEF1B13D86C81F0512A0EF /* libPods-FLOPopupPrototypesUITests.a */; };
 		A3F10523212AB45D008AD365 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F10522212AB45D008AD365 /* main.m */; };
 		A3F1052E212AB45D008AD365 /* FLOPopupPrototypesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1052D212AB45D008AD365 /* FLOPopupPrototypesTests.m */; };
 		A3F10539212AB45D008AD365 /* FLOPopupPrototypesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F10538212AB45D008AD365 /* FLOPopupPrototypesUITests.m */; };
 		A3F1055E212AB4F5008AD365 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1055D212AB4F5008AD365 /* AppDelegate.m */; };
 		A3F10561212AB519008AD365 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3F10560212AB519008AD365 /* Assets.xcassets */; };
 		A3F10569212AB5EB008AD365 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3F10568212AB5EB008AD365 /* Main.storyboard */; };
-		A3F1058E212AB69F008AD365 /* FLOWindowPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F10582212AB69F008AD365 /* FLOWindowPopup.m */; };
-		A3F10590212AB69F008AD365 /* FLOPopoverWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F10585212AB69F008AD365 /* FLOPopoverWindowController.m */; };
-		A3F10591212AB69F008AD365 /* FLOPopoverWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3F10586212AB69F008AD365 /* FLOPopoverWindowController.xib */; };
-		A3F10592212AB69F008AD365 /* FLOViewPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F10588212AB69F008AD365 /* FLOViewPopup.m */; };
-		A3F10594212AB69F008AD365 /* FLOPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1058D212AB69F008AD365 /* FLOPopover.m */; };
-		A3F105A3212ABA50008AD365 /* CABasicAnimation+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1059B212ABA50008AD365 /* CABasicAnimation+Extensions.m */; };
-		A3F105A4212ABA50008AD365 /* FLOKeyframeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1059D212ABA50008AD365 /* FLOKeyframeAnimation.m */; };
-		A3F105A5212ABA50008AD365 /* NSValue+FLOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1059E212ABA50008AD365 /* NSValue+FLOAdditions.m */; };
-		A3F105A6212ABA50008AD365 /* FLOGraphicsContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F1059F212ABA50008AD365 /* FLOGraphicsContext.m */; };
 		DE01F26D2150988B00D7C073 /* ComicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE01F26B2150988B00D7C073 /* ComicsViewController.m */; };
 		DE01F26E2150988B00D7C073 /* ComicsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE01F26C2150988B00D7C073 /* ComicsViewController.xib */; };
 		DE01F273215098DB00D7C073 /* ComicsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE01F272215098DB00D7C073 /* ComicsPresenter.m */; };
@@ -48,7 +42,6 @@
 		DEB1BCD32137FA030046E20E /* FilmCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEB1BCD12137FA030046E20E /* FilmCellView.xib */; };
 		DEB1BCD72137FD6D0046E20E /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB1BCD62137FD6D0046E20E /* Film.m */; };
 		DEB1BCDB2137FE6B0046E20E /* AbstractData.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB1BCDA2137FE6B0046E20E /* AbstractData.m */; };
-		DEB2828F212BED7700C98D05 /* NSColor+FLOAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */; };
 		DEC4DD63214A3DA2000D1D29 /* AppleScript.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC4DD62214A3DA2000D1D29 /* AppleScript.m */; };
 		DEC4DD66214A4320000D1D29 /* AppleScriptBridge.applescript in Sources */ = {isa = PBXBuildFile; fileRef = DEC4DD65214A4320000D1D29 /* AppleScriptBridge.applescript */; };
 		DEC4DD69214A43E6000D1D29 /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD68214A43E6000D1D29 /* AppleScriptObjC.framework */; };
@@ -61,9 +54,6 @@
 		DEC5A7D521394EDC008239AD /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5A7D421394EDC008239AD /* BaseService.m */; };
 		DEC5A7DA213950F7008239AD /* BaseRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC5A7D9213950F7008239AD /* BaseRepository.m */; };
 		DED501C5212E6A3B00A190F7 /* CustomNSOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = DED501C4212E6A3B00A190F7 /* CustomNSOutlineView.m */; };
-		DEE1CE7621465B2F007E7721 /* FLOPopoverUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE1CE7521465B2F007E7721 /* FLOPopoverUtils.m */; };
-		DEE1CE7921465D34007E7721 /* NSWindow+Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE1CE7821465D34007E7721 /* NSWindow+Animator.m */; };
-		DEF08515213FDD7A00C73F09 /* NSView+Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF08514213FDD7900C73F09 /* NSView+Animator.m */; };
 		DEFE5F91212BA7F800428ECE /* HomePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5F90212BA7F800428ECE /* HomePresenter.m */; };
 		DEFE5F96212BAF1C00428ECE /* DataCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5F95212BAF1C00428ECE /* DataCellView.m */; };
 		DEFE5F98212BAF2C00428ECE /* DataCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEFE5F97212BAF2C00428ECE /* DataCellView.xib */; };
@@ -77,7 +67,6 @@
 		DEFE5FC0212BC24C00428ECE /* DataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEFE5FBE212BC24C00428ECE /* DataViewController.xib */; };
 		DEFE5FC5212BC2A400428ECE /* DataPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5FC4212BC2A400428ECE /* DataPresenter.m */; };
 		DEFE5FCB212BC35100428ECE /* CustomNSTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5FCA212BC35100428ECE /* CustomNSTableRowView.m */; };
-		DEFE5FCE212BCA6A00428ECE /* FLOPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEFE5FCD212BCA6A00428ECE /* FLOPopoverBackgroundView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +87,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F262E31C633914C9DA5D73C /* libPods-FLOPopupPrototypes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FLOPopupPrototypes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		756688E59960DBC8AFA88DDE /* Pods-FLOPopupPrototypesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLOPopupPrototypesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FLOPopupPrototypesUITests/Pods-FLOPopupPrototypesUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9771380699BE2795A51AF1A9 /* Pods-FLOPopupPrototypesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLOPopupPrototypesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FLOPopupPrototypesTests/Pods-FLOPopupPrototypesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3F10513212AB45D008AD365 /* FLOPopupPrototypes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLOPopupPrototypes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3F10521212AB45D008AD365 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3F10522212AB45D008AD365 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -112,24 +104,8 @@
 		A3F1055D212AB4F5008AD365 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A3F10560212AB519008AD365 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A3F10568212AB5EB008AD365 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		A3F10581212AB69F008AD365 /* FLOViewPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOViewPopup.h; sourceTree = "<group>"; };
-		A3F10582212AB69F008AD365 /* FLOWindowPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOWindowPopup.m; sourceTree = "<group>"; };
-		A3F10584212AB69F008AD365 /* FLOPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOPopover.h; sourceTree = "<group>"; };
-		A3F10585212AB69F008AD365 /* FLOPopoverWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOPopoverWindowController.m; sourceTree = "<group>"; };
-		A3F10586212AB69F008AD365 /* FLOPopoverWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLOPopoverWindowController.xib; sourceTree = "<group>"; };
-		A3F10587212AB69F008AD365 /* FLOWindowPopup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOWindowPopup.h; sourceTree = "<group>"; };
-		A3F10588212AB69F008AD365 /* FLOViewPopup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOViewPopup.m; sourceTree = "<group>"; };
-		A3F10589212AB69F008AD365 /* FLOPopoverService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOPopoverService.h; sourceTree = "<group>"; };
-		A3F1058C212AB69F008AD365 /* FLOPopoverWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOPopoverWindowController.h; sourceTree = "<group>"; };
-		A3F1058D212AB69F008AD365 /* FLOPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOPopover.m; sourceTree = "<group>"; };
-		A3F1059B212ABA50008AD365 /* CABasicAnimation+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CABasicAnimation+Extensions.m"; sourceTree = "<group>"; };
-		A3F1059C212ABA50008AD365 /* FLOGraphicsContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOGraphicsContext.h; sourceTree = "<group>"; };
-		A3F1059D212ABA50008AD365 /* FLOKeyframeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOKeyframeAnimation.m; sourceTree = "<group>"; };
-		A3F1059E212ABA50008AD365 /* NSValue+FLOAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+FLOAdditions.m"; sourceTree = "<group>"; };
-		A3F1059F212ABA50008AD365 /* FLOGraphicsContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOGraphicsContext.m; sourceTree = "<group>"; };
-		A3F105A0212ABA50008AD365 /* CABasicAnimation+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CABasicAnimation+Extensions.h"; sourceTree = "<group>"; };
-		A3F105A1212ABA50008AD365 /* NSValue+FLOAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+FLOAdditions.h"; sourceTree = "<group>"; };
-		A3F105A2212ABA50008AD365 /* FLOKeyframeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOKeyframeAnimation.h; sourceTree = "<group>"; };
+		BE060D52E7E69448284BBDE9 /* Pods-FLOPopupPrototypes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLOPopupPrototypes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FLOPopupPrototypes/Pods-FLOPopupPrototypes.debug.xcconfig"; sourceTree = "<group>"; };
+		DCDF4019917EC83287D99EC3 /* Pods-FLOPopupPrototypesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLOPopupPrototypesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FLOPopupPrototypesTests/Pods-FLOPopupPrototypesTests.release.xcconfig"; sourceTree = "<group>"; };
 		DE01F26A2150988B00D7C073 /* ComicsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComicsViewController.h; sourceTree = "<group>"; };
 		DE01F26B2150988B00D7C073 /* ComicsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComicsViewController.m; sourceTree = "<group>"; };
 		DE01F26C2150988B00D7C073 /* ComicsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicsViewController.xib; sourceTree = "<group>"; };
@@ -190,8 +166,6 @@
 		DEB1BCD62137FD6D0046E20E /* Film.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
 		DEB1BCD92137FE6B0046E20E /* AbstractData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AbstractData.h; sourceTree = "<group>"; };
 		DEB1BCDA2137FE6B0046E20E /* AbstractData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AbstractData.m; sourceTree = "<group>"; };
-		DEB2828D212BED7700C98D05 /* NSColor+FLOAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSColor+FLOAdditions.h"; sourceTree = "<group>"; };
-		DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSColor+FLOAdditions.m"; sourceTree = "<group>"; };
 		DEC4DD61214A3DA2000D1D29 /* AppleScript.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleScript.h; sourceTree = "<group>"; };
 		DEC4DD62214A3DA2000D1D29 /* AppleScript.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppleScript.m; sourceTree = "<group>"; };
 		DEC4DD65214A4320000D1D29 /* AppleScriptBridge.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = AppleScriptBridge.applescript; sourceTree = "<group>"; };
@@ -205,7 +179,6 @@
 		DEC5A7CD2138EA03008239AD /* FilmsPresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmsPresenterProtocols.h; sourceTree = "<group>"; };
 		DEC5A7CE2138EA11008239AD /* FilmsPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilmsPresenter.h; sourceTree = "<group>"; };
 		DEC5A7CF2138EA11008239AD /* FilmsPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilmsPresenter.m; sourceTree = "<group>"; };
-		DEC5A7D121394790008239AD /* FLOPopoverConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLOPopoverConstants.h; sourceTree = "<group>"; };
 		DEC5A7D321394EDC008239AD /* BaseService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseService.h; sourceTree = "<group>"; };
 		DEC5A7D421394EDC008239AD /* BaseService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseService.m; sourceTree = "<group>"; };
 		DEC5A7D7213950CE008239AD /* BaseRepositoryProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseRepositoryProtocols.h; sourceTree = "<group>"; };
@@ -213,12 +186,6 @@
 		DEC5A7D9213950F7008239AD /* BaseRepository.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseRepository.m; sourceTree = "<group>"; };
 		DED501C3212E6A3B00A190F7 /* CustomNSOutlineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomNSOutlineView.h; sourceTree = "<group>"; };
 		DED501C4212E6A3B00A190F7 /* CustomNSOutlineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomNSOutlineView.m; sourceTree = "<group>"; };
-		DEE1CE7421465B2F007E7721 /* FLOPopoverUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLOPopoverUtils.h; sourceTree = "<group>"; };
-		DEE1CE7521465B2F007E7721 /* FLOPopoverUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLOPopoverUtils.m; sourceTree = "<group>"; };
-		DEE1CE7721465D34007E7721 /* NSWindow+Animator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSWindow+Animator.h"; sourceTree = "<group>"; };
-		DEE1CE7821465D34007E7721 /* NSWindow+Animator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+Animator.m"; sourceTree = "<group>"; };
-		DEF08513213FDD7900C73F09 /* NSView+Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Animator.h"; sourceTree = "<group>"; };
-		DEF08514213FDD7900C73F09 /* NSView+Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Animator.m"; sourceTree = "<group>"; };
 		DEFE5F8D212BA7AE00428ECE /* HomeViewProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewProtocols.h; sourceTree = "<group>"; };
 		DEFE5F8E212BA7DB00428ECE /* HomePresenterProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePresenterProtocols.h; sourceTree = "<group>"; };
 		DEFE5F8F212BA7F800428ECE /* HomePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePresenter.h; sourceTree = "<group>"; };
@@ -251,8 +218,10 @@
 		DEFE5FC4212BC2A400428ECE /* DataPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataPresenter.m; sourceTree = "<group>"; };
 		DEFE5FC9212BC35100428ECE /* CustomNSTableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNSTableRowView.h; sourceTree = "<group>"; };
 		DEFE5FCA212BC35100428ECE /* CustomNSTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNSTableRowView.m; sourceTree = "<group>"; };
-		DEFE5FCC212BCA6A00428ECE /* FLOPopoverBackgroundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLOPopoverBackgroundView.h; sourceTree = "<group>"; };
-		DEFE5FCD212BCA6A00428ECE /* FLOPopoverBackgroundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLOPopoverBackgroundView.m; sourceTree = "<group>"; };
+		DF47F6B29977F93441E78501 /* libPods-FLOPopupPrototypesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FLOPopupPrototypesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E39ADA37FD0B462881340EDA /* Pods-FLOPopupPrototypesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLOPopupPrototypesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FLOPopupPrototypesUITests/Pods-FLOPopupPrototypesUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		EADEF1B13D86C81F0512A0EF /* libPods-FLOPopupPrototypesUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FLOPopupPrototypesUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F165BDF0DB90463B1A73940F /* Pods-FLOPopupPrototypes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLOPopupPrototypes.release.xcconfig"; path = "Pods/Target Support Files/Pods-FLOPopupPrototypes/Pods-FLOPopupPrototypes.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +235,7 @@
 				DEC4DD6D214A43F3000D1D29 /* Quartz.framework in Frameworks */,
 				DEC4DD6B214A43ED000D1D29 /* Cocoa.framework in Frameworks */,
 				DEC4DD69214A43E6000D1D29 /* AppleScriptObjC.framework in Frameworks */,
+				421B8D34DD55D0860CB2C187 /* libPods-FLOPopupPrototypes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +243,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26C360E042BB985939BFF594 /* libPods-FLOPopupPrototypesTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,12 +251,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66CCB45F7C1963DF5FF56219 /* libPods-FLOPopupPrototypesUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A9799C95688D23C57BF7CCA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE060D52E7E69448284BBDE9 /* Pods-FLOPopupPrototypes.debug.xcconfig */,
+				F165BDF0DB90463B1A73940F /* Pods-FLOPopupPrototypes.release.xcconfig */,
+				9771380699BE2795A51AF1A9 /* Pods-FLOPopupPrototypesTests.debug.xcconfig */,
+				DCDF4019917EC83287D99EC3 /* Pods-FLOPopupPrototypesTests.release.xcconfig */,
+				E39ADA37FD0B462881340EDA /* Pods-FLOPopupPrototypesUITests.debug.xcconfig */,
+				756688E59960DBC8AFA88DDE /* Pods-FLOPopupPrototypesUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A3F1050A212AB45D008AD365 = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +279,7 @@
 				A3F10537212AB45D008AD365 /* FLOPopupPrototypesUITests */,
 				A3F10514212AB45D008AD365 /* Products */,
 				DEC4DD67214A43E5000D1D29 /* Frameworks */,
+				0A9799C95688D23C57BF7CCA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -393,54 +379,9 @@
 		A3F1057F212AB69F008AD365 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A3F10580212AB69F008AD365 /* Popover */,
 				DEC4DD60214A3D77000D1D29 /* Scripts */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		A3F10580212AB69F008AD365 /* Popover */ = {
-			isa = PBXGroup;
-			children = (
-				A3F1059A212ABA50008AD365 /* extensions */,
-				DEC5A7D121394790008239AD /* FLOPopoverConstants.h */,
-				A3F10584212AB69F008AD365 /* FLOPopover.h */,
-				A3F1058D212AB69F008AD365 /* FLOPopover.m */,
-				A3F10589212AB69F008AD365 /* FLOPopoverService.h */,
-				A3F10581212AB69F008AD365 /* FLOViewPopup.h */,
-				A3F10588212AB69F008AD365 /* FLOViewPopup.m */,
-				A3F10587212AB69F008AD365 /* FLOWindowPopup.h */,
-				A3F10582212AB69F008AD365 /* FLOWindowPopup.m */,
-				DEFE5FCC212BCA6A00428ECE /* FLOPopoverBackgroundView.h */,
-				DEFE5FCD212BCA6A00428ECE /* FLOPopoverBackgroundView.m */,
-				DEE1CE7421465B2F007E7721 /* FLOPopoverUtils.h */,
-				DEE1CE7521465B2F007E7721 /* FLOPopoverUtils.m */,
-				A3F1058C212AB69F008AD365 /* FLOPopoverWindowController.h */,
-				A3F10585212AB69F008AD365 /* FLOPopoverWindowController.m */,
-				A3F10586212AB69F008AD365 /* FLOPopoverWindowController.xib */,
-			);
-			path = Popover;
-			sourceTree = "<group>";
-		};
-		A3F1059A212ABA50008AD365 /* extensions */ = {
-			isa = PBXGroup;
-			children = (
-				A3F1059C212ABA50008AD365 /* FLOGraphicsContext.h */,
-				A3F1059F212ABA50008AD365 /* FLOGraphicsContext.m */,
-				A3F105A0212ABA50008AD365 /* CABasicAnimation+Extensions.h */,
-				A3F1059B212ABA50008AD365 /* CABasicAnimation+Extensions.m */,
-				A3F105A2212ABA50008AD365 /* FLOKeyframeAnimation.h */,
-				A3F1059D212ABA50008AD365 /* FLOKeyframeAnimation.m */,
-				DEB2828D212BED7700C98D05 /* NSColor+FLOAdditions.h */,
-				DEB2828E212BED7700C98D05 /* NSColor+FLOAdditions.m */,
-				A3F105A1212ABA50008AD365 /* NSValue+FLOAdditions.h */,
-				A3F1059E212ABA50008AD365 /* NSValue+FLOAdditions.m */,
-				DEF08513213FDD7900C73F09 /* NSView+Animator.h */,
-				DEF08514213FDD7900C73F09 /* NSView+Animator.m */,
-				DEE1CE7721465D34007E7721 /* NSWindow+Animator.h */,
-				DEE1CE7821465D34007E7721 /* NSWindow+Animator.m */,
-			);
-			path = extensions;
 			sourceTree = "<group>";
 		};
 		DE01F2672150984800D7C073 /* ComicsViewController */ = {
@@ -770,6 +711,9 @@
 				DEC4DD6C214A43F2000D1D29 /* Quartz.framework */,
 				DEC4DD6A214A43ED000D1D29 /* Cocoa.framework */,
 				DEC4DD68214A43E6000D1D29 /* AppleScriptObjC.framework */,
+				0F262E31C633914C9DA5D73C /* libPods-FLOPopupPrototypes.a */,
+				DF47F6B29977F93441E78501 /* libPods-FLOPopupPrototypesTests.a */,
+				EADEF1B13D86C81F0512A0EF /* libPods-FLOPopupPrototypesUITests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -950,6 +894,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3F1053D212AB45D008AD365 /* Build configuration list for PBXNativeTarget "FLOPopupPrototypes" */;
 			buildPhases = (
+				D974772907690D57FD0E8F44 /* [CP] Check Pods Manifest.lock */,
 				A3F1050F212AB45D008AD365 /* Sources */,
 				A3F10510212AB45D008AD365 /* Frameworks */,
 				A3F10511212AB45D008AD365 /* Resources */,
@@ -967,6 +912,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3F10540212AB45D008AD365 /* Build configuration list for PBXNativeTarget "FLOPopupPrototypesTests" */;
 			buildPhases = (
+				050EA9FEDAD08CEB161CC946 /* [CP] Check Pods Manifest.lock */,
 				A3F10525212AB45D008AD365 /* Sources */,
 				A3F10526212AB45D008AD365 /* Frameworks */,
 				A3F10527212AB45D008AD365 /* Resources */,
@@ -985,6 +931,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3F10543212AB45D008AD365 /* Build configuration list for PBXNativeTarget "FLOPopupPrototypesUITests" */;
 			buildPhases = (
+				FAA74BDCA661A8EE35CE1DCD /* [CP] Check Pods Manifest.lock */,
 				A3F10530212AB45D008AD365 /* Sources */,
 				A3F10531212AB45D008AD365 /* Frameworks */,
 				A3F10532212AB45D008AD365 /* Resources */,
@@ -1061,7 +1008,6 @@
 				DEB1BCCA2137F4D00046E20E /* FilmsViewController.xib in Resources */,
 				DEB1BCD32137FA030046E20E /* FilmCellView.xib in Resources */,
 				DEFE5F98212BAF2C00428ECE /* DataCellView.xib in Resources */,
-				A3F10591212AB69F008AD365 /* FLOPopoverWindowController.xib in Resources */,
 				DEFE5FC0212BC24C00428ECE /* DataViewController.xib in Resources */,
 				DEFE5FA1212BB01500428ECE /* MockData.plist in Resources */,
 				DE0F1190212FF95D002F393B /* NewsViewController.xib in Resources */,
@@ -1085,6 +1031,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		050EA9FEDAD08CEB161CC946 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FLOPopupPrototypesTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D974772907690D57FD0E8F44 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FLOPopupPrototypes-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAA74BDCA661A8EE35CE1DCD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FLOPopupPrototypesUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A3F1050F212AB45D008AD365 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1095,22 +1098,18 @@
 				DE01F2782150DDCA00D7C073 /* ComicCellView.m in Sources */,
 				DE01F273215098DB00D7C073 /* ComicsPresenter.m in Sources */,
 				DEC5A7D521394EDC008239AD /* BaseService.m in Sources */,
-				A3F105A5212ABA50008AD365 /* NSValue+FLOAdditions.m in Sources */,
 				DE0F11A921300CED002F393B /* NewsCellView.m in Sources */,
-				A3F1058E212AB69F008AD365 /* FLOWindowPopup.m in Sources */,
 				DEC4DD66214A4320000D1D29 /* AppleScriptBridge.applescript in Sources */,
 				DE75B830212AD1F300CA6742 /* Utils.m in Sources */,
 				DEFE5FCB212BC35100428ECE /* CustomNSTableRowView.m in Sources */,
 				DEFE5F96212BAF1C00428ECE /* DataCellView.m in Sources */,
 				DEFE5FC5212BC2A400428ECE /* DataPresenter.m in Sources */,
-				DEF08515213FDD7A00C73F09 /* NSView+Animator.m in Sources */,
 				DE15EC5C2138E2EA008E792D /* FilmRepository.m in Sources */,
 				DE0F118F212FF95D002F393B /* NewsViewController.m in Sources */,
 				DEC4DD63214A3DA2000D1D29 /* AppleScript.m in Sources */,
 				DEC5A7DA213950F7008239AD /* BaseRepository.m in Sources */,
 				DEB1BCD22137FA030046E20E /* FilmCellView.m in Sources */,
 				DEFE5FB9212BB5B400428ECE /* BaseWindowController.m in Sources */,
-				A3F105A3212ABA50008AD365 /* CABasicAnimation+Extensions.m in Sources */,
 				DEFE5F9F212BAFD500428ECE /* ComicService.m in Sources */,
 				DED501C5212E6A3B00A190F7 /* CustomNSOutlineView.m in Sources */,
 				DE0F119A212FFBF9002F393B /* NewsService.m in Sources */,
@@ -1118,29 +1117,20 @@
 				DEFE5FA7212BB06000428ECE /* ComicRepository.m in Sources */,
 				DEFE5FB6212BB17E00428ECE /* DataCellPresenter.m in Sources */,
 				DE75B83B212AD3E500CA6742 /* HomeViewController.m in Sources */,
-				DEFE5FCE212BCA6A00428ECE /* FLOPopoverBackgroundView.m in Sources */,
 				DEC5A7D02138EA11008239AD /* FilmsPresenter.m in Sources */,
 				DE15EC612138E536008E792D /* FilmCellPresenter.m in Sources */,
 				DEB1BCC92137F4D00046E20E /* FilmsViewController.m in Sources */,
 				DEFE5FBF212BC24C00428ECE /* DataViewController.m in Sources */,
 				DEB1BCD72137FD6D0046E20E /* Film.m in Sources */,
 				DEFE5F91212BA7F800428ECE /* HomePresenter.m in Sources */,
-				A3F10594212AB69F008AD365 /* FLOPopover.m in Sources */,
 				DE0F11A3212FFE76002F393B /* NewsRepository.m in Sources */,
 				DE01F26D2150988B00D7C073 /* ComicsViewController.m in Sources */,
-				A3F105A4212ABA50008AD365 /* FLOKeyframeAnimation.m in Sources */,
 				DE0F11A0212FFC75002F393B /* News.m in Sources */,
-				DEB2828F212BED7700C98D05 /* NSColor+FLOAdditions.m in Sources */,
-				DEE1CE7621465B2F007E7721 /* FLOPopoverUtils.m in Sources */,
 				A3F1055E212AB4F5008AD365 /* AppDelegate.m in Sources */,
 				A3F10523212AB45D008AD365 /* main.m in Sources */,
 				DE75B841212AD45F00CA6742 /* BaseViewController.m in Sources */,
 				DE0F1194212FF9C0002F393B /* NewsPresenter.m in Sources */,
-				DEE1CE7921465D34007E7721 /* NSWindow+Animator.m in Sources */,
-				A3F10592212AB69F008AD365 /* FLOViewPopup.m in Sources */,
 				DEFE5FAC212BB09A00428ECE /* Comic.m in Sources */,
-				A3F10590212AB69F008AD365 /* FLOPopoverWindowController.m in Sources */,
-				A3F105A6212ABA50008AD365 /* FLOGraphicsContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1285,6 +1275,7 @@
 		};
 		A3F1053E212AB45D008AD365 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE060D52E7E69448284BBDE9 /* Pods-FLOPopupPrototypes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "FLOPopupPrototypes/Supporting-Files/FLOPopupPrototypes.entitlements";
@@ -1301,6 +1292,7 @@
 		};
 		A3F1053F212AB45D008AD365 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F165BDF0DB90463B1A73940F /* Pods-FLOPopupPrototypes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "FLOPopupPrototypes/Supporting-Files/FLOPopupPrototypes.entitlements";
@@ -1317,6 +1309,7 @@
 		};
 		A3F10541212AB45D008AD365 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9771380699BE2795A51AF1A9 /* Pods-FLOPopupPrototypesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1331,6 +1324,7 @@
 		};
 		A3F10542212AB45D008AD365 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCDF4019917EC83287D99EC3 /* Pods-FLOPopupPrototypesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1345,6 +1339,7 @@
 		};
 		A3F10544212AB45D008AD365 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E39ADA37FD0B462881340EDA /* Pods-FLOPopupPrototypesUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1358,6 +1353,7 @@
 		};
 		A3F10545212AB45D008AD365 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 756688E59960DBC8AFA88DDE /* Pods-FLOPopupPrototypesUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
