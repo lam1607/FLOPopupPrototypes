@@ -1,5 +1,5 @@
 PODS:
-  - FlowarePopover (0.1.3)
+  - FlowarePopover (0.1.4)
 
 DEPENDENCIES:
   - FlowarePopover
@@ -9,7 +9,7 @@ SPEC REPOS:
     - FlowarePopover
 
 SPEC CHECKSUMS:
-  FlowarePopover: 5bc3b8684f739affac263057a31242c2010a8511
+  FlowarePopover: f092ac9cabdc6c4279c68f3d1bd8fd73359f9988
 
 PODFILE CHECKSUM: 3d3f1bc40a02e7c3a945efb29418bec5e4126c32
 
