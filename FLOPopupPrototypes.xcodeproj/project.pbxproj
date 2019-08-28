@@ -79,6 +79,7 @@
 		DE0B206023165F6C00B02A9A /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0B201523165F6C00B02A9A /* Notification.m */; };
 		DE0B206123165F6C00B02A9A /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0B201823165F6C00B02A9A /* NotificationService.m */; };
 		DE0B206223165F6C00B02A9A /* NotificationObservers.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0B201D23165F6C00B02A9A /* NotificationObservers.m */; };
+		DE0B20642316712100B02A9A /* prototypesAppcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = DE0B20632316712100B02A9A /* prototypesAppcast.xml */; };
 		DEC4DD69214A43E6000D1D29 /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD68214A43E6000D1D29 /* AppleScriptObjC.framework */; };
 		DEC4DD6B214A43ED000D1D29 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD6A214A43ED000D1D29 /* Cocoa.framework */; };
 		DEC4DD6D214A43F3000D1D29 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD6C214A43F2000D1D29 /* Quartz.framework */; };
@@ -266,6 +267,7 @@
 		DE0B201B23165F6C00B02A9A /* NotificationObservers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationObservers.h; sourceTree = "<group>"; };
 		DE0B201C23165F6C00B02A9A /* NotificationObserversProtocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationObserversProtocols.h; sourceTree = "<group>"; };
 		DE0B201D23165F6C00B02A9A /* NotificationObservers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationObservers.m; sourceTree = "<group>"; };
+		DE0B20632316712100B02A9A /* prototypesAppcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = prototypesAppcast.xml; sourceTree = "<group>"; };
 		DE75B832212AD25B00CA6742 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		DEC4DD68214A43E6000D1D29 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
 		DEC4DD6A214A43ED000D1D29 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -989,8 +991,8 @@
 			isa = PBXGroup;
 			children = (
 				DE0B200423165F6C00B02A9A /* DataProviderProtocols.h */,
-				DE0B200323165F6C00B02A9A /* DataProvider.m */,
 				DE0B200523165F6C00B02A9A /* DataProvider.h */,
+				DE0B200323165F6C00B02A9A /* DataProvider.m */,
 			);
 			path = Provider;
 			sourceTree = "<group>";
@@ -1080,6 +1082,7 @@
 				A3F10521212AB45D008AD365 /* Info.plist */,
 				A3F10522212AB45D008AD365 /* main.m */,
 				A3F10524212AB45D008AD365 /* FLOPopupPrototypes.entitlements */,
+				DE0B20632316712100B02A9A /* prototypesAppcast.xml */,
 			);
 			path = "Supporting-Files";
 			sourceTree = "<group>";
@@ -1174,7 +1177,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1223,6 +1226,7 @@
 				DEFE5FA1212BB01500428ECE /* MockData.plist in Resources */,
 				DE0B204D23165F6C00B02A9A /* NewsCellView.xib in Resources */,
 				DE0B203A23165F6C00B02A9A /* ComicsViewController.xib in Resources */,
+				DE0B20642316712100B02A9A /* prototypesAppcast.xml in Resources */,
 				DE0B204123165F6C00B02A9A /* FilmsViewController.xib in Resources */,
 				DE0B203623165F6C00B02A9A /* Main.storyboard in Resources */,
 				DE0B205023165F6C00B02A9A /* FilmCellView.xib in Resources */,
@@ -1538,7 +1542,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/FLOPopupPrototypes/Supporting-Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = Floware.FLOPopupPrototypes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.floware.FLOPopupPrototypes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1555,7 +1559,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/FLOPopupPrototypes/Supporting-Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = Floware.FLOPopupPrototypes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.floware.FLOPopupPrototypes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

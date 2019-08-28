@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 
 #import <FlowarePopover/FlowarePopover.h>
+#import <Sparkle/Sparkle.h>
 
 #import "Constants.h"
 #import "NSObject+Extensions.h"

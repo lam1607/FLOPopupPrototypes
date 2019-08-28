@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>Floware popup prototypes Changelog</title>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>Version 1.1</title>
+            <sparkle:releaseNotesLink>
+                http://localhost:1607/prototypes-update/prototypesReleaseNotes.html
+            </sparkle:releaseNotesLink>
+            <pubDate>Wed, 28 Aug 2019 15:12:11 +0000</pubDate>
+            <!-- Sparkle 1.21+ uses sparkle::edSignature="ed25519" instead of sparkle::dsaSignature="deprecated DSA" -->
+            <enclosure url="http://localhost:1607/prototypes-update/prototypes1.1.zip" sparkle:version="1.1" type="application/octet-stream" sparkle:edSignature="U/kYNmYwdfoGP/hPWR7r7Z9yoq/QGdKv39e6btdVavx9An0uHIFnFyEEIlOcQkZ0KHRvrQcZg2C/jwokGX0WAA==" length="63481852" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+    </channel>
+</rss>
