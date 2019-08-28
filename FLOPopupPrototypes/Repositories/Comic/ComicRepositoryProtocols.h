@@ -3,16 +3,14 @@
 //  FLOPopupPrototypes
 //
 //  Created by lamnguyen on 8/21/18.
-//  Copyright © 2018 Floware. All rights reserved.
+//  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import "BaseRepositoryProtocols.h"
+#import "AbstractRepositoryProtocols.h"
 
 @class Comic;
 
-@protocol ComicRepositoryProtocols <BaseRepositoryProtocols>
+@protocol ComicRepositoryProtocols <AbstractRepositoryProtocols>
 
 - (NSArray<Comic *> *)fetchComics;
 

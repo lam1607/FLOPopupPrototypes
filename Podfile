@@ -7,6 +7,7 @@ target 'FLOPopupPrototypes' do
 
   # Pods for FLOPopupPrototypes
   pod 'FlowarePopover'
+  pod 'Sparkle'
 
   target 'FLOPopupPrototypesTests' do
     inherit! :search_paths

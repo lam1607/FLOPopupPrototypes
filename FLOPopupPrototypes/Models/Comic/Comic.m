@@ -3,19 +3,21 @@
 //  FLOPopupPrototypes
 //
 //  Created by lamnguyen on 8/21/18.
-//  Copyright © 2018 Floware. All rights reserved.
+//  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
 #import "Comic.h"
 
 @implementation Comic
 
-#pragma mark -
 #pragma mark - Initialize
-#pragma mark -
-- (instancetype)initWithContent:(NSDictionary *)contentDict {
-    if (self = [super init]) {
-        if (![Utils isEmptyObject:contentDict]) {
+
+- (instancetype)initWithContent:(NSDictionary *)contentDict
+{
+    if (self = [super init])
+    {
+        if ([contentDict isKindOfClass:[NSDictionary class]])
+        {
             NSString *name = [contentDict objectForKey:@"name"];
             NSString *shortDesc = [contentDict objectForKey:@"shortDesc"];
             NSString *longDesc = [contentDict objectForKey:@"longDesc"];
@@ -32,16 +34,37 @@
 }
 
 - (instancetype)initWithName:(NSString *)name shortDesc:(NSString *)shortDesc longDesc:(NSString *)longDesc
-                    imageUrl:(NSString *)imageUrl pageUrl:(NSString *)pageUrl {
-    if (self = [super init]) {
+                    imageUrl:(NSString *)imageUrl pageUrl:(NSString *)pageUrl
+{
+    if (self = [super init])
+    {
         self.name = name;
         self.shortDesc = shortDesc;
         self.longDesc = longDesc;
-        self.imageUrl = [NSURL URLWithString:imageUrl];
-        self.pageUrl = [NSURL URLWithString:pageUrl];
+        self.imageUrl = imageUrl;
+        self.pageUrl = pageUrl;
     }
     
     return self;
+}
+
+#pragma mark - ListSupplierProtocol implementation
+
+- (__unsafe_unretained id<ListSupplierProtocol>)lsp_parent
+{
+    return (id<ListSupplierProtocol>)self.parentItem;
+}
+
+- (__unsafe_unretained NSMutableArray<id<ListSupplierProtocol>> *)lsp_childs
+{
+    return (NSMutableArray<id<ListSupplierProtocol>> *)self.subItems;
+}
+
+#pragma mark - Override methods
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"{\n\t<%@: %p>,\n\tname: \"%@\",\n\timageUrl: \"%@\",\n\tpageUrl: \"%@\"\n}", NSStringFromClass([self class]), self, self.name, self.imageUrl, self.pageUrl];
 }
 
 @end

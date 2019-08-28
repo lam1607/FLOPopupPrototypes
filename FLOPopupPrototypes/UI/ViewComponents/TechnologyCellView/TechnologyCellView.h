@@ -1,0 +1,24 @@
+//
+//  TechnologyCellView.h
+//  FLOPopupPrototypes
+//
+//  Created by Lam Nguyen on 1/10/19.
+//  Copyright © 2019 Floware Inc. All rights reserved.
+//
+
+#import <Cocoa/Cocoa.h>
+
+#import "TechnologyCellViewProtocols.h"
+
+#import "ItemCellViewProtocols.h"
+
+@interface TechnologyCellView : NSTableCellView <TechnologyCellViewProtocols, ItemCellViewProtocols>
+
+/// @property
+///
+
+/// Methods
+///
+- (CGFloat)getCellHeight;
+
+@end

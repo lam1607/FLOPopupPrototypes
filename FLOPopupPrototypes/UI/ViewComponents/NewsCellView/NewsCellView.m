@@ -3,91 +3,127 @@
 //  FLOPopupPrototypes
 //
 //  Created by lamnguyen on 8/24/18.
-//  Copyright © 2018 Floware. All rights reserved.
+//  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
 #import "NewsCellView.h"
 
+#import "NewsRepository.h"
+#import "NewsCellPresenter.h"
+
 #import "News.h"
 
 @interface NewsCellView ()
+{
+    id<NewsRepositoryProtocols> _repository;
+    id<NewsCellPresenterProtocols> _presenter;
+}
 
+/// IBOutlet
+///
 @property (weak) IBOutlet NSView *vContainer;
 @property (weak) IBOutlet NSImageView *imgView;
 @property (weak) IBOutlet NSTextField *lblTitle;
 @property (weak) IBOutlet NSTextField *lblContent;
 
-@property (nonatomic, strong) NewsRepository *_newsRepository;
-@property (nonatomic, strong) NewsCellPresenter *_newsCellPresenter;
+/// @property
+///
 
 @end
 
 @implementation NewsCellView
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     
-    [self initialize];
+    [self objectsInitialize];
     [self setupUI];
 }
 
-#pragma mark -
-#pragma mark - Initialize
-#pragma mark -
-- (void)initialize {
-    self._newsRepository = [[NewsRepository alloc] init];
-    self._newsCellPresenter = [[NewsCellPresenter alloc] init];
-    [self._newsCellPresenter attachView:self repository:self._newsRepository];
+- (void)layout
+{
+    [super layout];
+    
+    [self refreshUIColors];
 }
 
-#pragma mark -
+#pragma mark - Initialize
+
+- (void)objectsInitialize
+{
+    _repository = [[NewsRepository alloc] init];
+    _presenter = [[NewsCellPresenter alloc] init];
+    [_presenter attachView:self repository:_repository];
+}
+
 #pragma mark - Setup UI
-#pragma mark -
-- (void)setupUI {
-    self.vContainer.wantsLayer = YES;
-    self.vContainer.layer.cornerRadius = [CORNER_RADIUSES[0] doubleValue];
-    self.vContainer.layer.backgroundColor = [[NSColor whiteColor] CGColor];
-    [Utils setShadowForView:self.vContainer];
-    
-    self.imgView.wantsLayer = YES;
-    self.imgView.layer.backgroundColor = [[NSColor colorUltraLightGray] CGColor];
+
+- (void)setupUI
+{
     self.imgView.imageScaling = NSImageScaleProportionallyDown;
-    self.imgView.layer.cornerRadius = [CORNER_RADIUSES[0] doubleValue];
-    
-    self.lblTitle.font = [NSFont systemFontOfSize:18.0f weight:NSFontWeightMedium];
-    self.lblTitle.textColor = [NSColor colorBlue];
     self.lblTitle.maximumNumberOfLines = 0;
-    
-    self.lblContent.font = [NSFont systemFontOfSize:14.0f weight:NSFontWeightRegular];
-    self.lblContent.textColor = [NSColor colorViolet];
     self.lblContent.maximumNumberOfLines = 0;
 }
 
-#pragma mark -
-#pragma mark - Processes
-#pragma mark -
-- (CGFloat)getCellHeight {
+- (void)refreshUIColors
+{
+    if ([self.effectiveAppearance.name isEqualToString:[NSAppearance currentAppearance].name])
+    {
+        [Utils setShadowForView:self.vContainer];
+        
+#ifdef kFlowarePopover_UseAssetColors
+        [Utils setBackgroundColor:[NSColor _backgroundWhiteColor] cornerRadius:[CORNER_RADIUSES[0] doubleValue] borderWidth:0.0 borderColor:[NSColor _blueColor] forView:self.vContainer];
+        
+        [Utils setBackgroundColor:NSColor.clearColor cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.imgView];
+        
+        [Utils setTitle:self.lblTitle.stringValue color:[NSColor _textBlackColor] fontSize:16.0 forControl:self.lblTitle];
+        [Utils setTitle:self.lblContent.stringValue color:[NSColor _textGrayColor] fontSize:14.0 forControl:self.lblContent];
+#else
+        [Utils setBackgroundColor:[NSColor backgroundWhiteColor] cornerRadius:[CORNER_RADIUSES[0] doubleValue] borderWidth:0.0 borderColor:[NSColor blueColor] forView:self.vContainer];
+        
+        [Utils setBackgroundColor:NSColor.clearColor cornerRadius:[CORNER_RADIUSES[0] doubleValue] forView:self.imgView];
+        
+        [Utils setTitle:self.lblTitle.stringValue color:[NSColor textBlackColor] fontSize:16.0 forControl:self.lblTitle];
+        [Utils setTitle:self.lblContent.stringValue color:[NSColor textGrayColor] fontSize:14.0 forControl:self.lblContent];
+#endif
+    }
+}
+
+#pragma mark - Public methods
+
+- (CGFloat)getCellHeight
+{
     CGFloat imageHeight = self.imgView.frame.size.height;
     CGFloat titleHeight = [Utils sizeOfControl:self.lblTitle].height;
     CGFloat contentHeight = [Utils sizeOfControl:self.lblContent].height;
-    CGFloat verticalMargins = 75.0f; // Take a look at NewsCellView.xib file
+    CGFloat verticalMargins = 75.0; // Take a look at NewsCellView.xib file
     
     return imageHeight + titleHeight + contentHeight + verticalMargins;
 }
 
-- (void)updateUIWithData:(News *)news {
-    [self._newsCellPresenter fetchImageFromDataObject:news];
-    
-    self.lblTitle.stringValue = news.title;
-    self.lblContent.stringValue = news.content;
+#pragma mark - ItemCellViewProtocols implementation
+
+- (void)itemCellView:(id<ItemCellViewProtocols>)itemCellView updateWithData:(id<ListSupplierProtocol> _Nonnull)data atIndex:(NSInteger)index
+{
+    if ([data isKindOfClass:[News class]])
+    {
+        News *news = (News *)data;
+        
+        [_presenter fetchImageFromData:news];
+        
+        self.lblTitle.stringValue = news.title;
+        self.lblContent.stringValue = news.content;
+    }
 }
 
-#pragma mark -
 #pragma mark - NewsCellViewProtocols implementation
-#pragma mark -
-- (void)updateCellViewImage {
-    if ([self._newsCellPresenter getNewsImage]) {
-        self.imgView.image = [self._newsCellPresenter getNewsImage];
+
+- (void)updateViewImage
+{
+    if ([_presenter fetchedImage])
+    {
+        self.imgView.image = [_presenter fetchedImage];
     }
 }
 

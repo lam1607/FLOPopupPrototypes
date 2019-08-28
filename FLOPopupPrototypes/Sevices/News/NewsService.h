@@ -3,15 +3,13 @@
 //  FLOPopupPrototypes
 //
 //  Created by lamnguyen on 8/24/18.
-//  Copyright © 2018 Floware. All rights reserved.
+//  Copyright © 2018 Floware Inc. All rights reserved.
 //
-
-#import <Foundation/Foundation.h>
-
-#import "BaseService.h"
 
 #import "NewsServiceProtocols.h"
 
-@interface NewsService : BaseService <NewsServiceProtocols>
+#import "AbstractService.h"
+
+@interface NewsService : AbstractService <NewsServiceProtocols>
 
 @end

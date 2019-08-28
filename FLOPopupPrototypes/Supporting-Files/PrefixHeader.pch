@@ -1,6 +1,6 @@
 //
 //  PrefixHeader.pch
-//  CustomNSPopover
+//  FLOPopupPrototypes
 //
 //  Created by lamnguyen on 8/8/18.
 //  Copyright © 2018 Floware. All rights reserved.
@@ -11,8 +11,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import <FlowarePopover/FlowarePopover.h>
+
 #import "Constants.h"
-#import <FlowarePopover/FLOExtensionsNSColor.h>
+#import "NSObject+Extensions.h"
+#import "NSColor+Custom.h"
+
 #import "Utils.h"
 
 // Include any system framework and library headers here that should be included in all compilation units.

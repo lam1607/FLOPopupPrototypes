@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,11 +13,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="FLOPopupPrototypes" id="1Xt-HY-uBw">
+                            <menuItem title="FlowarePopover-Sample" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="FLOPopupPrototypes" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="FlowarePopover-Sample" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About FLOPopupPrototypes" id="5kV-Vb-QxS">
+                                        <menuItem title="About FlowarePopover-Sample" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -30,7 +31,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide FLOPopupPrototypes" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide FlowarePopover-Sample" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -48,7 +49,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit FLOPopupPrototypes" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit FlowarePopover-Sample" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -661,7 +662,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="FLOPopupPrototypes Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="FlowarePopover-Sample Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -684,8 +685,8 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" customClass="BaseWindowController" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                <windowController id="B8D-0N-5wS" customClass="AbstractWindowController" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -712,85 +713,88 @@
                         <subviews>
                             <imageView horizontalCompressionResistancePriority="249" verticalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Y8i-ib-bNN">
                                 <rect key="frame" x="0.0" y="0.0" width="2800" height="1800"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="Washington" id="5ox-hz-Opb"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="Paradox Valley" id="5ox-hz-Opb"/>
                             </imageView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="WeF-sb-hLO" userLabel="View Menu">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="WeF-sb-hLO" userLabel="Menu View">
                                 <rect key="frame" x="0.0" y="1750" width="2800" height="50"/>
                                 <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="xay-PV-jAd" userLabel="View Change Mode">
-                                        <rect key="frame" x="10" y="5" width="161" height="40"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="xay-PV-jAd" userLabel="Change Mode View Container">
+                                        <rect key="frame" x="10" y="5" width="40" height="40"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4P3-pJ-IwM" userLabel="Btn Change Mode">
-                                                <rect key="frame" x="10" y="0.0" width="141" height="40"/>
-                                                <buttonCell key="cell" type="bevel" title="Change Window Mode" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Ss8-Oo-Zez">
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="ic_switch_mode" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="Ss8-Oo-Zez">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="btnChangeMode_clicked:" target="XfG-lQ-9wD" id="x2f-x3-U7e"/>
+                                                    <action selector="btnChangeMode_clicked:" target="XfG-lQ-9wD" id="7cD-0w-kEA"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="4P3-pJ-IwM" secondAttribute="trailing" constant="10" id="KIY-n9-g0w"/>
+                                            <constraint firstAttribute="trailing" secondItem="4P3-pJ-IwM" secondAttribute="trailing" id="KIY-n9-g0w"/>
                                             <constraint firstItem="4P3-pJ-IwM" firstAttribute="top" secondItem="xay-PV-jAd" secondAttribute="top" id="cLC-PN-wQl"/>
                                             <constraint firstAttribute="bottom" secondItem="4P3-pJ-IwM" secondAttribute="bottom" id="hEP-TL-w8n"/>
-                                            <constraint firstItem="4P3-pJ-IwM" firstAttribute="leading" secondItem="xay-PV-jAd" secondAttribute="leading" constant="10" id="jQU-b2-WkO"/>
+                                            <constraint firstItem="4P3-pJ-IwM" firstAttribute="leading" secondItem="xay-PV-jAd" secondAttribute="leading" id="jQU-b2-WkO"/>
+                                            <constraint firstAttribute="width" secondItem="xay-PV-jAd" secondAttribute="height" multiplier="1:1" id="jhK-dC-4o9"/>
                                         </constraints>
                                     </customView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="24A-hG-ZdQ" userLabel="View Open Finder">
-                                        <rect key="frame" x="181" y="5" width="99" height="40"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="24A-hG-ZdQ" userLabel="Finder View Container">
+                                        <rect key="frame" x="60" y="5" width="40" height="40"/>
                                         <subviews>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="diw-HF-RaI" userLabel="Btn Open Finder App">
-                                                <rect key="frame" x="10" y="0.0" width="79" height="40"/>
-                                                <buttonCell key="cell" type="bevel" title="Open Finder" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="wB9-cu-mp7">
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="diw-HF-RaI" userLabel="Btn Open Finder">
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="ic_finder" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="wB9-cu-mp7">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="btnOpenFinderApp_clicked:" target="XfG-lQ-9wD" id="Mkt-Qd-cbY"/>
+                                                    <action selector="btnOpenFinder_clicked:" target="XfG-lQ-9wD" id="ZyY-Q3-IVS"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="diw-HF-RaI" firstAttribute="top" secondItem="24A-hG-ZdQ" secondAttribute="top" id="1uf-XK-Omb"/>
-                                            <constraint firstAttribute="trailing" secondItem="diw-HF-RaI" secondAttribute="trailing" constant="10" id="Cpr-jJ-v0h"/>
-                                            <constraint firstItem="diw-HF-RaI" firstAttribute="leading" secondItem="24A-hG-ZdQ" secondAttribute="leading" constant="10" id="Ozo-zI-Qe5"/>
+                                            <constraint firstAttribute="trailing" secondItem="diw-HF-RaI" secondAttribute="trailing" id="Cpr-jJ-v0h"/>
+                                            <constraint firstItem="diw-HF-RaI" firstAttribute="leading" secondItem="24A-hG-ZdQ" secondAttribute="leading" id="Ozo-zI-Qe5"/>
+                                            <constraint firstAttribute="width" secondItem="24A-hG-ZdQ" secondAttribute="height" multiplier="1:1" id="e9f-21-s7P"/>
                                             <constraint firstAttribute="bottom" secondItem="diw-HF-RaI" secondAttribute="bottom" id="oNi-e5-eEz"/>
                                         </constraints>
                                     </customView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="uUK-hZ-BLj" userLabel="View Open Safari">
-                                        <rect key="frame" x="290" y="5" width="96" height="40"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="uUK-hZ-BLj" userLabel="Safari View Container">
+                                        <rect key="frame" x="110" y="5" width="40" height="40"/>
                                         <subviews>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vYx-ID-mZ0" userLabel="Btn Open Safari App">
-                                                <rect key="frame" x="10" y="0.0" width="76" height="40"/>
-                                                <buttonCell key="cell" type="bevel" title="Open Safari" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="BAT-9e-VzT">
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vYx-ID-mZ0" userLabel="Btn Open Safari">
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="ic_safari" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="BAT-9e-VzT">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="btnOpenSafariApp_clicked:" target="XfG-lQ-9wD" id="Hbv-yd-ESC"/>
+                                                    <action selector="btnOpenSafari_clicked:" target="XfG-lQ-9wD" id="bqd-bj-xHA"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="vYx-ID-mZ0" secondAttribute="trailing" constant="10" id="2XB-tz-4wh"/>
+                                            <constraint firstAttribute="trailing" secondItem="vYx-ID-mZ0" secondAttribute="trailing" id="2XB-tz-4wh"/>
                                             <constraint firstAttribute="bottom" secondItem="vYx-ID-mZ0" secondAttribute="bottom" id="Fgx-MI-fd1"/>
-                                            <constraint firstItem="vYx-ID-mZ0" firstAttribute="leading" secondItem="uUK-hZ-BLj" secondAttribute="leading" constant="10" id="Rgc-Q3-Jxd"/>
+                                            <constraint firstItem="vYx-ID-mZ0" firstAttribute="leading" secondItem="uUK-hZ-BLj" secondAttribute="leading" id="Rgc-Q3-Jxd"/>
+                                            <constraint firstAttribute="width" secondItem="uUK-hZ-BLj" secondAttribute="height" multiplier="1:1" id="alt-XJ-pbb"/>
                                             <constraint firstItem="vYx-ID-mZ0" firstAttribute="top" secondItem="uUK-hZ-BLj" secondAttribute="top" id="ryW-OD-86L"/>
                                         </constraints>
                                     </customView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="uQl-Vp-Bbc" userLabel="View Show Window Popover">
-                                        <rect key="frame" x="396" y="5" width="126" height="40"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="uQl-Vp-Bbc" userLabel="Films View Container">
+                                        <rect key="frame" x="160" y="5" width="98" height="40"/>
                                         <subviews>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bii-Nb-7uf" userLabel="Btn Show Window Popup">
-                                                <rect key="frame" x="10" y="0.0" width="106" height="40"/>
-                                                <buttonCell key="cell" type="bevel" title="Window popover" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="98a-oC-yre">
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bii-Nb-7uf" userLabel="Btn Open Films">
+                                                <rect key="frame" x="10" y="0.0" width="78" height="40"/>
+                                                <buttonCell key="cell" type="bevel" title="Films popup" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="98a-oC-yre">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="btnShowWindowPopup_clicked:" target="XfG-lQ-9wD" id="KJS-pg-Oz7"/>
+                                                    <action selector="btnOpenFilms_clicked:" target="XfG-lQ-9wD" id="j3m-Pl-H1v"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -801,17 +805,17 @@
                                             <constraint firstItem="Bii-Nb-7uf" firstAttribute="leading" secondItem="uQl-Vp-Bbc" secondAttribute="leading" constant="10" id="qKe-XR-I0n"/>
                                         </constraints>
                                     </customView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="hH7-0V-lua" userLabel="View Show View Popover">
-                                        <rect key="frame" x="532" y="5" width="107" height="40"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="hH7-0V-lua" userLabel="News View Container">
+                                        <rect key="frame" x="268" y="5" width="100" height="40"/>
                                         <subviews>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QKT-rF-oHD" userLabel="Btn Show View Popup">
-                                                <rect key="frame" x="10" y="0.0" width="87" height="40"/>
-                                                <buttonCell key="cell" type="bevel" title="View popover" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="LvO-Th-u2i">
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QKT-rF-oHD" userLabel="Btn Open News">
+                                                <rect key="frame" x="10" y="0.0" width="80" height="40"/>
+                                                <buttonCell key="cell" type="bevel" title="News popup" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="LvO-Th-u2i">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="btnShowViewPopup_clicked:" target="XfG-lQ-9wD" id="Z4E-7f-cGV"/>
+                                                    <action selector="btnOpenNews_clicked:" target="XfG-lQ-9wD" id="eqx-bg-033"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -822,17 +826,17 @@
                                             <constraint firstItem="QKT-rF-oHD" firstAttribute="top" secondItem="hH7-0V-lua" secondAttribute="top" id="xYJ-fS-Thb"/>
                                         </constraints>
                                     </customView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="4xE-ia-sMm" userLabel="View Show Mix Popover">
-                                        <rect key="frame" x="2691" y="5" width="99" height="40"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="4xE-ia-sMm" userLabel="Comics View Container">
+                                        <rect key="frame" x="2678" y="5" width="112" height="40"/>
                                         <subviews>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="95S-F2-TuG" userLabel="Btn Show Data Mix">
-                                                <rect key="frame" x="10" y="0.0" width="79" height="40"/>
-                                                <buttonCell key="cell" type="bevel" title="Mix popover" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="fmG-De-ekK">
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="95S-F2-TuG" userLabel="Btn Open Comics">
+                                                <rect key="frame" x="10" y="0.0" width="92" height="40"/>
+                                                <buttonCell key="cell" type="bevel" title="Comics popup" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="fmG-De-ekK">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="btnShowDataMix_clicked:" target="XfG-lQ-9wD" id="9j3-Sj-a9y"/>
+                                                    <action selector="btnOpenComics_clicked:" target="XfG-lQ-9wD" id="h9D-vM-alg"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -843,15 +847,39 @@
                                             <constraint firstAttribute="bottom" secondItem="95S-F2-TuG" secondAttribute="bottom" id="Lc6-hm-UvV"/>
                                         </constraints>
                                     </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="dAj-4e-xyd" userLabel="Second Bar View Container">
+                                        <rect key="frame" x="2539" y="5" width="129" height="40"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="922-Oc-zMC" userLabel="Btn Show Second Bar">
+                                                <rect key="frame" x="10" y="0.0" width="109" height="40"/>
+                                                <buttonCell key="cell" type="bevel" title="Show second bar" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="KLK-IY-RUh">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="btnShowSecondBar_clicked:" target="XfG-lQ-9wD" id="pH2-0a-Ege"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="922-Oc-zMC" firstAttribute="leading" secondItem="dAj-4e-xyd" secondAttribute="leading" constant="10" id="MV3-8b-8gv"/>
+                                            <constraint firstAttribute="trailing" secondItem="922-Oc-zMC" secondAttribute="trailing" constant="10" id="ZKW-XF-nSi"/>
+                                            <constraint firstAttribute="bottom" secondItem="922-Oc-zMC" secondAttribute="bottom" id="nc8-wN-KJt"/>
+                                            <constraint firstItem="922-Oc-zMC" firstAttribute="top" secondItem="dAj-4e-xyd" secondAttribute="top" id="nlx-w9-bdV"/>
+                                        </constraints>
+                                    </customView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="xay-PV-jAd" secondAttribute="bottom" constant="5" id="514-Yd-B5e"/>
                                     <constraint firstItem="uUK-hZ-BLj" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="5yn-l3-xFi"/>
+                                    <constraint firstAttribute="bottom" secondItem="dAj-4e-xyd" secondAttribute="bottom" constant="5" id="98a-Se-SZM"/>
+                                    <constraint firstItem="dAj-4e-xyd" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="BPT-EN-DOs"/>
                                     <constraint firstItem="uQl-Vp-Bbc" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="ClT-Wa-q1d"/>
                                     <constraint firstAttribute="height" constant="50" id="Ejm-YL-M96"/>
                                     <constraint firstItem="4xE-ia-sMm" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="KXJ-ym-K9X"/>
                                     <constraint firstAttribute="bottom" secondItem="4xE-ia-sMm" secondAttribute="bottom" constant="5" id="LwG-a5-vap"/>
                                     <constraint firstItem="xay-PV-jAd" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="MB5-E1-GBx"/>
+                                    <constraint firstItem="4xE-ia-sMm" firstAttribute="leading" secondItem="dAj-4e-xyd" secondAttribute="trailing" constant="10" id="RJN-3B-ADU"/>
                                     <constraint firstItem="xay-PV-jAd" firstAttribute="leading" secondItem="WeF-sb-hLO" secondAttribute="leading" constant="10" id="Swf-ZO-XjU"/>
                                     <constraint firstAttribute="bottom" secondItem="uQl-Vp-Bbc" secondAttribute="bottom" constant="5" id="Xac-pm-bgD"/>
                                     <constraint firstAttribute="bottom" secondItem="uUK-hZ-BLj" secondAttribute="bottom" constant="5" id="b4t-o5-0WO"/>
@@ -866,39 +894,104 @@
                                     <constraint firstItem="24A-hG-ZdQ" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="rDJ-ld-SNa"/>
                                 </constraints>
                             </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="1S0-QQ-tGa" userLabel="Second Bar View">
+                                <rect key="frame" x="0.0" y="1709" width="2800" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="YfI-Rj-GWa"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="XGp-hp-9Zr" userLabel="Trash Icon Container View" customClass="DragDroppableView">
+                                <rect key="frame" x="20" y="1589" width="100" height="100"/>
+                                <subviews>
+                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XrS-aX-ZZO" userLabel="Trash Icon Image View">
+                                        <rect key="frame" x="18" y="18" width="64" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="F1l-9j-3rd"/>
+                                            <constraint firstAttribute="width" secondItem="XrS-aX-ZZO" secondAttribute="height" multiplier="1:1" id="HqT-3R-cHa"/>
+                                        </constraints>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="ic_trash_empty" id="Kze-cp-kIP"/>
+                                    </imageView>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gNy-e0-QJo" userLabel="Trash Icon Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="Wfq-bg-Jnx">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="btnTrashIcon_clicked:" target="XfG-lQ-9wD" id="r6M-mW-Sbh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="gNy-e0-QJo" firstAttribute="top" secondItem="XGp-hp-9Zr" secondAttribute="top" id="EJU-8x-Eoy"/>
+                                    <constraint firstItem="XrS-aX-ZZO" firstAttribute="centerY" secondItem="XGp-hp-9Zr" secondAttribute="centerY" id="EMt-SJ-Nfw"/>
+                                    <constraint firstAttribute="bottom" secondItem="gNy-e0-QJo" secondAttribute="bottom" id="Euk-AJ-FN7"/>
+                                    <constraint firstAttribute="width" constant="100" id="MI9-Hs-IuO"/>
+                                    <constraint firstItem="gNy-e0-QJo" firstAttribute="leading" secondItem="XGp-hp-9Zr" secondAttribute="leading" id="Pql-pX-N95"/>
+                                    <constraint firstAttribute="trailing" secondItem="gNy-e0-QJo" secondAttribute="trailing" id="Sts-cw-T1s"/>
+                                    <constraint firstItem="XrS-aX-ZZO" firstAttribute="centerX" secondItem="XGp-hp-9Zr" secondAttribute="centerX" id="f6S-88-4TB"/>
+                                    <constraint firstAttribute="width" secondItem="XGp-hp-9Zr" secondAttribute="height" multiplier="1:1" id="jtu-UD-mor"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="2eL-Gn-vhd" userLabel="Trash Container View">
+                                <rect key="frame" x="140" y="20" width="350" height="1669"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="rM1-jp-LTI"/>
+                                </constraints>
+                            </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="XGp-hp-9Zr" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="6K8-I9-bKt"/>
+                            <constraint firstItem="2eL-Gn-vhd" firstAttribute="top" secondItem="XGp-hp-9Zr" secondAttribute="top" id="6r2-zm-KKG"/>
                             <constraint firstItem="Y8i-ib-bNN" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="8wb-rS-4gh"/>
+                            <constraint firstItem="2eL-Gn-vhd" firstAttribute="leading" secondItem="XGp-hp-9Zr" secondAttribute="trailing" constant="20" id="CP1-1P-1Z6"/>
                             <constraint firstAttribute="bottom" secondItem="Y8i-ib-bNN" secondAttribute="bottom" id="D6m-e7-OHC"/>
                             <constraint firstItem="Y8i-ib-bNN" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="KT7-si-xcs"/>
                             <constraint firstItem="WeF-sb-hLO" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="OZa-xU-FvP"/>
                             <constraint firstAttribute="trailing" secondItem="WeF-sb-hLO" secondAttribute="trailing" id="YA7-mP-j48"/>
                             <constraint firstAttribute="trailing" secondItem="Y8i-ib-bNN" secondAttribute="trailing" id="ZZI-We-B95"/>
+                            <constraint firstItem="1S0-QQ-tGa" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="j6b-yT-l8Z"/>
                             <constraint firstItem="WeF-sb-hLO" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="jUs-pM-rGd"/>
+                            <constraint firstAttribute="bottom" secondItem="2eL-Gn-vhd" secondAttribute="bottom" constant="20" id="nJF-Nw-ap4"/>
+                            <constraint firstItem="XGp-hp-9Zr" firstAttribute="top" secondItem="1S0-QQ-tGa" secondAttribute="bottom" constant="20" id="nf6-it-sNB"/>
+                            <constraint firstItem="1S0-QQ-tGa" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="bottom" constant="1" id="r4C-lx-JQO"/>
+                            <constraint firstAttribute="trailing" secondItem="1S0-QQ-tGa" secondAttribute="trailing" id="tlX-Pg-WX7"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnChangeMode" destination="4P3-pJ-IwM" id="fyA-Lo-gTI"/>
-                        <outlet property="btnOpenFinderApp" destination="diw-HF-RaI" id="MK9-YL-qC5"/>
-                        <outlet property="btnOpenSafariApp" destination="vYx-ID-mZ0" id="7U8-LE-QaK"/>
-                        <outlet property="btnShowDataMix" destination="95S-F2-TuG" id="gKP-su-Kjp"/>
-                        <outlet property="btnShowViewPopup" destination="QKT-rF-oHD" id="0ar-uo-Jdf"/>
-                        <outlet property="btnShowWindowPopup" destination="Bii-Nb-7uf" id="SFC-h3-Raf"/>
-                        <outlet property="vChangeMode" destination="xay-PV-jAd" id="hlF-bq-hy0"/>
-                        <outlet property="vMenu" destination="WeF-sb-hLO" id="K56-IL-buD"/>
-                        <outlet property="vOpenFinderApp" destination="24A-hG-ZdQ" id="Fx1-F8-pVo"/>
-                        <outlet property="vOpenSafariApp" destination="uUK-hZ-BLj" id="Sqq-t2-bnM"/>
-                        <outlet property="vShowDataMix" destination="4xE-ia-sMm" id="2uO-9m-U9e"/>
-                        <outlet property="vShowViewPopup" destination="hH7-0V-lua" id="6Fh-4q-Gsj"/>
-                        <outlet property="vShowWindowPopup" destination="uQl-Vp-Bbc" id="H5V-6B-AWi"/>
+                        <outlet property="btnChangeMode" destination="4P3-pJ-IwM" id="Epe-A5-hIH"/>
+                        <outlet property="btnOpenComics" destination="95S-F2-TuG" id="HgC-TQ-ard"/>
+                        <outlet property="btnOpenFilms" destination="Bii-Nb-7uf" id="e0a-T3-km4"/>
+                        <outlet property="btnOpenFinder" destination="diw-HF-RaI" id="zDH-Dt-Naw"/>
+                        <outlet property="btnOpenNews" destination="QKT-rF-oHD" id="AHU-JR-3is"/>
+                        <outlet property="btnOpenSafari" destination="vYx-ID-mZ0" id="e9V-4H-ZNz"/>
+                        <outlet property="btnShowSecondBar" destination="922-Oc-zMC" id="w5Z-hW-QbF"/>
+                        <outlet property="btnTrashIcon" destination="gNy-e0-QJo" id="Jk6-rJ-bIw"/>
+                        <outlet property="constraintVSecondBarHeight" destination="YfI-Rj-GWa" id="Vp1-Vd-CMU"/>
+                        <outlet property="imgTrashIcon" destination="XrS-aX-ZZO" id="QtH-l5-tBy"/>
+                        <outlet property="viewContainerComics" destination="4xE-ia-sMm" id="uVy-hw-ZLd"/>
+                        <outlet property="viewContainerFilms" destination="uQl-Vp-Bbc" id="7Qm-VY-6bN"/>
+                        <outlet property="viewContainerFinder" destination="24A-hG-ZdQ" id="T0n-v7-PC9"/>
+                        <outlet property="viewContainerMode" destination="xay-PV-jAd" id="Eho-ct-GeQ"/>
+                        <outlet property="viewContainerNews" destination="hH7-0V-lua" id="CmL-Ft-1sE"/>
+                        <outlet property="viewContainerSafari" destination="uUK-hZ-BLj" id="Ogt-Hs-38Y"/>
+                        <outlet property="viewContainerSecondBar" destination="dAj-4e-xyd" id="v2r-jm-T0x"/>
+                        <outlet property="viewContainerTrash" destination="2eL-Gn-vhd" id="B0o-Zp-oGF"/>
+                        <outlet property="viewContainerTrashIcon" destination="XGp-hp-9Zr" id="1ql-68-faE"/>
+                        <outlet property="viewMenu" destination="WeF-sb-hLO" id="gLE-B5-lHd"/>
+                        <outlet property="viewSecondBar" destination="1S0-QQ-tGa" id="0Sa-vp-WPC"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="75" y="1463"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Washington" width="2800" height="1800"/>
+        <image name="Paradox Valley" width="2800" height="1800"/>
+        <image name="ic_finder" width="27" height="24"/>
+        <image name="ic_safari" width="29" height="28"/>
+        <image name="ic_switch_mode" width="30" height="30"/>
+        <image name="ic_trash_empty" width="64" height="64"/>
     </resources>
 </document>

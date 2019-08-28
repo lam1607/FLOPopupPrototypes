@@ -3,16 +3,14 @@
 //  FLOPopupPrototypes
 //
 //  Created by lamnguyen on 8/24/18.
-//  Copyright © 2018 Floware. All rights reserved.
+//  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import "BaseRepositoryProtocols.h"
+#import "AbstractRepositoryProtocols.h"
 
 @class News;
 
-@protocol NewsRepositoryProtocols <BaseRepositoryProtocols>
+@protocol NewsRepositoryProtocols <AbstractRepositoryProtocols>
 
 - (NSArray<News *> *)fetchNews;
 

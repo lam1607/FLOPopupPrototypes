@@ -3,15 +3,19 @@
 //  FLOPopupPrototypes
 //
 //  Created by lamnguyen on 9/18/18.
-//  Copyright © 2018 Floware. All rights reserved.
+//  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
-@class Comic;
+#import "ItemCellViewProtocols.h"
 
-@interface ComicCellView : NSTableCellView
+@interface ComicCellView : NSTableCellView <ItemCellViewProtocols>
 
-- (void)updateUIWithData:(Comic *)comic;
+/// @property
+///
+
+/// Methods
+///
 
 @end

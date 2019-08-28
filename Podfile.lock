@@ -1,16 +1,20 @@
 PODS:
-  - FlowarePopover (0.1.4)
+  - FlowarePopover (0.3.2)
+  - Sparkle (1.21.3)
 
 DEPENDENCIES:
   - FlowarePopover
+  - Sparkle
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FlowarePopover
+    - Sparkle
 
 SPEC CHECKSUMS:
-  FlowarePopover: f092ac9cabdc6c4279c68f3d1bd8fd73359f9988
+  FlowarePopover: e04a787d39575e57e3cb27a8a1b549c04f0dac11
+  Sparkle: 3f75576db8b0265adef36c43249d747f22d0b708
 
-PODFILE CHECKSUM: 3d3f1bc40a02e7c3a945efb29418bec5e4126c32
+PODFILE CHECKSUM: da78cd46d5e74ffa1191fc369378754b474e4eb6
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.5

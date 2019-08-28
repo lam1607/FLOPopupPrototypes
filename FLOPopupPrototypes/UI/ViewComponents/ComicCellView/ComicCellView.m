@@ -3,7 +3,7 @@
 //  FLOPopupPrototypes
 //
 //  Created by lamnguyen on 9/18/18.
-//  Copyright © 2018 Floware. All rights reserved.
+//  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
 #import "ComicCellView.h"
@@ -11,7 +11,11 @@
 #import "Comic.h"
 
 @interface ComicCellView ()
+{
+}
 
+/// IBOutlet
+///
 @property (weak) IBOutlet NSView *vContainer;
 @property (weak) IBOutlet NSTextField *lblTitle;
 
@@ -19,29 +23,55 @@
 
 @implementation ComicCellView
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
     
     [self setupUI];
 }
 
-#pragma mark -
-#pragma mark - Setup UI
-#pragma mark -
-- (void)setupUI {
-    self.vContainer.wantsLayer = YES;
-    self.vContainer.layer.backgroundColor = [[NSColor clearColor] CGColor];
+- (void)layout
+{
+    [super layout];
     
-    self.lblTitle.font = [NSFont systemFontOfSize:16.0f weight:NSFontWeightMedium];
-    self.lblTitle.textColor = [NSColor whiteColor];
+    [self refreshUIColors];
+}
+
+#pragma mark - Setup UI
+
+- (void)setupUI
+{
     self.lblTitle.maximumNumberOfLines = 0;
 }
 
-#pragma mark -
-#pragma mark - Processes
-#pragma mark -
-- (void)updateUIWithData:(Comic *)comic {
-    self.lblTitle.stringValue = comic.name;
+- (void)refreshUIColors
+{
+    if ([self.effectiveAppearance.name isEqualToString:[NSAppearance currentAppearance].name])
+    {
+        [Utils setShadowForView:self.vContainer];
+        
+#ifdef kFlowarePopover_UseAssetColors
+        [Utils setBackgroundColor:[NSColor _backgroundWhiteColor] cornerRadius:[CORNER_RADIUSES[0] doubleValue] borderWidth:0.0 borderColor:[NSColor _blueColor] forView:self.vContainer];
+        
+        [Utils setTitle:self.lblTitle.stringValue color:[NSColor _textGrayColor] fontSize:16.0 forControl:self.lblTitle];
+#else
+        [Utils setBackgroundColor:[NSColor backgroundWhiteColor] cornerRadius:[CORNER_RADIUSES[0] doubleValue] borderWidth:0.0 borderColor:[NSColor blueColor] forView:self.vContainer];
+        
+        [Utils setTitle:self.lblTitle.stringValue color:[NSColor textGrayColor] fontSize:16.0 forControl:self.lblTitle];
+#endif
+    }
+}
+
+#pragma mark - ItemCellViewProtocols implementation
+
+- (void)itemCellView:(id<ItemCellViewProtocols>)itemCellView updateWithData:(id<ListSupplierProtocol> _Nonnull)data atIndex:(NSInteger)index
+{
+    if ([data isKindOfClass:[Comic class]])
+    {
+        Comic *comic = (Comic *)data;
+        
+        self.lblTitle.stringValue = comic.name;
+    }
 }
 
 @end

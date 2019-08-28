@@ -3,18 +3,13 @@
 //  FLOPopupPrototypes
 //
 //  Created by lamnguyen on 8/24/18.
-//  Copyright © 2018 Floware. All rights reserved.
+//  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "AbstractPresenter.h"
 
 #import "NewsCellViewProtocols.h"
-#import "NewsCellPresenterProtocols.h"
-#import "NewsRepositoryProtocols.h"
 
-@protocol NewsCellViewProtocols;
-@protocol NewsRepositoryProtocols;
-
-@interface NewsCellPresenter : NSObject <NewsCellPresenterProtocols>
+@interface NewsCellPresenter : AbstractPresenter <NewsCellPresenterProtocols>
 
 @end

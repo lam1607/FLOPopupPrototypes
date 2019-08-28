@@ -3,41 +3,52 @@
 //  FLOPopupPrototypes
 //
 //  Created by lamnguyen on 8/24/18.
-//  Copyright © 2018 Floware. All rights reserved.
+//  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
 #import "NewsRepository.h"
 
-#import "News.h"
 #import "NewsService.h"
 
-@interface NewsRepository ()
+#import "News.h"
 
-@property (nonatomic, strong) NewsService *_service;
+@interface NewsRepository ()
+{
+    NewsService *_service;
+}
+
+/// @property
+///
 
 @end
 
 @implementation NewsRepository
 
-- (instancetype)init {
-    if (self = [super init]) {
-        self._service = [[NewsService alloc] init];
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        _service = [[NewsService alloc] init];
     }
     
     return self;
 }
 
-#pragma mark -
 #pragma mark - NewsRepositoryProtocols implementation
-#pragma mark -
-- (NSArray<News *> *)fetchNews {
+
+- (NSArray<News *> *)fetchNews
+{
     NSMutableArray *news = [[NSMutableArray alloc] init];
-    NSArray<NSDictionary *> *newsDicts = [self._service getMockupDataType:@"news"];
+    NSArray<NSDictionary *> *newsDicts = [_service getMockupDataType:@"news"];
     
-    [newsDicts enumerateObjectsUsingBlock:^(NSDictionary *contentDict, NSUInteger idx, BOOL *stop) {
-        News *item = [[News alloc] initWithContent:contentDict];
-        [news addObject:item];
-    }];
+    for (NSDictionary *contentDict in newsDicts)
+    {
+        @autoreleasepool
+        {
+            News *item = [[News alloc] initWithContent:contentDict];
+            [news addObject:item];
+        }
+    }
     
     return news;
 }

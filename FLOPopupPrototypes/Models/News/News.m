@@ -3,19 +3,21 @@
 //  FLOPopupPrototypes
 //
 //  Created by lamnguyen on 8/24/18.
-//  Copyright © 2018 Floware. All rights reserved.
+//  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
 #import "News.h"
 
 @implementation News
 
-#pragma mark -
 #pragma mark - Initialize
-#pragma mark -
-- (instancetype)initWithContent:(NSDictionary *)contentDict {
-    if (self = [super init]) {
-        if (![Utils isEmptyObject:contentDict]) {
+
+- (instancetype)initWithContent:(NSDictionary *)contentDict
+{
+    if (self = [super init])
+    {
+        if ([contentDict isKindOfClass:[NSDictionary class]])
+        {
             NSString *title = [contentDict objectForKey:@"title"];
             NSString *content = [contentDict objectForKey:@"content"];
             NSString *imageUrl = [contentDict objectForKey:@"imageUrl"];
@@ -29,15 +31,24 @@
     return self;
 }
 
-- (instancetype)initWithTitle:(NSString *)title content:(NSString *)content imageUrl:(NSString *)imageUrl pageUrl:(NSString *)pageUrl {
-    if (self = [super init]) {
+- (instancetype)initWithTitle:(NSString *)title content:(NSString *)content imageUrl:(NSString *)imageUrl pageUrl:(NSString *)pageUrl
+{
+    if (self = [super init])
+    {
         self.title = title;
         self.content = content;
-        self.imageUrl = [NSURL URLWithString:imageUrl];
-        self.pageUrl = [NSURL URLWithString:pageUrl];
+        self.imageUrl = imageUrl;
+        self.pageUrl = pageUrl;
     }
     
     return self;
+}
+
+#pragma mark - Override methods
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"{\n\t<%@: %p>,\n\ttitle: \"%@\",\n\timageUrl: \"%@\",\n\tpageUrl: \"%@\"\n}", NSStringFromClass([self class]), self, self.title, self.imageUrl, self.pageUrl];
 }
 
 @end
