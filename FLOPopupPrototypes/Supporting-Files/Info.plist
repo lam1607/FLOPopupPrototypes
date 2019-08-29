@@ -36,7 +36,7 @@
 	<key>SUEnableSystemProfiling</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>http://localhost:1607/prototypes-update/prototypesAppcast.xml</string>
+	<string>http://localhost:1607/prototype-update/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>P9rEkLRzWUJRzccMsQzcsG9fWzXZd1hwUTga+uLBd8c=</string>
 </dict>
