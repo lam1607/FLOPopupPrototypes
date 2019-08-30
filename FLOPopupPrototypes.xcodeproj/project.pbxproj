@@ -80,6 +80,7 @@
 		DE0B206123165F6C00B02A9A /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0B201823165F6C00B02A9A /* NotificationService.m */; };
 		DE0B206223165F6C00B02A9A /* NotificationObservers.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0B201D23165F6C00B02A9A /* NotificationObservers.m */; };
 		DE0B20642316712100B02A9A /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = DE0B20632316712100B02A9A /* appcast.xml */; };
+		DE544C0C2318E27800B11DBE /* TestService.m in Sources */ = {isa = PBXBuildFile; fileRef = DE544C0B2318E27800B11DBE /* TestService.m */; };
 		DEC4DD69214A43E6000D1D29 /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD68214A43E6000D1D29 /* AppleScriptObjC.framework */; };
 		DEC4DD6B214A43ED000D1D29 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD6A214A43ED000D1D29 /* Cocoa.framework */; };
 		DEC4DD6D214A43F3000D1D29 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD6C214A43F2000D1D29 /* Quartz.framework */; };
@@ -269,6 +270,9 @@
 		DE0B201D23165F6C00B02A9A /* NotificationObservers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationObservers.m; sourceTree = "<group>"; };
 		DE0B20632316712100B02A9A /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
 		DE169FF12317A6B40041B32D /* ReleaseScript.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ReleaseScript.sh; sourceTree = "<group>"; };
+		DE544C092318E26A00B11DBE /* TestServiceProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestServiceProtocols.h; sourceTree = "<group>"; };
+		DE544C0A2318E27800B11DBE /* TestService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestService.h; sourceTree = "<group>"; };
+		DE544C0B2318E27800B11DBE /* TestService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestService.m; sourceTree = "<group>"; };
 		DE75B832212AD25B00CA6742 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		DEC4DD68214A43E6000D1D29 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
 		DEC4DD6A214A43ED000D1D29 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -485,6 +489,7 @@
 		DE0B1F4823165F6A00B02A9A /* Sevices */ = {
 			isa = PBXGroup;
 			children = (
+				DE544C082318E23900B11DBE /* Test */,
 				DE0B1F4923165F6A00B02A9A /* Film */,
 				DE0B1F4D23165F6A00B02A9A /* Technology */,
 				DE0B1F5123165F6A00B02A9A /* Comic */,
@@ -496,9 +501,9 @@
 		DE0B1F4923165F6A00B02A9A /* Film */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1F4A23165F6A00B02A9A /* FilmService.m */,
-				DE0B1F4B23165F6A00B02A9A /* FilmService.h */,
 				DE0B1F4C23165F6A00B02A9A /* FilmServiceProtocols.h */,
+				DE0B1F4B23165F6A00B02A9A /* FilmService.h */,
+				DE0B1F4A23165F6A00B02A9A /* FilmService.m */,
 			);
 			path = Film;
 			sourceTree = "<group>";
@@ -507,8 +512,8 @@
 			isa = PBXGroup;
 			children = (
 				DE0B1F4E23165F6A00B02A9A /* TechnologyServiceProtocols.h */,
-				DE0B1F4F23165F6A00B02A9A /* TechnologyService.m */,
 				DE0B1F5023165F6A00B02A9A /* TechnologyService.h */,
+				DE0B1F4F23165F6A00B02A9A /* TechnologyService.m */,
 			);
 			path = Technology;
 			sourceTree = "<group>";
@@ -526,9 +531,9 @@
 		DE0B1F5523165F6A00B02A9A /* News */ = {
 			isa = PBXGroup;
 			children = (
+				DE0B1F5823165F6A00B02A9A /* NewsServiceProtocols.h */,
 				DE0B1F5623165F6A00B02A9A /* NewsService.h */,
 				DE0B1F5723165F6A00B02A9A /* NewsService.m */,
-				DE0B1F5823165F6A00B02A9A /* NewsServiceProtocols.h */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -547,8 +552,8 @@
 		DE0B1F5A23165F6A00B02A9A /* Film */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1F5B23165F6A00B02A9A /* Film.m */,
 				DE0B1F5C23165F6A00B02A9A /* Film.h */,
+				DE0B1F5B23165F6A00B02A9A /* Film.m */,
 			);
 			path = Film;
 			sourceTree = "<group>";
@@ -565,8 +570,8 @@
 		DE0B1F6023165F6A00B02A9A /* Comic */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1F6123165F6A00B02A9A /* Comic.m */,
 				DE0B1F6223165F6A00B02A9A /* Comic.h */,
+				DE0B1F6123165F6A00B02A9A /* Comic.m */,
 			);
 			path = Comic;
 			sourceTree = "<group>";
@@ -574,8 +579,8 @@
 		DE0B1F6323165F6A00B02A9A /* News */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1F6423165F6A00B02A9A /* News.m */,
 				DE0B1F6523165F6A00B02A9A /* News.h */,
+				DE0B1F6423165F6A00B02A9A /* News.m */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -924,8 +929,8 @@
 		DE0B1FEB23165F6B00B02A9A /* Film */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1FEC23165F6B00B02A9A /* FilmRepository.h */,
 				DE0B1FED23165F6B00B02A9A /* FilmRepositoryProtocols.h */,
+				DE0B1FEC23165F6B00B02A9A /* FilmRepository.h */,
 				DE0B1FEE23165F6B00B02A9A /* FilmRepository.m */,
 			);
 			path = Film;
@@ -934,9 +939,9 @@
 		DE0B1FEF23165F6B00B02A9A /* Technology */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1FF023165F6B00B02A9A /* TechnologyRepository.m */,
-				DE0B1FF123165F6B00B02A9A /* TechnologyRepository.h */,
 				DE0B1FF223165F6B00B02A9A /* TechnologyRepositoryProtocols.h */,
+				DE0B1FF123165F6B00B02A9A /* TechnologyRepository.h */,
+				DE0B1FF023165F6B00B02A9A /* TechnologyRepository.m */,
 			);
 			path = Technology;
 			sourceTree = "<group>";
@@ -944,9 +949,9 @@
 		DE0B1FF323165F6B00B02A9A /* Comic */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1FF423165F6B00B02A9A /* ComicRepository.m */,
 				DE0B1FF523165F6B00B02A9A /* ComicRepositoryProtocols.h */,
 				DE0B1FF623165F6B00B02A9A /* ComicRepository.h */,
+				DE0B1FF423165F6B00B02A9A /* ComicRepository.m */,
 			);
 			path = Comic;
 			sourceTree = "<group>";
@@ -954,9 +959,9 @@
 		DE0B1FF723165F6B00B02A9A /* News */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1FF823165F6B00B02A9A /* NewsRepository.m */,
 				DE0B1FF923165F6B00B02A9A /* NewsRepositoryProtocols.h */,
 				DE0B1FFA23165F6B00B02A9A /* NewsRepository.h */,
+				DE0B1FF823165F6B00B02A9A /* NewsRepository.m */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -1060,8 +1065,8 @@
 			isa = PBXGroup;
 			children = (
 				DE0B201723165F6C00B02A9A /* NotificationServiceProtocols.h */,
-				DE0B201823165F6C00B02A9A /* NotificationService.m */,
 				DE0B201923165F6C00B02A9A /* NotificationService.h */,
+				DE0B201823165F6C00B02A9A /* NotificationService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1069,8 +1074,8 @@
 		DE0B201A23165F6C00B02A9A /* Observers */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B201B23165F6C00B02A9A /* NotificationObservers.h */,
 				DE0B201C23165F6C00B02A9A /* NotificationObserversProtocols.h */,
+				DE0B201B23165F6C00B02A9A /* NotificationObservers.h */,
 				DE0B201D23165F6C00B02A9A /* NotificationObservers.m */,
 			);
 			path = Observers;
@@ -1082,6 +1087,16 @@
 				DE169FF12317A6B40041B32D /* ReleaseScript.sh */,
 			);
 			path = ShellScript;
+			sourceTree = "<group>";
+		};
+		DE544C082318E23900B11DBE /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				DE544C092318E26A00B11DBE /* TestServiceProtocols.h */,
+				DE544C0A2318E27800B11DBE /* TestService.h */,
+				DE544C0B2318E27800B11DBE /* TestService.m */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		DE75B831212AD23000CA6742 /* Supporting-Files */ = {
@@ -1124,8 +1139,8 @@
 				A3F1050F212AB45D008AD365 /* Sources */,
 				A3F10510212AB45D008AD365 /* Frameworks */,
 				A3F10511212AB45D008AD365 /* Resources */,
-				B570C23BE70B922EC622CA2E /* [CP] Embed Pods Frameworks */,
 				DE169FF22317A6C00041B32D /* ShellScript */,
+				777F7FA5CE4C33B41ECCC899 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1211,6 +1226,38 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				he,
+				ar,
+				el,
+				ja,
+				uk,
+				zh_CN,
+				nb,
+				es,
+				is,
+				sl,
+				pt_BR,
+				da,
+				it,
+				sk,
+				pt_PT,
+				sv,
+				cs,
+				ko,
+				no,
+				hu,
+				tr,
+				pl,
+				zh_TW,
+				ru,
+				fr,
+				fi,
+				nl,
+				th,
+				ro,
+				hr,
+				ca,
 			);
 			mainGroup = A3F1050A212AB45D008AD365;
 			productRefGroup = A3F10514212AB45D008AD365 /* Products */;
@@ -1282,7 +1329,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B570C23BE70B922EC622CA2E /* [CP] Embed Pods Frameworks */ = {
+		777F7FA5CE4C33B41ECCC899 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1393,6 +1440,7 @@
 				DE0B204823165F6C00B02A9A /* TechnologyCellPresenter.m in Sources */,
 				DE0B206223165F6C00B02A9A /* NotificationObservers.m in Sources */,
 				DE0B205F23165F6C00B02A9A /* TableViewManager.m in Sources */,
+				DE544C0C2318E27800B11DBE /* TestService.m in Sources */,
 				DE0B202B23165F6C00B02A9A /* Comic.m in Sources */,
 				DE0B205823165F6C00B02A9A /* NewsRepository.m in Sources */,
 				DE0B202623165F6C00B02A9A /* TechnologyService.m in Sources */,
@@ -1563,12 +1611,17 @@
 				CODE_SIGN_ENTITLEMENTS = "FLOPopupPrototypes/Supporting-Files/FLOPopupPrototypes.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FLOPopupPrototypes/Supporting-Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/FLOPopupPrototypes/Supporting-Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.floware.FLOPopupPrototypes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1580,12 +1633,17 @@
 				CODE_SIGN_ENTITLEMENTS = "FLOPopupPrototypes/Supporting-Files/FLOPopupPrototypes.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/FLOPopupPrototypes/Supporting-Files/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/FLOPopupPrototypes/Supporting-Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.floware.FLOPopupPrototypes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

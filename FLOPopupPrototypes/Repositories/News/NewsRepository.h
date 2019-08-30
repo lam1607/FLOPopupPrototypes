@@ -6,9 +6,9 @@
 //  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
-#import "NewsRepositoryProtocols.h"
-
 #import "AbstractRepository.h"
+
+#import "NewsRepositoryProtocols.h"
 
 @interface NewsRepository : AbstractRepository <NewsRepositoryProtocols>
 

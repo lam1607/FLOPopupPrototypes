@@ -34,7 +34,7 @@
 
 #pragma mark - AbstractRepositoryProtocols implementation
 
-- (void)fetchImageFromUrl:(NSURL *)url completion:(void (^)(NSImage *image))complete
+- (void)fetchImageFromUrl:(NSURL *)url completion:(void(^)(NSImage *image))complete
 {
     [_service fetchDataFromUrl:url completion:^(NSData *data) {
         if (complete)

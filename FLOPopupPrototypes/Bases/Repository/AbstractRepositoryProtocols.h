@@ -13,7 +13,7 @@
 
 @protocol AbstractRepositoryProtocols <NSObject>
 
-- (void)fetchImageFromUrl:(NSURL *)url completion:(void (^)(NSImage *image))complete;
+- (void)fetchImageFromUrl:(NSURL *)url completion:(void(^)(NSImage *image))complete;
 
 @end
 

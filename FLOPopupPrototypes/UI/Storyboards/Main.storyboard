@@ -28,7 +28,7 @@
                                         <menuItem title="Check for Updates..." id="ssP-wX-gj5">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="checkForUpdates:" target="fF3-4T-dPJ" id="rnq-iR-CZb"/>
+                                                <action selector="checkForUpdates:" target="Voe-Tx-rLC" id="bsC-s5-Onc"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -683,7 +683,6 @@
                     </connections>
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
-                <customObject id="fF3-4T-dPJ" userLabel="Sparkle Updater" customClass="SUUpdater"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

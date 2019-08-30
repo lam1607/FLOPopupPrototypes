@@ -6,9 +6,9 @@
 //  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
-#import "FilmRepositoryProtocols.h"
-
 #import "AbstractRepository.h"
+
+#import "FilmRepositoryProtocols.h"
 
 @interface FilmRepository : AbstractRepository <FilmRepositoryProtocols>
 

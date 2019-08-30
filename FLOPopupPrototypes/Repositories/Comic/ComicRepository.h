@@ -6,9 +6,9 @@
 //  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
-#import "ComicRepositoryProtocols.h"
-
 #import "AbstractRepository.h"
+
+#import "ComicRepositoryProtocols.h"
 
 @interface ComicRepository : AbstractRepository <ComicRepositoryProtocols>
 

@@ -6,9 +6,9 @@
 //  Copyright © 2019 Floware Inc. All rights reserved.
 //
 
-#import "TechnologyServiceProtocols.h"
-
 #import "AbstractService.h"
+
+#import "TechnologyServiceProtocols.h"
 
 @interface TechnologyService : AbstractService <TechnologyServiceProtocols>
 

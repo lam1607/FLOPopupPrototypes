@@ -6,9 +6,9 @@
 //  Copyright © 2019 Floware Inc. All rights reserved.
 //
 
-#import "TechnologyRepositoryProtocols.h"
-
 #import "AbstractRepository.h"
+
+#import "TechnologyRepositoryProtocols.h"
 
 @interface TechnologyRepository : AbstractRepository <TechnologyRepositoryProtocols>
 

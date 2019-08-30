@@ -6,9 +6,9 @@
 //  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
-#import "NewsServiceProtocols.h"
-
 #import "AbstractService.h"
+
+#import "NewsServiceProtocols.h"
 
 @interface NewsService : AbstractService <NewsServiceProtocols>
 

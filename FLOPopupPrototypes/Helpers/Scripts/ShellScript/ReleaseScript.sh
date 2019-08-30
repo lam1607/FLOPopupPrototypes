@@ -83,7 +83,7 @@ curl $BASE_URL/$APPCAST_FILENAME -o $APPCAST_FILENAME
 sed -i'.bak' "6r $RELEASE_ITEM_FILE" $APPCAST_FILENAME
 
 scp "$BUILD_DIRECTORY/$ARCHIVE_FILENAME" "/Applications/AMPPS/www/prototype-update/downloads"
-scp "$BUILD_DIRECTORY/$APPCAST_FILENAME" "/Applications/AMPPS/www/prototype-update/$APPCAST_FILENAME"
+scp "$BUILD_DIRECTORY/$APPCAST_FILENAME" "$HOME/Library/Caches/com.Flo.CocoaWebSocket/SocketServer/$APPCAST_FILENAME"
 
 # Clean up all zipped and appcast files
 rm -f *.zip
