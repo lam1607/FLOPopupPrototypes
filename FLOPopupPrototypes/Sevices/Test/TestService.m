@@ -11,6 +11,20 @@
 @implementation TestService
 
 @synthesize isVerified = _isVerified;
+@synthesize verifyNeeded = _verifyNeeded;
+
+#pragma mark - Initialize
+
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        _isVerified = NO;
+        _verifyNeeded = YES;
+    }
+    
+    return self;
+}
 
 #pragma mark - TestServiceProtocols implementation
 

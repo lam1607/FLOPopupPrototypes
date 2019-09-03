@@ -7,11 +7,10 @@
         <item>
             <title>Version 1.1</title>
             <sparkle:releaseNotesLink>
-                http://localhost:1607/prototypes-update/prototypesReleaseNotes.html
+                http://localhost:1607/prototype-update/release-notes/release-notes.html
             </sparkle:releaseNotesLink>
-            <pubDate>Wed, 28 Aug 2019 15:12:11 +0000</pubDate>
-            <!-- Sparkle 1.21+ uses sparkle::edSignature="ed25519" instead of sparkle::dsaSignature="deprecated DSA" -->
-            <enclosure url="http://localhost:1607/prototypes-update/prototypes1.1.zip" sparkle:version="1.1" type="application/octet-stream" sparkle:edSignature="U/kYNmYwdfoGP/hPWR7r7Z9yoq/QGdKv39e6btdVavx9An0uHIFnFyEEIlOcQkZ0KHRvrQcZg2C/jwokGX0WAA==" length="63481852" />
+            <pubDate>Tue, 03 Sep 2019 16:16:48 +0700</pubDate>
+            <enclosure url="http://localhost:1607/prototype-update/downloads/FLOPopupPrototypes1.1.zip" sparkle:version="1.1" type="application/octet-stream" sparkle:edSignature="eaDozh9LgdMBDqPZcTVPJNq4J2SbDyI/2NWwxNA/hNzU/getv7nHc56DFlAvdIQEJOuyvQ8QI18uuxyRKOUoBg==" length="61828496" />
             <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
         </item>
     </channel>

@@ -13,8 +13,6 @@
 
 /// @property
 ///
-@property (nonatomic, assign) BOOL isApplicationActive;
-@property (nonatomic, assign) BOOL shouldChildWindowsFloat;
 
 /// Methods
 ///
@@ -44,20 +42,5 @@
 
 + (NSSize)screenSize;
 + (BOOL)isDarkMode;
-
-#pragma mark - Application utilities
-
-+ (NSString *)getAppPathWithIdentifier:(NSString *)bundleIdentifier;
-+ (NSString *)getAppNameWithIdentifier:(NSString *)bundleIdentifier;
-
-#pragma mark - Window utilities
-
-+ (CGWindowLevel)windowLevelDesktop;
-+ (CGWindowLevel)windowLevelBase;
-+ (CGWindowLevel)windowLevelNormal;
-+ (CGWindowLevel)windowLevelSetting;
-+ (CGWindowLevel)windowLevelUtility;
-+ (CGWindowLevel)windowLevelHigh;
-+ (CGWindowLevel)windowLevelAlert;
 
 @end

@@ -14,8 +14,6 @@
 
 @interface AbstractWindowController ()
 {
-    FLOWindowMode _mode;
-    BOOL _isDesktopMode;
     NSRect _normalFrame;
     CGFloat _titleBarHeight;
 }
@@ -41,7 +39,6 @@ static AbstractWindowController *_sharedInstance = nil;
 - (void)awakeFromNib
 {
     _sharedInstance = self;
-    _mode = FLOWindowModeNormal;
 }
 
 - (void)windowDidLoad
@@ -60,16 +57,6 @@ static AbstractWindowController *_sharedInstance = nil;
 
 #pragma mark - Getter/Setter
 
-- (FLOWindowMode)mode
-{
-    return _mode;
-}
-
-- (BOOL)isDesktopMode
-{
-    return _mode == FLOWindowModeDesktop;
-}
-
 - (NSRect)normalFrame
 {
     return _normalFrame;
@@ -80,37 +67,24 @@ static AbstractWindowController *_sharedInstance = nil;
     return _titleBarHeight;
 }
 
-- (void)setMode
-{
-    if (_mode == FLOWindowModeNormal)
-    {
-        _mode = FLOWindowModeDesktop;
-        _normalFrame = self.window.frame;
-    }
-    else
-    {
-        _mode = FLOWindowModeNormal;
-    }
-}
-
 - (void)setTitleBarHeight
 {
-    _titleBarHeight = self.window.frame.size.height - self.window.contentView.frame.size.height;
+    _titleBarHeight = NSHeight([self window].frame) - NSHeight([[self window] contentView].frame);
 }
 
 #pragma mark - Setup UI
 
 - (void)setupUI
 {
-    NSRect visibleFrame = [self.window.screen visibleFrame];
+    NSRect visibleFrame = [[[self window] screen] visibleFrame];
     CGFloat width = 0.5 * visibleFrame.size.width;
     CGFloat height = 0.6 * visibleFrame.size.height;
     CGFloat x = (visibleFrame.size.width - width) / 2;
     CGFloat y = (visibleFrame.size.height + visibleFrame.origin.y - height) / 2;
     NSRect viewFrame = NSMakeRect(x, y, width, height);
     
-    [self.window setFrame:viewFrame display:YES];
-    //    [self.window setMinSize:NSMakeSize(0.7 * visibleFrame.size.width, 0.8 * visibleFrame.size.height)];
+    [[self window] setFrame:viewFrame display:YES];
+    [[self window] setMinSize:NSMakeSize(680.0, 484.0)];
 }
 
 #pragma mark - Local methods
@@ -120,103 +94,60 @@ static AbstractWindowController *_sharedInstance = nil;
     [self.window makeKeyAndOrderFront:nil];
 }
 
-- (void)changeWindowToDesktopMode
+- (void)changeToDesktopMode
 {
-    self.window.titleVisibility = NSWindowTitleHidden;
-    self.window.styleMask = NSWindowStyleMaskBorderless;
-    [self.window makeKeyAndOrderFront:nil];
-    self.window.level = [Utils windowLevelDesktop];
-    
-    [self.window setFrame:[self.window.screen visibleFrame] display:YES animate:YES];
+    [[self window] setTitleVisibility:NSWindowTitleHidden];
+    [[self window] setStyleMask:NSWindowStyleMaskBorderless];
+    [[self window] makeKeyAndOrderFront:nil];
+    [[self window] setLevel:[[WindowManager sharedInstance] levelForTag:WindowLevelGroupTagDesktop]];
+    [[self window] setFrame:[[[self window] screen] visibleFrame] display:YES animate:YES];
 }
 
-- (void)changeWindowToNormalMode
+- (void)changeToNormalMode
 {
-    self.window.titleVisibility = NSWindowTitleVisible;
-    self.window.styleMask = (NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable);
-    self.window.level = [Utils windowLevelBase];
-    
-    [self.window setFrame:self.normalFrame display:YES animate:YES];
+    [[self window] setTitleVisibility:NSWindowTitleVisible];
+    [[self window] setStyleMask:(NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable)];
+    [[self window] makeKeyAndOrderFront:nil];
+    [[self window] setLevel:[[WindowManager sharedInstance] levelForTag:WindowLevelGroupTagNormal]];
+    [[self window] setFrame:self.normalFrame display:YES animate:YES];
 }
 
 - (void)showChildWindowsOnActivate
 {
-    NSWindowLevel levelNormal = [Utils windowLevelNormal];
-    NSWindowLevel levelSetting = [Utils windowLevelSetting];
-    NSWindowLevel levelUtility = [Utils windowLevelUtility];
-    NSWindowLevel levelHigh = [Utils windowLevelHigh];
-    NSWindowLevel levelAlert = [Utils windowLevelAlert];
-    
-    NSWindowLevel windowLevel = levelNormal;
-    
     for (NSWindow *childWindow in self.window.childWindows)
     {
-        windowLevel = levelNormal;
+        NSWindowLevel level = [[WindowManager sharedInstance] levelForTag:WindowLevelGroupTagFloat];
         
         if ([childWindow isKindOfClass:[FLOPopoverWindow class]])
         {
-            switch (((FLOPopoverWindow *)childWindow).tag)
-            {
-                case WindowLevelGroupTagSetting:
-                    windowLevel = levelSetting;
-                    break;
-                case WindowLevelGroupTagUtility:
-                    windowLevel = levelUtility;
-                    break;
-                case WindowLevelGroupTagHigh:
-                    windowLevel = levelHigh;
-                    break;
-                case WindowLevelGroupTagAlert:
-                    windowLevel = levelAlert;
-                    break;
-                default:
-                    break;
-            }
+            level = [[WindowManager sharedInstance] levelForTag:((FLOPopoverWindow *)childWindow).tag];
         }
         
-        childWindow.level = windowLevel;
+        [childWindow setLevel:level];
+        [[childWindow attachedSheet] setLevel:(childWindow.level + 1)];
     }
 }
 
 - (void)hideChildWindowsOnDeactivate
 {
-    NSWindowLevel levelBase = [Utils windowLevelBase];
-    NSWindowLevel levelAlert = [Utils windowLevelAlert];
-    BOOL shouldOrderChildWindows = NO;
+    if ([[NSApplication sharedApplication] isHidden] || [[NSApplication sharedApplication] isHidden]) return;
     
-    for (NSWindow *childWindow in self.window.childWindows)
+    BOOL shouldChildWindowsFloat = [WindowManager sharedInstance].shouldChildWindowsFloat;
+    NSWindowLevel levelNormal = [[WindowManager sharedInstance] levelForTag:WindowLevelGroupTagNormal];
+    
+    for (NSWindow *childWindow in [[self window] childWindows])
     {
-        if (childWindow.level != levelBase)
+        if (childWindow.level != levelNormal)
         {
-            shouldOrderChildWindows = YES;
-            
-            childWindow.level = levelBase;
-            
-            // **NOTE: MUST have this line to make childWindow sink.
-            // If we don't have this line the childWindow still floats on other active application,
-            // even the childWindow.level is set as levelBase (NSNormalWindowLevel)
-            [childWindow orderFront:self.window];
+            [childWindow setLevel:levelNormal];
+            // Should keep the line below, to make sure that the child window will 'sink' successfully.
+            // Otherwise, the child window still floats even the level is NSNormalWindowLevel.
+            [childWindow orderFront:[self window]];
         }
     }
     
-    BOOL shouldChildWindowsFloat = [Utils sharedInstance].shouldChildWindowsFloat;
-    
-    // If we want some childWindow float on other active application.
+    // If we want some child windows float on other active application. Do it here
     if (shouldChildWindowsFloat)
-    {
-        //        for (NSWindow *childWindow in self.window.childWindows) {
-        //            if ([childWindow isKindOfClass:[FLOPopoverWindow class]])
-        //            {
-        //                if (((FLOPopoverWindow *)childWindow).tag == WindowLevelGroupTagAlert)
-        //                {
-        //                    childWindow.level = levelAlert;
-        //                }
-        //            }
-        //        }
-    }
-    
-    // If none of childWindows floats on other active application. But we want to keep childWindow orders.
-    if (!shouldChildWindowsFloat && shouldOrderChildWindows)
     {
     }
 }
@@ -230,16 +161,23 @@ static AbstractWindowController *_sharedInstance = nil;
 
 - (void)windowDidChangeMode:(NSNotification *)notification
 {
-    if ([notification.name isEqualToString:kFlowarePopover_WindowDidChangeMode])
+    if ([[notification name] isEqualToString:kFlowarePopover_WindowDidChangeModeNotification])
     {
-        if (self.mode == FLOWindowModeDesktop)
+        FLOWindowMode oldMode = [[[notification userInfo] objectForKey:@"original"] integerValue];
+        
+        if (oldMode == FLOWindowModeNormal)
         {
-            [self changeWindowToDesktopMode];
+            _normalFrame = self.window.frame;
+        }
+        
+        if ([[Settings sharedInstance] isDesktopMode])
+        {
+            [self changeToDesktopMode];
             script_hideAllApps();
         }
         else
         {
-            [self changeWindowToNormalMode];
+            [self changeToNormalMode];
         }
     }
 }
@@ -262,24 +200,24 @@ static AbstractWindowController *_sharedInstance = nil;
 
 - (void)registerWindowChangeModeEvent
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidChangeMode:) name:kFlowarePopover_WindowDidChangeMode object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidChangeMode:) name:kFlowarePopover_WindowDidChangeModeNotification object:nil];
 }
 
 - (void)removeWindowChangeModeEvent
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kFlowarePopover_WindowDidChangeMode object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kFlowarePopover_WindowDidChangeModeNotification object:nil];
 }
 
 - (void)registerApplicationAppearanceNotification
 {
-    [self.window.contentView addObserver:self forKeyPath:@"effectiveAppearance"
-                                 options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
-                                 context:NULL];
+    [[[self window] contentView] addObserver:self forKeyPath:@"effectiveAppearance"
+                                     options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
+                                     context:NULL];
 }
 
 - (void)unregisterApplicationAppearanceNotification
 {
-    [self.window.contentView removeObserver:self forKeyPath:@"effectiveAppearance"];
+    [[[self window] contentView] removeObserver:self forKeyPath:@"effectiveAppearance"];
 }
 
 @end

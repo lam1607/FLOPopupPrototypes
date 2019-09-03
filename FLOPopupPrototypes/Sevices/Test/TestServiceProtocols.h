@@ -16,6 +16,7 @@
 @optional
 
 @property (nonatomic, assign) BOOL isVerified;
+@property (nonatomic, assign) BOOL verifyNeeded;
 
 - (void)verifyUpdateWithUrl:(NSURL *)url completion:(void(^)(BOOL granted))complete;
 

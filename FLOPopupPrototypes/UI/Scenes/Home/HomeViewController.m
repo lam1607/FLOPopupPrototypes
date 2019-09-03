@@ -32,8 +32,6 @@
     FLOPopover *_popoverNews;
     FLOPopover *_popoverComics;
     
-    NSArray<NSString *> *_entitlementAppBundles;
-    
     FilmsViewController *_filmsController;
     NewsViewController *_newsController;
     TechnologiesViewController *_technologiesController;
@@ -84,7 +82,6 @@
     // Do view setup here.
     
     [self objectsInitialize];
-    [self setupEntitlementAppBundles];
     [self setupUI];
 }
 
@@ -100,7 +97,7 @@
     _presenter = [[HomePresenter alloc] init];
     [_presenter attachView:self];
     
-    _entitlementAppBundles = [[NSArray alloc] initWithObjects:kFlowarePopover_BundleIdentifier_Finder, kFlowarePopover_BundleIdentifier_Safari, nil];
+    
 }
 
 #pragma mark - Setup UI
@@ -174,38 +171,24 @@
 
 #pragma mark - Local methods
 
-- (void)setupEntitlementAppBundles
-{
-    AppDelegate *appDelegate = (AppDelegate *)[[NSApplication sharedApplication] delegate];
-    
-    for (NSString *bundle in _entitlementAppBundles)
-    {
-        [appDelegate addEntitlementBundleId:bundle];
-    }
-}
-
 - (void)changeWindowMode
 {
-    [[AbstractWindowController sharedInstance] setMode];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kFlowarePopover_WindowDidChangeMode object:nil userInfo:nil];
+    Settings *settings = [Settings sharedInstance];
+    
+    [settings changeMode:[settings nextMode]];
 }
 
 - (void)openEntitlementApplicationWithIdentifier:(NSString *)appIdentifier
 {
-    AppDelegate *appDelegate = (AppDelegate *)[[NSApplication sharedApplication] delegate];
-    NSURL *appUrl = [NSURL fileURLWithPath:[Utils getAppPathWithIdentifier:appIdentifier]];
+    NSURL *appUrl = [NSURL fileURLWithPath:[[EntitlementsManager sharedInstance] getAppPathWithIdentifier:appIdentifier]];
     
     if (![[NSWorkspace sharedWorkspace] launchApplicationAtURL:appUrl options:NSWorkspaceLaunchDefault configuration:[NSDictionary dictionary] error:NULL]) {
         // If the application cannot be launched, then re-launch it by script
-        NSString *appName = [Utils getAppNameWithIdentifier:appIdentifier];
+        NSString *appName = [[EntitlementsManager sharedInstance] getAppNameWithIdentifier:appIdentifier];
         script_openApp(appName, YES);
-        
-        [appDelegate activateEntitlementForBundleId:appIdentifier];
     }
-    else
-    {
-        [appDelegate activateEntitlementForBundleId:appIdentifier];
-    }
+    
+    [[EntitlementsManager sharedInstance] activateWithBundleIdentifier:appIdentifier];
 }
 
 - (void)observeComicsViewContentSizeChange
@@ -280,33 +263,7 @@
 
 - (void)setLevelForPopover:(FLOPopover *)popover
 {
-    NSWindowLevel level = [Utils windowLevelBase];
-    
-    if ([Utils sharedInstance].isApplicationActive)
-    {
-        switch (popover.tag)
-        {
-            case WindowLevelGroupTagNormal:
-                level = [Utils windowLevelNormal];
-                break;
-            case WindowLevelGroupTagSetting:
-                level = [Utils windowLevelSetting];
-                break;
-            case WindowLevelGroupTagUtility:
-                level = [Utils windowLevelUtility];
-                break;
-            case WindowLevelGroupTagHigh:
-                level = [Utils windowLevelHigh];
-                break;
-            case WindowLevelGroupTagAlert:
-                level = [Utils windowLevelAlert];
-                break;
-            default:
-                break;
-        }
-    }
-    
-    [popover setPopoverLevel:level];
+    [popover setPopoverLevel:[[WindowManager sharedInstance] levelForTag:popover.tag]];
 }
 
 - (void)showRelativeToRectOfViewWithPopover:(FLOPopover *)popover edgeType:(FLOPopoverEdgeType)edgeType atView:(NSView *)sender
@@ -363,7 +320,7 @@
     _popoverFilms.isMovable = YES;
     _popoverFilms.isDetachable = YES;
     
-    _popoverFilms.tag = WindowLevelGroupTagNormal;
+    _popoverFilms.tag = WindowLevelGroupTagFloat;
     
     //    [_popoverFilms setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationLeftToRight];
     [_popoverFilms setAnimationBehaviour:FLOPopoverAnimationBehaviorTransform type:FLOPopoverAnimationScale];
@@ -403,7 +360,7 @@
     _popoverNews.isMovable = YES;
     _popoverNews.isDetachable = YES;
     
-    _popoverNews.tag = WindowLevelGroupTagNormal;
+    _popoverNews.tag = WindowLevelGroupTagFloat;
     
     [_popoverNews setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationLeftToRight];
     
@@ -455,7 +412,7 @@
         CGFloat positioningRectY = visibleRect.size.height - menuHeight - secondBarHeight - verticalMargin / 2;
         NSRect positioningRect = [sender.window convertRectToScreen:NSMakeRect(positioningRectX, positioningRectY, 0.0, 0.0)];
         
-        _popoverComics.tag = WindowLevelGroupTagUtility;
+        _popoverComics.tag = WindowLevelGroupTagSetting;
         
         [_popoverComics setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationRightToLeft animatedInAppFrame:YES];
         
@@ -492,7 +449,7 @@
         _popoverComics.isDetachable = YES;
         _popoverComics.staysInContainer = YES;
         
-        _popoverComics.tag = WindowLevelGroupTagUtility;
+        _popoverComics.tag = WindowLevelGroupTagSetting;
         
         [_popoverComics setAnimationBehaviour:FLOPopoverAnimationBehaviorTransition type:FLOPopoverAnimationLeftToRight];
         

@@ -11,13 +11,14 @@
 
 #define kFlowarePopover_UseAssetColors
 
-#define kFlowarePopover_WindowWillChangeMode                @"kFlowarePopover_WindowWillChangeMode"
-#define kFlowarePopover_WindowDidChangeMode                 @"kFlowarePopover_WindowDidChangeMode"
+#define kFlowarePopover_WindowWillChangeModeNotification                @"kFlowarePopover_WindowWillChangeModeNotification"
+#define kFlowarePopover_WindowDidChangeModeNotification                 @"kFlowarePopover_WindowDidChangeModeNotification"
 
 #define kFlowarePopover_BundleIdentifier_Finder             @"com.apple.finder"
 #define kFlowarePopover_BundleIdentifier_Safari             @"com.apple.Safari"
 
-typedef NS_ENUM(NSInteger, FLOWindowMode) {
+typedef NS_ENUM(NSInteger, FLOWindowMode)
+{
     FLOWindowModeNormal,
     FLOWindowModeDesktop
 };
@@ -63,14 +64,14 @@ typedef NS_ENUM(NSInteger, FLOWindowMode) {
 //--------------------------------------------------------------------------------------------------------------------------------
 //      WINDOW LEVEL GROUP TAG
 //--------------------------------------------------------------------------------------------------------------------------------
-typedef NS_ENUM(NSInteger, WindowLevelGroupTag) {
+typedef NS_ENUM(NSInteger, WindowLevelGroupTag)
+{
     WindowLevelGroupTagDesktop          = kCGDesktopIconWindowLevel + 1,
-    WindowLevelGroupTagBase             = kCGNormalWindowLevel,
-    WindowLevelGroupTagNormal           = kCGNormalWindowLevel + 1,
+    WindowLevelGroupTagNormal           = kCGNormalWindowLevel,
+    WindowLevelGroupTagFloat            = kCGNormalWindowLevel + 1,
     WindowLevelGroupTagSetting          = kCGNormalWindowLevel + 2,
-    WindowLevelGroupTagUtility          = kCGFloatingWindowLevel,
-    WindowLevelGroupTagHigh             = kCGFloatingWindowLevel + 2,
     WindowLevelGroupTagAlert            = kCGModalPanelWindowLevel,
+    WindowLevelGroupTagTop              = kCGModalPanelWindowLevel + 1,
 };
 //--------------------------------------------------------------------------------------------------------------------------------
 

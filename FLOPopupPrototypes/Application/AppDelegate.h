@@ -10,16 +10,5 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-#pragma mark - BundleIdentifier from entitlement apps
-
-- (void)addEntitlementBundleId:(NSString *)bundleId;
-- (void)removeEntitlementBundleId:(NSString *)bundleId;
-- (void)activateEntitlementForBundleId:(NSString *)bundleId;
-- (void)inactivateEntitlementForBundleId:(NSString *)bundleId;
-- (BOOL)isEntitlementAppForBundleId:(NSString *)bundleId;
-- (BOOL)isEntitlementAppFocusedForBundleId:(NSString *)bundleId;
-- (BOOL)isEntitlementAppFocused;
-- (BOOL)isFinderAppFocused;
-
 @end
 

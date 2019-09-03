@@ -81,6 +81,12 @@
 		DE0B206223165F6C00B02A9A /* NotificationObservers.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0B201D23165F6C00B02A9A /* NotificationObservers.m */; };
 		DE0B20642316712100B02A9A /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = DE0B20632316712100B02A9A /* appcast.xml */; };
 		DE544C0C2318E27800B11DBE /* TestService.m in Sources */ = {isa = PBXBuildFile; fileRef = DE544C0B2318E27800B11DBE /* TestService.m */; };
+		DEB6AEEE231E04520040C6E0 /* EntitlementsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB6AEED231E04520040C6E0 /* EntitlementsManager.m */; };
+		DEB6AEF5231E08EE0040C6E0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB6AEF4231E08EE0040C6E0 /* Settings.m */; };
+		DEB6AEF8231E0BD20040C6E0 /* WindowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB6AEF7231E0BD20040C6E0 /* WindowManager.m */; };
+		DEB6AEFE231E12310040C6E0 /* AbstractWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB6AEFD231E12310040C6E0 /* AbstractWindow.m */; };
+		DEB6AF04231E1FBB0040C6E0 /* UpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB6AF03231E1FBB0040C6E0 /* UpdateManager.m */; };
+		DEB6AF06231E67F10040C6E0 /* release-notes.html in Resources */ = {isa = PBXBuildFile; fileRef = DEB6AF05231E67F10040C6E0 /* release-notes.html */; };
 		DEC4DD69214A43E6000D1D29 /* AppleScriptObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD68214A43E6000D1D29 /* AppleScriptObjC.framework */; };
 		DEC4DD6B214A43ED000D1D29 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD6A214A43ED000D1D29 /* Cocoa.framework */; };
 		DEC4DD6D214A43F3000D1D29 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD6C214A43F2000D1D29 /* Quartz.framework */; };
@@ -274,6 +280,17 @@
 		DE544C0A2318E27800B11DBE /* TestService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestService.h; sourceTree = "<group>"; };
 		DE544C0B2318E27800B11DBE /* TestService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestService.m; sourceTree = "<group>"; };
 		DE75B832212AD25B00CA6742 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		DEB6AEEC231E04520040C6E0 /* EntitlementsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntitlementsManager.h; sourceTree = "<group>"; };
+		DEB6AEED231E04520040C6E0 /* EntitlementsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntitlementsManager.m; sourceTree = "<group>"; };
+		DEB6AEF3231E08EE0040C6E0 /* Settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		DEB6AEF4231E08EE0040C6E0 /* Settings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		DEB6AEF6231E0BD20040C6E0 /* WindowManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowManager.h; sourceTree = "<group>"; };
+		DEB6AEF7231E0BD20040C6E0 /* WindowManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowManager.m; sourceTree = "<group>"; };
+		DEB6AEFC231E12310040C6E0 /* AbstractWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AbstractWindow.h; sourceTree = "<group>"; };
+		DEB6AEFD231E12310040C6E0 /* AbstractWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AbstractWindow.m; sourceTree = "<group>"; };
+		DEB6AF02231E1FBB0040C6E0 /* UpdateManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateManager.h; sourceTree = "<group>"; };
+		DEB6AF03231E1FBB0040C6E0 /* UpdateManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateManager.m; sourceTree = "<group>"; };
+		DEB6AF05231E67F10040C6E0 /* release-notes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "release-notes.html"; sourceTree = "<group>"; };
 		DEC4DD68214A43E6000D1D29 /* AppleScriptObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptObjC.framework; path = System/Library/Frameworks/AppleScriptObjC.framework; sourceTree = SDKROOT; };
 		DEC4DD6A214A43ED000D1D29 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DEC4DD6C214A43F2000D1D29 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
@@ -362,6 +379,7 @@
 				DE0B1FFE23165F6C00B02A9A /* Application */,
 				DE0B1F6623165F6A00B02A9A /* Bases */,
 				DE0B1F4223165F6A00B02A9A /* Helpers */,
+				DEB6AEEB231E04080040C6E0 /* Managers */,
 				DE0B1F4823165F6A00B02A9A /* Sevices */,
 				DE0B1FEA23165F6B00B02A9A /* Repositories */,
 				DE0B201323165F6C00B02A9A /* Notification */,
@@ -372,6 +390,7 @@
 				DE0B1FFB23165F6B00B02A9A /* Resources */,
 				DE0B1F3B23165F6A00B02A9A /* CustomClasses */,
 				DE0B1F3423165F6900B02A9A /* Categories */,
+				DEB6AEF2231E08D30040C6E0 /* Settings */,
 				DE75B831212AD23000CA6742 /* Supporting-Files */,
 			);
 			path = FLOPopupPrototypes;
@@ -398,8 +417,8 @@
 		DE0B1F3023165F6900B02A9A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1F3123165F6900B02A9A /* Utils.h */,
 				DE0B1F3223165F6900B02A9A /* Constants.h */,
+				DE0B1F3123165F6900B02A9A /* Utils.h */,
 				DE0B1F3323165F6900B02A9A /* Utils.m */,
 			);
 			path = Utils;
@@ -612,6 +631,8 @@
 		DE0B1F6B23165F6A00B02A9A /* WindowController */ = {
 			isa = PBXGroup;
 			children = (
+				DEB6AEFC231E12310040C6E0 /* AbstractWindow.h */,
+				DEB6AEFD231E12310040C6E0 /* AbstractWindow.m */,
 				DE0B1F6D23165F6A00B02A9A /* AbstractWindowController.h */,
 				DE0B1F6C23165F6A00B02A9A /* AbstractWindowController.m */,
 			);
@@ -1108,8 +1129,31 @@
 				A3F10522212AB45D008AD365 /* main.m */,
 				A3F10524212AB45D008AD365 /* FLOPopupPrototypes.entitlements */,
 				DE0B20632316712100B02A9A /* appcast.xml */,
+				DEB6AF05231E67F10040C6E0 /* release-notes.html */,
 			);
 			path = "Supporting-Files";
+			sourceTree = "<group>";
+		};
+		DEB6AEEB231E04080040C6E0 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				DEB6AEEC231E04520040C6E0 /* EntitlementsManager.h */,
+				DEB6AEED231E04520040C6E0 /* EntitlementsManager.m */,
+				DEB6AF02231E1FBB0040C6E0 /* UpdateManager.h */,
+				DEB6AF03231E1FBB0040C6E0 /* UpdateManager.m */,
+				DEB6AEF6231E0BD20040C6E0 /* WindowManager.h */,
+				DEB6AEF7231E0BD20040C6E0 /* WindowManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		DEB6AEF2231E08D30040C6E0 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DEB6AEF3231E08EE0040C6E0 /* Settings.h */,
+				DEB6AEF4231E08EE0040C6E0 /* Settings.m */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		DEC4DD67214A43E5000D1D29 /* Frameworks */ = {
@@ -1288,6 +1332,7 @@
 				DE0B204123165F6C00B02A9A /* FilmsViewController.xib in Resources */,
 				DE0B203623165F6C00B02A9A /* Main.storyboard in Resources */,
 				DE0B205023165F6C00B02A9A /* FilmCellView.xib in Resources */,
+				DEB6AF06231E67F10040C6E0 /* release-notes.html in Resources */,
 				DE0B204623165F6C00B02A9A /* NewsViewController.xib in Resources */,
 				DE0B205A23165F6C00B02A9A /* Assets.xcassets in Resources */,
 				DE0B205323165F6C00B02A9A /* TrashCellView.xib in Resources */,
@@ -1421,10 +1466,12 @@
 				DE0B203823165F6C00B02A9A /* HomePresenter.m in Sources */,
 				DE0B205D23165F6C00B02A9A /* CollectionViewManager.m in Sources */,
 				DE0B205523165F6C00B02A9A /* FilmRepository.m in Sources */,
+				DEB6AEEE231E04520040C6E0 /* EntitlementsManager.m in Sources */,
 				DE0B204423165F6C00B02A9A /* TrashViewController.m in Sources */,
 				DE0B202E23165F6C00B02A9A /* AbstractWindowController.m in Sources */,
 				DE0B202A23165F6C00B02A9A /* Technology.m in Sources */,
 				DE0B201E23165F6C00B02A9A /* Utils.m in Sources */,
+				DEB6AEF8231E0BD20040C6E0 /* WindowManager.m in Sources */,
 				DE0B206023165F6C00B02A9A /* Notification.m in Sources */,
 				DE0B203B23165F6C00B02A9A /* ComicsViewController.m in Sources */,
 				DE0B201F23165F6C00B02A9A /* NSColor+Custom.m in Sources */,
@@ -1433,12 +1480,14 @@
 				DE0B205B23165F6C00B02A9A /* AppDelegate.m in Sources */,
 				DE0B204B23165F6C00B02A9A /* NewsCellPresenter.m in Sources */,
 				DE0B202523165F6C00B02A9A /* FilmService.m in Sources */,
+				DEB6AF04231E1FBB0040C6E0 /* UpdateManager.m in Sources */,
 				DE0B205E23165F6C00B02A9A /* OutlineViewManager.m in Sources */,
 				DE0B202223165F6C00B02A9A /* TableRowView.m in Sources */,
 				DE0B203123165F6C00B02A9A /* AbstractService.m in Sources */,
 				DE0B202323165F6C00B02A9A /* AppleScript.m in Sources */,
 				DE0B204823165F6C00B02A9A /* TechnologyCellPresenter.m in Sources */,
 				DE0B206223165F6C00B02A9A /* NotificationObservers.m in Sources */,
+				DEB6AEF5231E08EE0040C6E0 /* Settings.m in Sources */,
 				DE0B205F23165F6C00B02A9A /* TableViewManager.m in Sources */,
 				DE544C0C2318E27800B11DBE /* TestService.m in Sources */,
 				DE0B202B23165F6C00B02A9A /* Comic.m in Sources */,
@@ -1453,6 +1502,7 @@
 				DE0B202023165F6C00B02A9A /* NSObject+Extensions.m in Sources */,
 				DE0B202823165F6C00B02A9A /* NewsService.m in Sources */,
 				DE0B202C23165F6C00B02A9A /* News.m in Sources */,
+				DEB6AEFE231E12310040C6E0 /* AbstractWindow.m in Sources */,
 				DE0B204523165F6C00B02A9A /* NewsViewController.m in Sources */,
 				DE0B204723165F6C00B02A9A /* NewsPresenter.m in Sources */,
 				DE0B205623165F6C00B02A9A /* TechnologyRepository.m in Sources */,

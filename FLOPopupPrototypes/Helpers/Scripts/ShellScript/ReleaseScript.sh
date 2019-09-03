@@ -8,11 +8,12 @@
 
 # http://codewiki.wikidot.com/shell-script:if-else
 
-echo "---------> BEGIN to execute ReleaseScript.sh <---------"
+echo "---------> BEGIN - execute ReleaseScript.sh <---------"
 
 set -o errexit
 
 # Constants
+LOCAL_SERVER_DIRECTORY="/Applications/AMPPS/www"
 BUILD_DIRECTORY="$HOME/Development/Projects/macOS/$PROJECT_NAME/Documents/Builds"
 VERSION=$(defaults read "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info" CFBundleShortVersionString)
 ARCHIVE_NAME="$PROJECT_NAME$VERSION"
@@ -68,6 +69,7 @@ RELEASE_ITEM=$(cat <<-END
             </sparkle:releaseNotesLink>
             <pubDate>$PUBDATE</pubDate>
             <enclosure url="$DOWNLOAD_URL" sparkle:version="$VERSION" type="application/octet-stream" $SIGNING_SIGNATURE />
+            <sparkle:minimumSystemVersion>$MACOSX_DEPLOYMENT_TARGET</sparkle:minimumSystemVersion>
         </item>
 END
 )
@@ -82,12 +84,12 @@ curl $BASE_URL/$APPCAST_FILENAME -o $APPCAST_FILENAME
 # Insert new release note item to given (downloaded) appcast.xml file
 sed -i'.bak' "6r $RELEASE_ITEM_FILE" $APPCAST_FILENAME
 
-scp "$BUILD_DIRECTORY/$ARCHIVE_FILENAME" "/Applications/AMPPS/www/prototype-update/downloads"
-scp "$BUILD_DIRECTORY/$APPCAST_FILENAME" "$HOME/Library/Caches/com.Flo.CocoaWebSocket/SocketServer/$APPCAST_FILENAME"
+scp "$BUILD_DIRECTORY/$ARCHIVE_FILENAME" "$LOCAL_SERVER_DIRECTORY/prototype-update/downloads"
+scp "$BUILD_DIRECTORY/$APPCAST_FILENAME" "$LOCAL_SERVER_DIRECTORY/prototype-update/$APPCAST_FILENAME"
 
 # Clean up all zipped and appcast files
 rm -f *.zip
 rm -f *.xml
 rm -f *.bak
 
-echo "---------> END to execute ReleaseScript.sh <---------"
+echo "---------> END - execute ReleaseScript.sh <---------"

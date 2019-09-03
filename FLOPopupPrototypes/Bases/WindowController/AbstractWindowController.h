@@ -12,8 +12,6 @@
 
 /// @property
 ///
-@property (nonatomic, assign, readonly) FLOWindowMode mode;
-@property (nonatomic, assign, readonly) BOOL isDesktopMode;
 @property (nonatomic, assign, readonly) NSRect normalFrame;
 @property (nonatomic, assign, readonly) CGFloat titleBarHeight;
 
@@ -23,7 +21,6 @@
 
 /// Methods
 ///
-- (void)setMode;
 - (void)setTitleBarHeight;
 
 - (void)activate;
