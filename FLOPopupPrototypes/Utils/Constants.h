@@ -11,11 +11,13 @@
 
 #define kFlowarePopover_UseAssetColors
 
-#define kFlowarePopover_WindowWillChangeModeNotification                @"kFlowarePopover_WindowWillChangeModeNotification"
-#define kFlowarePopover_WindowDidChangeModeNotification                 @"kFlowarePopover_WindowDidChangeModeNotification"
+#define kFlowarePopover_WindowWillChangeModeNotification @"kFlowarePopover_WindowWillChangeModeNotification"
+#define kFlowarePopover_WindowDidChangeModeNotification @"kFlowarePopover_WindowDidChangeModeNotification"
 
-#define kFlowarePopover_BundleIdentifier_Finder             @"com.apple.finder"
-#define kFlowarePopover_BundleIdentifier_Safari             @"com.apple.Safari"
+#define kFlowarePopover_BundleIdentifier_Finder @"com.apple.finder"
+#define kFlowarePopover_BundleIdentifier_Safari @"com.apple.Safari"
+
+//#define kFlowarePopover_UpdateRelease
 
 typedef NS_ENUM(NSInteger, FLOWindowMode)
 {

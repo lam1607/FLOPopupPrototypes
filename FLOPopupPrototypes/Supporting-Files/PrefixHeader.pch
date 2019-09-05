@@ -10,9 +10,11 @@
 #define PrefixHeader_pch
 
 #import <Foundation/Foundation.h>
+#import <AppleScriptObjC/AppleScriptObjC.h>
 
 #import <FlowarePopover/FlowarePopover.h>
 #import <Sparkle/Sparkle.h>
+#import <WebSocket/WebSocket.h>
 
 #import "Constants.h"
 #import "NSObject+Extensions.h"
@@ -21,6 +23,7 @@
 #import "Utils.h"
 
 #import "EntitlementsManager.h"
+#import "WebSocketManager.h"
 #import "UpdateManager.h"
 #import "WindowManager.h"
 #import "Settings.h"

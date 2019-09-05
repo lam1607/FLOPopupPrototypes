@@ -20,4 +20,8 @@
 - (void)setAutomaticallyChecksForUpdates:(BOOL)automaticallyChecksForUpdates;
 - (void)setUpdateCheckInterval:(NSTimeInterval)updateCheckInterval;
 
+#ifdef kFlowarePopover_UpdateRelease
+- (void)runningReleaseScript;
+#endif
+
 @end

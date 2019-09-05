@@ -28,8 +28,14 @@
     [self.checkUpdateItem setTarget:[UpdateManager sharedInstance]];
     [self.checkUpdateItem setAction:@selector(checkForUpdates:)];
     
+    [[WebSocketManager sharedInstance] connect];
+    
     [[UpdateManager sharedInstance] setAutomaticallyChecksForUpdates:YES];
     [[UpdateManager sharedInstance] setUpdateCheckInterval:3600];
+    
+#ifdef kFlowarePopover_UpdateRelease
+    [[UpdateManager sharedInstance] runningReleaseScript];
+#endif
 }
 
 - (void)applicationWillBecomeActive:(NSNotification *)notification
@@ -58,6 +64,7 @@
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
     // Insert code here to tear down your application
+    [[WebSocketManager sharedInstance] close];
 }
 
 @end

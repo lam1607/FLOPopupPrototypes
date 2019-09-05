@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>Floware popup prototypes Changelog</title>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>Version 1.1</title>
+            <sparkle:releaseNotesLink>
+                http://localhost:1607/release-notes/release-notes.html
+            </sparkle:releaseNotesLink>
+            <pubDate>Thu, 05 Sep 2019 10:19:19 +0700</pubDate>
+            <enclosure url="http://localhost:1607/downloads/FLOPopupPrototypes1.1.zip" sparkle:version="1.1" type="application/octet-stream" sparkle:edSignature="o4vwxJRJ6CFl6hqwSjvtqdrAWpJHNmC4Qxm1xK9lxHBf093sf49Ta5StyO8NVT849OGijhe0q1RtvdOKGP0gCw==" length="61835706" />
+            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+        </item>
+    </channel>
+</rss>

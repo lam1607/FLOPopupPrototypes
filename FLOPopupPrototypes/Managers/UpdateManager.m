@@ -98,6 +98,19 @@
     [[SUUpdater sharedUpdater] setUpdateCheckInterval:updateCheckInterval];
 }
 
+#ifdef kFlowarePopover_UpdateRelease
+- (void)runningReleaseScript
+{
+    NSURL *releaseScriptURL = [[NSBundle mainBundle] URLForResource:@"ReleaseScript" withExtension:@"sh"];
+    NSTask *task = [[NSTask alloc] init];
+    
+    task.launchPath = @"/bin/bash";
+    task.arguments = @[releaseScriptURL.path];
+    [task launch];
+    [task waitUntilExit];
+}
+#endif
+
 #pragma mark - SUUpdaterDelegate
 
 - (IBAction)checkForUpdates:(id)sender
@@ -144,10 +157,10 @@
  * and let the server handle what kind of feed to provide.
  * @param updater The SUUpdater instance.
  */
-//- (nullable NSString *)feedURLStringForUpdater:(SUUpdater *)updater
-//{
-//    return nil;
-//}
+- (nullable NSString *)feedURLStringForUpdater:(SUUpdater *)updater
+{
+    return @"http://localhost:1607/appcast.xml";
+}
 
 /**
  * Returns whether Sparkle should prompt the user about automatic update checks.

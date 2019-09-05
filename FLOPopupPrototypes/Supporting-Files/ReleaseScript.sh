@@ -13,13 +13,31 @@ echo "---------> BEGIN - execute ReleaseScript.sh <---------"
 set -o errexit
 
 # Constants
-LOCAL_SERVER_DIRECTORY="/Applications/AMPPS/www"
-BUILD_DIRECTORY="$HOME/Development/Projects/macOS/$PROJECT_NAME/Documents/Builds"
-VERSION=$(defaults read "$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app/Contents/Info" CFBundleShortVersionString)
+BUILD_DIRECTORY="$HOME/Development/Projects/macOS/FLOPopupPrototypes/Documents/Builds"
+
+[ -d "$BUILD_DIRECTORY" ] || mkdir "$BUILD_DIRECTORY"
+
+# Change to our build directory
+cd "$BUILD_DIRECTORY"
+
+source building-info.txt
+
+echo "Project name: $PROJECT_NAME, Product bundle identifier: $PRODUCT_BUNDLE_IDENTIFIER, Version: $VERSION, Deployment target: $MACOSX_DEPLOYMENT_TARGET"
+
 ARCHIVE_NAME="$PROJECT_NAME$VERSION"
 ARCHIVE_FILENAME="$ARCHIVE_NAME.zip"
 
-BASE_URL="http://localhost:1607/prototype-update"
+echo "Product bundle identifier: $PRODUCT_BUNDLE_IDENTIFIER"
+
+LOCAL_CACHE_DIRECTORY="$HOME/Library/Caches/$PRODUCT_BUNDLE_IDENTIFIER"
+LOCAL_SERVER_DIRECTORY="$LOCAL_CACHE_DIRECTORY/SocketServer"
+
+[ -d "$LOCAL_CACHE_DIRECTORY" ] || mkdir "$LOCAL_CACHE_DIRECTORY"
+[ -d "$LOCAL_SERVER_DIRECTORY" ] || mkdir "$LOCAL_SERVER_DIRECTORY"
+[ -d "$LOCAL_SERVER_DIRECTORY/downloads" ] || mkdir "$LOCAL_SERVER_DIRECTORY/downloads"
+[ -d "$LOCAL_SERVER_DIRECTORY/release-notes" ] || mkdir "$LOCAL_SERVER_DIRECTORY/release-notes"
+
+BASE_URL="http://localhost:1607"
 DOWNLOAD_BASE_URL="$BASE_URL/downloads"
 DOWNLOAD_URL="$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME"
 RELEASENOTES_URL="$BASE_URL/release-notes/release-notes.html"
@@ -30,25 +48,23 @@ SIGNING_UPDATE="$BUILD_DIRECTORY/sparkle_sign"
 echo "Application version: $VERSION, archived file name: $ARCHIVE_FILENAME"
 
 # Change to build directory of Xcode
-cd "$BUILT_PRODUCTS_DIR"
+#cd "$BUILT_PRODUCTS_DIR"
 
 # Zip the built file
-ditto -ck --keepParent "$PROJECT_NAME.app" "$ARCHIVE_FILENAME"
+#ditto -ck --keepParent "$PROJECT_NAME.app" "$ARCHIVE_FILENAME"
 #zip -qr "$ARCHIVE_FILENAME" "$PROJECT_NAME.app"
 
-scp "$ARCHIVE_FILENAME" $BUILD_DIRECTORY
+#scp "$ARCHIVE_FILENAME" $BUILD_DIRECTORY
 
 # Clean up all zipped files
-rm -f *.zip
+#rm -f *.zip
 
-# Change to our build directory
-cd "$BUILD_DIRECTORY"
 
 SIZE=$(stat -f %z "$ARCHIVE_FILENAME")
 PUBDATE=$(LC_TIME=en_US date +"%a, %d %b %G %T %z")
 # Signing the zipped file by the sparkle signing tool.
 SIGNING_SIGNATURE=$(
-$SIGNING_UPDATE $ARCHIVE_FILENAME
+    $SIGNING_UPDATE $ARCHIVE_FILENAME
 )
 
 if [ -z $SIGNING_SIGNATURE ]
@@ -79,17 +95,22 @@ echo "New release note item content: \n$RELEASE_ITEM"
 echo "$RELEASE_ITEM" >> $RELEASE_ITEM_FILE
 
 # Download the appcast.xml file from server
-curl $BASE_URL/$APPCAST_FILENAME -o $APPCAST_FILENAME
+#curl $BASE_URL/$APPCAST_FILENAME -o $APPCAST_FILENAME
+scp "$LOCAL_SERVER_DIRECTORY/$APPCAST_FILENAME" "$BUILD_DIRECTORY/$APPCAST_FILENAME"
 
 # Insert new release note item to given (downloaded) appcast.xml file
 sed -i'.bak' "6r $RELEASE_ITEM_FILE" $APPCAST_FILENAME
 
-scp "$BUILD_DIRECTORY/$ARCHIVE_FILENAME" "$LOCAL_SERVER_DIRECTORY/prototype-update/downloads"
-scp "$BUILD_DIRECTORY/$APPCAST_FILENAME" "$LOCAL_SERVER_DIRECTORY/prototype-update/$APPCAST_FILENAME"
+echo "Local server directory: $LOCAL_SERVER_DIRECTORY"
+
+scp "$BUILD_DIRECTORY/$ARCHIVE_FILENAME" "$LOCAL_SERVER_DIRECTORY/downloads/$ARCHIVE_FILENAME"
+scp "$BUILD_DIRECTORY/$APPCAST_FILENAME" "$LOCAL_SERVER_DIRECTORY/$APPCAST_FILENAME"
 
 # Clean up all zipped and appcast files
+rm -f *.app
 rm -f *.zip
 rm -f *.xml
 rm -f *.bak
+rm -f *.txt
 
 echo "---------> END - execute ReleaseScript.sh <---------"

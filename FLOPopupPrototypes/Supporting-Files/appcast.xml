@@ -4,14 +4,5 @@
         <title>Floware popup prototypes Changelog</title>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
-        <item>
-            <title>Version 1.1</title>
-            <sparkle:releaseNotesLink>
-                http://localhost:1607/prototype-update/release-notes/release-notes.html
-            </sparkle:releaseNotesLink>
-            <pubDate>Tue, 03 Sep 2019 16:16:48 +0700</pubDate>
-            <enclosure url="http://localhost:1607/prototype-update/downloads/FLOPopupPrototypes1.1.zip" sparkle:version="1.1" type="application/octet-stream" sparkle:edSignature="eaDozh9LgdMBDqPZcTVPJNq4J2SbDyI/2NWwxNA/hNzU/getv7nHc56DFlAvdIQEJOuyvQ8QI18uuxyRKOUoBg==" length="61828496" />
-            <sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
-        </item>
     </channel>
 </rss>
