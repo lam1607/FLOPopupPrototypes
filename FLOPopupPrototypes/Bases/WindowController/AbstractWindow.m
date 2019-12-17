@@ -102,11 +102,11 @@
         
         for (NSWindow *window in childWindows)
         {
-            NSWindowLevel level = [[WindowManager sharedInstance] levelForTag:WindowLevelGroupTagFloat];
+            NSWindowLevel level = [WindowManager levelForTag:WindowLevelGroupTagFloat];
             
             if ([window isKindOfClass:[FLOPopoverWindow class]])
             {
-                level = [[WindowManager sharedInstance] levelForTag:((FLOPopoverWindow *)window).tag];
+                level = [WindowManager levelForTag:((FLOPopoverWindow *)window).tag];
             }
             
             [self removeChildWindow:window];

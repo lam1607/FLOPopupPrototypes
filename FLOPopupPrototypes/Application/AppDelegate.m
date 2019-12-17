@@ -13,7 +13,6 @@
 @interface AppDelegate ()
 
 @property (weak) IBOutlet NSWindow *window;
-
 @property (weak) IBOutlet NSMenuItem *checkUpdateItem;
 
 @end
@@ -44,13 +43,12 @@
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
 {
-    [[AbstractWindowController sharedInstance] showChildWindowsOnActivate];
-    [[AbstractWindowController sharedInstance] activate];
-    
-    if ([[Settings sharedInstance] isDesktopMode] && ![[EntitlementsManager sharedInstance] isEntitlementAppFocused])
+    if ([[SettingsManager sharedInstance] isDesktopMode] && ![[EntitlementsManager sharedInstance] isEntitlementAppFocused])
     {
-        [[AbstractWindowController sharedInstance] hideOtherAppsExceptThoseInside];
+        [[EntitlementsManager sharedInstance] hideOtherAppsExceptThoseInside];
     }
+    
+    [[AbstractWindowController sharedInstance] activate];
 }
 
 - (void)applicationWillResignActive:(NSNotification *)notification

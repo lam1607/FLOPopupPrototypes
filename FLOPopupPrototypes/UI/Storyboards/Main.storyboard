@@ -726,7 +726,7 @@
                                 <rect key="frame" x="0.0" y="1750" width="2800" height="50"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="xay-PV-jAd" userLabel="Change Mode View Container">
-                                        <rect key="frame" x="10" y="5" width="40" height="40"/>
+                                        <rect key="frame" x="5" y="5" width="40" height="40"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4P3-pJ-IwM" userLabel="Btn Change Mode">
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -748,7 +748,7 @@
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="24A-hG-ZdQ" userLabel="Finder View Container">
-                                        <rect key="frame" x="60" y="5" width="40" height="40"/>
+                                        <rect key="frame" x="50" y="5" width="40" height="40"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="diw-HF-RaI" userLabel="Btn Open Finder">
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -770,7 +770,7 @@
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="uUK-hZ-BLj" userLabel="Safari View Container">
-                                        <rect key="frame" x="110" y="5" width="40" height="40"/>
+                                        <rect key="frame" x="95" y="5" width="40" height="40"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vYx-ID-mZ0" userLabel="Btn Open Safari">
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -791,8 +791,30 @@
                                             <constraint firstItem="vYx-ID-mZ0" firstAttribute="top" secondItem="uUK-hZ-BLj" secondAttribute="top" id="ryW-OD-86L"/>
                                         </constraints>
                                     </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="aa2-os-uBc" userLabel="Google View Container">
+                                        <rect key="frame" x="140" y="5" width="40" height="40"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vxD-Us-bQh" userLabel="Btn Open Google">
+                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="ic_google" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="zfG-IW-WNE">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="btnOpenGoogle_clicked:" target="XfG-lQ-9wD" id="pHn-Lv-ILR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="vxD-Us-bQh" secondAttribute="trailing" id="Hbc-GD-jYd"/>
+                                            <constraint firstItem="vxD-Us-bQh" firstAttribute="leading" secondItem="aa2-os-uBc" secondAttribute="leading" id="Jka-SW-BKl"/>
+                                            <constraint firstAttribute="width" secondItem="aa2-os-uBc" secondAttribute="height" multiplier="1:1" id="Mns-h3-YDc"/>
+                                            <constraint firstItem="vxD-Us-bQh" firstAttribute="top" secondItem="aa2-os-uBc" secondAttribute="top" id="QdQ-Ve-a44"/>
+                                            <constraint firstAttribute="bottom" secondItem="vxD-Us-bQh" secondAttribute="bottom" id="web-xm-mSu"/>
+                                        </constraints>
+                                    </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="uQl-Vp-Bbc" userLabel="Films View Container">
-                                        <rect key="frame" x="160" y="5" width="98" height="40"/>
+                                        <rect key="frame" x="185" y="5" width="98" height="40"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bii-Nb-7uf" userLabel="Btn Open Films">
                                                 <rect key="frame" x="10" y="0.0" width="78" height="40"/>
@@ -813,7 +835,7 @@
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="hH7-0V-lua" userLabel="News View Container">
-                                        <rect key="frame" x="268" y="5" width="100" height="40"/>
+                                        <rect key="frame" x="288" y="5" width="100" height="40"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QKT-rF-oHD" userLabel="Btn Open News">
                                                 <rect key="frame" x="10" y="0.0" width="80" height="40"/>
@@ -855,7 +877,7 @@
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="dAj-4e-xyd" userLabel="Second Bar View Container">
-                                        <rect key="frame" x="2539" y="5" width="129" height="40"/>
+                                        <rect key="frame" x="2544" y="5" width="129" height="40"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="922-Oc-zMC" userLabel="Btn Show Second Bar">
                                                 <rect key="frame" x="10" y="0.0" width="109" height="40"/>
@@ -882,23 +904,26 @@
                                     <constraint firstAttribute="bottom" secondItem="dAj-4e-xyd" secondAttribute="bottom" constant="5" id="98a-Se-SZM"/>
                                     <constraint firstItem="dAj-4e-xyd" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="BPT-EN-DOs"/>
                                     <constraint firstItem="uQl-Vp-Bbc" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="ClT-Wa-q1d"/>
+                                    <constraint firstItem="aa2-os-uBc" firstAttribute="leading" secondItem="uUK-hZ-BLj" secondAttribute="trailing" constant="5" id="E3z-b8-OOy"/>
                                     <constraint firstAttribute="height" constant="50" id="Ejm-YL-M96"/>
                                     <constraint firstItem="4xE-ia-sMm" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="KXJ-ym-K9X"/>
                                     <constraint firstAttribute="bottom" secondItem="4xE-ia-sMm" secondAttribute="bottom" constant="5" id="LwG-a5-vap"/>
                                     <constraint firstItem="xay-PV-jAd" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="MB5-E1-GBx"/>
-                                    <constraint firstItem="4xE-ia-sMm" firstAttribute="leading" secondItem="dAj-4e-xyd" secondAttribute="trailing" constant="10" id="RJN-3B-ADU"/>
-                                    <constraint firstItem="xay-PV-jAd" firstAttribute="leading" secondItem="WeF-sb-hLO" secondAttribute="leading" constant="10" id="Swf-ZO-XjU"/>
+                                    <constraint firstAttribute="bottom" secondItem="aa2-os-uBc" secondAttribute="bottom" constant="5" id="NpX-rP-W2C"/>
+                                    <constraint firstItem="4xE-ia-sMm" firstAttribute="leading" secondItem="dAj-4e-xyd" secondAttribute="trailing" constant="5" id="RJN-3B-ADU"/>
+                                    <constraint firstItem="xay-PV-jAd" firstAttribute="leading" secondItem="WeF-sb-hLO" secondAttribute="leading" constant="5" id="Swf-ZO-XjU"/>
                                     <constraint firstAttribute="bottom" secondItem="uQl-Vp-Bbc" secondAttribute="bottom" constant="5" id="Xac-pm-bgD"/>
                                     <constraint firstAttribute="bottom" secondItem="uUK-hZ-BLj" secondAttribute="bottom" constant="5" id="b4t-o5-0WO"/>
                                     <constraint firstItem="hH7-0V-lua" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="eP9-zC-kWh"/>
-                                    <constraint firstItem="uQl-Vp-Bbc" firstAttribute="leading" secondItem="uUK-hZ-BLj" secondAttribute="trailing" constant="10" id="f2c-4J-vGc"/>
                                     <constraint firstAttribute="bottom" secondItem="24A-hG-ZdQ" secondAttribute="bottom" constant="5" id="hVL-a1-n8Q"/>
-                                    <constraint firstItem="hH7-0V-lua" firstAttribute="leading" secondItem="uQl-Vp-Bbc" secondAttribute="trailing" constant="10" id="j8I-66-lOy"/>
-                                    <constraint firstItem="uUK-hZ-BLj" firstAttribute="leading" secondItem="24A-hG-ZdQ" secondAttribute="trailing" constant="10" id="lJg-FA-Ql2"/>
+                                    <constraint firstItem="hH7-0V-lua" firstAttribute="leading" secondItem="uQl-Vp-Bbc" secondAttribute="trailing" constant="5" id="j8I-66-lOy"/>
+                                    <constraint firstItem="uUK-hZ-BLj" firstAttribute="leading" secondItem="24A-hG-ZdQ" secondAttribute="trailing" constant="5" id="lJg-FA-Ql2"/>
                                     <constraint firstAttribute="trailing" secondItem="4xE-ia-sMm" secondAttribute="trailing" constant="10" id="lYE-jv-njK"/>
                                     <constraint firstAttribute="bottom" secondItem="hH7-0V-lua" secondAttribute="bottom" constant="5" id="loZ-qc-HpQ"/>
-                                    <constraint firstItem="24A-hG-ZdQ" firstAttribute="leading" secondItem="xay-PV-jAd" secondAttribute="trailing" constant="10" id="mFF-24-ARc"/>
+                                    <constraint firstItem="24A-hG-ZdQ" firstAttribute="leading" secondItem="xay-PV-jAd" secondAttribute="trailing" constant="5" id="mFF-24-ARc"/>
                                     <constraint firstItem="24A-hG-ZdQ" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="rDJ-ld-SNa"/>
+                                    <constraint firstItem="aa2-os-uBc" firstAttribute="top" secondItem="WeF-sb-hLO" secondAttribute="top" constant="5" id="wNv-Le-iMm"/>
+                                    <constraint firstItem="uQl-Vp-Bbc" firstAttribute="leading" secondItem="aa2-os-uBc" secondAttribute="trailing" constant="5" id="xI8-1R-HUD"/>
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="1S0-QQ-tGa" userLabel="Second Bar View">
@@ -970,6 +995,7 @@
                         <outlet property="btnOpenComics" destination="95S-F2-TuG" id="HgC-TQ-ard"/>
                         <outlet property="btnOpenFilms" destination="Bii-Nb-7uf" id="e0a-T3-km4"/>
                         <outlet property="btnOpenFinder" destination="diw-HF-RaI" id="zDH-Dt-Naw"/>
+                        <outlet property="btnOpenGoogle" destination="vxD-Us-bQh" id="Np3-lN-GaN"/>
                         <outlet property="btnOpenNews" destination="QKT-rF-oHD" id="AHU-JR-3is"/>
                         <outlet property="btnOpenSafari" destination="vYx-ID-mZ0" id="e9V-4H-ZNz"/>
                         <outlet property="btnShowSecondBar" destination="922-Oc-zMC" id="w5Z-hW-QbF"/>
@@ -979,6 +1005,7 @@
                         <outlet property="viewContainerComics" destination="4xE-ia-sMm" id="uVy-hw-ZLd"/>
                         <outlet property="viewContainerFilms" destination="uQl-Vp-Bbc" id="7Qm-VY-6bN"/>
                         <outlet property="viewContainerFinder" destination="24A-hG-ZdQ" id="T0n-v7-PC9"/>
+                        <outlet property="viewContainerGoogle" destination="aa2-os-uBc" id="kSW-r1-JcN"/>
                         <outlet property="viewContainerMode" destination="xay-PV-jAd" id="Eho-ct-GeQ"/>
                         <outlet property="viewContainerNews" destination="hH7-0V-lua" id="CmL-Ft-1sE"/>
                         <outlet property="viewContainerSafari" destination="uUK-hZ-BLj" id="Ogt-Hs-38Y"/>
@@ -997,6 +1024,7 @@
     <resources>
         <image name="Paradox Valley" width="2800" height="1800"/>
         <image name="ic_finder" width="27" height="24"/>
+        <image name="ic_google" width="27" height="27"/>
         <image name="ic_safari" width="29" height="28"/>
         <image name="ic_switch_mode" width="30" height="30"/>
         <image name="ic_trash_empty" width="64" height="64"/>

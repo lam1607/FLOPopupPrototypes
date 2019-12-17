@@ -9,28 +9,18 @@
 #ifndef Constants_h
 #define Constants_h
 
-#define kFlowarePopover_UseAssetColors
+#define kFlowarePopover_WindowWillChangeModeNotification    @"kFlowarePopover_WindowWillChangeModeNotification"
+#define kFlowarePopover_WindowDidChangeModeNotification     @"kFlowarePopover_WindowDidChangeModeNotification"
 
-#define kFlowarePopover_WindowWillChangeModeNotification @"kFlowarePopover_WindowWillChangeModeNotification"
-#define kFlowarePopover_WindowDidChangeModeNotification @"kFlowarePopover_WindowDidChangeModeNotification"
-
-#define kFlowarePopover_BundleIdentifier_Finder @"com.apple.finder"
-#define kFlowarePopover_BundleIdentifier_Safari @"com.apple.Safari"
-
-//#define kFlowarePopover_UpdateRelease
-
-typedef NS_ENUM(NSInteger, FLOWindowMode)
-{
-    FLOWindowModeNormal,
-    FLOWindowModeDesktop
-};
+#define kFlowarePopover_BundleIdentifier_Finder             @"com.apple.finder"
+#define kFlowarePopover_BundleIdentifier_Safari             @"com.apple.Safari"
 
 #define LOG_DEBUG
 
 #ifdef LOG_DEBUG
-    #define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
-    #define DLog(...)
+#define DLog(...)
 #endif
 
 //
@@ -62,19 +52,5 @@ typedef NS_ENUM(NSInteger, FLOWindowMode)
 #define DASH                                                    @"-"
 
 #define CORNER_RADIUSES                                         @[@(5.0), @(10.0)]
-
-//--------------------------------------------------------------------------------------------------------------------------------
-//      WINDOW LEVEL GROUP TAG
-//--------------------------------------------------------------------------------------------------------------------------------
-typedef NS_ENUM(NSInteger, WindowLevelGroupTag)
-{
-    WindowLevelGroupTagDesktop          = kCGDesktopIconWindowLevel + 1,
-    WindowLevelGroupTagNormal           = kCGNormalWindowLevel,
-    WindowLevelGroupTagFloat            = kCGNormalWindowLevel + 1,
-    WindowLevelGroupTagSetting          = kCGNormalWindowLevel + 2,
-    WindowLevelGroupTagAlert            = kCGModalPanelWindowLevel,
-    WindowLevelGroupTagTop              = kCGModalPanelWindowLevel + 1,
-};
-//--------------------------------------------------------------------------------------------------------------------------------
 
 #endif /* Constants_h */

@@ -6,19 +6,7 @@
 //  Copyright © 2018 Floware Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <Cocoa/Cocoa.h>
-
 @interface Utils : NSObject
-
-/// @property
-///
-
-/// Methods
-///
-#pragma mark - Singleton
-
-+ (Utils *)sharedInstance;
 
 #pragma mark - Formats
 
@@ -41,6 +29,5 @@
 #pragma mark - Device
 
 + (NSSize)screenSize;
-+ (BOOL)isDarkMode;
 
 @end

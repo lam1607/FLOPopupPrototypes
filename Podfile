@@ -6,6 +6,8 @@ target 'FLOPopupPrototypes' do
   # use_frameworks!
 
   # Pods for FLOPopupPrototypes
+  pod 'GTMAppAuth'
+  pod 'AppAuth'
   pod 'FlowarePopover'
   pod 'Sparkle'
 

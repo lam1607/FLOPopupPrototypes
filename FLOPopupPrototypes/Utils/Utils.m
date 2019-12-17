@@ -12,20 +12,6 @@
 
 @implementation Utils
 
-#pragma mark - Singleton
-
-+ (Utils *)sharedInstance
-{
-    static Utils *_sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        _sharedInstance = [[Utils alloc] init];
-    });
-    
-    return _sharedInstance;
-}
-
 #pragma mark - Formats
 
 + (void)setViewTransparent:(NSView *)view withBackgroundColor:(NSColor *)color
@@ -37,11 +23,7 @@
 {
     NSShadow *dropShadow = [[NSShadow alloc] init];
     
-#ifdef kFlowarePopover_UseAssetColors
-    [dropShadow setShadowColor:[NSColor _shadowColor]];
-#else
     [dropShadow setShadowColor:[NSColor shadowColor]];
-#endif
     
     [dropShadow setShadowOffset:NSMakeSize(-0.1, 0.1)];
     [dropShadow setShadowBlurRadius:1.0];
@@ -118,7 +100,7 @@
 {
     NSInteger typesetterBehavior = NSTypesetterLatestBehavior;
     NSSize size = NSZeroSize;
-
+    
     if ([string length] > 0)
     {
         // Checking for empty string is necessary since Layout Manager will give the nominal
@@ -127,34 +109,34 @@
         NSTextContainer *textContainer = [[NSTextContainer alloc] initWithContainerSize:dumpSize];
         NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:string];
         NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
-
+        
         [layoutManager addTextContainer:textContainer];
         [textStorage addLayoutManager:layoutManager];
         [layoutManager setHyphenationFactor:0.0];
-
+        
         if (typesetterBehavior != NSTypesetterLatestBehavior)
         {
             [layoutManager setTypesetterBehavior:typesetterBehavior];
         }
-
+        
         // NSLayoutManager is lazy, so we need the following kludge to force layout:
         [layoutManager glyphRangeForTextContainer:textContainer];
-
+        
         size = [layoutManager usedRectForTextContainer:textContainer].size;
-
+        
         // Adjust if there is extra height for the cursor
         NSSize extraLineSize = [layoutManager extraLineFragmentRect].size;
-
+        
         if (extraLineSize.height > 0)
         {
             size.height -= extraLineSize.height;
         }
-
+        
         // In case we changed it above, set typesetterBehavior back
         // to the default value.
         typesetterBehavior = NSTypesetterLatestBehavior;
     }
-
+    
     return size;
 }
 
@@ -163,20 +145,6 @@
 + (NSSize)screenSize
 {
     return [[NSScreen mainScreen] frame].size;
-}
-
-+ (BOOL)isDarkMode
-{
-#ifdef NSAppKitVersionNumber10_14
-    NSAppearance *appearance = NSAppearance.currentAppearance;
-    
-    if (@available(macOS 10.14, *))
-    {
-        return appearance.name == NSAppearanceNameDarkAqua;
-    }
-#endif
-    
-    return NO;
 }
 
 @end

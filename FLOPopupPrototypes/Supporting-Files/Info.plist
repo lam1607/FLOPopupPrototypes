@@ -37,5 +37,16 @@
 	<true/>
 	<key>SUPublicEDKey</key>
 	<string>P9rEkLRzWUJRzccMsQzcsG9fWzXZd1hwUTga+uLBd8c=</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.894903433095-8oags2o4n6haggh1j9ti2ge2oo79qign</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

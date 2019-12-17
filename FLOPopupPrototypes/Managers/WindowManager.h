@@ -6,7 +6,18 @@
 //  Copyright © 2019 Floware Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
+
+typedef NS_ENUM(NSInteger, WindowLevelGroupTag)
+{
+    WindowLevelGroupTagDesktop          = kCGDesktopIconWindowLevel + 1,
+    WindowLevelGroupTagNormal           = kCGNormalWindowLevel,
+    WindowLevelGroupTagFloat            = kCGNormalWindowLevel + 1,
+    WindowLevelGroupTagSetting          = kCGNormalWindowLevel + 2,
+    WindowLevelGroupTagAlert            = kCGModalPanelWindowLevel,
+    WindowLevelGroupTagTop              = kCGModalPanelWindowLevel + 1,
+};
+
 
 @interface WindowManager : NSObject
 
@@ -18,7 +29,11 @@
 
 #pragma mark - Methods
 
-- (void)setShouldChildWindowsFloat:(BOOL)shouldChildWindowsFloat;
-- (NSWindowLevel)levelForTag:(WindowLevelGroupTag)tag;
+- (void)hideChildWindows;
+- (void)showChildWindows;
+
++ (NSWindowLevel)levelForTag:(WindowLevelGroupTag)tag;
++ (NSWindowLevel)levelForTag:(WindowLevelGroupTag)tag floatsWhenAppResignsActive:(BOOL)floatsWhenAppResignsActive;
++ (NSRect)fitFrame:(NSRect)frame toContainer:(NSRect)containerFrame;
 
 @end

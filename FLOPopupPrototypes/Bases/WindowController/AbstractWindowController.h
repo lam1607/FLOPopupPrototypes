@@ -6,8 +6,6 @@
 //  Copyright © 2019 Floware Inc. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
 @interface AbstractWindowController : NSWindowController
 
 /// @property
@@ -24,8 +22,5 @@
 - (void)setTitleBarHeight;
 
 - (void)activate;
-- (void)hideChildWindowsOnDeactivate;
-- (void)showChildWindowsOnActivate;
-- (void)hideOtherAppsExceptThoseInside;
 
 @end

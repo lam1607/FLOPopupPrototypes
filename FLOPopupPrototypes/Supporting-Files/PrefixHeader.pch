@@ -12,21 +12,31 @@
 #import <Foundation/Foundation.h>
 #import <AppleScriptObjC/AppleScriptObjC.h>
 
+#import <GTMAppAuth/GTMAppAuth.h>
+#import <AppAuth/AppAuthCore.h>
+#import <AppAuth/AppAuth.h>
+#import <GTMSessionFetcher/GTMSessionFetcher.h>
+#import <GTMSessionFetcher/GTMSessionFetcherService.h>
+
 #import <FlowarePopover/FlowarePopover.h>
 #import <Sparkle/Sparkle.h>
 #import <WebSocket/WebSocket.h>
 
-#import "Constants.h"
+#import "NSAppearance+Extensions.h"
+#import "NSColor+Extensions.h"
 #import "NSObject+Extensions.h"
-#import "NSColor+Custom.h"
-
-#import "Utils.h"
+#import "NSString+Extensions.h"
+#import "NSView+Extensions.h"
 
 #import "EntitlementsManager.h"
-#import "WebSocketManager.h"
+#import "GTMAppAuthManager.h"
+#import "SettingsManager.h"
 #import "UpdateManager.h"
+#import "WebSocketManager.h"
 #import "WindowManager.h"
-#import "Settings.h"
+
+#import "Constants.h"
+#import "Utils.h"
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.

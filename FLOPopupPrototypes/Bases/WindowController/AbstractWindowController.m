@@ -69,22 +69,22 @@ static AbstractWindowController *_sharedInstance = nil;
 
 - (void)setTitleBarHeight
 {
-    _titleBarHeight = NSHeight([self window].frame) - NSHeight([[self window] contentView].frame);
+    _titleBarHeight = self.window.frame.size.height - self.window.contentView.frame.size.height;
 }
 
 #pragma mark - Setup UI
 
 - (void)setupUI
 {
-    NSRect visibleFrame = [[[self window] screen] visibleFrame];
-    CGFloat width = 0.5 * visibleFrame.size.width;
-    CGFloat height = 0.6 * visibleFrame.size.height;
+    NSRect visibleFrame = [self.window.screen visibleFrame];
+    CGFloat width = 0.7 * visibleFrame.size.width;
+    CGFloat height = 0.8 * visibleFrame.size.height;
     CGFloat x = (visibleFrame.size.width - width) / 2;
     CGFloat y = (visibleFrame.size.height + visibleFrame.origin.y - height) / 2;
     NSRect viewFrame = NSMakeRect(x, y, width, height);
     
-    [[self window] setFrame:viewFrame display:YES];
-    [[self window] setMinSize:NSMakeSize(680.0, 484.0)];
+    [self.window setFrame:viewFrame display:YES];
+    // [self.window setMinSize:NSMakeSize(0.7 * visibleFrame.size.width, 0.8 * visibleFrame.size.height)];
 }
 
 #pragma mark - Local methods
@@ -99,7 +99,7 @@ static AbstractWindowController *_sharedInstance = nil;
     [[self window] setTitleVisibility:NSWindowTitleHidden];
     [[self window] setStyleMask:NSWindowStyleMaskBorderless];
     [[self window] makeKeyAndOrderFront:nil];
-    [[self window] setLevel:[[WindowManager sharedInstance] levelForTag:WindowLevelGroupTagDesktop]];
+    [[self window] setLevel:[WindowManager levelForTag:WindowLevelGroupTagDesktop]];
     [[self window] setFrame:[[[self window] screen] visibleFrame] display:YES animate:YES];
 }
 
@@ -108,85 +108,34 @@ static AbstractWindowController *_sharedInstance = nil;
     [[self window] setTitleVisibility:NSWindowTitleVisible];
     [[self window] setStyleMask:(NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable)];
     [[self window] makeKeyAndOrderFront:nil];
-    [[self window] setLevel:[[WindowManager sharedInstance] levelForTag:WindowLevelGroupTagNormal]];
+    [[self window] setLevel:[WindowManager levelForTag:WindowLevelGroupTagNormal]];
     [[self window] setFrame:self.normalFrame display:YES animate:YES];
-}
-
-- (void)showChildWindowsOnActivate
-{
-    for (NSWindow *childWindow in self.window.childWindows)
-    {
-        NSWindowLevel level = [[WindowManager sharedInstance] levelForTag:WindowLevelGroupTagFloat];
-        
-        if ([childWindow isKindOfClass:[FLOPopoverWindow class]])
-        {
-            level = [[WindowManager sharedInstance] levelForTag:((FLOPopoverWindow *)childWindow).tag];
-        }
-        
-        [childWindow setLevel:level];
-        [[childWindow attachedSheet] setLevel:(childWindow.level + 1)];
-    }
-}
-
-- (void)hideChildWindowsOnDeactivate
-{
-    if ([[NSApplication sharedApplication] isHidden] || [[NSApplication sharedApplication] isHidden]) return;
-    
-    BOOL shouldChildWindowsFloat = [WindowManager sharedInstance].shouldChildWindowsFloat;
-    NSWindowLevel levelNormal = [[WindowManager sharedInstance] levelForTag:WindowLevelGroupTagNormal];
-    
-    for (NSWindow *childWindow in [[self window] childWindows])
-    {
-        if (childWindow.level != levelNormal)
-        {
-            [childWindow setLevel:levelNormal];
-            // Should keep the line below, to make sure that the child window will 'sink' successfully.
-            // Otherwise, the child window still floats even the level is NSNormalWindowLevel.
-            [childWindow orderFront:[self window]];
-        }
-    }
-    
-    // If we want some child windows float on other active application. Do it here
-    if (shouldChildWindowsFloat)
-    {
-    }
-}
-
-- (void)hideOtherAppsExceptThoseInside
-{
-    script_hideAllAppsExcept(kFlowarePopover_BundleIdentifier_Finder, kFlowarePopover_BundleIdentifier_Safari);
 }
 
 #pragma mark - Event handles
 
-- (void)windowDidChangeMode:(NSNotification *)notification
+- (void)windowWillChangeMode:(NSNotification *)notification
 {
-    if ([[notification name] isEqualToString:kFlowarePopover_WindowDidChangeModeNotification])
+    if (![notification.name isEqualToString:kFlowarePopover_WindowWillChangeModeNotification]) return;
+    
+    if ([[SettingsManager sharedInstance] isNormalMode])
     {
-        FLOWindowMode oldMode = [[[notification userInfo] objectForKey:@"original"] integerValue];
-        
-        if (oldMode == FLOWindowModeNormal)
-        {
-            _normalFrame = self.window.frame;
-        }
-        
-        if ([[Settings sharedInstance] isDesktopMode])
-        {
-            [self changeToDesktopMode];
-            script_hideAllApps();
-        }
-        else
-        {
-            [self changeToNormalMode];
-        }
+        _normalFrame = self.window.frame;
     }
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+- (void)windowDidChangeMode:(NSNotification *)notification
 {
-    if ([keyPath isEqualToString:@"effectiveAppearance"] && [[change objectForKey:@"new"] isKindOfClass:[NSAppearance class]])
+    if (![notification.name isEqualToString:kFlowarePopover_WindowDidChangeModeNotification]) return;
+    
+    if ([[SettingsManager sharedInstance] isDesktopMode])
     {
-        [NSAppearance setCurrentAppearance:[change objectForKey:@"new"]];
+        [self changeToDesktopMode];
+        script_hideAllApps();
+    }
+    else
+    {
+        [self changeToNormalMode];
     }
 }
 
@@ -195,29 +144,18 @@ static AbstractWindowController *_sharedInstance = nil;
 - (void)registerEventMonitor
 {
     [self registerWindowChangeModeEvent];
-    [self registerApplicationAppearanceNotification];
 }
 
 - (void)registerWindowChangeModeEvent
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowWillChangeMode:) name:kFlowarePopover_WindowWillChangeModeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidChangeMode:) name:kFlowarePopover_WindowDidChangeModeNotification object:nil];
 }
 
 - (void)removeWindowChangeModeEvent
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kFlowarePopover_WindowWillChangeModeNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kFlowarePopover_WindowDidChangeModeNotification object:nil];
-}
-
-- (void)registerApplicationAppearanceNotification
-{
-    [[[self window] contentView] addObserver:self forKeyPath:@"effectiveAppearance"
-                                     options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
-                                     context:NULL];
-}
-
-- (void)unregisterApplicationAppearanceNotification
-{
-    [[[self window] contentView] removeObserver:self forKeyPath:@"effectiveAppearance"];
 }
 
 @end

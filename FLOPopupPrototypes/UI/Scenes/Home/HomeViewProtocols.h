@@ -14,13 +14,13 @@
 @protocol HomeViewProtocols <AbstractViewProtocols>
 
 - (void)viewDidSelectWindowModeChanging;
-- (void)viewShouldOpenFinder;
-- (void)viewShouldOpenSafari;
-- (void)viewShouldOpenFilmsView;
-- (void)viewShouldOpenNewsView;
-- (void)viewShouldOpenComicsView;
-- (void)viewShouldShowSecondBar;
-- (void)viewShouldShowTrashView;
+- (void)viewOpensFinder;
+- (void)viewOpensSafari;
+- (void)viewOpensFilmsView;
+- (void)viewOpensNewsView;
+- (void)viewOpensComicsView;
+- (void)viewShowsSecondBar;
+- (void)viewShowsTrashView;
 
 @end
 
@@ -36,5 +36,7 @@
 - (void)openComicsView;
 - (void)showSecondBar;
 - (void)showTrashView;
+
+- (void)authorizeGoogle;
 
 @end
