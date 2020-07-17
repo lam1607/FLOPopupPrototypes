@@ -29,11 +29,14 @@
 #import "NSView+Extensions.h"
 
 #import "EntitlementsManager.h"
-#import "GTMAppAuthManager.h"
 #import "SettingsManager.h"
 #import "UpdateManager.h"
 #import "WebSocketManager.h"
 #import "WindowManager.h"
+
+#import "GTMAuthentication.h"
+#import "GTMAuthenticationConstants.h"
+#import "GTMAuthenticationInfo.h"
 
 #import "Constants.h"
 #import "Utils.h"

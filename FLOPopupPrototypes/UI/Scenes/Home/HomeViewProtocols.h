@@ -21,12 +21,15 @@
 - (void)viewOpensComicsView;
 - (void)viewShowsSecondBar;
 - (void)viewShowsTrashView;
+- (void)viewShowsGoogleMenuAtView:(NSView *)sender;
 
 @end
 
 ///
 /// Presenter
 @protocol HomePresenterProtocols <AbstractPresenterProtocols>
+
+@property (nonatomic, strong) GTMAuthenticationInfo *authenticationInfo;
 
 - (void)changeWindowMode;
 - (void)openFinder;
@@ -37,6 +40,10 @@
 - (void)showSecondBar;
 - (void)showTrashView;
 
+- (void)showGoogleMenuAtView:(NSView *)sender;
+
 - (void)authorizeGoogle;
+- (void)reauthenticateGoogle;
+- (void)getGoogleTokenInfo;
 
 @end

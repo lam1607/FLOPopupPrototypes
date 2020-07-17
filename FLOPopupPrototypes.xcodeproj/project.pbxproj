@@ -85,6 +85,9 @@
 		DE515B8423A76DA30057EBCD /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE515B7F23A76DA20057EBCD /* NSString+Extensions.m */; };
 		DE515B8523A76DA30057EBCD /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE515B8123A76DA30057EBCD /* NSView+Extensions.m */; };
 		DE544C0C2318E27800B11DBE /* TestService.m in Sources */ = {isa = PBXBuildFile; fileRef = DE544C0B2318E27800B11DBE /* TestService.m */; };
+		DE900D2D24BC705600E5FBB4 /* DoubleClickButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DE900D2C24BC705600E5FBB4 /* DoubleClickButton.m */; };
+		DEAEF12B24C1526D003B3A6E /* GTMAuthenticationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAEF12724C15268003B3A6E /* GTMAuthenticationInfo.m */; };
+		DEAEF12C24C1526D003B3A6E /* GTMAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAEF12824C15269003B3A6E /* GTMAuthentication.m */; };
 		DEB6AEEE231E04520040C6E0 /* EntitlementsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB6AEED231E04520040C6E0 /* EntitlementsManager.m */; };
 		DEB6AEF8231E0BD20040C6E0 /* WindowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB6AEF7231E0BD20040C6E0 /* WindowManager.m */; };
 		DEB6AEFE231E12310040C6E0 /* AbstractWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB6AEFD231E12310040C6E0 /* AbstractWindow.m */; };
@@ -102,7 +105,6 @@
 		DEC4DD6F214A43F8000D1D29 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD6E214A43F8000D1D29 /* QuartzCore.framework */; };
 		DEC4DD71214A43FE000D1D29 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD70214A43FD000D1D29 /* Foundation.framework */; };
 		DEC4DD73214A440C000D1D29 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEC4DD72214A440C000D1D29 /* AppKit.framework */; };
-		DEEDAFF723A8A71E00FB2D43 /* GTMAppAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DEEDAFF623A8A71E00FB2D43 /* GTMAppAuthManager.m */; };
 		DEFE5FA1212BB01500428ECE /* MockData.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEFE5FA0212BB01500428ECE /* MockData.plist */; };
 /* End PBXBuildFile section */
 
@@ -312,6 +314,13 @@
 		DE544C0A2318E27800B11DBE /* TestService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestService.h; sourceTree = "<group>"; };
 		DE544C0B2318E27800B11DBE /* TestService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestService.m; sourceTree = "<group>"; };
 		DE75B832212AD25B00CA6742 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		DE900D2B24BC705600E5FBB4 /* DoubleClickButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DoubleClickButton.h; sourceTree = "<group>"; };
+		DE900D2C24BC705600E5FBB4 /* DoubleClickButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DoubleClickButton.m; sourceTree = "<group>"; };
+		DEAEF12624C15268003B3A6E /* GTMAuthenticationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMAuthenticationInfo.h; sourceTree = "<group>"; };
+		DEAEF12724C15268003B3A6E /* GTMAuthenticationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMAuthenticationInfo.m; sourceTree = "<group>"; };
+		DEAEF12824C15269003B3A6E /* GTMAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMAuthentication.m; sourceTree = "<group>"; };
+		DEAEF12924C1526A003B3A6E /* GTMAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMAuthentication.h; sourceTree = "<group>"; };
+		DEAEF12A24C1526B003B3A6E /* GTMAuthenticationConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMAuthenticationConstants.h; sourceTree = "<group>"; };
 		DEB6AEEC231E04520040C6E0 /* EntitlementsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EntitlementsManager.h; sourceTree = "<group>"; };
 		DEB6AEED231E04520040C6E0 /* EntitlementsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EntitlementsManager.m; sourceTree = "<group>"; };
 		DEB6AEF6231E0BD20040C6E0 /* WindowManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowManager.h; sourceTree = "<group>"; };
@@ -331,8 +340,6 @@
 		DEC4DD6E214A43F8000D1D29 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DEC4DD70214A43FD000D1D29 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DEC4DD72214A440C000D1D29 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		DEEDAFF523A8A71E00FB2D43 /* GTMAppAuthManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTMAppAuthManager.h; sourceTree = "<group>"; };
-		DEEDAFF623A8A71E00FB2D43 /* GTMAppAuthManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTMAppAuthManager.m; sourceTree = "<group>"; };
 		DEFE5FA0212BB01500428ECE /* MockData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MockData.plist; sourceTree = "<group>"; };
 		DF47F6B29977F93441E78501 /* libPods-FLOPopupPrototypesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FLOPopupPrototypesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E39ADA37FD0B462881340EDA /* Pods-FLOPopupPrototypesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLOPopupPrototypesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FLOPopupPrototypesUITests/Pods-FLOPopupPrototypesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -481,6 +488,7 @@
 		DE0B1F3B23165F6A00B02A9A /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
+				DE900D2A24BC702200E5FBB4 /* CustomNSButton */,
 				DE0B1F3F23165F6A00B02A9A /* CustomNSTableRowView */,
 				DE0B1F3C23165F6A00B02A9A /* CustomNSView */,
 			);
@@ -534,6 +542,7 @@
 		DE0B1F4823165F6A00B02A9A /* Sevices */ = {
 			isa = PBXGroup;
 			children = (
+				DEAEF12524C15253003B3A6E /* GTMAuthentication */,
 				DE544C082318E23900B11DBE /* Test */,
 				DE0B1F4923165F6A00B02A9A /* Film */,
 				DE0B1F4D23165F6A00B02A9A /* Technology */,
@@ -1154,13 +1163,32 @@
 			path = "Supporting-Files";
 			sourceTree = "<group>";
 		};
+		DE900D2A24BC702200E5FBB4 /* CustomNSButton */ = {
+			isa = PBXGroup;
+			children = (
+				DE900D2B24BC705600E5FBB4 /* DoubleClickButton.h */,
+				DE900D2C24BC705600E5FBB4 /* DoubleClickButton.m */,
+			);
+			path = CustomNSButton;
+			sourceTree = "<group>";
+		};
+		DEAEF12524C15253003B3A6E /* GTMAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				DEAEF12924C1526A003B3A6E /* GTMAuthentication.h */,
+				DEAEF12824C15269003B3A6E /* GTMAuthentication.m */,
+				DEAEF12A24C1526B003B3A6E /* GTMAuthenticationConstants.h */,
+				DEAEF12624C15268003B3A6E /* GTMAuthenticationInfo.h */,
+				DEAEF12724C15268003B3A6E /* GTMAuthenticationInfo.m */,
+			);
+			path = GTMAuthentication;
+			sourceTree = "<group>";
+		};
 		DEB6AEEB231E04080040C6E0 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				DEB6AEEC231E04520040C6E0 /* EntitlementsManager.h */,
 				DEB6AEED231E04520040C6E0 /* EntitlementsManager.m */,
-				DEEDAFF523A8A71E00FB2D43 /* GTMAppAuthManager.h */,
-				DEEDAFF623A8A71E00FB2D43 /* GTMAppAuthManager.m */,
 				DE515B7723A768B70057EBCD /* SettingsManager.h */,
 				DE515B7823A768B70057EBCD /* SettingsManager.m */,
 				DEB6AF02231E1FBB0040C6E0 /* UpdateManager.h */,
@@ -1485,11 +1513,12 @@
 				DE0B204223165F6C00B02A9A /* TrashPresenter.m in Sources */,
 				DE0B203923165F6C00B02A9A /* ComicsPresenter.m in Sources */,
 				DE515B7923A768B70057EBCD /* SettingsManager.m in Sources */,
+				DE900D2D24BC705600E5FBB4 /* DoubleClickButton.m in Sources */,
 				DE0B205C23165F6C00B02A9A /* DataProvider.m in Sources */,
-				DEEDAFF723A8A71E00FB2D43 /* GTMAppAuthManager.m in Sources */,
 				DE0B203823165F6C00B02A9A /* HomePresenter.m in Sources */,
 				DE0B205D23165F6C00B02A9A /* CollectionViewManager.m in Sources */,
 				DE0B205523165F6C00B02A9A /* FilmRepository.m in Sources */,
+				DEAEF12C24C1526D003B3A6E /* GTMAuthentication.m in Sources */,
 				DEB6AEEE231E04520040C6E0 /* EntitlementsManager.m in Sources */,
 				DE0B204423165F6C00B02A9A /* TrashViewController.m in Sources */,
 				DE0B202E23165F6C00B02A9A /* AbstractWindowController.m in Sources */,
@@ -1518,6 +1547,7 @@
 				DE0B202B23165F6C00B02A9A /* Comic.m in Sources */,
 				DE0B205823165F6C00B02A9A /* NewsRepository.m in Sources */,
 				DE0B202623165F6C00B02A9A /* TechnologyService.m in Sources */,
+				DEAEF12B24C1526D003B3A6E /* GTMAuthenticationInfo.m in Sources */,
 				DE0B205723165F6C00B02A9A /* ComicRepository.m in Sources */,
 				DE0B202423165F6C00B02A9A /* AppleScriptBridge.applescript in Sources */,
 				DE0B205123165F6C00B02A9A /* FilmCellPresenter.m in Sources */,

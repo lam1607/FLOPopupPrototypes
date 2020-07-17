@@ -12,6 +12,8 @@
 
 #pragma mark - HomePresenterProtocols implementation
 
+@synthesize authenticationInfo = _authenticationInfo;
+
 - (void)changeWindowMode
 {
     if ([self.view conformsToProtocol:@protocol(HomeViewProtocols)])
@@ -76,17 +78,62 @@
     }
 }
 
+- (void)showGoogleMenuAtView:(NSView *)sender
+{
+    if ([self.view conformsToProtocol:@protocol(HomeViewProtocols)])
+    {
+        [(id<HomeViewProtocols>)self.view viewShowsGoogleMenuAtView:sender];
+    }
+}
+
 - (void)authorizeGoogle
 {
-    [[GTMAppAuthManager sharedInstance] authorizeWithCompletion:^(GTMAppAuthFetcherAuthorization *authorization, NSDictionary *authorizationInfo, NSError *error) {
-        if ((authorization != nil) && (error == nil))
+    __weak typeof(self) wself = self;
+    
+    [GTMAuthentication authorizeWithClientId:kGTMAuthClientID clientSecret:kGTMAuthClientSecret completion:^(GTMAuthenticationInfo * _Nullable authenticationInfo, NSError * _Nullable error) {
+        if (wself == nil) return;
+        
+        __strong typeof(self) this = wself;
+        
+        this.authenticationInfo = authenticationInfo;
+        
+        DLog(@"authenticationInfo: %@, error: %@", this.authenticationInfo, error);
+    }];
+}
+
+- (void)reauthenticateGoogle
+{
+    __weak typeof(self) wself = self;
+    
+    [GTMAuthentication refreshAccessTokenWithClientId:kGTMAuthClientID clientSecret:kGTMAuthClientSecret refreshToken:self.authenticationInfo.refreshToken completion:^(GTMAuthenticationInfo * _Nullable authenticationInfo, NSError * _Nullable error) {
+        if (wself == nil) return;
+        
+        __strong typeof(self) this = wself;
+        
+        if (authenticationInfo != nil)
         {
-            DLog(@"[authorizeGoogle] - authorization: %@, authorizationInfo: %@", authorization, authorizationInfo);
+            [this.authenticationInfo updateByObject:authenticationInfo];
         }
-        else
+        
+        DLog(@"authenticationInfo: %@, error: %@", this.authenticationInfo, error);
+    }];
+}
+
+- (void)getGoogleTokenInfo
+{
+    __weak typeof(self) wself = self;
+    
+    [GTMAuthentication getTokenInfoWithID:self.authenticationInfo.idToken completion:^(GTMAuthenticationInfo * _Nullable authenticationInfo, NSError * _Nullable error) {
+        if (wself == nil) return;
+        
+        __strong typeof(self) this = wself;
+        
+        if (authenticationInfo != nil)
         {
-            DLog(@"[authorizeGoogle] - error: %@", [error localizedDescription]);
+            [this.authenticationInfo updateByObject:authenticationInfo];
         }
+        
+        DLog(@"authenticationInfo: %@, error: %@", this.authenticationInfo, error);
     }];
 }
 

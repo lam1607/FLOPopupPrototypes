@@ -15,6 +15,7 @@
 #import "TrashViewController.h"
 
 #import "DragDroppableView.h"
+#import "DoubleClickButton.h"
 
 #import "AppleScript.h"
 
@@ -40,22 +41,22 @@
 @property (weak) IBOutlet NSView *viewMenu;
 
 @property (weak) IBOutlet NSView *viewContainerMode;
-@property (weak) IBOutlet NSButton *btnChangeMode;
+@property (weak) IBOutlet DoubleClickButton *btnChangeMode;
 @property (weak) IBOutlet NSView *viewContainerFinder;
-@property (weak) IBOutlet NSButton *btnOpenFinder;
+@property (weak) IBOutlet DoubleClickButton *btnOpenFinder;
 @property (weak) IBOutlet NSView *viewContainerSafari;
-@property (weak) IBOutlet NSButton *btnOpenSafari;
+@property (weak) IBOutlet DoubleClickButton *btnOpenSafari;
 @property (weak) IBOutlet NSView *viewContainerGoogle;
-@property (weak) IBOutlet NSButton *btnOpenGoogle;
+@property (weak) IBOutlet DoubleClickButton *btnOpenGoogle;
 
 @property (weak) IBOutlet NSView *viewContainerFilms;
-@property (weak) IBOutlet NSButton *btnOpenFilms;
+@property (weak) IBOutlet DoubleClickButton *btnOpenFilms;
 @property (weak) IBOutlet NSView *viewContainerNews;
-@property (weak) IBOutlet NSButton *btnOpenNews;
+@property (weak) IBOutlet DoubleClickButton *btnOpenNews;
 @property (weak) IBOutlet NSView *viewContainerSecondBar;
-@property (weak) IBOutlet NSButton *btnShowSecondBar;
+@property (weak) IBOutlet DoubleClickButton *btnShowSecondBar;
 @property (weak) IBOutlet NSView *viewContainerComics;
-@property (weak) IBOutlet NSButton *btnOpenComics;
+@property (weak) IBOutlet DoubleClickButton *btnOpenComics;
 
 @property (weak) IBOutlet NSView *viewSecondBar;
 @property (weak) IBOutlet NSLayoutConstraint *constraintVSecondBarHeight;
@@ -101,6 +102,9 @@
 - (void)setupUI
 {
     self.constraintVSecondBarHeight.constant = 0.0;
+    
+    [self.btnOpenGoogle setDoubleAction:@selector(btnOpenGoogleDoubleClicked:)];
+    [self.btnOpenGoogle setRightClickAction:@selector(btnOpenGoogleRightClicked:)];
     
     [self setupTrashView];
     [self setTrashViewHidden:YES];
@@ -413,51 +417,72 @@
 
 #pragma mark - Actions
 
-- (IBAction)btnChangeMode_clicked:(NSButton *)sender
+- (IBAction)btnChangeModeClicked:(NSButton *)sender
 {
     [_presenter changeWindowMode];
 }
 
-- (IBAction)btnOpenFinder_clicked:(NSButton *)sender
+- (IBAction)btnOpenFinderClicked:(NSButton *)sender
 {
     [_presenter openFinder];
 }
 
-- (IBAction)btnOpenSafari_clicked:(NSButton *)sender
+- (IBAction)btnOpenSafariClicked:(NSButton *)sender
 {
     [_presenter openSafari];
 }
 
-- (IBAction)btnOpenGoogle_clicked:(NSButton *)sender
+- (IBAction)btnOpenGoogleClicked:(NSButton *)sender
 {
     [_presenter authorizeGoogle];
 }
 
-- (IBAction)btnOpenFilms_clicked:(NSButton *)sender
+- (IBAction)btnOpenGoogleDoubleClicked:(NSButton *)sender
+{
+    [_presenter reauthenticateGoogle];
+}
+
+- (IBAction)btnOpenGoogleRightClicked:(NSButton *)sender
+{
+    [_presenter showGoogleMenuAtView:sender];
+}
+
+- (IBAction)btnOpenFilmsClicked:(NSButton *)sender
 {
     [_presenter openFilmsView];
 }
 
-- (IBAction)btnOpenNews_clicked:(NSButton *)sender
+- (IBAction)btnOpenNewsClicked:(NSButton *)sender
 {
     [_presenter openNewsView];
 }
 
-- (IBAction)btnShowSecondBar_clicked:(NSButton *)sender
+- (IBAction)btnShowSecondBarClicked:(NSButton *)sender
 {
     [_presenter showSecondBar];
 }
 
-- (IBAction)btnOpenComics_clicked:(NSButton *)sender
+- (IBAction)btnOpenComicsClicked:(NSButton *)sender
 {
     [_presenter openComicsView];
 }
 
-- (IBAction)btnTrashIcon_clicked:(NSButton *)sender
+- (IBAction)btnTrashIconClicked:(NSButton *)sender
 {
     [_presenter showTrashView];
 }
 
+- (void)googleMenuDidSelectForItem:(NSMenuItem *)item
+{
+    if (item.tag == 10001)
+    {
+        [_presenter reauthenticateGoogle];
+    }
+    else if (item.tag == 10002)
+    {
+        [_presenter getGoogleTokenInfo];
+    }
+}
 
 #pragma mark - HomeViewProtocols implementation
 
@@ -522,6 +547,28 @@
 - (void)viewShowsTrashView
 {
     [self setTrashViewHidden:!self.viewContainerTrash.isHidden];
+}
+
+- (void)viewShowsGoogleMenuAtView:(NSView *)sender
+{
+    NSArray *items = @[@{@"title": @"Reauthenticate Google", @"tag": @(10001)}, @{@"title": @"Get Google token info", @"tag": @(10002)}];
+    SEL selector = @selector(googleMenuDidSelectForItem:);
+    
+    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Google Menu"];
+    [menu setAutoenablesItems:NO];
+    
+    for (NSDictionary *itemInfo in items)
+    {
+        NSMenuItem *item = [[NSMenuItem alloc] init];
+        [item setTitle:[itemInfo objectForKey:@"title"]];
+        [item setTarget:self];
+        [item setAction:selector];
+        [item setTag:[[itemInfo objectForKey:@"tag"] integerValue]];
+        
+        [menu addItem:item];
+    }
+    
+    [NSMenu popUpContextMenu:menu withEvent:[[NSApplication sharedApplication] currentEvent] forView:sender];
 }
 
 #pragma mark - FLOPopoverDelegate
