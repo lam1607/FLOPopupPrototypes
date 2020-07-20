@@ -482,6 +482,10 @@
     {
         [_presenter getGoogleTokenInfo];
     }
+    else if (item.tag == 10003)
+    {
+        [_presenter fetchCalendars];
+    }
 }
 
 #pragma mark - HomeViewProtocols implementation
@@ -551,7 +555,7 @@
 
 - (void)viewShowsGoogleMenuAtView:(NSView *)sender
 {
-    NSArray *items = @[@{@"title": @"Reauthenticate Google", @"tag": @(10001)}, @{@"title": @"Get Google token info", @"tag": @(10002)}];
+    NSArray *items = @[@{@"title": @"Reauthenticate Google", @"tag": @(10001)}, @{@"title": @"Get Google token info", @"tag": @(10002)}, @{@"title": @"Get Calendars", @"tag": @(10003)}];
     SEL selector = @selector(googleMenuDidSelectForItem:);
     
     NSMenu *menu = [[NSMenu alloc] initWithTitle:@"Google Menu"];

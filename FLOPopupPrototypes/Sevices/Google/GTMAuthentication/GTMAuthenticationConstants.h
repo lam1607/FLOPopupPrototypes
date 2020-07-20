@@ -28,6 +28,8 @@ static NSString *const kGTMAuthUserInfoURI                      = @"https://www.
 static NSString *const kGTMAuthRefreshTokenURI                  = @"https://oauth2.googleapis.com/token";
 static NSString *const kGTMAuthTokenInfoURI                     = @"https://oauth2.googleapis.com/tokeninfo";
 
+static NSString *const kGTMAuthBearer                           = @"Bearer";
+
 // scopes
 static NSString *const kGTMAuthScopeCalendar                    = @"https://www.googleapis.com/auth/calendar";
 static NSString *const kGTMAuthScopeGmail                       = @"https://mail.google.com/";
@@ -45,6 +47,8 @@ static NSString *const kGTMAuthExpiresInKey                     = @"expires_in";
 static NSString *const kGTMAuthCodeKey                          = @"code";
 static NSString *const kGTMAuthAssertionKey                     = @"assertion";
 static NSString *const kGTMAuthRefreshScopeKey                  = @"refreshScope";
+static NSString *const kGTMAuthInvalidTokenKey                  = @"invalid_token";
+static NSString *const kGTMAuthErrorDescriptionKey              = @"error_description";
 
 // additional persistent keys
 static NSString *const kGTMAuthServiceProviderKey               = @"serviceProvider";

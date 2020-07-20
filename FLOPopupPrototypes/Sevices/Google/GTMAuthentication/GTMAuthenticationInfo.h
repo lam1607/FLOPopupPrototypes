@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GTMAuthenticationInfo : NSObject
+@interface GTMAuthenticationInfo : NSObject <NSSecureCoding, GTMFetcherAuthorizationProtocol>
 
 /// @property
 ///
@@ -25,7 +25,7 @@
 
 // These fields are only included when the user has granted the "profile" and
 // "email" OAuth scopes to the application.
-@property (nonatomic, strong) NSString *userEmail;
+// @property (nonatomic, strong) NSString *userEmail;
 @property (nonatomic, assign) NSInteger isVerified;
 @property (nonatomic, strong) NSString *userFamilyName;
 @property (nonatomic, strong) NSString *userGivenName;

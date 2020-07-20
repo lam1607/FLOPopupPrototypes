@@ -17,6 +17,21 @@
 #import <AppAuth/AppAuth.h>
 #import <GTMSessionFetcher/GTMSessionFetcher.h>
 #import <GTMSessionFetcher/GTMSessionFetcherService.h>
+#import <GoogleAPIClientForREST/GTLRCalendar.h>
+#import <GoogleAPIClientForREST/GTLRGmail.h>
+#import <GoogleAPIClientForREST/GTLRBase64.h>
+#import <GoogleAPIClientForREST/GTLRBatchQuery.h>
+#import <GoogleAPIClientForREST/GTLRBatchResult.h>
+#import <GoogleAPIClientForREST/GTLRDateTime.h>
+#import <GoogleAPIClientForREST/GTLRDuration.h>
+#import <GoogleAPIClientForREST/GTLRErrorObject.h>
+#import <GoogleAPIClientForREST/GTLRObject.h>
+#import <GoogleAPIClientForREST/GTLRQuery.h>
+#import <GoogleAPIClientForREST/GTLRRuntimeCommon.h>
+#import <GoogleAPIClientForREST/GTLRService.h>
+#import <GoogleAPIClientForREST/GTLRUploadParameters.h>
+#import <GoogleAPIClientForREST/GTLRURITemplate.h>
+#import <GoogleAPIClientForREST/GTLRUtilities.h>
 
 #import <FlowarePopover/FlowarePopover.h>
 #import <Sparkle/Sparkle.h>

@@ -85,7 +85,9 @@
 		DE515B8423A76DA30057EBCD /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE515B7F23A76DA20057EBCD /* NSString+Extensions.m */; };
 		DE515B8523A76DA30057EBCD /* NSView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = DE515B8123A76DA30057EBCD /* NSView+Extensions.m */; };
 		DE544C0C2318E27800B11DBE /* TestService.m in Sources */ = {isa = PBXBuildFile; fileRef = DE544C0B2318E27800B11DBE /* TestService.m */; };
+		DE8D22EA24C1B31F005A0652 /* GTMLabelsService.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8D22E924C1B31F005A0652 /* GTMLabelsService.m */; };
 		DE900D2D24BC705600E5FBB4 /* DoubleClickButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DE900D2C24BC705600E5FBB4 /* DoubleClickButton.m */; };
+		DEAE116124C5391100261F6A /* GTMCalendarsService.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAE116024C5391100261F6A /* GTMCalendarsService.m */; };
 		DEAEF12B24C1526D003B3A6E /* GTMAuthenticationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAEF12724C15268003B3A6E /* GTMAuthenticationInfo.m */; };
 		DEAEF12C24C1526D003B3A6E /* GTMAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAEF12824C15269003B3A6E /* GTMAuthentication.m */; };
 		DEB6AEEE231E04520040C6E0 /* EntitlementsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB6AEED231E04520040C6E0 /* EntitlementsManager.m */; };
@@ -314,8 +316,14 @@
 		DE544C0A2318E27800B11DBE /* TestService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestService.h; sourceTree = "<group>"; };
 		DE544C0B2318E27800B11DBE /* TestService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestService.m; sourceTree = "<group>"; };
 		DE75B832212AD25B00CA6742 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		DE8D22E824C1B31F005A0652 /* GTMLabelsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTMLabelsService.h; sourceTree = "<group>"; };
+		DE8D22E924C1B31F005A0652 /* GTMLabelsService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTMLabelsService.m; sourceTree = "<group>"; };
+		DE8D22EB24C1B332005A0652 /* GTMLabelsServiceProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTMLabelsServiceProtocols.h; sourceTree = "<group>"; };
 		DE900D2B24BC705600E5FBB4 /* DoubleClickButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DoubleClickButton.h; sourceTree = "<group>"; };
 		DE900D2C24BC705600E5FBB4 /* DoubleClickButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DoubleClickButton.m; sourceTree = "<group>"; };
+		DEAE115E24C538FD00261F6A /* GTMCalendarsServiceProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTMCalendarsServiceProtocols.h; sourceTree = "<group>"; };
+		DEAE115F24C5391100261F6A /* GTMCalendarsService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTMCalendarsService.h; sourceTree = "<group>"; };
+		DEAE116024C5391100261F6A /* GTMCalendarsService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTMCalendarsService.m; sourceTree = "<group>"; };
 		DEAEF12624C15268003B3A6E /* GTMAuthenticationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMAuthenticationInfo.h; sourceTree = "<group>"; };
 		DEAEF12724C15268003B3A6E /* GTMAuthenticationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMAuthenticationInfo.m; sourceTree = "<group>"; };
 		DEAEF12824C15269003B3A6E /* GTMAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMAuthentication.m; sourceTree = "<group>"; };
@@ -542,7 +550,7 @@
 		DE0B1F4823165F6A00B02A9A /* Sevices */ = {
 			isa = PBXGroup;
 			children = (
-				DEAEF12524C15253003B3A6E /* GTMAuthentication */,
+				DE8D22E524C1B2C5005A0652 /* Google */,
 				DE544C082318E23900B11DBE /* Test */,
 				DE0B1F4923165F6A00B02A9A /* Film */,
 				DE0B1F4D23165F6A00B02A9A /* Technology */,
@@ -555,9 +563,9 @@
 		DE0B1F4923165F6A00B02A9A /* Film */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1F4C23165F6A00B02A9A /* FilmServiceProtocols.h */,
 				DE0B1F4B23165F6A00B02A9A /* FilmService.h */,
 				DE0B1F4A23165F6A00B02A9A /* FilmService.m */,
+				DE0B1F4C23165F6A00B02A9A /* FilmServiceProtocols.h */,
 			);
 			path = Film;
 			sourceTree = "<group>";
@@ -565,9 +573,9 @@
 		DE0B1F4D23165F6A00B02A9A /* Technology */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1F4E23165F6A00B02A9A /* TechnologyServiceProtocols.h */,
 				DE0B1F5023165F6A00B02A9A /* TechnologyService.h */,
 				DE0B1F4F23165F6A00B02A9A /* TechnologyService.m */,
+				DE0B1F4E23165F6A00B02A9A /* TechnologyServiceProtocols.h */,
 			);
 			path = Technology;
 			sourceTree = "<group>";
@@ -575,9 +583,9 @@
 		DE0B1F5123165F6A00B02A9A /* Comic */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1F5223165F6A00B02A9A /* ComicServiceProtocols.h */,
 				DE0B1F5323165F6A00B02A9A /* ComicService.h */,
 				DE0B1F5423165F6A00B02A9A /* ComicService.m */,
+				DE0B1F5223165F6A00B02A9A /* ComicServiceProtocols.h */,
 			);
 			path = Comic;
 			sourceTree = "<group>";
@@ -585,9 +593,9 @@
 		DE0B1F5523165F6A00B02A9A /* News */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1F5823165F6A00B02A9A /* NewsServiceProtocols.h */,
 				DE0B1F5623165F6A00B02A9A /* NewsService.h */,
 				DE0B1F5723165F6A00B02A9A /* NewsService.m */,
+				DE0B1F5823165F6A00B02A9A /* NewsServiceProtocols.h */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -656,9 +664,9 @@
 		DE0B1F6723165F6A00B02A9A /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1F6923165F6A00B02A9A /* AbstractRepositoryProtocols.h */,
 				DE0B1F6823165F6A00B02A9A /* AbstractRepository.h */,
 				DE0B1F6A23165F6A00B02A9A /* AbstractRepository.m */,
+				DE0B1F6923165F6A00B02A9A /* AbstractRepositoryProtocols.h */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -677,9 +685,9 @@
 		DE0B1F6E23165F6A00B02A9A /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1F7123165F6A00B02A9A /* AbstractPresenterProtocols.h */,
 				DE0B1F7023165F6A00B02A9A /* AbstractPresenter.h */,
 				DE0B1F6F23165F6A00B02A9A /* AbstractPresenter.m */,
+				DE0B1F7123165F6A00B02A9A /* AbstractPresenterProtocols.h */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -704,9 +712,9 @@
 		DE0B1F7723165F6A00B02A9A /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B1F7923165F6A00B02A9A /* AbstractServiceProtocols.h */,
 				DE0B1F7823165F6A00B02A9A /* AbstractService.h */,
 				DE0B1F7A23165F6A00B02A9A /* AbstractService.m */,
+				DE0B1F7923165F6A00B02A9A /* AbstractServiceProtocols.h */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1140,9 +1148,9 @@
 		DE544C082318E23900B11DBE /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				DE544C092318E26A00B11DBE /* TestServiceProtocols.h */,
 				DE544C0A2318E27800B11DBE /* TestService.h */,
 				DE544C0B2318E27800B11DBE /* TestService.m */,
+				DE544C092318E26A00B11DBE /* TestServiceProtocols.h */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -1163,6 +1171,34 @@
 			path = "Supporting-Files";
 			sourceTree = "<group>";
 		};
+		DE8D22E524C1B2C5005A0652 /* Google */ = {
+			isa = PBXGroup;
+			children = (
+				DE8D22E624C1B2D6005A0652 /* Gmail */,
+				DEAEF12524C15253003B3A6E /* GTMAuthentication */,
+			);
+			path = Google;
+			sourceTree = "<group>";
+		};
+		DE8D22E624C1B2D6005A0652 /* Gmail */ = {
+			isa = PBXGroup;
+			children = (
+				DEAE115D24C538D600261F6A /* Calendars */,
+				DE8D22E724C1B2DD005A0652 /* Labels */,
+			);
+			path = Gmail;
+			sourceTree = "<group>";
+		};
+		DE8D22E724C1B2DD005A0652 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				DE8D22E824C1B31F005A0652 /* GTMLabelsService.h */,
+				DE8D22E924C1B31F005A0652 /* GTMLabelsService.m */,
+				DE8D22EB24C1B332005A0652 /* GTMLabelsServiceProtocols.h */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
 		DE900D2A24BC702200E5FBB4 /* CustomNSButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1170,6 +1206,16 @@
 				DE900D2C24BC705600E5FBB4 /* DoubleClickButton.m */,
 			);
 			path = CustomNSButton;
+			sourceTree = "<group>";
+		};
+		DEAE115D24C538D600261F6A /* Calendars */ = {
+			isa = PBXGroup;
+			children = (
+				DEAE115F24C5391100261F6A /* GTMCalendarsService.h */,
+				DEAE116024C5391100261F6A /* GTMCalendarsService.m */,
+				DEAE115E24C538FD00261F6A /* GTMCalendarsServiceProtocols.h */,
+			);
+			path = Calendars;
 			sourceTree = "<group>";
 		};
 		DEAEF12524C15253003B3A6E /* GTMAuthentication */ = {
@@ -1541,6 +1587,7 @@
 				DE0B202323165F6C00B02A9A /* AppleScript.m in Sources */,
 				DE0B204823165F6C00B02A9A /* TechnologyCellPresenter.m in Sources */,
 				DE0B206223165F6C00B02A9A /* NotificationObservers.m in Sources */,
+				DEAE116124C5391100261F6A /* GTMCalendarsService.m in Sources */,
 				DE0B205F23165F6C00B02A9A /* TableViewManager.m in Sources */,
 				DE515B8323A76DA30057EBCD /* NSColor+Extensions.m in Sources */,
 				DE544C0C2318E27800B11DBE /* TestService.m in Sources */,
@@ -1553,6 +1600,7 @@
 				DE0B205123165F6C00B02A9A /* FilmCellPresenter.m in Sources */,
 				DE0B202F23165F6C00B02A9A /* AbstractPresenter.m in Sources */,
 				DE0B202D23165F6C00B02A9A /* AbstractRepository.m in Sources */,
+				DE8D22EA24C1B31F005A0652 /* GTMLabelsService.m in Sources */,
 				DE0B203F23165F6C00B02A9A /* FilmsPresenter.m in Sources */,
 				DE0B202023165F6C00B02A9A /* NSObject+Extensions.m in Sources */,
 				DE515B8223A76DA30057EBCD /* NSAppearance+Extensions.m in Sources */,

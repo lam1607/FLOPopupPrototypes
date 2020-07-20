@@ -8,11 +8,18 @@
 
 #import "HomePresenter.h"
 
+#import "GTMCalendarsService.h"
+
+@interface HomePresenter ()
+{
+    GTMAuthenticationInfo *_authenticationInfo;
+}
+
+@end
+
 @implementation HomePresenter
 
 #pragma mark - HomePresenterProtocols implementation
-
-@synthesize authenticationInfo = _authenticationInfo;
 
 - (void)changeWindowMode
 {
@@ -95,9 +102,9 @@
         
         __strong typeof(self) this = wself;
         
-        this.authenticationInfo = authenticationInfo;
+        this->_authenticationInfo = authenticationInfo;
         
-        DLog(@"authenticationInfo: %@, error: %@", this.authenticationInfo, error);
+        DLog(@"authenticationInfo: %@, error: %@", this->_authenticationInfo, error);
     }];
 }
 
@@ -105,17 +112,17 @@
 {
     __weak typeof(self) wself = self;
     
-    [GTMAuthentication refreshAccessTokenWithClientId:kGTMAuthClientID clientSecret:kGTMAuthClientSecret refreshToken:self.authenticationInfo.refreshToken completion:^(GTMAuthenticationInfo * _Nullable authenticationInfo, NSError * _Nullable error) {
+    [GTMAuthentication refreshAccessTokenWithClientId:kGTMAuthClientID clientSecret:kGTMAuthClientSecret refreshToken:_authenticationInfo.refreshToken completion:^(GTMAuthenticationInfo * _Nullable authenticationInfo, NSError * _Nullable error) {
         if (wself == nil) return;
         
         __strong typeof(self) this = wself;
         
         if (authenticationInfo != nil)
         {
-            [this.authenticationInfo updateByObject:authenticationInfo];
+            [this->_authenticationInfo updateByObject:authenticationInfo];
         }
         
-        DLog(@"authenticationInfo: %@, error: %@", this.authenticationInfo, error);
+        DLog(@"authenticationInfo: %@, error: %@", this->_authenticationInfo, error);
     }];
 }
 
@@ -123,17 +130,33 @@
 {
     __weak typeof(self) wself = self;
     
-    [GTMAuthentication getTokenInfoWithID:self.authenticationInfo.idToken completion:^(GTMAuthenticationInfo * _Nullable authenticationInfo, NSError * _Nullable error) {
+    [GTMAuthentication getTokenInfoWithID:_authenticationInfo.idToken completion:^(GTMAuthenticationInfo * _Nullable authenticationInfo, NSError * _Nullable error) {
         if (wself == nil) return;
         
         __strong typeof(self) this = wself;
         
         if (authenticationInfo != nil)
         {
-            [this.authenticationInfo updateByObject:authenticationInfo];
+            [this->_authenticationInfo updateByObject:authenticationInfo];
         }
         
-        DLog(@"authenticationInfo: %@, error: %@", this.authenticationInfo, error);
+        DLog(@"authenticationInfo: %@, error: %@", this->_authenticationInfo, error);
+    }];
+}
+
+- (void)fetchCalendars
+{
+    id<GTMCalendarsServiceProtocols> _calendarsService = [[GTMCalendarsService alloc] init];
+    [_calendarsService setAuthorizer:_authenticationInfo];
+    
+    __weak typeof(self) wself = self;
+    
+    [_calendarsService fetchCalendarsWithCompletion:^(id calendarList, NSError *error) {
+        if (wself == nil) return;
+        
+        __strong typeof(self) this = wself;
+        
+        DLog(@"calendars: %@, error: %@", ((GTLRCalendar_CalendarList *)calendarList).items, error);
     }];
 }
 

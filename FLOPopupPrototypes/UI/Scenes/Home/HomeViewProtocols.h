@@ -29,8 +29,6 @@
 /// Presenter
 @protocol HomePresenterProtocols <AbstractPresenterProtocols>
 
-@property (nonatomic, strong) GTMAuthenticationInfo *authenticationInfo;
-
 - (void)changeWindowMode;
 - (void)openFinder;
 - (void)openSafari;
@@ -45,5 +43,6 @@
 - (void)authorizeGoogle;
 - (void)reauthenticateGoogle;
 - (void)getGoogleTokenInfo;
+- (void)fetchCalendars;
 
 @end

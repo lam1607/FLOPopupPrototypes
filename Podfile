@@ -8,6 +8,8 @@ target 'FLOPopupPrototypes' do
   # Pods for FLOPopupPrototypes
   pod 'GTMAppAuth'
   pod 'AppAuth'
+  pod 'GoogleAPIClientForREST/Gmail'
+  pod 'GoogleAPIClientForREST/Calendar'
   pod 'FlowarePopover'
   pod 'Sparkle'
 

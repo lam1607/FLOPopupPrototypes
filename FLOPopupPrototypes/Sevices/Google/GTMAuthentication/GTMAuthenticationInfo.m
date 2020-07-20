@@ -12,18 +12,7 @@
 
 @implementation GTMAuthenticationInfo
 
-#pragma mark - Override methods
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"{\n\t<%@: %p>,\n\taccessToken: \"%@\",\n\trefreshToken: \"%@\",\n\tidToken: \"%@\",\n\texpiredTime: \"%f\",\n\tuserEmail: \"%@\",\n\tauthorizationQueryParams: \"%@\",\n\tisVerified: \"%ld\",\n\tuserID: \"%@\"\n}", NSStringFromClass([self class]), self, self.accessToken, self.refreshToken, self.idToken, self.expiredTime, self.userEmail, self.authorizationQueryParams, self.isVerified, self.userID];
-}
-
-#pragma mark - Getter/Setter
-
-- (void)setValue:(id)value forKey:(NSString *)key
-{
-}
+@synthesize userEmail = _userEmail;
 
 #pragma mark - Initialize
 
@@ -109,6 +98,13 @@
     }
     
     return nil;
+}
+
+#pragma mark - Override methods
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"{\n\t<%@: %p>,\n\taccessToken: \"%@\",\n\trefreshToken: \"%@\",\n\tidToken: \"%@\",\n\texpiredTime: \"%f\",\n\tuserEmail: \"%@\",\n\tauthorizationQueryParams: \"%@\",\n\tisVerified: \"%ld\",\n\tuserID: \"%@\"\n}", NSStringFromClass([self class]), self, self.accessToken, self.refreshToken, self.idToken, self.expiredTime, self.userEmail, self.authorizationQueryParams, self.isVerified, self.userID];
 }
 
 #pragma mark - Local methods
@@ -247,6 +243,70 @@
         [self setInfoUserName:authenticationInfo.userName];
         [self setInfoUserPicture:authenticationInfo.userPicture];
     }
+}
+
+#pragma mark - GTMFetcherAuthorizationProtocol implementation
+
+#if NS_BLOCKS_AVAILABLE
+// Authorizing with a completion block
+- (void)authorizeRequest:(NSMutableURLRequest *)request completionHandler:(void (^)(NSError *error))handler
+{
+    if (request)
+    {
+        NSString *value = [NSString stringWithFormat:@"%@ %@", kGTMAuthBearer, self.accessToken];
+        [request setValue:value forHTTPHeaderField:@"Authorization"];
+    }
+}
+#endif
+
+- (void)authorizeRequest:(GTM_NULLABLE NSMutableURLRequest *)request delegate:(id)delegate didFinishSelector:(SEL)sel
+{
+    if (request)
+    {
+        NSString *value = [NSString stringWithFormat:@"%@ %@", kGTMAuthBearer, self.accessToken];
+        [request setValue:value forHTTPHeaderField:@"Authorization"];
+    }
+    
+    if (delegate && sel)
+    {
+        NSMethodSignature *sig = [delegate methodSignatureForSelector:sel];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
+        [invocation setSelector:sel];
+        [invocation setTarget:delegate];
+        [invocation setArgument:(__bridge void *)(self) atIndex:2];
+        [invocation setArgument:&request atIndex:3];
+        [invocation invoke];
+    }
+}
+
+- (void)stopAuthorization
+{
+}
+
+- (void)stopAuthorizationForRequest:(NSURLRequest *)request
+{
+}
+
+- (BOOL)isAuthorizingRequest:(NSURLRequest *)request
+{
+    return YES;
+}
+
+- (BOOL)isAuthorizedRequest:(NSURLRequest *)request
+{
+    NSString *authorizedValue = [request valueForHTTPHeaderField:@"Authorization"];
+    
+    return ([authorizedValue length] > 0);
+}
+
+- (NSString *)userEmail
+{
+    return _userEmail;
+}
+
+- (void)setUserEmail:(NSString *)userEmail
+{
+    _userEmail = userEmail;
 }
 
 @end

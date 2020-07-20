@@ -400,6 +400,11 @@
                 if (tokenInfo != nil)
                 {
                     authenticationInfo = [[GTMAuthenticationInfo alloc] initWithTokenInfo:tokenInfo];
+                    
+                    if ((authenticationInfo == nil) && ([tokenInfo objectForKey:kGTMAuthErrorKey] != nil))
+                    {
+                        error = [NSError errorWithDomain:NSStringFromClass([self class]) code:-1 userInfo:@{kGTMAuthInvalidTokenKey: [tokenInfo objectForKey:kGTMAuthErrorDescriptionKey]}];
+                    }
                 }
             }
             

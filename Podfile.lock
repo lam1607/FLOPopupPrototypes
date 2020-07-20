@@ -5,6 +5,14 @@ PODS:
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
   - FlowarePopover (0.3.4)
+  - GoogleAPIClientForREST/Calendar (1.4.2):
+    - GoogleAPIClientForREST/Core
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAPIClientForREST/Core (1.4.2):
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAPIClientForREST/Gmail (1.4.2):
+    - GoogleAPIClientForREST/Core
+    - GTMSessionFetcher (>= 1.1.7)
   - GTMAppAuth (1.0.0):
     - AppAuth/Core (~> 1.0)
     - GTMSessionFetcher (~> 1.1)
@@ -18,6 +26,8 @@ PODS:
 DEPENDENCIES:
   - AppAuth
   - FlowarePopover
+  - GoogleAPIClientForREST/Calendar
+  - GoogleAPIClientForREST/Gmail
   - GTMAppAuth
   - Sparkle
 
@@ -25,6 +35,7 @@ SPEC REPOS:
   trunk:
     - AppAuth
     - FlowarePopover
+    - GoogleAPIClientForREST
     - GTMAppAuth
     - GTMSessionFetcher
     - Sparkle
@@ -32,10 +43,11 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   FlowarePopover: 4db44d9b28b5bdcb7d008226712303d9f6fbde20
+  GoogleAPIClientForREST: 9f49df9fac7867b459187e687fed3066b2be049a
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   Sparkle: 55b1a87ba69d56913375a281546b7c82dec95bb0
 
-PODFILE CHECKSUM: b7bdd0ba6246c0ae36d71f70a34c58b76772bc2c
+PODFILE CHECKSUM: 63a350b319b2167baaf610c33d12763815d053c5
 
 COCOAPODS: 1.8.4
