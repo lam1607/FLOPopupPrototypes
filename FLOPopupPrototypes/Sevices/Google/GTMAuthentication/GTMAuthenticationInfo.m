@@ -34,10 +34,12 @@
         {
             NSString *accessToken = [authenticationInfo objectForKey:kGTMAuthAccessTokenKey];
             NSString *refreshToken = [authenticationInfo objectForKey:kGTMAuthRefreshTokenKey];
+            NSString *tokenType = [authenticationInfo objectForKey:kGTMAuthTokenTypeKey];
             NSString *idToken = [authenticationInfo objectForKey:kGTMAuthIDTokenKey];
             NSString *scope = [authenticationInfo objectForKey:kGTMAuthScopeKey];
             NSString *expiredTime = [authenticationInfo objectForKey:kGTMAuthExpiresInKey];
             NSString *authorizationCode = [authenticationInfo objectForKey:kGTMAuthCodeKey];
+            NSString *serviceProvider = [authenticationInfo objectForKey:kGTMAuthServiceProviderKey];
             NSString *userID = [authenticationInfo objectForKey:kGTMAuthUserIDKey];
             NSString *authorizationQueryParams = [authenticationInfo objectForKey:kGTMAuthQueryParamsKey];
             NSString *userEmail = [authenticationInfo objectForKey:kGTMAuthUserEmailKey];
@@ -49,10 +51,12 @@
             
             [self setInfoAccessToken:accessToken];
             [self setInfoRefreshToken:refreshToken];
+            [self setInfoTokenType:tokenType];
             [self setInfoIDToken:idToken];
             [self setInfoScope:scope];
             [self setInfoExpiredTime:[expiredTime doubleValue]];
             [self setInfoAuthorizationCode:authorizationCode];
+            [self setInfoServiceProvider:serviceProvider];
             [self setInfoUserID:userID];
             [self setInfoAuthorizationQueryParams:authorizationQueryParams];
             [self setInfoUserEmail:userEmail];
@@ -104,7 +108,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"{\n\t<%@: %p>,\n\taccessToken: \"%@\",\n\trefreshToken: \"%@\",\n\tidToken: \"%@\",\n\texpiredTime: \"%f\",\n\tuserEmail: \"%@\",\n\tauthorizationQueryParams: \"%@\",\n\tisVerified: \"%ld\",\n\tuserID: \"%@\"\n}", NSStringFromClass([self class]), self, self.accessToken, self.refreshToken, self.idToken, self.expiredTime, self.userEmail, self.authorizationQueryParams, self.isVerified, self.userID];
+    return [NSString stringWithFormat:@"{\n\t<%@: %p>,\n\taccessToken: \"%@\",\n\trefreshToken: \"%@\",\n\ttokenType: \"%@\",\n\tidToken: \"%@\",\n\tscope: \"%@\",\n\texpiredTime: \"%f\",\n\texpiredDate: \"%@\",\n\tauthorizationCode: \"%@\",\n\tuserID: \"%@\",\n\tserviceProvider: \"%@\",\n\tuserEmail: \"%@\",\n\tauthorizationQueryParams: \"%@\",\n\tisVerified: \"%ld\",\n\tuserFamilyName: \"%@\",\n\tuserGivenName: \"%@\",\n\tuserName: \"%@\",\n\tuserPicture: \"%@\"\n}", NSStringFromClass([self class]), self, self.accessToken, self.refreshToken, self.tokenType, self.idToken, self.scope, self.expiredTime, self.expiredDate, self.authorizationCode, self.userID, self.serviceProvider, self.userEmail, self.authorizationQueryParams, self.isVerified, self.userFamilyName, self.userGivenName, self.userName, self.userPicture];
 }
 
 #pragma mark - Local methods
@@ -122,6 +126,14 @@
     if (refreshToken != nil)
     {
         self.refreshToken = refreshToken;
+    }
+}
+
+- (void)setInfoTokenType:(NSString *)tokenType
+{
+    if (tokenType != nil)
+    {
+        self.tokenType = tokenType;
     }
 }
 
@@ -155,6 +167,14 @@
     if (authorizationCode != nil)
     {
         self.authorizationCode = authorizationCode;
+    }
+}
+
+- (void)setInfoServiceProvider:(NSString *)serviceProvider
+{
+    if (serviceProvider != nil)
+    {
+        self.serviceProvider = serviceProvider;
     }
 }
 
@@ -230,10 +250,12 @@
     {
         [self setInfoAccessToken:authenticationInfo.accessToken];
         [self setInfoRefreshToken:authenticationInfo.refreshToken];
+        [self setInfoTokenType:authenticationInfo.tokenType];
         [self setInfoIDToken:authenticationInfo.idToken];
         [self setInfoScope:authenticationInfo.scope];
         [self setInfoExpiredTime:authenticationInfo.expiredTime];
         [self setInfoAuthorizationCode:authenticationInfo.authorizationCode];
+        [self setInfoServiceProvider:authenticationInfo.serviceProvider];
         [self setInfoUserID:authenticationInfo.userID];
         [self setInfoAuthorizationQueryParams:authenticationInfo.authorizationQueryParams];
         [self setInfoUserEmail:authenticationInfo.userEmail];
@@ -253,7 +275,7 @@
 {
     if (request)
     {
-        NSString *value = [NSString stringWithFormat:@"%@ %@", kGTMAuthBearer, self.accessToken];
+        NSString *value = [NSString stringWithFormat:@"%@ %@", kGTMAuthAuthorizationHeader, self.accessToken];
         [request setValue:value forHTTPHeaderField:@"Authorization"];
     }
 }
@@ -263,7 +285,7 @@
 {
     if (request)
     {
-        NSString *value = [NSString stringWithFormat:@"%@ %@", kGTMAuthBearer, self.accessToken];
+        NSString *value = [NSString stringWithFormat:@"%@ %@", kGTMAuthAuthorizationHeader, self.accessToken];
         [request setValue:value forHTTPHeaderField:@"Authorization"];
     }
     

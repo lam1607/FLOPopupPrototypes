@@ -28,7 +28,7 @@ static NSString *const kGTMAuthUserInfoURI                      = @"https://www.
 static NSString *const kGTMAuthRefreshTokenURI                  = @"https://oauth2.googleapis.com/token";
 static NSString *const kGTMAuthTokenInfoURI                     = @"https://oauth2.googleapis.com/tokeninfo";
 
-static NSString *const kGTMAuthBearer                           = @"Bearer";
+static NSString *const kGTMAuthAuthorizationHeader              = @"Bearer";
 
 // scopes
 static NSString *const kGTMAuthScopeCalendar                    = @"https://www.googleapis.com/auth/calendar";

@@ -140,9 +140,15 @@
     return [NSURL URLWithString:kGTMAuthIssuer];
 }
 
-+ (NSURL *)requestRedirectURL
++ (NSURL *)requestRedirectURLWithClientID:(NSString *)clientId
 {
-    return [NSURL URLWithString:kGTMAuthRedirectURI];
+    NSArray *parts = [clientId componentsSeparatedByString:@"."];
+    
+    parts = [parts reverseObjectEnumerator].allObjects;
+    
+    NSString *redirectURL = [[parts componentsJoinedByString:@"."] stringByAppendingString:@":/oauthredirect"];
+    
+    return [NSURL URLWithString:redirectURL];
 }
 
 + (NSArray *)requestScopes
@@ -295,8 +301,18 @@
 
 + (GTMAuthenticationInfo * _Nullable)authenticationInfoWithResponseString:(NSString * _Nonnull)responseStr
 {
+    return [[self class] authenticationInfoWithResponseString:responseStr accessToken:nil];
+}
+
++ (GTMAuthenticationInfo * _Nullable)authenticationInfoWithResponseString:(NSString * _Nonnull)responseStr accessToken:(NSString * _Nullable)accessToken
+{
     NSDictionary *responseDict = [[self class] dictionaryWithResponseString:responseStr];
     GTMAuthenticationInfo *authenticationInfo = [[GTMAuthenticationInfo alloc] initWithAuthenticationInfo:responseDict];
+    
+    if ((accessToken != nil) && (accessToken != authenticationInfo.accessToken))
+    {
+        authenticationInfo.accessToken = accessToken;
+    }
     
     return authenticationInfo;
 }
@@ -308,7 +324,7 @@
     [OIDAuthorizationService discoverServiceConfigurationForIssuer:[[self class] requestIssuer] completion:^(OIDServiceConfiguration *configuration, NSError *error) {
         if (configuration != nil)
         {
-            OIDAuthorizationRequest *request = [[OIDAuthorizationRequest alloc] initWithConfiguration:configuration clientId:clientId clientSecret:clientSecret scopes:[[self class] requestScopes] redirectURL:[[self class] requestRedirectURL] responseType:OIDResponseTypeCode additionalParameters:nil];
+            OIDAuthorizationRequest *request = [[OIDAuthorizationRequest alloc] initWithConfiguration:configuration clientId:clientId clientSecret:clientSecret scopes:[[self class] requestScopes] redirectURL:[[self class] requestRedirectURLWithClientID:clientId] responseType:OIDResponseTypeCode additionalParameters:nil];
             
             // performs authentication request
             id<OIDExternalUserAgentSession> currentAuthorization = [OIDAuthState authStateByPresentingAuthorizationRequest:request callback:^(OIDAuthState *authState, NSError *error) {
@@ -437,7 +453,7 @@
         [OIDAuthorizationService discoverServiceConfigurationForIssuer:[NSURL URLWithString:kGTMAuthIssuer] completion:^(OIDServiceConfiguration *configuration, NSError *error) {
             if (configuration != nil)
             {
-                OIDTokenRequest *tokenRequest = [[OIDTokenRequest alloc] initWithConfiguration:configuration grantType:OIDGrantTypeRefreshToken authorizationCode:nil redirectURL:[[self class] requestRedirectURL] clientID:clientId clientSecret:clientSecret scopes:[[self class] requestScopes] refreshToken:refreshToken codeVerifier:nil additionalParameters:nil];
+                OIDTokenRequest *tokenRequest = [[OIDTokenRequest alloc] initWithConfiguration:configuration grantType:OIDGrantTypeRefreshToken authorizationCode:nil redirectURL:[[self class] requestRedirectURLWithClientID:clientId] clientID:clientId clientSecret:clientSecret scopes:[[self class] requestScopes] refreshToken:refreshToken codeVerifier:nil additionalParameters:nil];
                 
                 [OIDAuthorizationService performTokenRequest:tokenRequest callback:^(OIDTokenResponse * _Nullable tokenResponse, NSError * _Nullable error) {
                     GTMAuthenticationInfo *authenticationInfo = nil;
@@ -487,6 +503,51 @@
             complete(nil, error);
         }
     }
+}
+
++ (GTMAuthenticationInfo * _Nullable)updateAuthentication:(GTMAuthenticationInfo * _Nonnull)source byObject:(GTMAuthenticationInfo * _Nonnull)dest
+{
+    if (![dest isKindOfClass:[GTMAuthenticationInfo class]]) return nil;
+    if (![source isKindOfClass:[GTMAuthenticationInfo class]]) return dest;
+    
+    GTMAuthenticationInfo *authenticationInfo = [[GTMAuthenticationInfo alloc] init];
+    
+    GTMAuthenticationInfo *target = (dest.expiredTime > source.expiredTime) ? source : dest;
+    GTMAuthenticationInfo *object = (dest.expiredTime > source.expiredTime) ? dest : source;
+    
+    [authenticationInfo updateByObject:target];
+    [authenticationInfo updateByObject:object];
+    
+    NSMutableDictionary *authorizationInfo = [[NSMutableDictionary alloc] init];
+    
+    NSString *refreshToken = authenticationInfo.refreshToken;
+    NSString *accessToken = authenticationInfo.accessToken;
+    NSString *tokenType = authenticationInfo.tokenType;
+    NSString *idToken = authenticationInfo.idToken;
+    NSString *tokenExpiredTime = [NSString stringWithFormat:@"%f", authenticationInfo.expiredTime];
+    NSString *authorizationCode = authenticationInfo.authorizationCode;
+    NSString *emailIsVerified = (authenticationInfo.isVerified != -1) ? [NSString stringWithFormat:@"%ld", authenticationInfo.isVerified] : nil;
+    
+    // Any nil values will not set a dictionary entry
+    [authorizationInfo setValue:refreshToken forKey:kGTMAuthRefreshTokenKey];
+    [authorizationInfo setValue:idToken forKey:kGTMAuthIDTokenKey];
+    [authorizationInfo setValue:tokenExpiredTime forKey:kGTMAuthExpiresInKey];
+    [authorizationInfo setValue:authorizationCode forKey:kGTMAuthCodeKey];
+    [authorizationInfo setValue:tokenType forKey:kGTMAuthTokenTypeKey];
+    [authorizationInfo setValue:authenticationInfo.serviceProvider forKey:kGTMAuthServiceProviderKey];
+    [authorizationInfo setValue:authenticationInfo.userID forKey:kGTMAuthUserIDKey];
+    [authorizationInfo setValue:authenticationInfo.userEmail forKey:kGTMAuthUserEmailKey];
+    [authorizationInfo setValue:emailIsVerified forKey:kGTMAuthUserEmailIsVerifiedKey];
+    [authorizationInfo setValue:authenticationInfo.scope forKey:kGTMAuthScopeKey];
+    
+    NSString *authorizationQueryParams = [[self class] encodedQueryParametersForDictionary:authorizationInfo];
+    
+    [authorizationInfo setValue:accessToken forKey:kGTMAuthAccessTokenKey];
+    [authorizationInfo setValue:authorizationQueryParams forKey:kGTMAuthQueryParamsKey];
+    
+    authenticationInfo.authorizationQueryParams = authorizationQueryParams;
+    
+    return authenticationInfo;
 }
 
 @end

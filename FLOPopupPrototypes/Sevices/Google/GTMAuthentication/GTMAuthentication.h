@@ -24,11 +24,13 @@
 + (NSDictionary * _Nullable)dictionaryWithResponseString:(NSString * _Nonnull)responseStr;
 
 + (GTMAuthenticationInfo * _Nullable)authenticationInfoWithResponseString:(NSString * _Nonnull)responseStr;
++ (GTMAuthenticationInfo * _Nullable)authenticationInfoWithResponseString:(NSString * _Nonnull)responseStr accessToken:(NSString * _Nullable)accessToken;
 
 /// Authentication
 ///
 + (void)authorizeWithClientId:(NSString * _Nonnull)clientId clientSecret:(NSString * _Nonnull)clientSecret completion:(void(^ _Nullable)(GTMAuthenticationInfo * _Nullable authenticationInfo, NSError * _Nullable error))complete;
 + (void)getTokenInfoWithID:(NSString * _Nonnull)idToken completion:(void(^ _Nullable)(GTMAuthenticationInfo * _Nullable authenticationInfo, NSError * _Nullable error))complete;
 + (void)refreshAccessTokenWithClientId:(NSString * _Nonnull)clientId clientSecret:(NSString * _Nonnull)clientSecret refreshToken:(NSString * _Nonnull)refreshToken completion:(void(^ _Nullable)(GTMAuthenticationInfo * _Nullable authenticationInfo, NSError * _Nullable error))complete;
++ (GTMAuthenticationInfo * _Nullable)updateAuthentication:(GTMAuthenticationInfo * _Nonnull)source byObject:(GTMAuthenticationInfo * _Nonnull)dest;
 
 @end

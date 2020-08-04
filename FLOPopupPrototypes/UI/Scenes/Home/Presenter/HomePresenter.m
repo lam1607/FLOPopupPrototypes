@@ -119,7 +119,7 @@
         
         if (authenticationInfo != nil)
         {
-            [this->_authenticationInfo updateByObject:authenticationInfo];
+            this->_authenticationInfo = [GTMAuthentication updateAuthentication:this->_authenticationInfo byObject:authenticationInfo];
         }
         
         DLog(@"authenticationInfo: %@, error: %@", this->_authenticationInfo, error);
@@ -137,7 +137,6 @@
         
         if (authenticationInfo != nil)
         {
-            [this->_authenticationInfo updateByObject:authenticationInfo];
         }
         
         DLog(@"authenticationInfo: %@, error: %@", this->_authenticationInfo, error);
